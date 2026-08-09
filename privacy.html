@@ -7,9 +7,8 @@
 <meta name="description" content="מדיניות הפרטיות של אתר בני לפקוביץ – תכנון ואופטימיזציה לנקודות מכירה.">
 <meta name="robots" content="noindex, follow">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Heebo:wght@400;500;700;800&display=swap&subset=hebrew,latin">
+<link rel="preload" href="assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/assistant-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#0a2440">
@@ -23,13 +22,13 @@
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
-    <g id="i-alert" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
       <path d="M10.3 3.9 2.4 17.4A1.9 1.9 0 0 0 4 20.3h16a1.9 1.9 0 0 0 1.6-2.9L13.7 3.9a1.9 1.9 0 0 0-3.4 0Z"/>
       <path d="M12 9v4.5M12 17h.01"/>
-    </g>
-    <g id="i-arrow" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M19 12H5M11 6l-6 6 6 6"/>
-    </g>
+    </symbol>
   </defs>
 </svg>
 
@@ -104,7 +103,12 @@
       <p>
         באתר עשויים לפעול שירותי מדידה של צד שלישי, ובכללם Google Analytics ו־Meta Pixel,
         לצורך הבנת אופן השימוש באתר ושיפורו. שירותים אלה עושים שימוש בקובצי Cookie.
-        ניתן לחסום קובצי Cookie דרך הגדרות הדפדפן, אך הדבר עשוי להשפיע על אופן פעולת האתר.
+      </p>
+      <p>
+        שירותי המדידה אינם נטענים כלל לפני שהגולש אישר זאת בבאנר ההסכמה המוצג בכניסה
+        הראשונה לאתר. בחירה ב״רק ההכרחי״ מונעת את טעינתם. ניתן לשנות את ההחלטה בכל עת
+        באמצעות <a href="index.html#" data-consent-reopen>הגדרות הפרטיות</a>,
+        וכן לחסום קובצי Cookie דרך הגדרות הדפדפן.
       </p>
 
       <h2>אבטחת מידע ושמירת הפרטים</h2>
@@ -119,6 +123,12 @@
         בהתאם לדין, ניתן לפנות בבקשה לעיין בפרטים שנשמרו, לתקן אותם או לבקש את מחיקתם.
         פנייה בעניין זה תיעשה לכתובת הדוא״ל: <span class="placeholder-text">[כתובת דוא״ל]</span>
         או לטלפון <span class="placeholder-text">[מספר הטלפון של בני]</span>.
+      </p>
+
+      <h2>גופנים ונכסים חיצוניים</h2>
+      <p>
+        גופני האתר מאוחסנים ומוגשים מהשרת של האתר עצמו ואינם נטענים משירות חיצוני,
+        כך שלא מועברת אליו כתובת ה־IP של הגולש בעת הצפייה בעמוד.
       </p>
 
       <h2>קישורים לאתרים חיצוניים</h2>
@@ -155,9 +165,20 @@
 
 <script>
   document.getElementById("year").textContent = String(new Date().getFullYear());
+
   if (window.SITE_CONFIG && window.SITE_CONFIG.showAdminNotices === false) {
     document.querySelectorAll("[data-admin-notice]").forEach(function (el) { el.remove(); });
   }
+
+  /* "הגדרות הפרטיות": מוחק את ההחלטה השמורה ומחזיר לעמוד הראשי,
+     שם באנר ההסכמה יוצג מחדש. העמוד הזה אינו טוען את main.js. */
+  document.querySelectorAll("[data-consent-reopen]").forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      try { window.localStorage.removeItem("beni.analyticsConsent"); } catch (err) {}
+      window.location.href = "index.html";
+    });
+  });
 </script>
 </body>
 </html>

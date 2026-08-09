@@ -6,11 +6,18 @@
 
 <title>תכנון ואופטימיזציה לנקודות מכירה | בני לפקוביץ</title>
 <meta name="description" content="ייעוץ, תכנון ואופטימיזציה לסופרמרקטים, מינימרקטים, קיוסקים ונקודות מכירה, על בסיס 22 שנות ניסיון בניהול קמעונאי.">
-<meta name="keywords" content="תכנון נקודת מכירה, סידור חנות, עיצוב סופרמרקט, ייעוץ קמעונאי, הגדלת מכירות בחנות, אופטימיזציה לחנויות, תכנון מינימרקט, סידור מדפים בחנות, שיפור חוויית לקוח בחנות">
 <meta name="author" content="בני לפקוביץ">
 <meta name="robots" content="index, follow">
 
-<!-- TODO להשלמה לפני העלייה לאוויר: יש לעדכן את הכתובת האמיתית של האתר -->
+<!-- ==========================================================================
+     החלפת הדומיין לפני העלייה לאוויר
+     --------------------------------------------------------------------------
+     הכתובת https://example.co.il מופיעה בארבעה מקומות בקובץ הזה (canonical,
+     og:url, og:image, twitter:image) ובנוסף ב-sitemap.xml וב-site.config.js.
+     היא חייבת להיות כתובה כאן ולא להיווצר ב-JavaScript, מפני שוואטסאפ
+     ופייסבוק קוראים את התגיות האלה בלי להריץ סקריפטים.
+     כל עוד הכתובת לא הוחלפה, האתר מציג התראה למנהל האתר בראש העמוד.
+     ========================================================================== -->
 <link rel="canonical" href="https://example.co.il/">
 
 <!-- Open Graph -->
@@ -19,16 +26,22 @@
 <meta property="og:site_name" content="בני לפקוביץ – תכנון ואופטימיזציה לנקודות מכירה">
 <meta property="og:title" content="מתכננים את החנות נכון. מוכרים יותר.">
 <meta property="og:description" content="ייעוץ, תכנון ואופטימיזציה לסופרמרקטים, מינימרקטים, קיוסקים ונקודות מכירה, על בסיס 22 שנות ניסיון בניהול קמעונאי.">
+<meta property="og:url" content="https://example.co.il/">
 <!-- TODO להשלמה: תמונת שיתוף ברשתות בגודל 1200x630 -->
-<meta property="og:image" content="assets/img/og-image.jpg">
+<meta property="og:image" content="https://example.co.il/assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="בני לפקוביץ – תכנון ואופטימיזציה לנקודות מכירה">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://example.co.il/assets/img/og-image.jpg">
 
 <meta name="theme-color" content="#0a2440">
 
-<!-- גופנים עבריים: Heebo לכותרות, Assistant לגוף הטקסט -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Heebo:wght@400;500;700;800&display=swap&subset=hebrew,latin">
+<!-- גופנים עבריים: Heebo לכותרות, Assistant לגוף הטקסט.
+     מאוחסנים מקומית (assets/fonts) ולא נטענים מ-Google Fonts — מהיר יותר,
+     וללא העברת כתובות IP של המבקרים לצד שלישי. -->
+<link rel="preload" href="assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/assistant-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -37,8 +50,15 @@
      כך שללא JavaScript כל התוכן מוצג במלואו. -->
 <script>document.documentElement.classList.add("js");</script>
 
-<!-- נתונים מובנים למנועי חיפוש -->
-<script type="application/ld+json">
+<!-- ==========================================================================
+     נתונים מובנים למנועי חיפוש
+     --------------------------------------------------------------------------
+     שני בלוקים: תיאור העסק, ורשימת השאלות הנפוצות. סכמת FAQPage היא מה
+     שמאפשר לגוגל להציג את השאלות והתשובות ישירות בתוצאות החיפוש.
+     שדות התלויים בפרטי קשר (טלפון, כתובת אתר, אזורי שירות) מושלמים
+     אוטומטית מתוך site.config.js על ידי assets/js/schema.js.
+     ========================================================================== -->
+<script type="application/ld+json" id="schema-business">
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -46,7 +66,56 @@
   "description": "ייעוץ, תכנון ואופטימיזציה לסופרמרקטים, מינימרקטים, קיוסקים ונקודות מכירה, על בסיס 22 שנות ניסיון בניהול קמעונאי.",
   "founder": { "@type": "Person", "name": "בני לפקוביץ", "jobTitle": "יועץ ומתכנן נקודות מכירה" },
   "knowsAbout": ["תכנון נקודת מכירה", "סידור חנות", "אופטימיזציה קמעונאית", "תכנון סופרמרקט", "נראות מסחרית"],
-  "priceRange": "$$"
+  "priceRange": "$$",
+  "availableLanguage": "he",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "שירותי תכנון ואופטימיזציה לנקודות מכירה",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "סקירה ואופטימיזציה לחנות קיימת" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ליווי ויישום בחנות קיימת" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "תכנון נקודת מכירה חדשה" } }
+    ]
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "לאילו סוגי חנויות השירות מתאים?",
+      "acceptedAnswer": { "@type": "Answer", "text": "השירות מתאים לסופרמרקטים, מינימרקטים, קיוסקים, חנויות נוחות, חנויות מזון ונקודות מכירה קמעונאיות נוספות." }
+    },
+    {
+      "@type": "Question",
+      "name": "האם חייבים לבצע שיפוץ מלא?",
+      "acceptedAnswer": { "@type": "Answer", "text": "לא. במקרים רבים ניתן להשיג שיפור באמצעות שינויי סידור, מיקום, נראות וזרימה ללא שיפוץ מקיף." }
+    },
+    {
+      "@type": "Question",
+      "name": "מה מקבלים לאחר סקירת החנות?",
+      "acceptedAnswer": { "@type": "Answer", "text": "דו״ח מסודר הכולל את הממצאים, ההמלצות והפעולות המומלצות לפי סדר עדיפות." }
+    },
+    {
+      "@type": "Question",
+      "name": "האם ניתן לקבל ליווי ביישום ההמלצות?",
+      "acceptedAnswer": { "@type": "Answer", "text": "כן. ניתן להזמין שירות הכולל ליווי וסיוע ביישום בפועל." }
+    },
+    {
+      "@type": "Question",
+      "name": "האם אתם מתכננים גם חנויות חדשות?",
+      "acceptedAnswer": { "@type": "Answer", "text": "כן. ניתן לקבל תכנון מסחרי מלא בשיתוף מעצב או מעצבת פנים." }
+    },
+    {
+      "@type": "Question",
+      "name": "האם השירות מתאים גם לחנות קטנה?",
+      "acceptedAnswer": { "@type": "Answer", "text": "כן. דווקא בחנויות קטנות יש חשיבות גבוהה לניצול נכון של כל מטר." }
+    }
+  ]
 }
 </script>
 
@@ -163,7 +232,7 @@
         <li><a class="nav__link" href="#about">אודות</a></li>
         <li><a class="nav__link" href="#services">שירותים</a></li>
         <li><a class="nav__link" href="#process">תהליך העבודה</a></li>
-        <li><a class="nav__link" href="#testimonials">המלצות</a></li>
+        <li hidden><a class="nav__link" href="#testimonials">המלצות</a></li>
         <li><a class="nav__link" href="#faq">שאלות נפוצות</a></li>
         <li><a class="nav__link" href="#contact">יצירת קשר</a></li>
       </ul>
@@ -178,21 +247,31 @@
 
   </div>
 
+  <!-- פריטי התפריט נבנים מתוך תפריט השולחן שלמעלה, כדי שרשימת הניווט
+       תוגדר במקום אחד בלבד. התפריט הנפתח דורש JavaScript ממילא. -->
   <div class="mobile-nav" id="mobile-nav" hidden>
-    <ul class="mobile-nav__list">
-      <li><a class="mobile-nav__link" href="#top">ראשי</a></li>
-      <li><a class="mobile-nav__link" href="#about">אודות</a></li>
-      <li><a class="mobile-nav__link" href="#services">שירותים</a></li>
-      <li><a class="mobile-nav__link" href="#process">תהליך העבודה</a></li>
-      <li><a class="mobile-nav__link" href="#testimonials">המלצות</a></li>
-      <li><a class="mobile-nav__link" href="#faq">שאלות נפוצות</a></li>
-      <li><a class="mobile-nav__link" href="#contact">יצירת קשר</a></li>
-    </ul>
+    <ul class="mobile-nav__list" id="mobile-nav-list"></ul>
     <a class="btn btn--primary btn--block mobile-nav__cta" href="#contact" data-wa-link>לתיאום ייעוץ</a>
   </div>
 </header>
 
 <main id="main">
+
+<!-- התראה למנהל האתר: הדומיין בתגיות השיתוף עדיין לא הוחלף.
+     מוצגת רק כאשר showAdminNotices דלוק וכתובת האתר לא עודכנה. -->
+<div class="container" style="padding-block-start:1rem">
+  <div class="admin-notice" id="domain-notice" data-admin-notice hidden>
+    <svg aria-hidden="true"><use href="#i-alert"></use></svg>
+    <p>
+      <strong>הודעה למנהל האתר:</strong>
+      כתובת האתר עדיין מוגדרת כ־<code>https://example.co.il</code>.
+      כל עוד היא לא הוחלפה, שיתוף של האתר בוואטסאפ או בפייסבוק יוצג ללא תמונה,
+      ומנועי החיפוש יקבלו כתובת <code>canonical</code> שגויה.
+      יש לעדכן את הכתובת ב־<code>index.html</code>, ב־<code>sitemap.xml</code>
+      וב־<code>assets/js/site.config.js</code>.
+    </p>
+  </div>
+</div>
 
 <!-- ==========================================================================
      1. Hero
@@ -216,8 +295,12 @@
             <svg class="btn__icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
             לתיאום פגישת ייעוץ
           </a>
-          <a class="btn btn--secondary" href="#services">לשירותים שלנו</a>
+          <a class="btn btn--secondary" href="#services">לשירותים שלי</a>
         </div>
+
+        <!-- הצעת הפתיחה — מוסרת את החשש מהתחייבות. מוצגת רק אם מולא
+             introOfferText בקובץ assets/js/site.config.js. -->
+        <p class="offer-note" data-offer="intro" hidden></p>
 
         <dl class="trust-stats">
           <div class="trust-stat">
@@ -426,23 +509,23 @@
         <p class="eyebrow">אודות</p>
         <h2>ניסיון שמגיע מהשטח</h2>
 
-        <p>בני לפקוביץ, בן 47, בעל 22 שנות ניסיון ניהולי ומסחרי בענף הקמעונאות.</p>
+        <p>שמי בני לפקוביץ, בן 47, ויש לי 22 שנות ניסיון ניהולי ומסחרי בענף הקמעונאות.</p>
 
         <p>
-          במשך 11 שנים שימש כמנהל סניף ברשת אושר עד, שם צבר ניסיון מעשי בניהול חנות,
+          במשך 11 שנים ניהלתי סניף ברשת אושר עד, וצברתי שם ניסיון מעשי בניהול חנות,
           סידור מחלקות, הצגת מוצרים, תפעול צוותים והבנת דפוסי הקנייה של הלקוחות.
         </p>
 
         <p>
-          במשך 11 שנים נוספות מילא תפקיד ניהולי ברשת מזון מובילה בירושלים וליווה את צמיחתה והתפתחותה.
+          במשך 11 שנים נוספות מילאתי תפקיד ניהולי ברשת מזון מובילה בירושלים וליוויתי את צמיחתה והתפתחותה.
         </p>
 
         <p>
-          לאורך השנים סייע בני למספר נקודות מכירה לשפר את סידור החנות, את הנראות המסחרית ואת ניצול השטח.
+          לאורך השנים סייעתי למספר נקודות מכירה לשפר את סידור החנות, את הנראות המסחרית ואת ניצול השטח.
         </p>
 
         <p>
-          כיום הוא מרכז את הידע והניסיון שצבר ומציע אותם לבעלי חנויות, רשתות ויזמים
+          היום אני מרכז את הידע והניסיון שצברתי ומציע אותם לבעלי חנויות, רשתות ויזמים
           המעוניינים להקים או לשפר נקודת מכירה.
         </p>
 
@@ -473,9 +556,11 @@
   <div class="container">
 
     <div class="section-head section-head--center reveal">
-      <p class="eyebrow">מה אנחנו עושים</p>
-      <h2>השירותים שלנו</h2>
+      <p class="eyebrow">מה אני עושה</p>
+      <h2>השירותים שלי</h2>
       <p class="lead">שלוש רמות ליווי, מסקירה ממוקדת של חנות קיימת ועד תכנון מלא של נקודת מכירה חדשה.</p>
+      <!-- עוגן מחיר. מוצג רק אם מולא priceRangeText ב-assets/js/site.config.js. -->
+      <p class="offer-note offer-note--center" data-offer="price" hidden></p>
     </div>
 
     <div class="services">
@@ -594,7 +679,10 @@
 <!-- ==========================================================================
      7. המלצות ופרויקטים  (תבניות להשלמה — אין להמציא תוכן)
      ========================================================================== -->
-<section class="section" id="testimonials">
+<!-- מוסתר כברירת מחדל. נחשף על ידי assets/js/main.js רק כאשר
+     showTestimonials דלוק ב-assets/js/site.config.js — כך שגם גולש
+     ללא JavaScript לא רואה ארבעה כרטיסים ריקים. -->
+<section class="section" id="testimonials" hidden>
   <div class="container">
 
     <div class="section-head section-head--center reveal">
@@ -921,6 +1009,8 @@
           </a>
         </div>
 
+        <p class="offer-note offer-note--on-dark" data-offer="intro" hidden></p>
+
         <ul class="contact__direct">
           <li class="contact__direct-item">
             <svg aria-hidden="true"><use href="#i-phone"></use></svg>
@@ -942,8 +1032,8 @@
       </div>
 
       <div class="form-card reveal" id="contact-form">
-        <h3>השאירו פרטים ונחזור אליכם</h3>
-        <p class="form-card__intro">מילוי הטופס אינו מחייב. נחזור אליכם לשיחה קצרה להבנת הצורך.</p>
+        <h3>השאירו פרטים ואחזור אליכם</h3>
+        <p class="form-card__intro">מילוי הטופס אינו מחייב. אחזור אליכם לשיחה קצרה להבנת הצורך.</p>
 
         <!-- הודעת סטטוס — נטענת בזמן שליחה -->
         <div class="form__status" id="form-status" role="status" aria-live="polite"></div>
@@ -1025,6 +1115,14 @@
             </p>
           </div>
 
+          <!-- שדה מלכודת: מוסתר מהמשתמש ומדפדפני קוראי מסך, וממולא רק על ידי
+               בוטים שממלאים אוטומטית כל שדה בטופס. פנייה שבה הוא מלא נזרקת. -->
+          <div class="hp" aria-hidden="true">
+            <label for="website">אין למלא שדה זה</label>
+            <input type="text" id="website" name="website" tabindex="-1"
+                   autocomplete="off" data-honeypot>
+          </div>
+
           <button class="btn btn--primary btn--block" type="submit" id="form-submit">
             <span class="btn__text">חזרו אליי</span>
           </button>
@@ -1088,6 +1186,7 @@
           <li><a href="#faq">שאלות נפוצות</a></li>
           <li><a href="#contact">יצירת קשר</a></li>
           <li><a href="privacy.html">מדיניות פרטיות</a></li>
+          <li><a href="#" data-consent-reopen>הגדרות פרטיות</a></li>
         </ul>
       </div>
 
@@ -1104,10 +1203,11 @@
 <!-- כפתור וואטסאפ צף -->
 <a class="wa-float" href="#contact-form" data-wa-float>
   <svg aria-hidden="true"><use href="#i-whatsapp"></use></svg>
-  <span class="wa-float__label">דברו איתנו בוואטסאפ</span>
+  <span class="wa-float__label">דברו איתי בוואטסאפ</span>
   <span class="sr-only">פתיחת שיחה בוואטסאפ</span>
 </a>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/schema.js"></script>
 </body>
 </html>

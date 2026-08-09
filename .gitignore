@@ -1,0 +1,12 @@
+# מערכת הפעלה
+.DS_Store
+Thumbs.db
+
+# עורכים
+.vscode/
+.idea/
+*.swp
+
+# קבצים זמניים
+*.log
+node_modules/

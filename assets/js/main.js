@@ -1,6 +1,7 @@
 /* ==========================================================================
    בני לפקוביץ – תכנון ואופטימיזציה לנקודות מכירה
-   לוגיקת צד לקוח: ניווט, חשיפה בגלילה, קישורי יצירת קשר, טופס לידים.
+   לוגיקת צד לקוח: ניווט, חשיפה בגלילה, קישורי יצירת קשר, טופס לידים,
+   הסכמה למדידה ומדידת המרות.
    ללא תלויות חיצוניות.
    ========================================================================== */
 
@@ -13,17 +14,69 @@
   var WA_MESSAGE =
     "שלום בני, הגעתי דרך האתר ואני מעוניין לקבל פרטים על שיפור ותכנון נקודת המכירה שלי.";
 
+  /* הכתובת שמופיעה בקובץ ההגדרות כברירת מחדל. כל עוד היא לא הוחלפה,
+     תגיות השיתוף באתר מצביעות לדומיין שאינו קיים. */
+  var PLACEHOLDER_URL = "https://example.co.il";
+
+  /* מפתח שמירת ההחלטה על מדידה, ומשך המינימום הסביר למילוי טופס */
+  var CONSENT_KEY = "beni.analyticsConsent";
+  var MIN_FORM_SECONDS = 4;
+
   var $  = function (sel, ctx) { return (ctx || document).querySelector(sel); };
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
 
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  var pageLoadedAt = Date.now();
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
   /* ------------------------------------------------------------------------
-     1. תפריט מובייל
+     1. אזור ההמלצות — מוסתר כל עוד לא הוזן בו תוכן אמיתי
+     ------------------------------------------------------------------------
+     ארבעה כרטיסים ריקים במרכז העמוד אינם נקראים כ"בקרוב" אלא כ"אין",
+     ולכן ברירת המחדל היא להסתיר את האזור ואת הקישורים אליו.
+     ------------------------------------------------------------------------ */
+
+  var testimonialsSection = $("#testimonials");
+  var testimonialsNavItems = $$('a[href="#testimonials"]').map(function (link) {
+    return link.closest("li") || link;
+  });
+
+  if (CFG.showTestimonials) {
+    if (testimonialsSection) testimonialsSection.hidden = false;
+    testimonialsNavItems.forEach(function (el) { el.hidden = false; });
+  } else {
+    if (testimonialsSection) testimonialsSection.remove();
+    testimonialsNavItems.forEach(function (el) { el.remove(); });
+  }
+
+  /* ------------------------------------------------------------------------
+     2. תפריט מובייל
+     ------------------------------------------------------------------------
+     פריטי התפריט נבנים מתוך תפריט השולחן כדי שרשימת הניווט תוגדר
+     במקום אחד בלבד ב-HTML. התפריט הנפתח דורש JavaScript ממילא.
      ------------------------------------------------------------------------ */
 
   var toggle    = $("#nav-toggle");
   var mobileNav = $("#mobile-nav");
+  var mobileList = $("#mobile-nav-list");
+
+  if (mobileList) {
+    $$(".nav__link").forEach(function (link) {
+      var item = document.createElement("li");
+      var copy = document.createElement("a");
+      copy.className = "mobile-nav__link";
+      copy.setAttribute("href", link.getAttribute("href"));
+      copy.textContent = link.textContent.trim();
+      item.appendChild(copy);
+      mobileList.appendChild(item);
+    });
+  }
 
   function setMenu(open) {
     if (!toggle || !mobileNav) return;
@@ -62,13 +115,14 @@
     });
 
     /* סגירה אוטומטית במעבר לתצוגת שולחן עבודה */
-    window.matchMedia("(min-width: 1024px)").addEventListener("change", function (e) {
-      if (e.matches) setMenu(false);
-    });
+    var desktopQuery = window.matchMedia("(min-width: 1024px)");
+    var onDesktopChange = function (e) { if (e.matches) setMenu(false); };
+    if (desktopQuery.addEventListener) desktopQuery.addEventListener("change", onDesktopChange);
+    else if (desktopQuery.addListener) desktopQuery.addListener(onDesktopChange);
   }
 
   /* ------------------------------------------------------------------------
-     2. צל לכותרת בגלילה + סימון הסעיף הפעיל בתפריט
+     3. צל לכותרת בגלילה + סימון הסעיף הפעיל בתפריט
      ------------------------------------------------------------------------ */
 
   var header = $("#site-header");
@@ -103,7 +157,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     3. חשיפה עדינה בגלילה
+     4. חשיפה עדינה בגלילה
      ------------------------------------------------------------------------ */
 
   function initReveal() {
@@ -127,7 +181,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     4. קישורי יצירת קשר (וואטסאפ / טלפון / דוא"ל)
+     5. קישורי יצירת קשר (וואטסאפ / טלפון / דוא"ל)
      ------------------------------------------------------------------------ */
 
   var hasWhatsApp = Boolean(CFG.whatsappNumber);
@@ -154,6 +208,15 @@
     }
   }
 
+  /* מזהה את האזור בעמוד שממנו נלחץ קישור, כדי שניתן יהיה לדעת
+     אילו אזורים מייצרים פניות בפועל */
+  function originOf(el) {
+    if (el.classList.contains("wa-float")) return "float";
+    var section = el.closest("section[id], header, footer");
+    if (!section) return "unknown";
+    return section.id || section.tagName.toLowerCase();
+  }
+
   $$("[data-wa-link], [data-wa-float]").forEach(function (el) {
     if (hasWhatsApp) {
       el.setAttribute("href", whatsappUrl());
@@ -162,11 +225,18 @@
     } else {
       markUnconfigured(el, "וואטסאפ");
     }
+    el.addEventListener("click", function () {
+      trackEvent("contact_whatsapp", { location: originOf(el), configured: hasWhatsApp });
+    });
   });
 
   $$("[data-tel-link]").forEach(function (el) {
     if (hasPhone) el.setAttribute("href", "tel:" + CFG.phoneDial);
     else markUnconfigured(el, "טלפון");
+
+    el.addEventListener("click", function () {
+      trackEvent("contact_phone", { location: originOf(el), configured: hasPhone });
+    });
   });
 
   /* השלמת פרטי הקשר בגוף העמוד ובכותרת התחתונה */
@@ -175,25 +245,45 @@
     $$('[data-contact="' + key + '"]').forEach(function (el) { el.innerHTML = html; });
   }
 
-  function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
-    });
-  }
-
   fillContact("phone", hasPhone,
-    '<a href="tel:' + escapeHtml(CFG.phoneDial) + '" dir="ltr">' + escapeHtml(CFG.phoneDisplay) + "</a>");
+    '<a href="tel:' + escapeHtml(CFG.phoneDial) + '" dir="ltr" data-channel="phone">' +
+    escapeHtml(CFG.phoneDisplay) + "</a>");
 
   fillContact("whatsapp", hasWhatsApp,
-    '<a href="' + escapeHtml(whatsappUrl()) + '" target="_blank" rel="noopener">שליחת הודעה בוואטסאפ</a>');
+    '<a href="' + escapeHtml(whatsappUrl()) + '" target="_blank" rel="noopener" data-channel="whatsapp">' +
+    "שליחת הודעה בוואטסאפ</a>");
 
   fillContact("email", hasEmail,
-    '<a href="mailto:' + escapeHtml(CFG.email) + '" dir="ltr">' + escapeHtml(CFG.email) + "</a>");
+    '<a href="mailto:' + escapeHtml(CFG.email) + '" dir="ltr" data-channel="email">' +
+    escapeHtml(CFG.email) + "</a>");
 
   fillContact("areas", Boolean(CFG.serviceAreas), escapeHtml(CFG.serviceAreas));
 
+  /* מדידה גם על פרטי הקשר הכתובים, לא רק על הכפתורים */
+  $$("[data-channel]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      trackEvent("contact_" + link.getAttribute("data-channel"),
+                 { location: originOf(link), configured: true });
+    });
+  });
+
   /* ------------------------------------------------------------------------
-     5. כפתורי השירותים — העברת השירות הנבחר לטופס
+     6. הצעת הפתיחה וטווח המחיר — מוצגים רק אם הוגדרו
+     ------------------------------------------------------------------------ */
+
+  $$("[data-offer]").forEach(function (el) {
+    var key = el.getAttribute("data-offer");
+    var value = key === "price" ? CFG.priceRangeText : CFG.introOfferText;
+    if (value) {
+      el.textContent = value;
+      el.hidden = false;
+    } else {
+      el.remove();
+    }
+  });
+
+  /* ------------------------------------------------------------------------
+     7. כפתורי השירותים — העברת השירות הנבחר לטופס
      ------------------------------------------------------------------------ */
 
   $$("[data-service]").forEach(function (btn) {
@@ -205,19 +295,28 @@
       }
       var storeType = $("#storetype");
       if (storeType) storeType.focus({ preventScroll: true });
+      trackEvent("service_selected", { service: service });
     });
   });
 
   /* ------------------------------------------------------------------------
-     6. הערות למנהל האתר
+     8. הערות למנהל האתר
      ------------------------------------------------------------------------ */
+
+  var domainIsPlaceholder =
+    !CFG.siteUrl || CFG.siteUrl.indexOf(PLACEHOLDER_URL) !== -1;
+
+  if (CFG.showAdminNotices && domainIsPlaceholder) {
+    var domainNotice = $("#domain-notice");
+    if (domainNotice) domainNotice.hidden = false;
+  }
 
   if (!CFG.showAdminNotices) {
     $$("[data-admin-notice]").forEach(function (el) { el.remove(); });
   }
 
   /* ------------------------------------------------------------------------
-     7. טופס יצירת קשר
+     9. טופס יצירת קשר
      ------------------------------------------------------------------------ */
 
   var form = $("#lead-form");
@@ -272,6 +371,8 @@
     status.className = "form__status form__status--" + type + " is-visible";
     status.innerHTML =
       '<svg aria-hidden="true"><use href="' + icon + '"></use></svg><div>' + html + "</div>";
+    status.setAttribute("tabindex", "-1");
+    status.focus({ preventScroll: false });
   }
 
   function setLoading(loading) {
@@ -291,8 +392,31 @@
     }
   }
 
+  /* דרכי פנייה חלופיות — מוצגות בכל מצב שבו הטופס אינו יכול לשלוח */
+  function alternativeChannels() {
+    var parts = [];
+    if (hasWhatsApp) {
+      parts.push('<a href="' + escapeHtml(whatsappUrl()) +
+                 '" target="_blank" rel="noopener">לפנות בוואטסאפ</a>');
+    }
+    if (hasPhone) {
+      parts.push('להתקשר למספר <a href="tel:' + escapeHtml(CFG.phoneDial) +
+                 '" dir="ltr">' + escapeHtml(CFG.phoneDisplay) + "</a>");
+    }
+    if (hasEmail) {
+      parts.push('לשלוח דוא"ל לכתובת <a href="mailto:' + escapeHtml(CFG.email) +
+                 '" dir="ltr">' + escapeHtml(CFG.email) + "</a>");
+    }
+    if (!parts.length) return "";
+    return " ניתן " + parts.join(", או ") + ".";
+  }
+
   if (form) {
-    var inputs = $$("input, select, textarea", form);
+    /* שדה המלכודת אינו חלק מהטופס מבחינת המשתמש ואינו נשלח */
+    var inputs = $$("input, select, textarea", form).filter(function (input) {
+      return !input.hasAttribute("data-honeypot");
+    });
+    var honeypot = $("[data-honeypot]", form);
 
     /* אימות בעת יציאה מהשדה, ותיקון מיידי לאחר שהוצגה שגיאה */
     inputs.forEach(function (input) {
@@ -305,6 +429,15 @@
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+
+      /* מסנן ראשון: שדה מוסתר שרק מילוי אוטומטי של בוט ימלא */
+      if (honeypot && honeypot.value) return;
+
+      /* מסנן שני: טופס שנשלח מהר מכדי שאדם הספיק למלא אותו */
+      if ((Date.now() - pageLoadedAt) / 1000 < MIN_FORM_SECONDS) {
+        showStatus("error", "<strong>לא ניתן לשלוח את הטופס כרגע.</strong> יש להמתין רגע ולנסות שוב.");
+        return;
+      }
 
       var firstInvalid = null;
       inputs.forEach(function (input) {
@@ -322,17 +455,12 @@
       payload.source = "אתר תדמית — טופס יצירת קשר";
       payload.submittedAt = new Date().toISOString();
 
-      /* לא הוגדר יעד לשליחה: הטופס אינו נשלח לשום מקום.
-         מוצגת הודעת התודה, ולצידה התראה ברורה למנהל האתר. */
+      /* לא הוגדר יעד לשליחה. אין להציג הודעת הצלחה: הפרטים אינם נשלחים
+         לשום מקום, והפונה עלול להמתין לחזרה שלא תגיע. במקום זאת מוצגת
+         הודעת כשל שמפנה לערוץ שעובד, והשדות נשמרים כדי שניתן יהיה
+         להעתיק מהם. אירוע ההמרה אינו מדווח — לא התרחשה המרה. */
       if (!CFG.formEndpoint) {
-        var notice = "<strong>תודה, הפרטים התקבלו. נחזור אליכם בהקדם.</strong>";
-
-        if (CFG.showAdminNotices) {
-          notice +=
-            '<p style="margin:.5rem 0 0">הערה למנהל האתר: הטופס אינו מחובר עדיין ליעד קבלה, ' +
-            "והפרטים <strong>לא נשלחו</strong>. יש להגדיר את <code>formEndpoint</code> " +
-            "בקובץ <code>assets/js/site.config.js</code>.</p>";
-        }
+        var blocked = "<strong>שליחת הטופס אינה זמינה כרגע.</strong>";
 
         if (hasWhatsApp) {
           var summary =
@@ -343,15 +471,23 @@
             "\nטלפון: " + payload.phone +
             (payload.message ? "\nפירוט: " + payload.message : "");
 
-          notice +=
-            '<p style="margin:.5rem 0 0"><a href="' + escapeHtml(whatsappUrl(summary)) +
-            '" target="_blank" rel="noopener">לשליחת הפרטים גם בוואטסאפ</a></p>';
+          blocked += ' ניתן <a href="' + escapeHtml(whatsappUrl(summary)) +
+                     '" target="_blank" rel="noopener">לשלוח את הפרטים בוואטסאפ בלחיצה אחת</a>' +
+                     (hasPhone ? ', או להתקשר למספר <a href="tel:' + escapeHtml(CFG.phoneDial) +
+                       '" dir="ltr">' + escapeHtml(CFG.phoneDisplay) + "</a>." : ".");
+        } else {
+          blocked += alternativeChannels();
         }
 
-        showStatus("success", notice);
-        form.reset();
-        status.focus && status.focus();
-        trackEvent("lead_form_submit");
+        if (CFG.showAdminNotices) {
+          blocked +=
+            '<p style="margin:.5rem 0 0">הערה למנהל האתר: הטופס אינו מחובר ליעד קבלה, ' +
+            "והפרטים <strong>לא נשלחו</strong>. יש להגדיר את <code>formEndpoint</code> " +
+            "בקובץ <code>assets/js/site.config.js</code>.</p>";
+        }
+
+        showStatus("error", blocked);
+        trackEvent("lead_form_blocked", { reason: "no_endpoint" });
         return;
       }
 
@@ -366,29 +502,33 @@
           if (!res.ok) throw new Error("HTTP " + res.status);
           showStatus("success", "<strong>תודה, הפרטים התקבלו. נחזור אליכם בהקדם.</strong>");
           form.reset();
-          trackEvent("lead_form_submit");
+          trackEvent("lead_form_submit", { storetype: payload.storetype });
         })
         .catch(function () {
-          var fallback =
-            "<strong>אירעה תקלה בשליחת הטופס.</strong> ניתן לנסות שוב בעוד רגע";
-          if (hasWhatsApp) fallback += ', או <a href="' + escapeHtml(whatsappUrl()) + '" target="_blank" rel="noopener">לפנות ישירות בוואטסאפ</a>';
-          if (hasPhone)    fallback += ', או להתקשר למספר <a href="tel:' + escapeHtml(CFG.phoneDial) + '" dir="ltr">' + escapeHtml(CFG.phoneDisplay) + "</a>";
-          showStatus("error", fallback + ".");
+          showStatus("error",
+            "<strong>אירעה תקלה בשליחת הטופס.</strong> ניתן לנסות שוב בעוד רגע." +
+            alternativeChannels());
+          trackEvent("lead_form_error");
         })
         .then(function () { setLoading(false); });
     });
   }
 
   /* ------------------------------------------------------------------------
-     8. מדידה — נטענת רק אם הוגדר מזהה
+     10. מדידה — נטענת רק לאחר הסכמה
      ------------------------------------------------------------------------ */
 
-  function trackEvent(name) {
-    if (typeof window.gtag === "function") window.gtag("event", name);
-    if (typeof window.fbq === "function") window.fbq("track", "Lead");
+  var analyticsReady = false;
+
+  function trackEvent(name, params) {
+    if (typeof window.gtag === "function") window.gtag("event", name, params || {});
+    if (typeof window.fbq === "function" && name === "lead_form_submit") window.fbq("track", "Lead");
   }
 
-  function initAnalytics() {
+  function loadAnalytics() {
+    if (analyticsReady) return;
+    analyticsReady = true;
+
     if (CFG.googleAnalyticsId) {
       var gaScript = document.createElement("script");
       gaScript.async = true;
@@ -418,7 +558,101 @@
   }
 
   /* ------------------------------------------------------------------------
-     9. אתחול
+     11. באנר הסכמה למדידה
+     ------------------------------------------------------------------------
+     מדיניות הפרטיות של האתר מצהירה שנתוני השימוש נאספים "בכפוף להסכמת
+     הגולש". הבאנר הוא מה שהופך את ההצהרה הזו לנכונה בפועל: כלי המדידה
+     אינם נטענים כלל לפני אישור.
+     ------------------------------------------------------------------------ */
+
+  function readConsent() {
+    try { return window.localStorage.getItem(CONSENT_KEY); }
+    catch (err) { return null; }
+  }
+
+  function writeConsent(value) {
+    try { window.localStorage.setItem(CONSENT_KEY, value); }
+    catch (err) { /* אחסון חסום — ההחלטה תקפה לביקור הנוכחי בלבד */ }
+  }
+
+  var consentBar = null;
+
+  function closeConsentBar() {
+    if (!consentBar) return;
+    consentBar.remove();
+    consentBar = null;
+    document.body.classList.remove("has-consent");
+  }
+
+  function buildConsentBar() {
+    var bar = document.createElement("div");
+    bar.className = "consent";
+    bar.setAttribute("role", "dialog");
+    bar.setAttribute("aria-label", "הסכמה לאיסוף נתוני שימוש");
+    bar.innerHTML =
+      '<div class="consent__inner">' +
+        '<p class="consent__text">' +
+          "אנחנו משתמשים בכלי מדידה כדי להבין כיצד האתר משמש את המבקרים בו. " +
+          'הנתונים אינם משמשים לזיהוי אישי. פרטים נוספים ב<a href="privacy.html">מדיניות הפרטיות</a>.' +
+        "</p>" +
+        '<div class="consent__actions">' +
+          '<button class="btn btn--secondary btn--sm" type="button" data-consent="denied">רק ההכרחי</button>' +
+          '<button class="btn btn--primary btn--sm" type="button" data-consent="granted">אישור</button>' +
+        "</div>" +
+      "</div>";
+
+    $$("[data-consent]", bar).forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var decision = btn.getAttribute("data-consent");
+        writeConsent(decision);
+        closeConsentBar();
+        if (decision === "granted") loadAnalytics();
+      });
+    });
+
+    return bar;
+  }
+
+  function openConsentBar() {
+    if (consentBar) return;
+    consentBar = buildConsentBar();
+    document.body.appendChild(consentBar);
+    document.body.classList.add("has-consent");
+    var firstButton = $("button", consentBar);
+    if (firstButton) firstButton.focus();
+  }
+
+  function initAnalytics() {
+    var configured = Boolean(CFG.googleAnalyticsId || CFG.metaPixelId);
+
+    /* אין מזהי מדידה — אין מה לבקש עליו הסכמה */
+    if (!configured) return;
+
+    if (CFG.requireAnalyticsConsent === false) {
+      loadAnalytics();
+      return;
+    }
+
+    var decision = readConsent();
+    if (decision === "granted") loadAnalytics();
+    else if (decision !== "denied") openConsentBar();
+  }
+
+  /* קישור "הגדרות פרטיות" — מאפשר לשנות החלטה שכבר התקבלה */
+  $$("[data-consent-reopen]").forEach(function (link) {
+    if (!CFG.googleAnalyticsId && !CFG.metaPixelId) {
+      var item = link.closest("li");
+      (item || link).remove();
+      return;
+    }
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      openConsentBar();
+    });
+  });
+
+  /* ------------------------------------------------------------------------
+     12. אתחול
      ------------------------------------------------------------------------ */
 
   var yearEl = $("#year");
