@@ -72,9 +72,9 @@
     "@type": "OfferCatalog",
     "name": "שירותי תכנון ואופטימיזציה לנקודות מכירה",
     "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "סקירה ואופטימיזציה לחנות קיימת" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ליווי ויישום בחנות קיימת" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "תכנון נקודת מכירה חדשה" } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "אופטימיזציה לנקודת מכירה קיימת" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "תכנון ואופטימיזציה לרשת חנויות" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "תכנון נקודת מכירה חדשה מאפס" } }
     ]
   }
 }
@@ -109,6 +109,11 @@
       "@type": "Question",
       "name": "האם אתם מתכננים גם חנויות חדשות?",
       "acceptedAnswer": { "@type": "Answer", "text": "כן. ניתן לקבל תכנון מסחרי מלא בשיתוף מעצב או מעצבת פנים." }
+    },
+    {
+      "@type": "Question",
+      "name": "יש לי כמה סניפים — איך זה עובד?",
+      "acceptedAnswer": { "@type": "Answer", "text": "לרשתות יש מוצר נפרד. במקום לטפל בכל סניף בנפרד, בונים סטנדרט אחיד לרשת ותבנית שניתן לשחזר, ומיישמים אותה בהדרגה סניף אחר סניף." }
     },
     {
       "@type": "Question",
@@ -558,69 +563,87 @@
     <div class="section-head section-head--center reveal">
       <p class="eyebrow">מה אני עושה</p>
       <h2>השירותים שלי</h2>
-      <p class="lead">שלוש רמות ליווי, מסקירה ממוקדת של חנות קיימת ועד תכנון מלא של נקודת מכירה חדשה.</p>
+      <p class="lead">שלושה מוצרים: נקודת מכירה אחת, רשת עם כמה סניפים, או תכנון חנות חדשה מאפס.</p>
       <!-- עוגן מחיר. מוצג רק אם מולא priceRangeText ב-assets/js/site.config.js. -->
       <p class="offer-note offer-note--center" data-offer="price" hidden></p>
     </div>
 
     <div class="services">
 
-      <!-- שירות 1 — מודגש כשירות הזמין והמיידי ביותר -->
+      <!-- ==================================================================
+           שלושת המוצרים לפי סיכום פגישת 14.10.2026.
+           מוצר 1 כולל גם את הליווי והיישום, שבפגישה הוגדרו כשלב בתהליך
+           ולא כמוצר נפרד. מוצר 2 (רשתות) החליף את כרטיס הליווי שהיה כאן.
+           =================================================================== -->
+
+      <!-- מוצר 1 — מודגש כשירות הזמין והמיידי ביותר -->
       <article class="service service--featured reveal">
         <span class="service__badge">
           <svg width="14" height="14" aria-hidden="true"><use href="#i-check"></use></svg>
           השירות הזמין והמיידי ביותר
         </span>
-        <p class="service__number">שירות 1</p>
-        <h3 class="service__title">סקירה ואופטימיזציה לחנות קיימת</h3>
-        <p class="service__for">מתאים לבעלי חנויות המעוניינים להבין מה ניתן לשפר כבר עכשיו.</p>
+        <p class="service__number">מוצר 1</p>
+        <h3 class="service__title">אופטימיזציה לנקודת מכירה קיימת</h3>
+        <p class="service__for">מתאים לבעל חנות אחת שרוצה להבין מה ניתן לשפר כבר עכשיו — וגם ליישם את זה.</p>
 
         <ul class="service__list">
           <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>פגישה עם בעל העסק</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>סיור וסריקה של החנות</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ביקור שטח וסריקה של החנות</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>בחינת מיקום המחלקות והמדפים</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ניתוח תנועת הלקוחות בחנות</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>איתור צווארי בקבוק</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>איתור שטחים שאינם מנוצלים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>המלצות לשיפור נראות, סידור וזרימת הלקוחות</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>דו״ח מסודר הכולל פעולות מומלצות לפי סדר עדיפות</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>איתור צווארי בקבוק ושטחים שאינם מנוצלים</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>דו״ח אופטימיזציה מפורט, עם פעולות לפי סדר עדיפות</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ליווי וייעוץ בביצוע השינויים בפועל</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>חיבור לספקים מומלצים ותמחור מלא לכל השלבים</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ביקורת והתאמות לאחר היישום</span></li>
         </ul>
 
-        <a class="btn btn--primary btn--block service__cta" href="#contact" data-service="סקירה ואופטימיזציה לחנות קיימת">
-          הזמנת סקירת חנות
+        <a class="btn btn--primary btn--block service__cta" href="#contact" data-service="אופטימיזציה לנקודת מכירה קיימת">
+          הזמנת אבחון לחנות
         </a>
       </article>
 
-      <!-- שירות 2 -->
+      <!-- מוצר 2 — רשתות וסניפים מרובים -->
       <article class="service reveal">
-        <p class="service__number">שירות 2</p>
-        <h3 class="service__title">ליווי ויישום בחנות קיימת</h3>
-        <p class="service__for">מתאים לבעלי חנויות שרוצים לא רק לקבל המלצות, אלא גם ליישם אותן בצורה נכונה.</p>
+        <p class="service__number">מוצר 2</p>
+        <h3 class="service__title">תכנון ואופטימיזציה לרשת חנויות</h3>
+        <p class="service__for">מתאים לרשתות ולבעלי כמה סניפים, שבהם כל סניף עובד אחרת ממה שלידו.</p>
+
+        <!-- הסעיפים כאן נוסחו על בסיס סיכום הפגישה, שהגדיר את המוצר אך לא
+             את תכולתו. יש לקבל את אישורו של בני או לתקן לפני הפרסום. -->
+        <div class="admin-notice admin-notice--inline" data-admin-notice>
+          <svg aria-hidden="true"><use href="#i-alert"></use></svg>
+          <p>
+            <strong>טעון אישור:</strong>
+            סיכום הפגישה הגדיר את מוצר הרשתות אך לא את תכולתו. הסעיפים כאן הוצעו
+            על בסיס התהליך של מוצר 1 — יש לאשר או לתקן אותם מול בני.
+          </p>
+        </div>
 
         <ul class="service__list">
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>כל שלבי הסקירה והאופטימיזציה</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>בניית תוכנית עבודה</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ליווי בשינוי מיקום מחלקות ומדפים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>סיוע בתכנון הצגת מוצרים ומבצעים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>עבודה מול ספקים ובעלי מקצוע לפי הצורך</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ביקורת לאחר ביצוע השינויים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>התאמות ושיפורים לאחר היישום</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>סקירה של הסניפים הקיימים והשוואה ביניהם</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>זיהוי הפערים בין הסניף המוביל לסניפים החלשים</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>אפיון סטנדרט סידור ונראות אחיד לרשת</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>בניית תבנית שניתן לשחזר בכל סניף חדש</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>תוכנית יישום מדורגת, סניף אחר סניף</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ליווי מנהלי הסניפים בהטמעת השינויים</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>בקרה ומעקב אחר היישום בכל סניף</span></li>
         </ul>
 
-        <a class="btn btn--secondary btn--block service__cta" href="#contact" data-service="ליווי ויישום בחנות קיימת">
-          לקבלת פרטים על ליווי
+        <a class="btn btn--secondary btn--block service__cta" href="#contact" data-service="תכנון ואופטימיזציה לרשת חנויות">
+          לשיחה על הרשת שלכם
         </a>
       </article>
 
-      <!-- שירות 3 -->
+      <!-- מוצר 3 — תכנון מאפס -->
       <article class="service reveal">
-        <p class="service__number">שירות 3</p>
-        <h3 class="service__title">תכנון נקודת מכירה חדשה</h3>
-        <p class="service__for">מתאים ליזמים, בעלי רשתות ובעלי חנויות הנמצאים לפני הקמה או שיפוץ משמעותי.</p>
+        <p class="service__number">מוצר 3</p>
+        <h3 class="service__title">תכנון נקודת מכירה חדשה מאפס</h3>
+        <p class="service__for">מתאים ליזמים, בעלי רשתות ובעלי חנויות הנמצאים לפני הקמה או שיפוץ משמעותי — משלב השרטוט.</p>
 
         <ul class="service__list">
           <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>אפיון צרכים מסחריים ותפעוליים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>תכנון חלוקת החנות</span></li>
+          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>אדריכלות קמעונאית — תכנון חלוקת החנות משלב השרטוט</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>מיקום מחלקות ואזורים מרכזיים</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>תכנון מסלול תנועת הלקוחות</span></li>
           <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ניצול מיטבי של שטח המכירה</span></li>
@@ -629,7 +652,7 @@
           <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ליווי מסחרי משלב התכנון ועד לפתיחת החנות</span></li>
         </ul>
 
-        <a class="btn btn--secondary btn--block service__cta" href="#contact" data-service="תכנון נקודת מכירה חדשה">
+        <a class="btn btn--secondary btn--block service__cta" href="#contact" data-service="תכנון נקודת מכירה חדשה מאפס">
           לתיאום פגישת תכנון
         </a>
       </article>
@@ -650,7 +673,7 @@
       <p class="lead">תהליך ברור, בלי הפתעות, שמתחיל בשיחה קצרה ומסתיים בהמלצות שאפשר ליישם.</p>
     </div>
 
-    <ol class="steps steps--5">
+    <ol class="steps steps--6">
       <li class="step reveal">
         <h3 class="step__title">שיחת היכרות</h3>
         <p class="step__text">מבינים את סוג החנות, האתגרים והמטרות.</p>
@@ -669,7 +692,11 @@
       </li>
       <li class="step reveal">
         <h3 class="step__title">יישום וליווי</h3>
-        <p class="step__text">ניתן לבחור בליווי מקצועי לצורך ביצוע השינויים בפועל.</p>
+        <p class="step__text">ליווי מקצועי בביצוע השינויים בפועל, בקצב שמתאים לחנות.</p>
+      </li>
+      <li class="step reveal">
+        <h3 class="step__title">ספקים ותמחור</h3>
+        <p class="step__text">חיבור לספקים מומלצים ותמחור מלא של כל אחד מהשלבים, בלי הפתעות.</p>
       </li>
     </ol>
 
@@ -969,6 +996,16 @@
         </summary>
         <div class="faq__a">
           <p>כן. ניתן לקבל תכנון מסחרי מלא בשיתוף מעצב או מעצבת פנים.</p>
+        </div>
+      </details>
+
+      <details class="faq__item reveal">
+        <summary class="faq__q">
+          יש לי כמה סניפים — איך זה עובד?
+          <svg class="faq__chevron" aria-hidden="true"><use href="#i-chevron"></use></svg>
+        </summary>
+        <div class="faq__a">
+          <p>לרשתות יש מוצר נפרד. במקום לטפל בכל סניף בנפרד, בונים סטנדרט אחיד לרשת ותבנית שניתן לשחזר, ומיישמים אותה בהדרגה סניף אחר סניף.</p>
         </div>
       </details>
 
