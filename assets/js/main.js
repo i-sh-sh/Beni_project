@@ -211,7 +211,7 @@
   /* מזהה את האזור בעמוד שממנו נלחץ קישור, כדי שניתן יהיה לדעת
      אילו אזורים מייצרים פניות בפועל */
   function originOf(el) {
-    if (el.classList.contains("wa-float")) return "float";
+    if (el.closest(".action-bar")) return "action_bar";
     var section = el.closest("section[id], header, footer");
     if (!section) return "unknown";
     return section.id || section.tagName.toLowerCase();
@@ -266,6 +266,69 @@
                  { location: originOf(link), configured: true });
     });
   });
+
+  /* ------------------------------------------------------------------------
+     4b. שפת תוכנית החנות — כותרת קינטית ומסלול שנמשך
+     ------------------------------------------------------------------------ */
+
+  /* עוטף כל מילה בכותרת כדי שתוכל לעלות מתוך המסכה.
+     מילים שלמות בלבד: חלוקה לאותיות שוברת צורות סופיות ומנתקת
+     אותיות שימוש מהמילה שלהן. ללא JavaScript הכותרת פשוט מוצגת. */
+  function initKineticHeadline() {
+    if (prefersReducedMotion) return;
+
+    var index = 0;
+    $$(".kinetic__line").forEach(function (line) {
+      var words = line.textContent.trim().split(/\s+/);
+      line.textContent = "";
+      words.forEach(function (word, i) {
+        var span = document.createElement("span");
+        span.className = "kinetic__word";
+        span.style.setProperty("--i", String(index++));
+        span.textContent = word;
+        line.appendChild(span);
+        if (i < words.length - 1) line.appendChild(document.createTextNode(" "));
+      });
+    });
+  }
+
+  /* אורך המסלול נמדד מהדפדפן ולא מוערך בקוד, כך שהמשיכה מדויקת
+     גם אם ה-path ישתנה. ב-CSS הערך משמש כ-stroke-dasharray. */
+  function initPlanPath() {
+    $$(".plan-path-svg__mask").forEach(function (path) {
+      if (typeof path.getTotalLength !== "function") return;
+      path.style.setProperty("--path-len", String(Math.ceil(path.getTotalLength())));
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     5b. סרגל פעולה תחתון (מובייל)
+     ------------------------------------------------------------------------
+     מופעל רק כשיש לאן להפנות. נסוג כשאזור יצירת הקשר בתצוגה — שם כבר יש
+     פעולות אמיתיות על המסך. הנסיגה אינה ויזואלית בלבד: הסרגל מקבל inert
+     ו-aria-hidden, כך שהוא יוצא גם ממסלול המקלדת וגם מקורא המסך.
+     ------------------------------------------------------------------------ */
+
+  var actionBar = $("#action-bar");
+
+  if (actionBar && (hasWhatsApp || hasPhone)) {
+    actionBar.hidden = false;
+    document.body.classList.add("has-action-bar");
+
+    var stowBar = function (stowed) {
+      actionBar.classList.toggle("is-stowed", stowed);
+      actionBar.setAttribute("aria-hidden", String(stowed));
+      if (stowed) actionBar.setAttribute("inert", "");
+      else actionBar.removeAttribute("inert");
+    };
+
+    var contactSection = $("#contact");
+    if (contactSection && "IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) { stowBar(entry.isIntersecting); });
+      }, { rootMargin: "0px 0px -25% 0px" }).observe(contactSection);
+    }
+  }
 
   /* ------------------------------------------------------------------------
      6. הצעת הפתיחה וטווח המחיר — מוצגים רק אם הוגדרו
@@ -658,6 +721,8 @@
   var yearEl = $("#year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
+  initKineticHeadline();
+  initPlanPath();
   initReveal();
   initAnalytics();
 

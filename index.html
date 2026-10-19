@@ -27,13 +27,12 @@
 <meta property="og:title" content="מתכננים את החנות נכון. מוכרים יותר.">
 <meta property="og:description" content="ייעוץ, תכנון ואופטימיזציה לסופרמרקטים, מינימרקטים, קיוסקים ונקודות מכירה, על בסיס 22 שנות ניסיון בניהול קמעונאי.">
 <meta property="og:url" content="https://example.co.il/">
-<!-- TODO להשלמה: תמונת שיתוף ברשתות בגודל 1200x630 -->
-<meta property="og:image" content="https://example.co.il/assets/img/og-image.jpg">
+<meta property="og:image" content="https://example.co.il/assets/img/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="בני לפקוביץ – תכנון ואופטימיזציה לנקודות מכירה">
+<meta property="og:image:alt" content="תרשים תכנון של חנות מזון במבט מלמעלה, ולצידו הכותרת: כל מטר בחנות צריך לעבוד עבור העסק">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://example.co.il/assets/img/og-image.jpg">
+<meta name="twitter:image" content="https://example.co.il/assets/img/og-image.png">
 
 <meta name="theme-color" content="#0a2440">
 
@@ -243,7 +242,7 @@
       </ul>
     </nav>
 
-    <a class="btn btn--primary btn--sm header__cta" href="#contact" data-wa-link>לתיאום ייעוץ</a>
+    <a class="btn btn--secondary btn--sm header__cta" href="#contact" data-wa-link>לתיאום ייעוץ</a>
 
     <button class="nav-toggle" type="button" id="nav-toggle"
             aria-expanded="false" aria-controls="mobile-nav" aria-label="פתיחת תפריט הניווט">
@@ -281,14 +280,20 @@
 <!-- ==========================================================================
      1. Hero
      ========================================================================== -->
-<section class="hero" id="top">
+<section class="hero plan-grid" id="top">
   <div class="container">
     <div class="hero__grid">
 
       <div class="hero__content">
         <p class="eyebrow">תכנון מסחרי לנקודות מכירה</p>
 
-        <h1 class="hero__title">מתכננים את החנות נכון. <span class="accent">מוכרים יותר.</span></h1>
+        <!-- כותרת קינטית. המילים עולות מתוך מסכה, מילה שלמה בכל פעם.
+             אין חלוקה לאותיות: היא הייתה שוברת צורות סופיות ומנתקת
+             אותיות שימוש מהמילה שלהן. ללא JavaScript הכותרת פשוט מוצגת. -->
+        <h1 class="hero__title kinetic">
+          <span class="kinetic__line">מתכננים את החנות נכון.</span>
+          <span class="kinetic__line accent">מוכרים יותר.</span>
+        </h1>
 
         <p class="hero__subtitle">
           תכנון ואופטימיזציה של נקודות מכירה על בסיס 22 שנות ניסיון בניהול קמעונאי,
@@ -307,105 +312,135 @@
              introOfferText בקובץ assets/js/site.config.js. -->
         <p class="offer-note" data-offer="intro" hidden></p>
 
-        <dl class="trust-stats">
-          <div class="trust-stat">
-            <dt class="sr-only">ניסיון בקמעונאות</dt>
-            <dd style="margin:0">
-              <span class="trust-stat__value">22 שנות</span>
-              <span class="trust-stat__label">ניסיון בקמעונאות</span>
-            </dd>
-          </div>
-          <div class="trust-stat">
-            <dt class="sr-only">ניהול סניף</dt>
-            <dd style="margin:0">
-              <span class="trust-stat__value">11 שנות</span>
-              <span class="trust-stat__label">ניהול סניף באושר עד</span>
-            </dd>
-          </div>
-          <div class="trust-stat">
-            <dt class="sr-only">ניסיון מעשי</dt>
-            <dd style="margin:0">
-              <span class="trust-stat__value">ניסיון מעשי</span>
-              <span class="trust-stat__label">בשיפור נקודות מכירה</span>
-            </dd>
-          </div>
-        </dl>
       </div>
 
-      <div class="hero__visual">
-        <!-- תרשים תכנון חנות. נועד לשמש עד להטמעת צילום מקצועי של חנות. -->
-        <div class="media" style="padding: 1.25rem; background:#fff">
-          <svg viewBox="0 0 560 470" role="img" aria-labelledby="plan-title plan-desc" style="width:100%;height:auto">
-            <title id="plan-title">תרשים תכנון של נקודת מכירה</title>
-            <desc id="plan-desc">תרשים עקרוני של חנות מזון במבט מלמעלה: מחלקות הממוקמות בהיקף החנות, מערך מדפים מרכזי, אזור מבצעים לפני הקופות, ומסלול תנועת הלקוחות מהכניסה ועד הקופות.</desc>
+      <div class="hero__visual hero__plan">
+        <!-- ==================================================================
+             תוכנית החנות — האלמנט החתימה של האתר.
+             ה-SVG מצויר כולו מטוקני --plan-*: אותם ערכים שמופיעים ברשת
+             הרקע, בסימוני האזורים ובמקרא, כך שכל העמוד מדבר שפה אחת.
+             הטקסט אינו יושב בתוך ה-SVG: טקסט ב-SVG מתכווץ ולא מתפרס
+             מחדש, וב-390px הוא היה מוצג בכ-8px. המקרא והתוויות הם HTML.
+             =================================================================== -->
+        <div class="hero__plan-frame">
+          <span class="hero__plan-tag">תוכנית עקרונית</span>
 
-            <!-- קווי החנות -->
-            <rect x="14" y="14" width="532" height="392" rx="16" fill="#f2f6fb" stroke="#16436f" stroke-width="2"/>
+          <div class="plan-stage">
+            <svg viewBox="0 0 560 410" role="img" aria-labelledby="plan-title plan-desc">
+              <title id="plan-title">תרשים תכנון של נקודת מכירה</title>
+              <desc id="plan-desc">תרשים עקרוני של חנות מזון במבט מלמעלה: מחלקות הממוקמות בהיקף החנות, מערך מדפים מרכזי, אזור מבצעים לפני הקופות, ומסלול תנועת הלקוחות מהכניסה ועד הקופות.</desc>
 
-            <!-- מחלקות היקפיות -->
-            <g fill="#16436f" opacity="0.14">
-              <rect x="34" y="32" width="228" height="62" rx="8"/>
-              <rect x="298" y="32" width="228" height="62" rx="8"/>
-              <rect x="34" y="112" width="104" height="186" rx="8"/>
-              <rect x="422" y="112" width="104" height="186" rx="8"/>
-            </g>
-            <g font-family="Assistant, Arial, sans-serif" font-size="16" font-weight="600" fill="#0a2440" text-anchor="middle">
-              <text x="148" y="69">ירקות ופירות</text>
-              <text x="412" y="69">מאפייה</text>
-              <text x="86" y="211">מוצרי חלב</text>
-              <text x="474" y="211">בשר ודגים</text>
-            </g>
+              <!-- קווי החנות -->
+              <rect x="14" y="14" width="532" height="382" rx="16"
+                    fill="var(--plan-ground)" stroke="var(--plan-wall)" stroke-width="2"/>
 
-            <!-- מערך מדפים מרכזי -->
-            <g fill="#16436f" opacity="0.55">
-              <rect x="168" y="124" width="224" height="16" rx="4"/>
-              <rect x="168" y="168" width="224" height="16" rx="4"/>
-              <rect x="168" y="212" width="224" height="16" rx="4"/>
-              <rect x="168" y="256" width="224" height="16" rx="4"/>
-            </g>
+              <!-- מחלקות היקפיות -->
+              <g fill="var(--plan-fixture-soft)">
+                <rect x="34" y="32" width="228" height="62" rx="8"/>
+                <rect x="298" y="32" width="228" height="62" rx="8"/>
+                <rect x="34" y="112" width="104" height="186" rx="8"/>
+                <rect x="422" y="112" width="104" height="186" rx="8"/>
+              </g>
 
-            <!-- מסלול תנועת הלקוחות: מהכניסה, סביב היקף החנות, אל הקופות -->
-            <path d="M480 392 L480 330 Q480 316 466 316 L420 316 Q406 316 406 302 L406 112 Q406 100 392 100 L166 100 Q152 100 152 112 L152 292 Q152 306 166 306 L330 306"
-                  fill="none" stroke="#9a6206" stroke-width="3" stroke-dasharray="9 8" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="406" cy="200" r="6" fill="#9a6206"/>
-            <circle cx="152" cy="200" r="6" fill="#9a6206"/>
-            <path d="M344 306 l-16 -9 v18 z" fill="#9a6206"/>
+              <!-- מערך מדפים מרכזי -->
+              <g fill="var(--plan-fixture)">
+                <rect x="168" y="124" width="224" height="16" rx="4"/>
+                <rect x="168" y="168" width="224" height="16" rx="4"/>
+                <rect x="168" y="212" width="224" height="16" rx="4"/>
+                <rect x="168" y="256" width="224" height="16" rx="4"/>
+              </g>
 
-            <!-- אזור מבצעים -->
-            <rect x="168" y="330" width="150" height="36" rx="8" fill="#e5a526"/>
-            <text x="243" y="354" font-family="Assistant, Arial, sans-serif" font-size="16" font-weight="700"
-                  fill="#0a2440" text-anchor="middle">אזור מבצעים</text>
+              <!-- אזור מבצעים. המתאר נדרש: המילוי לבדו נותן 1.99:1 מול הקרקע,
+                   מתחת ל-3:1 הנדרש לרכיב גרפי לא-טקסטואלי. -->
+              <rect x="168" y="320" width="150" height="36" rx="8"
+                    fill="var(--plan-accent)" stroke="var(--plan-accent-edge)" stroke-width="2"/>
 
-            <!-- קופות -->
-            <g fill="#0a2440">
-              <rect x="338" y="330" width="48" height="36" rx="6"/>
-              <rect x="396" y="330" width="48" height="36" rx="6"/>
-            </g>
-            <text x="391" y="390" font-family="Assistant, Arial, sans-serif" font-size="15" font-weight="600"
-                  fill="#4a5a6e" text-anchor="middle">קופות</text>
+              <!-- קופות -->
+              <g fill="var(--plan-wall)">
+                <rect x="338" y="320" width="48" height="36" rx="6"/>
+                <rect x="396" y="320" width="48" height="36" rx="6"/>
+              </g>
 
-            <!-- סימון הכניסה על קיר החנות -->
-            <rect x="446" y="400" width="76" height="10" rx="5" fill="#0a7c42"/>
+              <!-- כניסה. מסומנת גם בצורה (המשולש) ולא בצבע בלבד. -->
+              <rect x="446" y="390" width="76" height="10" rx="5" fill="var(--plan-entry)"/>
+              <path d="M484 378 l-9 12 h18 z" fill="var(--plan-entry)"/>
+            </svg>
 
-            <!-- מקרא -->
-            <g font-family="Assistant, Arial, sans-serif" font-size="14" fill="#4a5a6e">
-              <text x="200" y="450" text-anchor="middle">מסלול תנועת הלקוח</text>
-              <line x1="296" y1="445" x2="336" y2="445" stroke="#9a6206" stroke-width="3"
-                    stroke-dasharray="8 7" stroke-linecap="round"/>
-              <text x="400" y="450" text-anchor="middle">כניסה</text>
-              <rect x="440" y="441" width="40" height="8" rx="4" fill="#0a7c42"/>
-            </g>
-          </svg>
+            <!-- ==============================================================
+                 מסלול תנועת הלקוח.
+                 המסלול נשאר מקווקו תמיד — המקווקו הוא הסימן, לא אפקט.
+                 כדי למשוך אותו בגלילה בלי לאבד את המקווקו, הקו המקווקו
+                 נחשף דרך מסכה: בתוך המסכה יש קו מלא שנמשך ב-dashoffset,
+                 והוא זה שמגלה את הקו המקווקו מתחתיו.
+                 =============================================================== -->
+            <svg class="plan-path-svg" viewBox="0 0 560 410" aria-hidden="true">
+              <defs>
+                <mask id="path-reveal" maskUnits="userSpaceOnUse">
+                  <path class="plan-path-svg__mask"
+                        d="M480 382 L480 330 Q480 316 466 316 L420 316 Q406 316 406 302 L406 112 Q406 100 392 100 L166 100 Q152 100 152 112 L152 292 Q152 306 166 306 L330 306"
+                        fill="none" stroke="#fff" stroke-width="14"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </mask>
+              </defs>
+              <g mask="url(#path-reveal)">
+                <path class="plan-path-svg__line"
+                      d="M480 382 L480 330 Q480 316 466 316 L420 316 Q406 316 406 302 L406 112 Q406 100 392 100 L166 100 Q152 100 152 112 L152 292 Q152 306 166 306 L330 306"/>
+                <path class="plan-path-svg__arrow" d="M344 306 l-16 -9 v18 z"/>
+              </g>
+            </svg>
+
+            <!-- ==============================================================
+                 תוויות המחלקות כ-HTML ולא כ-<text> בתוך ה-SVG.
+                 טקסט ב-SVG מתכווץ ואינו מתפרס מחדש: ב-390px הוא היה מוצג
+                 בכ-8px. כ-HTML הוא נקרא על ידי קורא מסך, מתכוונן עם גודל
+                 הגופן של הדפדפן, ומשתתף בבקרת הניגודיות של שאר העמוד.
+                 המיקום באחוזים נגזר מקואורדינטות ה-viewBox (560×410).
+                 =============================================================== -->
+            <ul class="plan-labels">
+              <li class="plan-label" style="--x:26.4%;--y:15.4%">ירקות ופירות</li>
+              <li class="plan-label" style="--x:73.6%;--y:15.4%">מאפייה</li>
+              <li class="plan-label" style="--x:15.4%;--y:50%">מוצרי חלב</li>
+              <li class="plan-label" style="--x:84.6%;--y:50%">בשר ודגים</li>
+              <li class="plan-label plan-label--promo" style="--x:43.4%;--y:82.4%">אזור מבצעים</li>
+              <!-- "קופות" יושב מתחת לשתי הקופות ולא עליהן: המרכז ביניהן נופל
+                   בדיוק על הרווח, והמילה נחתכה לשניים. -->
+              <li class="plan-label" style="--x:69.8%;--y:93%">קופות</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="photo-slot photo-slot--wide" style="margin-top:1rem">
-          <svg aria-hidden="true"><use href="#i-image"></use></svg>
-          <span class="photo-slot__title">מקום לתמונת אזור עליון</span>
-          <p class="photo-slot__hint">
-            תמונה מקצועית של חנות מזון מודרנית או של תהליך תכנון סידור מדפים.
-            רוחב מומלץ: 1600 פיקסלים, פורמט WebP.
-          </p>
-        </div>
+        <!-- המקרא כ-HTML אמיתי: נקרא על ידי קורא מסך, מתפרס מחדש ב-390,
+             ומשתתף בבקרת הניגודיות של שאר העמוד. -->
+        <ul class="plan-legend">
+          <li class="plan-legend__item">
+            <span class="plan-legend__key plan-legend__key--path" aria-hidden="true"></span>
+            מסלול תנועת הלקוח
+          </li>
+          <li class="plan-legend__item">
+            <span class="plan-legend__key plan-legend__key--entry" aria-hidden="true"></span>
+            כניסה
+          </li>
+          <li class="plan-legend__item">
+            <span class="plan-legend__key plan-legend__key--promo" aria-hidden="true"></span>
+            אזור מבצעים
+          </li>
+        </ul>
+      </div>
+
+      <!-- 22 שנה אינן נתון שלישי לצד 11 ו-11 — הן הסכום שלהן.
+           ציר אחד עם שתי תחנות אומר את זה, ומוחק את החזרה. -->
+      <div class="timeline">
+        <p class="timeline__total">22 שנה<span>בקמעונאות</span></p>
+        <dl class="timeline__stops">
+          <div class="timeline__stop">
+            <dt class="sr-only">תחנה ראשונה</dt>
+            <dd style="margin:0"><b>11 שנה</b> ניהול סניף באושר עד</dd>
+          </div>
+          <div class="timeline__stop">
+            <dt class="sr-only">תחנה שנייה</dt>
+            <dd style="margin:0"><b>11 שנה</b> ניהול ברשת מזון בירושלים</dd>
+          </div>
+        </dl>
       </div>
 
     </div>
@@ -415,7 +450,7 @@
 <!-- ==========================================================================
      2. הבעיה
      ========================================================================== -->
-<section class="section section--tint" id="problem">
+<section class="section section--tint plan-grid" id="problem">
   <div class="container">
 
     <div class="section-head reveal">
@@ -500,13 +535,27 @@
     <div class="about__grid">
 
       <div class="reveal">
-        <div class="photo-slot photo-slot--portrait">
-          <svg aria-hidden="true"><use href="#i-image"></use></svg>
-          <span class="photo-slot__title">מקום לתמונה של בני</span>
-          <p class="photo-slot__hint">
-            תמונה מקצועית, רצוי בתוך חנות או בסביבת עבודה קמעונאית.
-            יחס מומלץ: 3:4 לאורך.
-          </p>
+        <!-- מסגרת התמונה החסרה הוחלפה בפאנל בשפת התוכנית. אין צילומים,
+             ומסגרת ריקה באמצע אזור האודות קוראת כ"לא גמור" ולא כ"בקרוב".
+             התוכן זהה לעובדות שבצד השני — זו כרטיסיית מפרט, לא קישוט. -->
+        <div class="plan-panel">
+          <p class="plan-measure">מפרט יועץ</p>
+          <div class="plan-panel__row">
+            <p class="plan-panel__k">ניסיון</p>
+            <p class="plan-panel__v">22 שנה בקמעונאות</p>
+          </div>
+          <div class="plan-panel__row">
+            <p class="plan-panel__k">תחנה ראשונה</p>
+            <p class="plan-panel__v">11 שנה — ניהול סניף, אושר עד</p>
+          </div>
+          <div class="plan-panel__row">
+            <p class="plan-panel__k">תחנה שנייה</p>
+            <p class="plan-panel__v">11 שנה — ניהול ברשת מזון בירושלים</p>
+          </div>
+          <div class="plan-panel__row">
+            <p class="plan-panel__k">תחום</p>
+            <p class="plan-panel__v">סידור, נראות מסחרית וניצול שטח</p>
+          </div>
         </div>
       </div>
 
@@ -664,7 +713,7 @@
 <!-- ==========================================================================
      6. תהליך העבודה
      ========================================================================== -->
-<section class="section section--dark" id="process">
+<section class="section section--dark plan-grid" id="process">
   <div class="container">
 
     <div class="section-head section-head--center reveal">
@@ -1026,7 +1075,7 @@
 <!-- ==========================================================================
      10. הנעה לפעולה + טופס
      ========================================================================== -->
-<section class="section section--dark" id="contact">
+<section class="section section--dark plan-grid" id="contact">
   <div class="container">
     <div class="contact__grid">
 
@@ -1237,12 +1286,19 @@
   </div>
 </footer>
 
-<!-- כפתור וואטסאפ צף -->
-<a class="wa-float" href="#contact-form" data-wa-float>
-  <svg aria-hidden="true"><use href="#i-whatsapp"></use></svg>
-  <span class="wa-float__label">דברו איתי בוואטסאפ</span>
-  <span class="sr-only">פתיחת שיחה בוואטסאפ</span>
-</a>
+<!-- סרגל פעולה תחתון, מובייל בלבד.
+     נעלם כשאזור יצירת הקשר בתצוגה, ומקבל inert כדי שלא יישאר במסלול
+     המקלדת בזמן שהוא מחוץ למסך. ה-body מקבל ריפוד מקביל ב-JS. -->
+<nav class="action-bar" id="action-bar" aria-label="פעולות מהירות" hidden>
+  <a class="action-bar__btn action-bar__btn--wa" href="#contact-form" data-wa-float>
+    <svg aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+    <span>וואטסאפ</span>
+  </a>
+  <a class="action-bar__btn action-bar__btn--tel" href="#contact-form" data-tel-link>
+    <svg aria-hidden="true"><use href="#i-phone"></use></svg>
+    <span>להתקשר</span>
+  </a>
+</nav>
 
 <script src="assets/js/main.js"></script>
 <script src="assets/js/schema.js"></script>

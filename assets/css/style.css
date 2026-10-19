@@ -71,12 +71,54 @@
   --gold-600: #d08f12;
   --gold-700: #9a6206; /* יחס ניגודיות 5.09:1 על לבן — מתאים לטקסט */
 
+  /* זהב בהיר — הזהב היחיד שעובר AA כטקסט על רקע כהה.
+     --gold-500 נותן 3.08:1 על navy-900 ואסור לשימוש כטקסט שם. */
+  --gold-300: #f2c66a;
+
   /* טקסט ורקעים */
   --ink: #1f2937;         /* 14.68:1 על לבן */
   --ink-muted: #4a5a6e;   /* 7.05:1 על לבן */
   --ink-on-dark: #c3d2e4; /* 10.20:1 על navy-900 */
+  --ink-on-dark-strong: #ffffff;
   --bg: #f7f9fc;
   --surface: #ffffff;
+  --surface-card: #ffffff; /* משטח כרטיס — היה #fff גולמי ב-21 מקומות */
+
+  /* ------------------------------------------------------------------
+     שפת תוכנית החנות
+     ------------------------------------------------------------------
+     אוצר המילים של תכנון קמעונאי: קרקע התוכנית, קירות, מדפים, מסלול
+     תנועת הלקוח ואזורי הדגשה. הערכים האלה היו מקודדים קשיח בתוך ה-SVG
+     של ההירו — חמישה צבעים ששכפלו טוקנים קיימים ולא השתתפו בשום החלפה.
+     ------------------------------------------------------------------ */
+  --plan-ground: #f2f6fb;        /* רקע התוכנית */
+  --plan-wall: #16436f;          /* קווי מתאר של החנות */
+  --plan-fixture: #6f8db0;       /* מדפים — 3.08:1 על plan-ground, מעל הנדרש לרכיב גרפי */
+  --plan-fixture-soft: #dbe5f0;  /* מחלקות היקפיות */
+  --plan-path: #9a6206;          /* מסלול תנועת הלקוח — 4.3:1 על plan-ground */
+  --plan-accent: #e5a526;        /* אזור מבצעים */
+  --plan-accent-edge: #8a5c05;   /* מתאר לאזור המבצעים — 3:1 נדרש לרכיב לא-טקסטואלי */
+  --plan-entry: #0a7c42;         /* סימון כניסה */
+
+  /* רשת התכנון שמופיעה כרקע לאזורים */
+  --plan-grid-line: rgba(22, 67, 111, 0.07);
+  --plan-grid-size: 32px;
+
+  /* עובי קו — היו 20+ ערכי border גולמיים */
+  --stroke-1: 1px;
+  --stroke-2: 2px;
+  --stroke-3: 3px;
+
+  /* דפוס מקווקו אחד לכל שפת התכנון.
+     נפרד סמנטית מהמסגרות המקווקוות שמסמנות מצב פיתוח (data-unconfigured). */
+  --plan-dash: 9 8;
+
+  /* סקאלת שכבות — היו 5 ערכי z-index נטושים, ושם ישב באג הכפתור הצף */
+  --z-base: 1;
+  --z-float: 60;
+  --z-header: 100;
+  --z-overlay: 150;
+  --z-skip: 200;
 
   /* גבולות */
   --border: #d6dee8;         /* גבול דקורטיבי */
@@ -128,9 +170,15 @@
   --container: 1180px;
   --header-height: 72px;
 
-  /* תנועה — עדינה בלבד */
+  /* תנועה.
+     חתימת התנועה: "שום דבר לא זז בלי סיבה, והסיבה היא תמיד שהגולש הגיע לשם."
+     כל תנועה קשורה לגלילה דרך animation-timeline: view() — אין אנימציה
+     שרצה מעצמה בקצב שהגולש אינו שולט בו. */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-draw: cubic-bezier(0.33, 0, 0.15, 1);
   --duration: 220ms;
+  --duration-slow: 400ms;
+  --duration-reveal: 700ms;
 }
 
 /* --------------------------------------------------------------------------
@@ -200,15 +248,15 @@ strong { font-weight: 700; color: var(--navy-900); }
   position: absolute;
   inset-block-start: -100px;
   inset-inline-start: var(--space-4);
-  z-index: 200;
+  z-index: var(--z-skip);
   background: var(--navy-900);
-  color: #fff;
+  color: var(--ink-on-dark-strong);
   padding: var(--space-3) var(--space-5);
   border-radius: var(--radius-sm);
   font-weight: 600;
   transition: inset-block-start var(--duration) var(--ease);
 }
-.skip-link:focus { inset-block-start: var(--space-4); color: #fff; }
+.skip-link:focus { inset-block-start: var(--space-4); color: var(--ink-on-dark-strong); }
 
 .sr-only {
   position: absolute;
@@ -243,7 +291,7 @@ strong { font-weight: 700; color: var(--navy-900); }
 .section--tint { background: var(--surface); }
 .section--dark { background: var(--navy-900); color: var(--ink-on-dark); }
 .section--dark h2,
-.section--dark h3 { color: #fff; }
+.section--dark h3 { color: var(--ink-on-dark-strong); }
 
 .section-head {
   max-width: 46rem;
@@ -338,25 +386,25 @@ strong { font-weight: 700; color: var(--navy-900); }
 }
 .btn--secondary:hover {
   background: var(--navy-700);
-  color: #fff;
+  color: var(--ink-on-dark-strong);
 }
 
 .section--dark .btn--secondary {
-  color: #fff;
+  color: var(--ink-on-dark-strong);
   border-color: rgba(255, 255, 255, 0.5);
 }
 .section--dark .btn--secondary:hover {
-  background: #fff;
+  background: var(--ink-on-dark-strong);
   color: var(--navy-900);
-  border-color: #fff;
+  border-color: var(--ink-on-dark-strong);
 }
 
 /* מלא כחול */
 .btn--solid {
   background: var(--navy-700);
-  color: #fff;
+  color: var(--ink-on-dark-strong);
 }
-.btn--solid:hover { background: var(--navy-600); color: #fff; }
+.btn--solid:hover { background: var(--navy-600); color: var(--ink-on-dark-strong); }
 
 .btn--block { width: 100%; }
 .btn--sm { min-height: 44px; padding: var(--space-2) var(--space-5); font-size: var(--text-sm); }
@@ -375,7 +423,7 @@ strong { font-weight: 700; color: var(--navy-900); }
 .header {
   position: sticky;
   inset-block-start: 0;
-  z-index: 100;
+  z-index: var(--z-header);
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(10px);
   border-block-end: 1px solid var(--border);
@@ -487,7 +535,7 @@ strong { font-weight: 700; color: var(--navy-900); }
   inset-block-start: var(--header-height);
   inset-inline: 0;
   inset-block-end: 0;
-  z-index: 99;
+  z-index: calc(var(--z-header) - 1);
   background: var(--surface);
   padding: var(--space-5);
   overflow-y: auto;
@@ -529,31 +577,65 @@ strong { font-weight: 700; color: var(--navy-900); }
 .hero {
   position: relative;
   background:
-    radial-gradient(120% 120% at 85% 0%, #ffffff 0%, var(--navy-050) 45%, var(--bg) 100%);
-  padding-block: var(--space-8) var(--space-8);
-  overflow: hidden;
+    radial-gradient(120% 120% at 85% 0%, var(--surface-card) 0%, var(--navy-050) 45%, var(--bg) 100%);
+  padding-block: var(--space-6) var(--space-7);
+}
+
+/* קיצור הנשימה בין הכותרת לפעולות במובייל, כדי שהתוכנית תיכנס למסך */
+@media (max-width: 899px) {
+  .hero__title { margin-block-end: var(--space-3); }
+  .hero__subtitle {
+    margin-block-end: var(--space-4);
+    font-size: var(--text-base);
+    /* משפט אחד נושם, לא פסקה. הטקסט המלא נשאר — רק הרוחב מוגבל. */
+    max-inline-size: 34ch;
+  }
+  .hero__actions { gap: var(--space-2); }
+  .hero__actions .btn { min-height: 52px; }
+  .hero__grid { gap: var(--space-5); }
+  .hero__plan { margin-block-start: 0; }
+  .offer-note { margin-block-start: var(--space-3); }
 }
 
 @media (min-width: 900px) {
   .hero { padding-block: var(--space-9); }
 }
 
+/* עיקרון 1 של הכיוון: התוכנית חייבת להיות במסך הראשון ב-390.
+   לכן במובייל היא ילד שני בגריד — מיד אחרי הכותרת וכפתורי הפעולה —
+   וציר הזמן יורד מתחתיה. בדסקטופ הציר חוזר לעמודת הטקסט. */
 .hero__grid {
   display: grid;
-  gap: var(--space-7);
+  gap: var(--space-6);
   align-items: center;
 }
 
 @media (min-width: 900px) {
-  .hero__grid { grid-template-columns: 1.05fr 0.95fr; gap: var(--space-8); }
+  .hero__grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-8) var(--space-8);
+    grid-template-areas:
+      "content visual"
+      "timeline visual";
+    align-items: start;
+  }
+  .hero__content  { grid-area: content; }
+  .hero__visual   { grid-area: visual; }
+  .hero__grid .timeline { grid-area: timeline; margin-block-start: 0; }
 }
 
 .hero__title { margin-block-end: var(--space-5); }
 /* הדגשת המילים המרכזיות בקו תחתון זהוב.
    מיושם כרקע ולא כשכבה ממוקמת, כדי שלא ייעלם מאחורי רקע האזור. */
+/* ההדגשה הזהובה נצבעת על המילים עצמן ולא על שורת הטקסט.
+   .kinetic__line הוא block (המסכה מחייבת זאת), ולכן רקע עליו היה נמתח
+   לכל רוחב השורה במקום להצמיד למילים. */
 .hero__title .accent {
   color: var(--navy-700);
-  white-space: nowrap;
+  /* fit-content מצמיד את הרקע לרוחב המילים במקום לרוחב השורה.
+     בלעדיו ההדגשה נמתחה על כל שורת הכותרת; עם הדגשה לכל מילה בנפרד
+     היא נשברה ברווחים. כך היא נשארת קו אחד רציף מתחת לכל הביטוי. */
+  inline-size: fit-content;
   padding-inline: 0.06em;
   background-image: linear-gradient(
     to top,
@@ -820,7 +902,7 @@ strong { font-weight: 700; color: var(--navy-900); }
   padding: var(--space-6);
   min-height: 220px;
   background:
-    repeating-linear-gradient(45deg, var(--navy-050) 0 12px, #fff 12px 24px);
+    repeating-linear-gradient(45deg, var(--navy-050) 0 12px, var(--ink-on-dark-strong) 12px 24px);
   border: 2px dashed var(--border-strong);
   border-radius: var(--radius);
   color: var(--ink-muted);
@@ -1013,7 +1095,7 @@ strong { font-weight: 700; color: var(--navy-900); }
 .contact__direct { display: grid; gap: var(--space-3); font-size: var(--text-sm); }
 .contact__direct-item { display: flex; align-items: center; gap: var(--space-3); }
 .contact__direct-item svg { width: 20px; height: 20px; color: var(--gold-500); flex: none; }
-.contact__direct-item a { color: #fff; }
+.contact__direct-item a { color: var(--ink-on-dark-strong); }
 
 .form-card {
   background: var(--surface);
@@ -1164,15 +1246,15 @@ select.field__control {
 
 @media (min-width: 700px) { .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; gap: var(--space-7); } }
 
-.footer h4 { color: #fff; font-size: var(--text-base); margin-block-end: var(--space-4); }
+.footer h4 { color: var(--ink-on-dark-strong); font-size: var(--text-base); margin-block-end: var(--space-4); }
 .footer a { color: var(--ink-on-dark); text-decoration: none; }
-.footer a:hover { color: #fff; text-decoration: underline; }
+.footer a:hover { color: var(--ink-on-dark-strong); text-decoration: underline; }
 
 .footer__brand-name {
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: var(--text-lg);
-  color: #fff;
+  color: var(--ink-on-dark-strong);
   margin-block-end: var(--space-3);
 }
 .footer__list { display: grid; gap: var(--space-3); }
@@ -1191,45 +1273,83 @@ select.field__control {
 }
 
 /* --------------------------------------------------------------------------
-   18. כפתור וואטסאפ צף
+   18. סרגל פעולה תחתון (מובייל)
+   --------------------------------------------------------------------------
+   מחליף את כפתור הוואטסאפ הצף, שכיסה נתון בשורת ה-Trust Stats ואת ה-CTA
+   של המוצר המודגש. הסרגל תופס פס משלו בתחתית המסך, ה-body מקבל ריפוד
+   מקביל כך ששום תוכן אינו נחסם, והוא נעלם כשאזור יצירת הקשר בתצוגה —
+   שם כבר יש פעולות אמיתיות על המסך.
+   יעדי מגע 48px, ריווח 8px, כיבוד safe-area.
    -------------------------------------------------------------------------- */
 
-.wa-float {
+.action-bar {
   position: fixed;
-  inset-block-end: var(--space-5);
-  inset-inline-start: var(--space-5);
-  z-index: 90;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: var(--z-float);
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  padding-block-end: calc(var(--space-3) + env(safe-area-inset-bottom, 0px));
+  background: color-mix(in srgb, var(--navy-900) 94%, transparent);
+  border-block-start: var(--stroke-2) solid var(--gold-500);
+  transition: transform var(--duration-slow) var(--ease);
+}
+
+.action-bar[hidden] { display: none; }
+
+/* נסוג מהמסך כשאזור יצירת הקשר בתצוגה. שינוי המצב עצמו נעשה ב-JS
+   באמצעות המאפיין inert + aria-hidden, כך שזו אינה הסתרה ויזואלית בלבד. */
+.action-bar.is-stowed {
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+.action-bar__btn {
+  flex: 1 1 0;
   display: inline-flex;
   align-items: center;
-  gap: var(--space-3);
-  min-height: 56px;
-  padding: var(--space-3) var(--space-5);
-  background: var(--whatsapp);
-  color: #fff;
-  border: 0;
-  border-radius: var(--radius-full);
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-sm);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: var(--text-sm);
   text-decoration: none;
-  box-shadow: var(--shadow-lg);
-  cursor: pointer;
-  transition: background-color var(--duration) var(--ease), transform var(--duration) var(--ease);
+  border: var(--stroke-2) solid transparent;
 }
-.wa-float:hover { background: var(--whatsapp-dark); color: #fff; transform: translateY(-2px); }
-.wa-float svg { width: 26px; height: 26px; flex: none; }
-.wa-float__label { display: none; }
 
-@media (min-width: 560px) { .wa-float__label { display: inline; } }
+.action-bar__btn svg { width: 22px; height: 22px; flex: none; }
 
-@media (max-width: 559px) {
-  .wa-float {
-    padding: 0;
-    width: 56px;
-    justify-content: center;
-    inset-block-end: var(--space-4);
-    inset-inline-start: var(--space-4);
-  }
+.action-bar__btn--wa {
+  background: var(--whatsapp);
+  color: var(--ink-on-dark-strong);
+}
+.action-bar__btn--tel {
+  background: transparent;
+  color: var(--ink-on-dark-strong);
+  border-color: #4a6a8f;
+}
+
+.action-bar__btn:focus-visible {
+  outline: var(--stroke-3) solid var(--gold-300);
+  outline-offset: 2px;
+}
+
+/* ריפוד מקביל ל-body כדי שהסרגל לא יחסום את סוף התוכן */
+body.has-action-bar { padding-block-end: 76px; }
+
+/* מעל 768px הסרגל יורד לגמרי: הכותרת הדביקה כבר נושאת פעולה קבועה,
+   ושני כפתורים ראשיים באותו גובה עין מפצלים את תשומת הלב. */
+@media (min-width: 768px) {
+  .action-bar { display: none; }
+  body.has-action-bar { padding-block-end: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action-bar { transition: none; }
 }
 
 /* --------------------------------------------------------------------------
@@ -1251,19 +1371,404 @@ select.field__control {
   background: var(--gold-500);
 }
 
-/* --------------------------------------------------------------------------
-   20. Motion — חשיפה עדינה בגלילה
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   19b. שפת תוכנית החנות
+   --------------------------------------------------------------------------
+   החלטת מועצה 0001. אוצר המילים של תכנון קמעונאי — רשת תכנון, קו מסלול,
+   סימוני אזורים, מקרא וסימוני מידה — הוא השפה החזותית של העמוד כולו.
+   האלמנט החתימה אינו התרשים אלא שכבת הסימון שמעליו.
+   ========================================================================== */
 
-/* מצב ההסתרה חל רק כאשר JavaScript זמין. ללא JavaScript כל התוכן מוצג
-   כרגיל, כדי שהעמוד לעולם לא ייראה ריק. */
+/* --- רשת התכנון ------------------------------------------------------- */
+
+.section,
+.hero {
+  position: relative;
+  isolation: isolate;
+}
+
+/* הרשת מצוירת כשכבה נפרדת כדי שלא תתחרה בטקסט על הניגודיות */
+.plan-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(to right,
+      var(--plan-grid-line) 0 var(--stroke-1),
+      transparent var(--stroke-1) var(--plan-grid-size)),
+    repeating-linear-gradient(to bottom,
+      var(--plan-grid-line) 0 var(--stroke-1),
+      transparent var(--stroke-1) var(--plan-grid-size));
+  /* הרשת נמוגה בקצוות כדי שלא תיראה כגבול של קופסה */
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, #000 35%, transparent 85%);
+          mask-image: radial-gradient(120% 90% at 50% 0%, #000 35%, transparent 85%);
+}
+
+/* על רקע כהה הרשת מתהפכת לאור */
+.section--dark.plan-grid::before {
+  --plan-grid-line: rgba(242, 198, 106, 0.09);
+}
+
+/* --- סימון אזור: המקבילה החזותית לסימון מחלקה בתוכנית --------------- */
+
+.plan-mark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--plan-path);
+  padding-inline: var(--space-3);
+  padding-block: var(--space-1);
+  border: var(--stroke-2) dashed var(--plan-path);
+  border-radius: var(--radius-sm);
+  background: var(--surface-card);
+}
+
+.section--dark .plan-mark {
+  color: var(--gold-300);
+  border-color: var(--gold-300);
+  background: transparent;
+}
+
+/* נקודת ציון על המסלול — חלק מהמקרא, לא קישוט */
+.plan-mark::before {
+  content: "";
+  inline-size: 7px;
+  block-size: 7px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+  flex: none;
+}
+
+/* --- המקרא: HTML אמיתי, לא טקסט בתוך SVG --------------------------- */
+
+.plan-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  margin-block-start: var(--space-4);
+  padding-block-start: var(--space-4);
+  border-block-start: var(--stroke-1) solid var(--border);
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+}
+
+.plan-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.plan-legend__key {
+  inline-size: 28px;
+  block-size: 10px;
+  flex: none;
+  border-radius: var(--radius-full);
+}
+
+.plan-legend__key--path {
+  background: transparent;
+  border-block-start: var(--stroke-3) dashed var(--plan-path);
+  block-size: 0;
+}
+.plan-legend__key--entry { background: var(--plan-entry); }
+.plan-legend__key--promo {
+  background: var(--plan-accent);
+  border: var(--stroke-1) solid var(--plan-accent-edge);
+}
+
+/* --- סימון מידה: הקו עם הסוגרים בקצוות, כמו בשרטוט ------------------ */
+
+.plan-measure {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--plan-path);
+}
+
+.plan-measure::before,
+.plan-measure::after {
+  content: "";
+  flex: 1;
+  block-size: var(--stroke-2);
+  background: currentColor;
+  /* הסוגרים בקצוות — clip-path במקום שלושה אלמנטים */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.section--dark .plan-measure { color: var(--gold-300); }
+
+/* --- קו המסלול שנמשך בגלילה ----------------------------------------- */
+
+/* במת התוכנית: ה-SVG, שכבת המסלול ותוויות ה-HTML חולקים מערכת
+   קואורדינטות אחת, כך שהתוויות יושבות על המחלקות בכל רוחב. */
+.plan-stage { position: relative; }
+.plan-stage > svg { display: block; inline-size: 100%; block-size: auto; }
+
+.plan-path-svg {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  pointer-events: none;
+}
+
+/* הקו נשאר מקווקו תמיד — המקווקו הוא הסימן, לא אפקט */
+.plan-path-svg__line {
+  fill: none;
+  stroke: var(--plan-path);
+  stroke-width: var(--stroke-3);
+  stroke-dasharray: var(--plan-dash);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.plan-path-svg__arrow { fill: var(--plan-path); }
+
+/* --- תוויות המחלקות -------------------------------------------------- */
+
+.plan-labels {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.plan-label {
+  position: absolute;
+  inset-block-start: var(--y);
+  /* left פיזי ולא inset-inline-start, בכוונה: מערכת הקואורדינטות של SVG
+     היא תמיד משמאל לימין ואינה מתהפכת עם כיוון הטקסט. תווית שתמוקם
+     במאפיין לוגי תקפוץ לצד השני של התרשים בעמוד RTL. */
+  left: var(--x);
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(0.625rem, 2.3vw, 0.875rem);
+  line-height: 1;
+  color: var(--navy-900);
+}
+
+/* על אזור המבצעים ועל הקופות הרקע כהה או רווי — נדרש ניגוד משלהם */
+.plan-label--promo { color: #4a2f02; font-size: clamp(0.55rem, 2vw, 0.8125rem); }
+.plan-label--on-dark { color: var(--ink-on-dark-strong); }
+
+@media (min-width: 900px) {
+  .plan-label { font-size: var(--text-sm); }
+}
+
+/* --- ההירו ---------------------------------------------------------- */
+
+/* התוכנית חייבת להופיע במסך הראשון ב-390. בעמודה אחת היא נדחקה מתחת לקפל,
+   ולכן במובייל היא עולה מעל שורת הנתונים ומתחת לכפתורי הפעולה. */
+.hero__plan {
+  margin-block-start: var(--space-5);
+}
+
+.hero__plan-frame {
+  position: relative;
+  background: var(--plan-ground);
+  border: var(--stroke-2) solid var(--plan-wall);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+}
+
+/* תווית פינה — "תוכנית עקרונית", כדי שהתרשים ייקרא כשיטה ולא כחנות אחת */
+.hero__plan-tag {
+  position: absolute;
+  inset-block-start: calc(var(--space-3) * -1);
+  inset-inline-start: var(--space-4);
+  background: var(--surface-card);
+  padding-inline: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--plan-wall);
+}
+
+/* --- שורת הנתונים כציר זמן ------------------------------------------
+   22 שנה אינן נתון שלישי לצד 11 ו-11 — הן הסכום שלהן. הצגה כציר אחד
+   עם שתי תחנות אומרת את זה, ומוחקת את החזרה.
+   -------------------------------------------------------------------- */
+
+.timeline {
+  position: relative;
+  display: grid;
+  gap: var(--space-4);
+  margin-block-start: var(--space-6);
+  padding-block-start: var(--space-5);
+}
+
+/* הקו עצמו — אותו מקווקו של מסלול הלקוח */
+.timeline::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 6px;
+  inset-inline: 0;
+  block-size: 0;
+  border-block-start: var(--stroke-2) dashed var(--plan-path);
+}
+
+.timeline__total {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--navy-900);
+  line-height: 1.1;
+}
+.timeline__total span {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
+}
+
+.timeline__stops {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.timeline__stop {
+  position: relative;
+  padding-inline-start: var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
+.timeline__stop::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.62em;
+  inline-size: 9px;
+  block-size: 9px;
+  border-radius: var(--radius-full);
+  background: var(--plan-path);
+}
+.timeline__stop b {
+  color: var(--navy-900);
+  font-family: var(--font-heading);
+  font-weight: 800;
+}
+
+@media (min-width: 600px) {
+  .timeline { grid-template-columns: auto 1fr; gap: var(--space-6); align-items: start; }
+  .timeline__stops { grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+}
+
+/* --- פאנל "אודות" בשפת התוכנית, במקום מסגרת תמונה חסרה ------------- */
+
+.plan-panel {
+  background: var(--plan-ground);
+  border: var(--stroke-2) solid var(--plan-wall);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.plan-panel__row {
+  display: grid;
+  gap: var(--space-1);
+  padding-block-end: var(--space-4);
+  border-block-end: var(--stroke-1) dashed var(--plan-fixture);
+}
+.plan-panel__row:last-of-type { border-block-end: 0; padding-block-end: 0; }
+
+.plan-panel__k {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--plan-path);
+}
+.plan-panel__v {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: var(--navy-900);
+  line-height: 1.25;
+}
+
+/* ==========================================================================
+   20. Motion
+   --------------------------------------------------------------------------
+   חתימת התנועה: שום דבר לא זז בלי סיבה, והסיבה היא תמיד שהגולש הגיע לשם.
+   כל תנועה קשורה לגלילה דרך animation-timeline: view() — אין אנימציה שרצה
+   מעצמה בקצב שהגולש אינו שולט בו (תנאי מובילת העיצוב המכליל).
+
+   ברירת המחדל בכל מצב היא תוכן גלוי: התנועה נוספת רק כשיש JavaScript,
+   כשהדפדפן תומך, וכשהמשתמש לא ביקש תנועה מופחתת.
+   will-change הוסר — הוא ישב על כל אזור בעמוד לנצח.
+   ========================================================================== */
+
 .js .reveal {
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity 400ms var(--ease), transform 400ms var(--ease);
-  will-change: opacity, transform;
+  transition: opacity var(--duration-slow) var(--ease), transform var(--duration-slow) var(--ease);
 }
 .js .reveal.is-visible { opacity: 1; transform: none; }
+
+/* --- כותרת קינטית: המילים עולות מתוך מסכה ---------------------------
+   מחולק למילים שלמות בלבד. חלוקה לאותיות הייתה שוברת צורות סופיות
+   ומנתקת אותיות שימוש (ש/ה/ו/ב/ל/מ/כ) מהמילה שלהן.
+   -------------------------------------------------------------------- */
+
+.kinetic { display: block; }
+
+.kinetic__line {
+  display: block;
+  overflow: hidden;
+  /* מרווח קטן כדי שתגים יורדים (ך, ן, ץ) לא ייחתכו על ידי המסכה */
+  padding-block-end: 0.12em;
+  margin-block-end: -0.12em;
+}
+
+.js .kinetic__word {
+  display: inline-block;
+  transform: translateY(105%);
+  animation: word-rise 600ms var(--ease-draw) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+
+@keyframes word-rise { to { transform: translateY(0); } }
+
+/* --- מסלול שנמשך כשמגיעים אליו -------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* הקו שבתוך המסכה הוא זה שנמשך. הוא מגלה את הקו המקווקו מתחתיו,
+       כך שהמקווקו נשמר לכל אורך האנימציה ולא רק בסופה. */
+    .plan-path-svg__mask {
+      stroke-dasharray: var(--path-len, 969);
+      stroke-dashoffset: var(--path-len, 969);
+      animation: path-draw linear forwards;
+      animation-timeline: view();
+      /* נמשך על פני הכניסה לתצוגה בלבד — קטע קצר, לא גובה העמוד */
+      animation-range: entry 15% cover 45%;
+    }
+
+    /* החשיפה עצמה נשארת על IntersectionObserver ולא עוברת לציר הגלילה.
+       נבדק: עם animation-timeline: view() אלמנט גבוה מגובה המסך אינו
+       משלים את טווח ה-entry, ונשאר ב-opacity 0 גם כשהוא במרכז המסך.
+       עבור קו המסלול — אלמנט קטן ותחום — הציר בטוח ועדיף. */
+  }
+}
+
+@keyframes path-draw { to { stroke-dashoffset: 0; } }
+
 
 /* כיבוד העדפת תנועה מופחתת */
 @media (prefers-reduced-motion: reduce) {
@@ -1277,7 +1782,9 @@ select.field__control {
     scroll-behavior: auto !important;
   }
   .js .reveal { opacity: 1; transform: none; }
-  .btn:hover, .card:hover, .wa-float:hover { transform: none; }
+  .js .kinetic__word { transform: none; animation: none; }
+  .btn:hover, .card:hover { transform: none; }
+  .action-bar.is-stowed { transform: none; opacity: 0; }
 }
 
 /* --------------------------------------------------------------------------
@@ -1337,7 +1844,7 @@ select.field__control {
   position: fixed;
   inset-inline: 0;
   inset-block-end: 0;
-  z-index: 150;
+  z-index: var(--z-overlay);
   background: var(--navy-900);
   color: var(--ink-on-dark);
   border-block-start: 3px solid var(--gold-500);
@@ -1389,25 +1896,25 @@ select.field__control {
 /* כפתור "רק ההכרחי" על רקע כהה — גרסה בהירה של הכפתור המשני */
 .consent .btn--secondary {
   background: transparent;
-  color: #fff;
+  color: var(--ink-on-dark-strong);
   border-color: #4a6a8f;
 }
 
 .consent .btn--secondary:hover {
   background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  color: var(--ink-on-dark-strong);
 }
 
-/* מרווח לכפתור הוואטסאפ הצף כל עוד באנר ההסכמה פתוח.
-   הבאנר נוסף ל-DOM אחרי הכפתור, ולכן הסימון נעשה על ה-body. */
-body.has-consent .wa-float { inset-block-end: calc(var(--space-5) + 7rem); }
+/* באנר ההסכמה וסרגל הפעולה חולקים את תחתית המסך.
+   כל עוד הבאנר פתוח, הסרגל יורד — הבאנר דורש החלטה ולכן קודם. */
+body.has-consent .action-bar { transform: translateY(100%); pointer-events: none; }
 
 /* --------------------------------------------------------------------------
    24. הדפסה
    -------------------------------------------------------------------------- */
 
 @media print {
-  .header, .wa-float, .mobile-nav, .hero__actions, .form-card { display: none !important; }
-  body { background: #fff; }
+  .header, .action-bar, .mobile-nav, .hero__actions, .form-card { display: none !important; }
+  body { background: var(--ink-on-dark-strong); }
   .js .reveal { opacity: 1; transform: none; }
 }
