@@ -15,103 +15,61 @@
     inline-size: 1200px;
     block-size: 630px;
     display: grid;
-    grid-template-columns: 1.08fr 1fr;
-    align-items: center;
-    gap: 56px;
-    padding: 56px 64px;
-    background: var(--navy-900);
+    grid-template-columns: 1.05fr 1fr;
+    align-items: stretch;
+    background: var(--bone);
     box-sizing: border-box;
     overflow: hidden;
   }
-
-  /* רשת התכנון, באותו דפוס של האתר */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image:
-      repeating-linear-gradient(to right, rgba(242,198,106,.09) 0 1px, transparent 1px 32px),
-      repeating-linear-gradient(to bottom, rgba(242,198,106,.09) 0 1px, transparent 1px 32px);
+  .og__text {
+    padding: 64px 68px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-inline-end: 1px solid var(--rule);
   }
-
-  .og__text { position: relative; }
-
   .og__brand {
-    font-family: var(--font-heading);
-    font-size: 24px;
+    font-family: var(--f-body);
+    font-size: 19px;
     font-weight: 700;
-    color: var(--gold-300);
-    letter-spacing: .01em;
-    margin: 0 0 24px;
+    color: var(--ink-3);
+    margin: 0 0 22px;
   }
-
   .og__title {
-    font-family: var(--font-heading);
-    font-size: 58px;
-    font-weight: 800;
-    line-height: 1.08;
-    color: #fff;
-    margin: 0 0 24px;
-    text-wrap: balance;
+    font-family: var(--f-display);
+    font-size: 92px;
+    line-height: 0.92;
+    color: var(--ink);
+    margin: 0 0 26px;
   }
-  .og__title em { font-style: normal; color: var(--gold-300); }
-
   .og__sub {
-    font-family: var(--font-body);
-    font-size: 26px;
-    line-height: 1.45;
-    color: var(--ink-on-dark);
+    font-family: var(--f-body);
+    font-size: 23px;
+    line-height: 1.5;
+    color: var(--ink-2);
     margin: 0;
     max-width: 26ch;
   }
-
-  .og__plan {
-    position: relative;
-    background: var(--plan-ground);
-    border: 3px solid var(--gold-300);
-    border-radius: 18px;
-    padding: 22px;
+  .og__rule {
+    display: flex; align-items: center; gap: 12px;
+    margin-block-start: 30px;
+    font-family: var(--f-body); font-weight: 700; font-size: 19px; color: var(--signal);
   }
-  .og__plan svg { display: block; inline-size: 100%; block-size: auto; }
-  .og__plan .path { position: absolute; inset: 22px; }
+  .og__rule::before { content: ""; inline-size: 36px; block-size: 3px; background: currentColor; }
+  .og__img { position: relative; }
+  .og__img img {
+    inline-size: 100%; block-size: 100%; object-fit: cover; display: block;
+    filter: saturate(1.18) contrast(1.08) brightness(1.02);
+  }
 </style>
 </head>
 <body>
-
-<div class="og__text">
-  <p class="og__brand">בני לפקוביץ · תכנון נקודות מכירה</p>
-  <h1 class="og__title">כל מטר בחנות<br><em>צריך לעבוד עבור העסק</em></h1>
-  <p class="og__sub">תכנון ואופטימיזציה לנקודות מכירה — 22 שנות ניסיון קמעונאי</p>
-</div>
-
-<div class="og__plan">
-  <svg viewBox="0 0 560 410">
-    <rect x="14" y="14" width="532" height="382" rx="16" fill="var(--plan-ground)" stroke="var(--plan-wall)" stroke-width="2"/>
-    <g fill="var(--plan-fixture-soft)">
-      <rect x="34" y="32" width="228" height="62" rx="8"/>
-      <rect x="298" y="32" width="228" height="62" rx="8"/>
-      <rect x="34" y="112" width="104" height="186" rx="8"/>
-      <rect x="422" y="112" width="104" height="186" rx="8"/>
-    </g>
-    <g fill="var(--plan-fixture)">
-      <rect x="168" y="124" width="224" height="16" rx="4"/>
-      <rect x="168" y="168" width="224" height="16" rx="4"/>
-      <rect x="168" y="212" width="224" height="16" rx="4"/>
-      <rect x="168" y="256" width="224" height="16" rx="4"/>
-    </g>
-    <rect x="168" y="320" width="150" height="36" rx="8" fill="var(--plan-accent)" stroke="var(--plan-accent-edge)" stroke-width="2"/>
-    <g fill="var(--plan-wall)">
-      <rect x="338" y="320" width="48" height="36" rx="6"/>
-      <rect x="396" y="320" width="48" height="36" rx="6"/>
-    </g>
-    <rect x="446" y="390" width="76" height="10" rx="5" fill="var(--plan-entry)"/>
-    <path d="M484 378 l-9 12 h18 z" fill="var(--plan-entry)"/>
-    <path d="M480 382 L480 330 Q480 316 466 316 L420 316 Q406 316 406 302 L406 112 Q406 100 392 100 L166 100 Q152 100 152 112 L152 292 Q152 306 166 306 L330 306"
-          fill="none" stroke="var(--plan-path)" stroke-width="4"
-          stroke-dasharray="9 8" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M344 306 l-16 -9 v18 z" fill="var(--plan-path)"/>
-  </svg>
-</div>
-
+  <div class="og__text">
+    <p class="og__brand">בני לפקוביץ · תכנון נקודות מכירה</p>
+    <h1 class="og__title">מתכננים את החנות נכון.<br>מוכרים יותר.</h1>
+    <p class="og__sub">תכנון ואופטימיזציה לנקודות מכירה</p>
+    <p class="og__rule">22 שנות ניסיון קמעונאי</p>
+  </div>
+  <div class="og__img"><img src="../../assets/img/store-produce.jpg" alt=""></div>
 </body>
 </html>

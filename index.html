@@ -27,19 +27,18 @@
 <meta property="og:title" content="מתכננים את החנות נכון. מוכרים יותר.">
 <meta property="og:description" content="ייעוץ, תכנון ואופטימיזציה לסופרמרקטים, מינימרקטים, קיוסקים ונקודות מכירה, על בסיס 22 שנות ניסיון בניהול קמעונאי.">
 <meta property="og:url" content="https://example.co.il/">
-<meta property="og:image" content="https://example.co.il/assets/img/og-image.png">
+<meta property="og:image" content="https://example.co.il/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="תרשים תכנון של חנות מזון במבט מלמעלה, ולצידו הכותרת: כל מטר בחנות צריך לעבוד עבור העסק">
+<meta property="og:image:alt" content="מבט מלמעלה על מחלקת ירקות ופירות בחנות מזון, ולצידו הכותרת: מתכננים את החנות נכון, מוכרים יותר">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://example.co.il/assets/img/og-image.png">
+<meta name="twitter:image" content="https://example.co.il/assets/img/og-image.jpg">
 
-<meta name="theme-color" content="#0a2440">
+<meta name="theme-color" content="#f3f1ec">
 
-<!-- גופנים עבריים: Heebo לכותרות, Assistant לגוף הטקסט.
-     מאוחסנים מקומית (assets/fonts) ולא נטענים מ-Google Fonts — מהיר יותר,
-     וללא העברת כתובות IP של המבקרים לצד שלישי. -->
-<link rel="preload" href="assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<!-- גופנים מאוחסנים מקומית. Karantina נושאת את הכותרות ומוגדרת
+     font-display:block, כדי שלא יהיה הבהוב של גופן חלופי בכותרת הראשית. -->
+<link rel="preload" href="assets/fonts/karantina-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/assistant-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 
 <link rel="stylesheet" href="assets/css/style.css">
@@ -54,8 +53,8 @@
      --------------------------------------------------------------------------
      שני בלוקים: תיאור העסק, ורשימת השאלות הנפוצות. סכמת FAQPage היא מה
      שמאפשר לגוגל להציג את השאלות והתשובות ישירות בתוצאות החיפוש.
-     שדות התלויים בפרטי קשר (טלפון, כתובת אתר, אזורי שירות) מושלמים
-     אוטומטית מתוך site.config.js על ידי assets/js/schema.js.
+     שדות התלויים בפרטי קשר מושלמים אוטומטית מתוך site.config.js
+     על ידי assets/js/schema.js.
      ========================================================================== -->
 <script type="application/ld+json" id="schema-business">
 {
@@ -84,41 +83,20 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "לאילו סוגי חנויות השירות מתאים?",
-      "acceptedAnswer": { "@type": "Answer", "text": "השירות מתאים לסופרמרקטים, מינימרקטים, קיוסקים, חנויות נוחות, חנויות מזון ונקודות מכירה קמעונאיות נוספות." }
-    },
-    {
-      "@type": "Question",
-      "name": "האם חייבים לבצע שיפוץ מלא?",
-      "acceptedAnswer": { "@type": "Answer", "text": "לא. במקרים רבים ניתן להשיג שיפור באמצעות שינויי סידור, מיקום, נראות וזרימה ללא שיפוץ מקיף." }
-    },
-    {
-      "@type": "Question",
-      "name": "מה מקבלים לאחר סקירת החנות?",
-      "acceptedAnswer": { "@type": "Answer", "text": "דו״ח מסודר הכולל את הממצאים, ההמלצות והפעולות המומלצות לפי סדר עדיפות." }
-    },
-    {
-      "@type": "Question",
-      "name": "האם ניתן לקבל ליווי ביישום ההמלצות?",
-      "acceptedAnswer": { "@type": "Answer", "text": "כן. ניתן להזמין שירות הכולל ליווי וסיוע ביישום בפועל." }
-    },
-    {
-      "@type": "Question",
-      "name": "האם אתם מתכננים גם חנויות חדשות?",
-      "acceptedAnswer": { "@type": "Answer", "text": "כן. ניתן לקבל תכנון מסחרי מלא בשיתוף מעצב או מעצבת פנים." }
-    },
-    {
-      "@type": "Question",
-      "name": "יש לי כמה סניפים — איך זה עובד?",
-      "acceptedAnswer": { "@type": "Answer", "text": "לרשתות יש מוצר נפרד. במקום לטפל בכל סניף בנפרד, בונים סטנדרט אחיד לרשת ותבנית שניתן לשחזר, ומיישמים אותה בהדרגה סניף אחר סניף." }
-    },
-    {
-      "@type": "Question",
-      "name": "האם השירות מתאים גם לחנות קטנה?",
-      "acceptedAnswer": { "@type": "Answer", "text": "כן. דווקא בחנויות קטנות יש חשיבות גבוהה לניצול נכון של כל מטר." }
-    }
+    { "@type": "Question", "name": "לאילו סוגי חנויות השירות מתאים?",
+      "acceptedAnswer": { "@type": "Answer", "text": "השירות מתאים לסופרמרקטים, מינימרקטים, קיוסקים, חנויות נוחות, חנויות מזון ונקודות מכירה קמעונאיות נוספות." } },
+    { "@type": "Question", "name": "האם חייבים לבצע שיפוץ מלא?",
+      "acceptedAnswer": { "@type": "Answer", "text": "לא. במקרים רבים ניתן להשיג שיפור באמצעות שינויי סידור, מיקום, נראות וזרימה ללא שיפוץ מקיף." } },
+    { "@type": "Question", "name": "מה מקבלים לאחר סקירת החנות?",
+      "acceptedAnswer": { "@type": "Answer", "text": "דו״ח מסודר הכולל את הממצאים, ההמלצות והפעולות המומלצות לפי סדר עדיפות." } },
+    { "@type": "Question", "name": "האם ניתן לקבל ליווי ביישום ההמלצות?",
+      "acceptedAnswer": { "@type": "Answer", "text": "כן. ניתן להזמין שירות הכולל ליווי וסיוע ביישום בפועל." } },
+    { "@type": "Question", "name": "האם אתם מתכננים גם חנויות חדשות?",
+      "acceptedAnswer": { "@type": "Answer", "text": "כן. ניתן לקבל תכנון מסחרי מלא בשיתוף מעצב או מעצבת פנים." } },
+    { "@type": "Question", "name": "יש לי כמה סניפים — איך זה עובד?",
+      "acceptedAnswer": { "@type": "Answer", "text": "לרשתות יש מוצר נפרד. במקום לטפל בכל סניף בנפרד, בונים סטנדרט אחיד לרשת ותבנית שניתן לשחזר, ומיישמים אותה בהדרגה סניף אחר סניף." } },
+    { "@type": "Question", "name": "האם השירות מתאים גם לחנות קטנה?",
+      "acceptedAnswer": { "@type": "Answer", "text": "כן. דווקא בחנויות קטנות יש חשיבות גבוהה לניצול נכון של כל מטר." } }
   ]
 }
 </script>
@@ -135,114 +113,48 @@
      ========================================================================== -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
-    <symbol id="i-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3 9.5 4.6 4.5h14.8L21 9.5"/><path d="M3 9.5a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 3 0"/>
-      <path d="M4.5 11.5V20h15v-8.5"/><path d="M9.5 20v-5h5v5"/>
-    </symbol>
-    <symbol id="i-layout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12"/>
-    </symbol>
-    <symbol id="i-route" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="18.5" r="2.5"/>
-      <path d="M15.5 5.5H10a3.5 3.5 0 0 0 0 7h4a3.5 3.5 0 0 1 0 7H8.5"/>
-    </symbol>
-    <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3 17.5 9 11l4 4 8-8"/><path d="M16 7h5v5"/>
-    </symbol>
-    <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/>
-    </symbol>
-    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M10.3 3.9 2.4 17.4A1.9 1.9 0 0 0 4 20.3h16a1.9 1.9 0 0 0 1.6-2.9L13.7 3.9a1.9 1.9 0 0 0-3.4 0Z"/>
       <path d="M12 9v4.5M12 17h.01"/>
     </symbol>
-    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="9.2"/><path d="m8 12.3 2.8 2.8L16.2 9.5"/>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m4 12.5 5 5L20 6.5"/>
     </symbol>
-    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>
-    </symbol>
-    <symbol id="i-report" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M9 3.5h6a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1Z"/>
-      <path d="M16 5h2.5a1.5 1.5 0 0 1 1.5 1.5V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19V6.5A1.5 1.5 0 0 1 5.5 5H8"/>
-      <path d="M8 11h8M8 15h5"/>
-    </symbol>
-    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="9" cy="8" r="3.2"/><path d="M3 19.5a6 6 0 0 1 12 0"/><path d="M16.5 5.2a3.2 3.2 0 0 1 0 5.9"/><path d="M18 14.4a6 6 0 0 1 3 5.1"/>
-    </symbol>
-    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M20.5 12.5a7.5 7.5 0 0 1-7.5 7.5H8l-4 3v-3.9A7.5 7.5 0 0 1 5.5 6.5 7.5 7.5 0 0 1 13 5a7.5 7.5 0 0 1 7.5 7.5Z"/>
-    </symbol>
-    <symbol id="i-tools" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M14.5 6.5a3.9 3.9 0 0 0 5.2 5.2l-7.4 7.4a2.3 2.3 0 0 1-3.3-3.3Z"/><path d="M6 4.5 4.5 6l3.2 3.2L9.2 7.7Z"/>
-    </symbol>
-    <symbol id="i-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="2.5" y="8" width="19" height="8" rx="1.5"/><path d="M7 8v3M11 8v4M15 8v3M19 8v4"/>
-    </symbol>
-    <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M20.5 8.2v7.6a1.6 1.6 0 0 1-.85 1.4l-6.9 3.7a1.6 1.6 0 0 1-1.5 0l-6.9-3.7a1.6 1.6 0 0 1-.85-1.4V8.2a1.6 1.6 0 0 1 .85-1.4l6.9-3.7a1.6 1.6 0 0 1 1.5 0l6.9 3.7a1.6 1.6 0 0 1 .85 1.4Z"/>
-      <path d="m3.7 7.3 8.3 4.4 8.3-4.4M12 20.8v-9.1"/>
-    </symbol>
-    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 16.9v2.6a1.8 1.8 0 0 1-2 1.8 17.6 17.6 0 0 1-7.7-2.7 17.3 17.3 0 0 1-5.3-5.3A17.6 17.6 0 0 1 3.3 5.5a1.8 1.8 0 0 1 1.8-2h2.6a1.8 1.8 0 0 1 1.8 1.5c.1.9.3 1.7.6 2.5a1.8 1.8 0 0 1-.4 1.9l-1.1 1.1a14 14 0 0 0 5.3 5.3l1.1-1.1a1.8 1.8 0 0 1 1.9-.4c.8.3 1.6.5 2.5.6a1.8 1.8 0 0 1 1.6 1.9Z"/>
     </symbol>
-    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m2.9 6.5 8.2 5.7a1.6 1.6 0 0 0 1.8 0l8.2-5.7"/>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2.5" y="5" width="19" height="14"/><path d="m2.9 6 8.2 5.7a1.6 1.6 0 0 0 1.8 0L21.1 6"/>
     </symbol>
-    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M19 10.5c0 5.2-7 11-7 11s-7-5.8-7-11a7 7 0 0 1 14 0Z"/><circle cx="12" cy="10.3" r="2.6"/>
-    </symbol>
-    <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="m6 9.5 6 6 6-6"/>
-    </symbol>
-    <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="8.5" cy="10" r="1.8"/><path d="m4 17.5 4.8-4.4a1.8 1.8 0 0 1 2.4 0L17 18"/>
-    </symbol>
-    <symbol id="i-quote" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M10 11.5H5.5a1 1 0 0 1-1-1V8a3.5 3.5 0 0 1 3.5-3.5"/><path d="M10 11.5c0 4.5-1.8 7-5.5 8"/>
-      <path d="M20 11.5h-4.5a1 1 0 0 1-1-1V8A3.5 3.5 0 0 1 18 4.5"/><path d="M20 11.5c0 4.5-1.8 7-5.5 8"/>
-    </symbol>
-    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>
-    </symbol>
-    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M19 12H5M11 6l-6 6 6 6"/>
-    </symbol>
-    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>
     </symbol>
     <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96A9.9 9.9 0 0 0 19.1 4.9 9.9 9.9 0 0 0 12.04 2Zm0 18.18h-.01a8.3 8.3 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.24 8.24 0 0 1-1.26-4.36c0-4.56 3.71-8.27 8.27-8.27 2.2 0 4.28.86 5.84 2.42a8.22 8.22 0 0 1 2.42 5.85c0 4.57-3.71 8.28-8.27 8.28Zm4.54-6.2c-.25-.13-1.47-.72-1.7-.8-.23-.09-.4-.13-.56.12-.17.25-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.38-2-1.23a7.5 7.5 0 0 1-1.39-1.72c-.14-.25-.01-.38.11-.5.11-.12.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.55c.13.16 1.74 2.65 4.2 3.72.59.25 1.05.4 1.4.52.6.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.19.2-.58.2-1.08.15-1.18-.06-.11-.23-.17-.48-.3Z"/></symbol>
   </defs>
 </svg>
 
 <!-- ==========================================================================
-     כותרת עליונה + ניווט
+     כותרת עליונה
      ========================================================================== -->
 <header class="header" id="site-header">
   <div class="container header__inner">
 
     <a class="brand" href="#top" aria-label="בני לפקוביץ, תכנון ואופטימיזציה לנקודות מכירה, חזרה לראש העמוד">
-      <!-- סימן מילולי זמני. אין לוגו סופי בשלב זה. -->
-      <span class="brand__mark" aria-hidden="true">ב״ל</span>
-      <span class="brand__text">
-        <span class="brand__name">בני לפקוביץ</span>
-        <span class="brand__tagline">תכנון ואופטימיזציה לנקודות מכירה</span>
-      </span>
+      <span class="brand__name">בני לפקוביץ</span>
+      <span class="brand__dot" aria-hidden="true">.</span>
     </a>
 
     <nav class="nav" aria-label="ניווט ראשי">
       <ul class="nav__list">
-        <li><a class="nav__link" href="#top">ראשי</a></li>
-        <li><a class="nav__link" href="#about">אודות</a></li>
         <li><a class="nav__link" href="#services">שירותים</a></li>
         <li><a class="nav__link" href="#process">תהליך העבודה</a></li>
+        <li><a class="nav__link" href="#about">אודות</a></li>
         <li hidden><a class="nav__link" href="#testimonials">המלצות</a></li>
         <li><a class="nav__link" href="#faq">שאלות נפוצות</a></li>
-        <li><a class="nav__link" href="#contact">יצירת קשר</a></li>
       </ul>
     </nav>
 
-    <a class="btn btn--secondary btn--sm header__cta" href="#contact" data-wa-link>לתיאום ייעוץ</a>
+    <a class="btn btn--secondary btn--sm header__cta" href="#contact" data-wa-link>יצירת קשר</a>
 
     <button class="nav-toggle" type="button" id="nav-toggle"
             aria-expanded="false" aria-controls="mobile-nav" aria-label="פתיחת תפריט הניווט">
@@ -253,7 +165,7 @@
 
   <!-- פריטי התפריט נבנים מתוך תפריט השולחן שלמעלה, כדי שרשימת הניווט
        תוגדר במקום אחד בלבד. התפריט הנפתח דורש JavaScript ממילא. -->
-  <div class="mobile-nav" id="mobile-nav" hidden>
+  <div class="mobile-nav container" id="mobile-nav" hidden>
     <ul class="mobile-nav__list" id="mobile-nav-list"></ul>
     <a class="btn btn--primary btn--block mobile-nav__cta" href="#contact" data-wa-link>לתיאום ייעוץ</a>
   </div>
@@ -261,8 +173,7 @@
 
 <main id="main">
 
-<!-- התראה למנהל האתר: הדומיין בתגיות השיתוף עדיין לא הוחלף.
-     מוצגת רק כאשר showAdminNotices דלוק וכתובת האתר לא עודכנה. -->
+<!-- התראה למנהל האתר: הדומיין בתגיות השיתוף עדיין לא הוחלף. -->
 <div class="container" style="padding-block-start:1rem">
   <div class="admin-notice" id="domain-notice" data-admin-notice hidden>
     <svg aria-hidden="true"><use href="#i-alert"></use></svg>
@@ -278,24 +189,24 @@
 </div>
 
 <!-- ==========================================================================
-     1. Hero
+     1. הירו
      ========================================================================== -->
-<section class="hero plan-grid" id="top">
+<section class="section hero" id="top">
   <div class="container">
     <div class="hero__grid">
 
       <div class="hero__content">
-        <p class="eyebrow">תכנון מסחרי לנקודות מכירה</p>
+        <p class="tag">תכנון מסחרי לנקודות מכירה</p>
 
         <!-- כותרת קינטית. המילים עולות מתוך מסכה, מילה שלמה בכל פעם.
              אין חלוקה לאותיות: היא הייתה שוברת צורות סופיות ומנתקת
-             אותיות שימוש מהמילה שלהן. ללא JavaScript הכותרת פשוט מוצגת. -->
+             אותיות שימוש מהמילה שלהן. ללא JavaScript הכותרת מוצגת כרגיל. -->
         <h1 class="hero__title kinetic">
           <span class="kinetic__line">מתכננים את החנות נכון.</span>
-          <span class="kinetic__line accent">מוכרים יותר.</span>
+          <span class="kinetic__line">מוכרים יותר.</span>
         </h1>
 
-        <p class="hero__subtitle">
+        <p class="hero__sub">
           תכנון ואופטימיזציה של נקודות מכירה על בסיס 22 שנות ניסיון בניהול קמעונאי,
           סידור חנויות והבנת התנהגות הלקוחות.
         </p>
@@ -305,156 +216,52 @@
             <svg class="btn__icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
             לתיאום פגישת ייעוץ
           </a>
-          <a class="btn btn--secondary" href="#services">לשירותים שלי</a>
+          <a class="btn btn--secondary" href="#services">השירותים שלי</a>
         </div>
 
-        <!-- הצעת הפתיחה — מוסרת את החשש מהתחייבות. מוצגת רק אם מולא
-             introOfferText בקובץ assets/js/site.config.js. -->
+        <!-- הצעת הפתיחה. מוצגת רק אם מולא introOfferText ב-site.config.js. -->
         <p class="offer-note" data-offer="intro" hidden></p>
-
       </div>
 
-      <div class="hero__visual hero__plan">
-        <!-- ==================================================================
-             תוכנית החנות — האלמנט החתימה של האתר.
-             ה-SVG מצויר כולו מטוקני --plan-*: אותם ערכים שמופיעים ברשת
-             הרקע, בסימוני האזורים ובמקרא, כך שכל העמוד מדבר שפה אחת.
-             הטקסט אינו יושב בתוך ה-SVG: טקסט ב-SVG מתכווץ ולא מתפרס
-             מחדש, וב-390px הוא היה מוצג בכ-8px. המקרא והתוויות הם HTML.
-             =================================================================== -->
-        <div class="hero__plan-frame">
-          <span class="hero__plan-tag">תוכנית עקרונית</span>
+      <div class="hero__divider" aria-hidden="true"></div>
 
-          <div class="plan-stage">
-            <svg viewBox="0 0 560 410" role="img" aria-labelledby="plan-title plan-desc">
-              <title id="plan-title">תרשים תכנון של נקודת מכירה</title>
-              <desc id="plan-desc">תרשים עקרוני של חנות מזון במבט מלמעלה: מחלקות הממוקמות בהיקף החנות, מערך מדפים מרכזי, אזור מבצעים לפני הקופות, ומסלול תנועת הלקוחות מהכניסה ועד הקופות.</desc>
-
-              <!-- קווי החנות -->
-              <rect x="14" y="14" width="532" height="382" rx="16"
-                    fill="var(--plan-ground)" stroke="var(--plan-wall)" stroke-width="2"/>
-
-              <!-- מחלקות היקפיות -->
-              <g fill="var(--plan-fixture-soft)">
-                <rect x="34" y="32" width="228" height="62" rx="8"/>
-                <rect x="298" y="32" width="228" height="62" rx="8"/>
-                <rect x="34" y="112" width="104" height="186" rx="8"/>
-                <rect x="422" y="112" width="104" height="186" rx="8"/>
-              </g>
-
-              <!-- מערך מדפים מרכזי -->
-              <g fill="var(--plan-fixture)">
-                <rect x="168" y="124" width="224" height="16" rx="4"/>
-                <rect x="168" y="168" width="224" height="16" rx="4"/>
-                <rect x="168" y="212" width="224" height="16" rx="4"/>
-                <rect x="168" y="256" width="224" height="16" rx="4"/>
-              </g>
-
-              <!-- אזור מבצעים. המתאר נדרש: המילוי לבדו נותן 1.99:1 מול הקרקע,
-                   מתחת ל-3:1 הנדרש לרכיב גרפי לא-טקסטואלי. -->
-              <rect x="168" y="320" width="150" height="36" rx="8"
-                    fill="var(--plan-accent)" stroke="var(--plan-accent-edge)" stroke-width="2"/>
-
-              <!-- קופות -->
-              <g fill="var(--plan-wall)">
-                <rect x="338" y="320" width="48" height="36" rx="6"/>
-                <rect x="396" y="320" width="48" height="36" rx="6"/>
-              </g>
-
-              <!-- כניסה. מסומנת גם בצורה (המשולש) ולא בצבע בלבד. -->
-              <rect x="446" y="390" width="76" height="10" rx="5" fill="var(--plan-entry)"/>
-              <path d="M484 378 l-9 12 h18 z" fill="var(--plan-entry)"/>
-            </svg>
-
-            <!-- ==============================================================
-                 מסלול תנועת הלקוח.
-                 המסלול נשאר מקווקו תמיד — המקווקו הוא הסימן, לא אפקט.
-                 כדי למשוך אותו בגלילה בלי לאבד את המקווקו, הקו המקווקו
-                 נחשף דרך מסכה: בתוך המסכה יש קו מלא שנמשך ב-dashoffset,
-                 והוא זה שמגלה את הקו המקווקו מתחתיו.
-                 =============================================================== -->
-            <svg class="plan-path-svg" viewBox="0 0 560 410" aria-hidden="true">
-              <defs>
-                <mask id="path-reveal" maskUnits="userSpaceOnUse">
-                  <path class="plan-path-svg__mask"
-                        d="M480 382 L480 330 Q480 316 466 316 L420 316 Q406 316 406 302 L406 112 Q406 100 392 100 L166 100 Q152 100 152 112 L152 292 Q152 306 166 306 L330 306"
-                        fill="none" stroke="#fff" stroke-width="14"
-                        stroke-linecap="round" stroke-linejoin="round"/>
-                </mask>
-              </defs>
-              <g mask="url(#path-reveal)">
-                <path class="plan-path-svg__line"
-                      d="M480 382 L480 330 Q480 316 466 316 L420 316 Q406 316 406 302 L406 112 Q406 100 392 100 L166 100 Q152 100 152 112 L152 292 Q152 306 166 306 L330 306"/>
-                <path class="plan-path-svg__arrow" d="M344 306 l-16 -9 v18 z"/>
-              </g>
-            </svg>
-
-            <!-- ==============================================================
-                 תוויות המחלקות כ-HTML ולא כ-<text> בתוך ה-SVG.
-                 טקסט ב-SVG מתכווץ ואינו מתפרס מחדש: ב-390px הוא היה מוצג
-                 בכ-8px. כ-HTML הוא נקרא על ידי קורא מסך, מתכוונן עם גודל
-                 הגופן של הדפדפן, ומשתתף בבקרת הניגודיות של שאר העמוד.
-                 המיקום באחוזים נגזר מקואורדינטות ה-viewBox (560×410).
-                 =============================================================== -->
-            <ul class="plan-labels">
-              <li class="plan-label" style="--x:26.4%;--y:15.4%">ירקות ופירות</li>
-              <li class="plan-label" style="--x:73.6%;--y:15.4%">מאפייה</li>
-              <li class="plan-label" style="--x:15.4%;--y:50%">מוצרי חלב</li>
-              <li class="plan-label" style="--x:84.6%;--y:50%">בשר ודגים</li>
-              <li class="plan-label plan-label--promo" style="--x:43.4%;--y:82.4%">אזור מבצעים</li>
-              <!-- "קופות" יושב מתחת לשתי הקופות ולא עליהן: המרכז ביניהן נופל
-                   בדיוק על הרווח, והמילה נחתכה לשניים. -->
-              <li class="plan-label" style="--x:69.8%;--y:93%">קופות</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- המקרא כ-HTML אמיתי: נקרא על ידי קורא מסך, מתפרס מחדש ב-390,
-             ומשתתף בבקרת הניגודיות של שאר העמוד. -->
-        <ul class="plan-legend">
-          <li class="plan-legend__item">
-            <span class="plan-legend__key plan-legend__key--path" aria-hidden="true"></span>
-            מסלול תנועת הלקוח
-          </li>
-          <li class="plan-legend__item">
-            <span class="plan-legend__key plan-legend__key--entry" aria-hidden="true"></span>
-            כניסה
-          </li>
-          <li class="plan-legend__item">
-            <span class="plan-legend__key plan-legend__key--promo" aria-hidden="true"></span>
-            אזור מבצעים
-          </li>
-        </ul>
-      </div>
-
-      <!-- 22 שנה אינן נתון שלישי לצד 11 ו-11 — הן הסכום שלהן.
-           ציר אחד עם שתי תחנות אומר את זה, ומוחק את החזרה. -->
-      <div class="timeline">
-        <p class="timeline__total">22 שנה<span>בקמעונאות</span></p>
-        <dl class="timeline__stops">
-          <div class="timeline__stop">
-            <dt class="sr-only">תחנה ראשונה</dt>
-            <dd style="margin:0"><b>11 שנה</b> ניהול סניף באושר עד</dd>
-          </div>
-          <div class="timeline__stop">
-            <dt class="sr-only">תחנה שנייה</dt>
-            <dd style="margin:0"><b>11 שנה</b> ניהול ברשת מזון בירושלים</dd>
-          </div>
-        </dl>
-      </div>
+      <figure class="hero__visual shot">
+        <img src="assets/img/store-produce.jpg" width="1600" height="1059"
+             loading="eager" fetchpriority="high" decoding="async"
+             alt="מבט מלמעלה על מחלקת הירקות והפירות בחנות מזון, עם משטחי תצוגה מסודרים בשורות מקבילות">
+        <figcaption>
+          <span class="tag">מחלקת ירקות ופירות · מבט על</span>
+          <span class="mono">01</span>
+        </figcaption>
+      </figure>
 
     </div>
+
+    <!-- 22 שנה אינן נתון שלישי לצד 11 ו-11 — הן הסכום שלהן. -->
+    <div class="timeline">
+      <p class="timeline__total">22 שנה<span>בקמעונאות</span></p>
+      <dl class="timeline__stops">
+        <div class="timeline__stop">
+          <dt class="sr-only">תחנה ראשונה</dt>
+          <dd style="margin:0"><b>11</b> ניהול סניף באושר עד</dd>
+        </div>
+        <div class="timeline__stop">
+          <dt class="sr-only">תחנה שנייה</dt>
+          <dd style="margin:0"><b>11</b> ניהול ברשת מזון בירושלים</dd>
+        </div>
+      </dl>
+    </div>
+
   </div>
 </section>
 
 <!-- ==========================================================================
-     2. הבעיה
+     2. האתגר
      ========================================================================== -->
-<section class="section section--tint plan-grid" id="problem">
+<section class="section" id="problem">
   <div class="container">
-
     <div class="section-head reveal">
-      <p class="eyebrow">האתגר</p>
+      <p class="tag">האתגר</p>
       <h2>גם חנות טובה יכולה להפסיד מכירות בגלל תכנון לא נכון</h2>
       <p class="lead">
         לקוחות עשויים להיכנס לחנות, אך לא להגיע למוצרים הנכונים, לפספס מבצעים או לעזוב לפני שסיימו את הקנייה.
@@ -463,40 +270,38 @@
       </p>
     </div>
 
-    <ul class="grid grid--4">
-      <li class="card reveal">
-        <span class="card__icon" aria-hidden="true"><svg><use href="#i-ruler"></use></svg></span>
-        <h3 class="card__title">שטחים שאינם מנוצלים</h3>
-        <p class="card__text">אזורים בחנות שאינם מייצרים מכירות, פינות מתות ומדפים שאינם עובדים בהתאם לפוטנציאל שלהם.</p>
+    <ul class="rows">
+      <li class="row reveal">
+        <p class="row__n">01</p>
+        <h3 class="row__title">שטחים שאינם מנוצלים</h3>
+        <p class="row__text">אזורים בחנות שאינם מייצרים מכירות, פינות מתות ומדפים שאינם עובדים בהתאם לפוטנציאל שלהם.</p>
       </li>
-      <li class="card reveal">
-        <span class="card__icon" aria-hidden="true"><svg><use href="#i-route"></use></svg></span>
-        <h3 class="card__title">זרימת לקוחות לא יעילה</h3>
-        <p class="card__text">מסלול תנועה שאינו מוביל את הלקוח דרך המחלקות המרכזיות, ויוצר עומס במעברים ובקופות.</p>
+      <li class="row reveal">
+        <p class="row__n">02</p>
+        <h3 class="row__title">זרימת לקוחות לא יעילה</h3>
+        <p class="row__text">מסלול תנועה שאינו מוביל את הלקוח דרך המחלקות המרכזיות, ויוצר עומס במעברים ובקופות.</p>
       </li>
-      <li class="card reveal">
-        <span class="card__icon" aria-hidden="true"><svg><use href="#i-eye"></use></svg></span>
-        <h3 class="card__title">מוצרים רווחיים ללא חשיפה</h3>
-        <p class="card__text">מוצרים בעלי תרומה גבוהה שממוקמים בגובה, במיקום או בסביבה שאינם מקבלים מספיק תשומת לב.</p>
+      <li class="row reveal">
+        <p class="row__n">03</p>
+        <h3 class="row__title">מוצרים רווחיים ללא חשיפה</h3>
+        <p class="row__text">מוצרים בעלי תרומה גבוהה שממוקמים בגובה, במיקום או בסביבה שאינם מקבלים מספיק תשומת לב.</p>
       </li>
-      <li class="card reveal">
-        <span class="card__icon" aria-hidden="true"><svg><use href="#i-alert"></use></svg></span>
-        <h3 class="card__title">נראות מסחרית חלשה</h3>
-        <p class="card__text">עומס, חוסר סדר ותצוגה לא ברורה שמקשים על הלקוח להתמצא ולזהות את המבצעים.</p>
+      <li class="row reveal">
+        <p class="row__n">04</p>
+        <h3 class="row__title">נראות מסחרית חלשה</h3>
+        <p class="row__text">עומס, חוסר סדר ותצוגה לא ברורה שמקשים על הלקוח להתמצא ולזהות את המבצעים.</p>
       </li>
     </ul>
-
   </div>
 </section>
 
 <!-- ==========================================================================
-     3. הפתרון
+     3. הגישה
      ========================================================================== -->
-<section class="section" id="solution">
+<section class="section section--tint" id="solution">
   <div class="container">
-
     <div class="section-head reveal">
-      <p class="eyebrow">הגישה</p>
+      <p class="tag">הגישה</p>
       <h2>מחברים בין תכנון החנות לבין החשיבה המסחרית</h2>
       <p class="lead">
         בני לפקוביץ מביא ניסיון של 22 שנה בעבודה וניהול בעולם הקמעונאות.
@@ -505,65 +310,205 @@
       </p>
     </div>
 
-    <ol class="steps steps--4">
-      <li class="step reveal">
-        <h3 class="step__title">הבנת העסק והלקוחות</h3>
-        <p class="step__text">אופי החנות, סוג הקהל, שעות העומס ודפוסי הקנייה המאפיינים את נקודת המכירה.</p>
+    <ol class="rows">
+      <li class="row reveal">
+        <p class="row__n">01</p>
+        <h3 class="row__title">הבנת העסק והלקוחות</h3>
+        <p class="row__text">אופי החנות, סוג הקהל, שעות העומס ודפוסי הקנייה המאפיינים את נקודת המכירה.</p>
       </li>
-      <li class="step reveal">
-        <h3 class="step__title">סריקת נקודת המכירה</h3>
-        <p class="step__text">מעבר מסודר על המחלקות, המדפים, המעברים, הקופות והתצוגות בפועל.</p>
+      <li class="row reveal">
+        <p class="row__n">02</p>
+        <h3 class="row__title">סריקת נקודת המכירה</h3>
+        <p class="row__text">מעבר מסודר על המחלקות, המדפים, המעברים, הקופות והתצוגות בפועל.</p>
       </li>
-      <li class="step reveal">
-        <h3 class="step__title">איתור צווארי בקבוק והזדמנויות</h3>
-        <p class="step__text">היכן נעצרת התנועה, היכן נשחק שטח מכירה והיכן קיים פוטנציאל שאינו ממומש.</p>
+      <li class="row reveal">
+        <p class="row__n">03</p>
+        <h3 class="row__title">איתור צווארי בקבוק והזדמנויות</h3>
+        <p class="row__text">היכן נעצרת התנועה, היכן נשחק שטח מכירה והיכן קיים פוטנציאל שאינו ממומש.</p>
       </li>
-      <li class="step reveal">
-        <h3 class="step__title">בניית המלצות מעשיות</h3>
-        <p class="step__text">המלצות ישימות לשיפור, מסודרות לפי סדר עדיפות ומותאמות למציאות של החנות.</p>
+      <li class="row reveal">
+        <p class="row__n">04</p>
+        <h3 class="row__title">בניית המלצות מעשיות</h3>
+        <p class="row__text">המלצות ישימות לשיפור, מסודרות לפי סדר עדיפות ומותאמות למציאות של החנות.</p>
       </li>
     </ol>
-
   </div>
 </section>
 
 <!-- ==========================================================================
-     4. אודות בני
+     4. השירותים
      ========================================================================== -->
-<section class="section section--tint" id="about">
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="tag">מה אני עושה</p>
+      <h2>שלושה מוצרים</h2>
+      <p class="lead">מנקודת מכירה אחת, דרך רשת סניפים, ועד תכנון חנות חדשה מאפס.</p>
+      <!-- עוגן מחיר. מוצג רק אם מולא priceRangeText ב-assets/js/site.config.js. -->
+      <p class="offer-note" data-offer="price" hidden></p>
+    </div>
+
+    <div class="rows">
+
+      <!-- ==================================================================
+           שלושת המוצרים לפי סיכום פגישת 14.10.2026.
+           מוצר 1 כולל גם את הליווי והיישום, שבפגישה הוגדרו כשלב בתהליך
+           ולא כמוצר נפרד.
+           =================================================================== -->
+
+      <article class="service service--featured reveal">
+        <div class="service__head">
+          <span class="service__badge">
+            <svg width="13" height="13" aria-hidden="true"><use href="#i-check"></use></svg>
+            השירות הזמין והמיידי ביותר
+          </span>
+          <p class="service__n">01</p>
+          <h3 class="service__title">אופטימיזציה לנקודת מכירה קיימת</h3>
+          <p class="service__for">מתאים לבעל חנות אחת שרוצה להבין מה ניתן לשפר כבר עכשיו — וגם ליישם את זה.</p>
+        </div>
+
+        <ul class="service__list">
+          <li>פגישה עם בעל העסק</li>
+          <li>ביקור שטח וסריקה של החנות</li>
+          <li>בחינת מיקום המחלקות והמדפים</li>
+          <li>ניתוח תנועת הלקוחות בחנות</li>
+          <li>איתור צווארי בקבוק ושטחים שאינם מנוצלים</li>
+          <li>דו״ח אופטימיזציה מפורט, עם פעולות לפי סדר עדיפות</li>
+          <li>ליווי וייעוץ בביצוע השינויים בפועל</li>
+          <li>חיבור לספקים מומלצים ותמחור מלא לכל השלבים</li>
+          <li>ביקורת והתאמות לאחר היישום</li>
+        </ul>
+
+        <a class="btn btn--primary service__cta" href="#contact" data-service="אופטימיזציה לנקודת מכירה קיימת">
+          הזמנת אבחון לחנות
+        </a>
+      </article>
+
+      <article class="service reveal">
+        <div class="service__head">
+          <p class="service__n">02</p>
+          <h3 class="service__title">תכנון ואופטימיזציה לרשת חנויות</h3>
+          <p class="service__for">מתאים לרשתות ולבעלי כמה סניפים, שבהם כל סניף עובד אחרת ממה שלידו.</p>
+
+          <!-- הסעיפים כאן נוסחו על בסיס סיכום הפגישה, שהגדיר את המוצר אך לא
+               את תכולתו. יש לקבל את אישורו של בני או לתקן לפני הפרסום. -->
+          <div class="admin-notice admin-notice--inline" data-admin-notice>
+            <svg aria-hidden="true"><use href="#i-alert"></use></svg>
+            <p>
+              <strong>טעון אישור:</strong>
+              סיכום הפגישה הגדיר את מוצר הרשתות אך לא את תכולתו. הסעיפים כאן הוצעו
+              על בסיס התהליך של מוצר 1 — יש לאשר או לתקן אותם מול בני.
+            </p>
+          </div>
+        </div>
+
+        <ul class="service__list">
+          <li>סקירה של הסניפים הקיימים והשוואה ביניהם</li>
+          <li>זיהוי הפערים בין הסניף המוביל לסניפים החלשים</li>
+          <li>אפיון סטנדרט סידור ונראות אחיד לרשת</li>
+          <li>בניית תבנית שניתן לשחזר בכל סניף חדש</li>
+          <li>תוכנית יישום מדורגת, סניף אחר סניף</li>
+          <li>ליווי מנהלי הסניפים בהטמעת השינויים</li>
+          <li>בקרה ומעקב אחר היישום בכל סניף</li>
+        </ul>
+
+        <a class="btn btn--secondary service__cta" href="#contact" data-service="תכנון ואופטימיזציה לרשת חנויות">
+          לשיחה על הרשת שלכם
+        </a>
+      </article>
+
+      <article class="service reveal">
+        <div class="service__head">
+          <p class="service__n">03</p>
+          <h3 class="service__title">תכנון נקודת מכירה חדשה מאפס</h3>
+          <p class="service__for">מתאים ליזמים, בעלי רשתות ובעלי חנויות הנמצאים לפני הקמה או שיפוץ משמעותי — משלב השרטוט.</p>
+        </div>
+
+        <ul class="service__list">
+          <li>אפיון צרכים מסחריים ותפעוליים</li>
+          <li>אדריכלות קמעונאית — תכנון חלוקת החנות משלב השרטוט</li>
+          <li>מיקום מחלקות ואזורים מרכזיים</li>
+          <li>תכנון מסלול תנועת הלקוחות</li>
+          <li>ניצול מיטבי של שטח המכירה</li>
+          <li>חשיבה על נראות, מבצעים ומוצרים מובילים</li>
+          <li>עבודה משותפת עם מעצב או מעצבת פנים</li>
+          <li>ליווי מסחרי משלב התכנון ועד לפתיחת החנות</li>
+        </ul>
+
+        <a class="btn btn--secondary service__cta" href="#contact" data-service="תכנון נקודת מכירה חדשה מאפס">
+          לתיאום פגישת תכנון
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     5. תהליך העבודה
+     ========================================================================== -->
+<section class="section section--dark" id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="tag">שלב אחר שלב</p>
+      <h2>כך זה עובד</h2>
+      <p class="lead">תהליך ברור, בלי הפתעות, שמתחיל בשיחה קצרה ומסתיים בהמלצות שאפשר ליישם.</p>
+    </div>
+
+    <ol class="rows">
+      <li class="row reveal">
+        <p class="row__n">01</p>
+        <h3 class="row__title">שיחת היכרות</h3>
+        <p class="row__text">מבינים את סוג החנות, האתגרים והמטרות.</p>
+      </li>
+      <li class="row reveal">
+        <p class="row__n">02</p>
+        <h3 class="row__title">ביקור בנקודת המכירה</h3>
+        <p class="row__text">עוברים על החנות, המחלקות, המדפים וזרימת הלקוחות.</p>
+      </li>
+      <li class="row reveal">
+        <p class="row__n">03</p>
+        <h3 class="row__title">ניתוח מקצועי</h3>
+        <p class="row__text">מאתרים בעיות, שטחים לא מנוצלים והזדמנויות מסחריות.</p>
+      </li>
+      <li class="row reveal">
+        <p class="row__n">04</p>
+        <h3 class="row__title">דו״ח והמלצות</h3>
+        <p class="row__text">מקבלים המלצות מסודרות, ברורות וישימות.</p>
+      </li>
+      <li class="row reveal">
+        <p class="row__n">05</p>
+        <h3 class="row__title">יישום וליווי</h3>
+        <p class="row__text">ליווי מקצועי בביצוע השינויים בפועל, בקצב שמתאים לחנות.</p>
+      </li>
+      <li class="row reveal">
+        <p class="row__n">06</p>
+        <h3 class="row__title">ספקים ותמחור</h3>
+        <p class="row__text">חיבור לספקים מומלצים ותמחור מלא של כל אחד מהשלבים, בלי הפתעות.</p>
+      </li>
+    </ol>
+
+    <div class="hero__actions reveal" style="margin-block-start:var(--s-7)">
+      <a class="btn btn--primary" href="#contact" data-wa-link>
+        <svg class="btn__icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+        לתיאום שיחת היכרות
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     6. אודות
+     ========================================================================== -->
+<section class="section" id="about">
   <div class="container">
     <div class="about__grid">
 
       <div class="reveal">
-        <!-- מסגרת התמונה החסרה הוחלפה בפאנל בשפת התוכנית. אין צילומים,
-             ומסגרת ריקה באמצע אזור האודות קוראת כ"לא גמור" ולא כ"בקרוב".
-             התוכן זהה לעובדות שבצד השני — זו כרטיסיית מפרט, לא קישוט. -->
-        <div class="plan-panel">
-          <p class="plan-measure">מפרט יועץ</p>
-          <div class="plan-panel__row">
-            <p class="plan-panel__k">ניסיון</p>
-            <p class="plan-panel__v">22 שנה בקמעונאות</p>
-          </div>
-          <div class="plan-panel__row">
-            <p class="plan-panel__k">תחנה ראשונה</p>
-            <p class="plan-panel__v">11 שנה — ניהול סניף, אושר עד</p>
-          </div>
-          <div class="plan-panel__row">
-            <p class="plan-panel__k">תחנה שנייה</p>
-            <p class="plan-panel__v">11 שנה — ניהול ברשת מזון בירושלים</p>
-          </div>
-          <div class="plan-panel__row">
-            <p class="plan-panel__k">תחום</p>
-            <p class="plan-panel__v">סידור, נראות מסחרית וניצול שטח</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="reveal">
-        <p class="eyebrow">אודות</p>
+        <p class="tag">אודות</p>
         <h2>ניסיון שמגיע מהשטח</h2>
 
-        <p>שמי בני לפקוביץ, בן 47, ויש לי 22 שנות ניסיון ניהולי ומסחרי בענף הקמעונאות.</p>
+        <p class="lead">שמי בני לפקוביץ, בן 47, ויש לי 22 שנות ניסיון ניהולי ומסחרי בענף הקמעונאות.</p>
 
         <p>
           במשך 11 שנים ניהלתי סניף ברשת אושר עד, וצברתי שם ניסיון מעשי בניהול חנות,
@@ -582,394 +527,81 @@
           היום אני מרכז את הידע והניסיון שצברתי ומציע אותם לבעלי חנויות, רשתות ויזמים
           המעוניינים להקים או לשפר נקודת מכירה.
         </p>
-
-        <dl class="about__facts">
-          <div class="about__fact">
-            <dt>22 שנה</dt>
-            <dd>ניסיון ניהולי ומסחרי בענף הקמעונאות</dd>
-          </div>
-          <div class="about__fact">
-            <dt>11 שנה</dt>
-            <dd>ניהול סניף ברשת אושר עד</dd>
-          </div>
-          <div class="about__fact">
-            <dt>11 שנה</dt>
-            <dd>תפקיד ניהולי ברשת מזון מובילה בירושלים</dd>
-          </div>
-        </dl>
       </div>
 
+      <figure class="shot reveal">
+        <img src="assets/img/store-aisle.jpg" width="1400" height="1050"
+             loading="lazy" decoding="async"
+             alt="מעבר בחנות מזון עם מדפים מסודרים משני צדדיו ושילוט מחירים">
+        <figcaption>
+          <span class="tag">מעבר ראשי · סידור ונראות</span>
+          <span class="mono">02</span>
+        </figcaption>
+      </figure>
+
     </div>
+
+    <dl class="about__facts reveal">
+      <div class="about__fact">
+        <dt>22 שנה</dt>
+        <dd>ניסיון ניהולי ומסחרי בענף הקמעונאות</dd>
+      </div>
+      <div class="about__fact">
+        <dt>11 שנה</dt>
+        <dd>ניהול סניף ברשת אושר עד</dd>
+      </div>
+      <div class="about__fact">
+        <dt>11 שנה</dt>
+        <dd>תפקיד ניהולי ברשת מזון מובילה בירושלים</dd>
+      </div>
+    </dl>
   </div>
 </section>
 
 <!-- ==========================================================================
-     5. שירותים
+     7. המלצות — מוסתר כברירת מחדל.
+     נחשף על ידי assets/js/main.js רק כאשר showTestimonials דלוק,
+     כך שגם גולש ללא JavaScript לא רואה כרטיסים ריקים.
      ========================================================================== -->
-<section class="section" id="services">
+<section class="section section--tint" id="testimonials" hidden>
   <div class="container">
-
-    <div class="section-head section-head--center reveal">
-      <p class="eyebrow">מה אני עושה</p>
-      <h2>השירותים שלי</h2>
-      <p class="lead">שלושה מוצרים: נקודת מכירה אחת, רשת עם כמה סניפים, או תכנון חנות חדשה מאפס.</p>
-      <!-- עוגן מחיר. מוצג רק אם מולא priceRangeText ב-assets/js/site.config.js. -->
-      <p class="offer-note offer-note--center" data-offer="price" hidden></p>
-    </div>
-
-    <div class="services">
-
-      <!-- ==================================================================
-           שלושת המוצרים לפי סיכום פגישת 14.10.2026.
-           מוצר 1 כולל גם את הליווי והיישום, שבפגישה הוגדרו כשלב בתהליך
-           ולא כמוצר נפרד. מוצר 2 (רשתות) החליף את כרטיס הליווי שהיה כאן.
-           =================================================================== -->
-
-      <!-- מוצר 1 — מודגש כשירות הזמין והמיידי ביותר -->
-      <article class="service service--featured reveal">
-        <span class="service__badge">
-          <svg width="14" height="14" aria-hidden="true"><use href="#i-check"></use></svg>
-          השירות הזמין והמיידי ביותר
-        </span>
-        <p class="service__number">מוצר 1</p>
-        <h3 class="service__title">אופטימיזציה לנקודת מכירה קיימת</h3>
-        <p class="service__for">מתאים לבעל חנות אחת שרוצה להבין מה ניתן לשפר כבר עכשיו — וגם ליישם את זה.</p>
-
-        <ul class="service__list">
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>פגישה עם בעל העסק</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ביקור שטח וסריקה של החנות</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>בחינת מיקום המחלקות והמדפים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ניתוח תנועת הלקוחות בחנות</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>איתור צווארי בקבוק ושטחים שאינם מנוצלים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>דו״ח אופטימיזציה מפורט, עם פעולות לפי סדר עדיפות</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ליווי וייעוץ בביצוע השינויים בפועל</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>חיבור לספקים מומלצים ותמחור מלא לכל השלבים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ביקורת והתאמות לאחר היישום</span></li>
-        </ul>
-
-        <a class="btn btn--primary btn--block service__cta" href="#contact" data-service="אופטימיזציה לנקודת מכירה קיימת">
-          הזמנת אבחון לחנות
-        </a>
-      </article>
-
-      <!-- מוצר 2 — רשתות וסניפים מרובים -->
-      <article class="service reveal">
-        <p class="service__number">מוצר 2</p>
-        <h3 class="service__title">תכנון ואופטימיזציה לרשת חנויות</h3>
-        <p class="service__for">מתאים לרשתות ולבעלי כמה סניפים, שבהם כל סניף עובד אחרת ממה שלידו.</p>
-
-        <!-- הסעיפים כאן נוסחו על בסיס סיכום הפגישה, שהגדיר את המוצר אך לא
-             את תכולתו. יש לקבל את אישורו של בני או לתקן לפני הפרסום. -->
-        <div class="admin-notice admin-notice--inline" data-admin-notice>
-          <svg aria-hidden="true"><use href="#i-alert"></use></svg>
-          <p>
-            <strong>טעון אישור:</strong>
-            סיכום הפגישה הגדיר את מוצר הרשתות אך לא את תכולתו. הסעיפים כאן הוצעו
-            על בסיס התהליך של מוצר 1 — יש לאשר או לתקן אותם מול בני.
-          </p>
-        </div>
-
-        <ul class="service__list">
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>סקירה של הסניפים הקיימים והשוואה ביניהם</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>זיהוי הפערים בין הסניף המוביל לסניפים החלשים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>אפיון סטנדרט סידור ונראות אחיד לרשת</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>בניית תבנית שניתן לשחזר בכל סניף חדש</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>תוכנית יישום מדורגת, סניף אחר סניף</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ליווי מנהלי הסניפים בהטמעת השינויים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>בקרה ומעקב אחר היישום בכל סניף</span></li>
-        </ul>
-
-        <a class="btn btn--secondary btn--block service__cta" href="#contact" data-service="תכנון ואופטימיזציה לרשת חנויות">
-          לשיחה על הרשת שלכם
-        </a>
-      </article>
-
-      <!-- מוצר 3 — תכנון מאפס -->
-      <article class="service reveal">
-        <p class="service__number">מוצר 3</p>
-        <h3 class="service__title">תכנון נקודת מכירה חדשה מאפס</h3>
-        <p class="service__for">מתאים ליזמים, בעלי רשתות ובעלי חנויות הנמצאים לפני הקמה או שיפוץ משמעותי — משלב השרטוט.</p>
-
-        <ul class="service__list">
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>אפיון צרכים מסחריים ותפעוליים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>אדריכלות קמעונאית — תכנון חלוקת החנות משלב השרטוט</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>מיקום מחלקות ואזורים מרכזיים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>תכנון מסלול תנועת הלקוחות</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ניצול מיטבי של שטח המכירה</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>חשיבה על נראות, מבצעים ומוצרים מובילים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>עבודה משותפת עם מעצב או מעצבת פנים</span></li>
-          <li><svg aria-hidden="true"><use href="#i-check"></use></svg><span>ליווי מסחרי משלב התכנון ועד לפתיחת החנות</span></li>
-        </ul>
-
-        <a class="btn btn--secondary btn--block service__cta" href="#contact" data-service="תכנון נקודת מכירה חדשה מאפס">
-          לתיאום פגישת תכנון
-        </a>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ==========================================================================
-     6. תהליך העבודה
-     ========================================================================== -->
-<section class="section section--dark plan-grid" id="process">
-  <div class="container">
-
-    <div class="section-head section-head--center reveal">
-      <p class="eyebrow">שלב אחר שלב</p>
-      <h2>כך זה עובד</h2>
-      <p class="lead">תהליך ברור, בלי הפתעות, שמתחיל בשיחה קצרה ומסתיים בהמלצות שאפשר ליישם.</p>
-    </div>
-
-    <ol class="steps steps--6">
-      <li class="step reveal">
-        <h3 class="step__title">שיחת היכרות</h3>
-        <p class="step__text">מבינים את סוג החנות, האתגרים והמטרות.</p>
-      </li>
-      <li class="step reveal">
-        <h3 class="step__title">ביקור בנקודת המכירה</h3>
-        <p class="step__text">עוברים על החנות, המחלקות, המדפים וזרימת הלקוחות.</p>
-      </li>
-      <li class="step reveal">
-        <h3 class="step__title">ניתוח מקצועי</h3>
-        <p class="step__text">מאתרים בעיות, שטחים לא מנוצלים והזדמנויות מסחריות.</p>
-      </li>
-      <li class="step reveal">
-        <h3 class="step__title">דו״ח והמלצות</h3>
-        <p class="step__text">מקבלים המלצות מסודרות, ברורות וישימות.</p>
-      </li>
-      <li class="step reveal">
-        <h3 class="step__title">יישום וליווי</h3>
-        <p class="step__text">ליווי מקצועי בביצוע השינויים בפועל, בקצב שמתאים לחנות.</p>
-      </li>
-      <li class="step reveal">
-        <h3 class="step__title">ספקים ותמחור</h3>
-        <p class="step__text">חיבור לספקים מומלצים ותמחור מלא של כל אחד מהשלבים, בלי הפתעות.</p>
-      </li>
-    </ol>
-
-  </div>
-</section>
-
-<!-- ==========================================================================
-     7. המלצות ופרויקטים  (תבניות להשלמה — אין להמציא תוכן)
-     ========================================================================== -->
-<!-- מוסתר כברירת מחדל. נחשף על ידי assets/js/main.js רק כאשר
-     showTestimonials דלוק ב-assets/js/site.config.js — כך שגם גולש
-     ללא JavaScript לא רואה ארבעה כרטיסים ריקים. -->
-<section class="section" id="testimonials" hidden>
-  <div class="container">
-
-    <div class="section-head section-head--center reveal">
-      <p class="eyebrow">מהשטח</p>
+    <div class="section-head">
+      <p class="tag">מהשטח</p>
       <h2>ניסיון מוכח בנקודות מכירה</h2>
-      <p class="lead">ארבעה פרויקטים לדוגמה, עם תיאור האתגר, השינויים שבוצעו והתוצאה שהלקוח זיהה.</p>
+      <p class="lead">פרויקטים עם תיאור האתגר, השינויים שבוצעו והתוצאה שהלקוח זיהה.</p>
     </div>
 
-    <!-- הודעה זמנית למנהל האתר בלבד -->
     <div class="admin-notice" data-admin-notice>
       <svg aria-hidden="true"><use href="#i-alert"></use></svg>
       <p>
         <strong>הודעה למנהל האתר:</strong>
-        יש להשלים את פרטי ארבעת העסקים וההמלצות לפני פרסום האתר.
-        כל כרטיסייה כוללת את השדות הנדרשים, כולל ציטוט הלקוח ותמונות לפני ואחרי.
-        לאחר ההשלמה יש להעביר את <code>showAdminNotices</code> ל־<code>false</code>
-        בקובץ <code>assets/js/site.config.js</code>.
+        לפי סיכום פגישת 14.10.2026, אזור ההמלצות נחשף רק כשיש 3-4 ממליצים אמיתיים
+        עם אישור בכתב. עד אז יש להשאיר את <code>showTestimonials</code> על
+        <code>false</code> בקובץ <code>assets/js/site.config.js</code>.
       </p>
     </div>
 
-    <!-- ארבעה פרויקטים להשלמה. כל כרטיסייה נערכת ישירות כאן:
-         מחליפים כל <span class="placeholder-text">[...]</span> בתוכן האמיתי,
-         ואת שתי מסגרות התמונה בתגיות <img> (ראו assets/img/README.md). -->
-    <div class="grid grid--2">
-      <article class="case reveal">
-        <div class="case__media">
-          <div class="photo-slot">
-            <svg aria-hidden="true"><use href="#i-image"></use></svg>
-            <span class="case__media-label">תמונה לפני</span>
-          </div>
-          <div class="photo-slot">
-            <svg aria-hidden="true"><use href="#i-image"></use></svg>
-            <span class="case__media-label">תמונה אחרי</span>
-          </div>
-        </div>
-
-        <div class="case__body">
-          <div class="case__head">
-            <h3 class="case__name"><span class="placeholder-text">[שם העסק 1]</span></h3>
-            <span class="case__meta">
-              <span class="placeholder-text">[עיר]</span>
-              <span class="placeholder-text">[סוג נקודת המכירה]</span>
-            </span>
-          </div>
-
-          <dl class="case__fields">
-            <div class="case__field">
-              <dt>האתגר שהיה בחנות</dt>
-              <dd><span class="placeholder-text">[תיאור האתגר]</span></dd>
-            </div>
-            <div class="case__field">
-              <dt>השינויים שבוצעו</dt>
-              <dd><span class="placeholder-text">[פירוט השינויים]</span></dd>
-            </div>
-            <div class="case__field">
-              <dt>התוצאה או השיפור שהלקוח זיהה</dt>
-              <dd><span class="placeholder-text">[התוצאה בלשון הלקוח]</span></dd>
-            </div>
-          </dl>
-
-          <blockquote class="case__quote">
-            <svg width="22" height="22" viewBox="0 0 24 24" style="color:var(--gold-700);margin-bottom:.5rem" aria-hidden="true"><use href="#i-quote"></use></svg>
-            <p><span class="placeholder-text">[ציטוט של הלקוח]</span></p>
-            <footer><span class="placeholder-text">[שם הממליץ ותפקידו]</span></footer>
-          </blockquote>
-        </div>
-      </article>
-
-      <article class="case reveal">
-        <div class="case__media">
-          <div class="photo-slot">
-            <svg aria-hidden="true"><use href="#i-image"></use></svg>
-            <span class="case__media-label">תמונה לפני</span>
-          </div>
-          <div class="photo-slot">
-            <svg aria-hidden="true"><use href="#i-image"></use></svg>
-            <span class="case__media-label">תמונה אחרי</span>
-          </div>
-        </div>
-
-        <div class="case__body">
-          <div class="case__head">
-            <h3 class="case__name"><span class="placeholder-text">[שם העסק 2]</span></h3>
-            <span class="case__meta">
-              <span class="placeholder-text">[עיר]</span>
-              <span class="placeholder-text">[סוג נקודת המכירה]</span>
-            </span>
-          </div>
-
-          <dl class="case__fields">
-            <div class="case__field">
-              <dt>האתגר שהיה בחנות</dt>
-              <dd><span class="placeholder-text">[תיאור האתגר]</span></dd>
-            </div>
-            <div class="case__field">
-              <dt>השינויים שבוצעו</dt>
-              <dd><span class="placeholder-text">[פירוט השינויים]</span></dd>
-            </div>
-            <div class="case__field">
-              <dt>התוצאה או השיפור שהלקוח זיהה</dt>
-              <dd><span class="placeholder-text">[התוצאה בלשון הלקוח]</span></dd>
-            </div>
-          </dl>
-
-          <blockquote class="case__quote">
-            <svg width="22" height="22" viewBox="0 0 24 24" style="color:var(--gold-700);margin-bottom:.5rem" aria-hidden="true"><use href="#i-quote"></use></svg>
-            <p><span class="placeholder-text">[ציטוט של הלקוח]</span></p>
-            <footer><span class="placeholder-text">[שם הממליץ ותפקידו]</span></footer>
-          </blockquote>
-        </div>
-      </article>
-
-      <article class="case reveal">
-        <div class="case__media">
-          <div class="photo-slot">
-            <svg aria-hidden="true"><use href="#i-image"></use></svg>
-            <span class="case__media-label">תמונה לפני</span>
-          </div>
-          <div class="photo-slot">
-            <svg aria-hidden="true"><use href="#i-image"></use></svg>
-            <span class="case__media-label">תמונה אחרי</span>
-          </div>
-        </div>
-
-        <div class="case__body">
-          <div class="case__head">
-            <h3 class="case__name"><span class="placeholder-text">[שם העסק 3]</span></h3>
-            <span class="case__meta">
-              <span class="placeholder-text">[עיר]</span>
-              <span class="placeholder-text">[סוג נקודת המכירה]</span>
-            </span>
-          </div>
-
-          <dl class="case__fields">
-            <div class="case__field">
-              <dt>האתגר שהיה בחנות</dt>
-              <dd><span class="placeholder-text">[תיאור האתגר]</span></dd>
-            </div>
-            <div class="case__field">
-              <dt>השינויים שבוצעו</dt>
-              <dd><span class="placeholder-text">[פירוט השינויים]</span></dd>
-            </div>
-            <div class="case__field">
-              <dt>התוצאה או השיפור שהלקוח זיהה</dt>
-              <dd><span class="placeholder-text">[התוצאה בלשון הלקוח]</span></dd>
-            </div>
-          </dl>
-
-          <blockquote class="case__quote">
-            <svg width="22" height="22" viewBox="0 0 24 24" style="color:var(--gold-700);margin-bottom:.5rem" aria-hidden="true"><use href="#i-quote"></use></svg>
-            <p><span class="placeholder-text">[ציטוט של הלקוח]</span></p>
-            <footer><span class="placeholder-text">[שם הממליץ ותפקידו]</span></footer>
-          </blockquote>
-        </div>
-      </article>
-
-      <article class="case reveal">
-        <div class="case__media">
-          <div class="photo-slot">
-            <svg aria-hidden="true"><use href="#i-image"></use></svg>
-            <span class="case__media-label">תמונה לפני</span>
-          </div>
-          <div class="photo-slot">
-            <svg aria-hidden="true"><use href="#i-image"></use></svg>
-            <span class="case__media-label">תמונה אחרי</span>
-          </div>
-        </div>
-
-        <div class="case__body">
-          <div class="case__head">
-            <h3 class="case__name"><span class="placeholder-text">[שם העסק 4]</span></h3>
-            <span class="case__meta">
-              <span class="placeholder-text">[עיר]</span>
-              <span class="placeholder-text">[סוג נקודת המכירה]</span>
-            </span>
-          </div>
-
-          <dl class="case__fields">
-            <div class="case__field">
-              <dt>האתגר שהיה בחנות</dt>
-              <dd><span class="placeholder-text">[תיאור האתגר]</span></dd>
-            </div>
-            <div class="case__field">
-              <dt>השינויים שבוצעו</dt>
-              <dd><span class="placeholder-text">[פירוט השינויים]</span></dd>
-            </div>
-            <div class="case__field">
-              <dt>התוצאה או השיפור שהלקוח זיהה</dt>
-              <dd><span class="placeholder-text">[התוצאה בלשון הלקוח]</span></dd>
-            </div>
-          </dl>
-
-          <blockquote class="case__quote">
-            <svg width="22" height="22" viewBox="0 0 24 24" style="color:var(--gold-700);margin-bottom:.5rem" aria-hidden="true"><use href="#i-quote"></use></svg>
-            <p><span class="placeholder-text">[ציטוט של הלקוח]</span></p>
-            <footer><span class="placeholder-text">[שם הממליץ ותפקידו]</span></footer>
-          </blockquote>
-        </div>
-      </article>
-    </div>
-
+    <ul class="rows">
+      <li class="row">
+        <p class="row__n">01</p>
+        <h3 class="row__title"><span class="placeholder-text">[שם העסק]</span></h3>
+        <p class="row__text">
+          <span class="placeholder-text">[עיר]</span>
+          <span class="placeholder-text">[סוג נקודת המכירה]</span>
+          <span class="placeholder-text">[האתגר, השינויים שבוצעו והתוצאה שהלקוח זיהה]</span>
+        </p>
+      </li>
+    </ul>
   </div>
 </section>
 
 <!-- ==========================================================================
      8. אני מאמין
      ========================================================================== -->
-<section class="section section--tint" id="creed">
+<section class="section section--dark" id="creed">
   <div class="container">
     <div class="creed__quote reveal">
-      <svg class="creed__mark" aria-hidden="true"><use href="#i-store"></use></svg>
+      <p class="mono">CREDO</p>
       <h2>כל מטר בחנות צריך לעבוד עבור העסק</h2>
       <p class="lead">
         נקודת מכירה טובה צריכה להיות נוחה ללקוח, יעילה לעובדים ונכונה מבחינה מסחרית.
@@ -990,101 +622,63 @@
      ========================================================================== -->
 <section class="section" id="faq">
   <div class="container">
-
-    <div class="section-head section-head--center reveal">
-      <p class="eyebrow">לפני שמתחילים</p>
+    <div class="section-head reveal">
+      <p class="tag">לפני שמתחילים</p>
       <h2>שאלות נפוצות</h2>
     </div>
 
     <div class="faq">
-
       <details class="faq__item reveal">
-        <summary class="faq__q">
-          לאילו סוגי חנויות השירות מתאים?
-          <svg class="faq__chevron" aria-hidden="true"><use href="#i-chevron"></use></svg>
-        </summary>
-        <div class="faq__a">
-          <p>השירות מתאים לסופרמרקטים, מינימרקטים, קיוסקים, חנויות נוחות, חנויות מזון ונקודות מכירה קמעונאיות נוספות.</p>
-        </div>
+        <summary class="faq__q">לאילו סוגי חנויות השירות מתאים?<span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__a"><p>השירות מתאים לסופרמרקטים, מינימרקטים, קיוסקים, חנויות נוחות, חנויות מזון ונקודות מכירה קמעונאיות נוספות.</p></div>
       </details>
 
       <details class="faq__item reveal">
-        <summary class="faq__q">
-          האם חייבים לבצע שיפוץ מלא?
-          <svg class="faq__chevron" aria-hidden="true"><use href="#i-chevron"></use></svg>
-        </summary>
-        <div class="faq__a">
-          <p>לא. במקרים רבים ניתן להשיג שיפור באמצעות שינויי סידור, מיקום, נראות וזרימה ללא שיפוץ מקיף.</p>
-        </div>
+        <summary class="faq__q">האם חייבים לבצע שיפוץ מלא?<span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__a"><p>לא. במקרים רבים ניתן להשיג שיפור באמצעות שינויי סידור, מיקום, נראות וזרימה ללא שיפוץ מקיף.</p></div>
       </details>
 
       <details class="faq__item reveal">
-        <summary class="faq__q">
-          מה מקבלים לאחר סקירת החנות?
-          <svg class="faq__chevron" aria-hidden="true"><use href="#i-chevron"></use></svg>
-        </summary>
-        <div class="faq__a">
-          <p>דו״ח מסודר הכולל את הממצאים, ההמלצות והפעולות המומלצות לפי סדר עדיפות.</p>
-        </div>
+        <summary class="faq__q">מה מקבלים לאחר סקירת החנות?<span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__a"><p>דו״ח מסודר הכולל את הממצאים, ההמלצות והפעולות המומלצות לפי סדר עדיפות.</p></div>
       </details>
 
       <details class="faq__item reveal">
-        <summary class="faq__q">
-          האם ניתן לקבל ליווי ביישום ההמלצות?
-          <svg class="faq__chevron" aria-hidden="true"><use href="#i-chevron"></use></svg>
-        </summary>
-        <div class="faq__a">
-          <p>כן. ניתן להזמין שירות הכולל ליווי וסיוע ביישום בפועל.</p>
-        </div>
+        <summary class="faq__q">האם ניתן לקבל ליווי ביישום ההמלצות?<span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__a"><p>כן. ניתן להזמין שירות הכולל ליווי וסיוע ביישום בפועל.</p></div>
       </details>
 
       <details class="faq__item reveal">
-        <summary class="faq__q">
-          האם אתם מתכננים גם חנויות חדשות?
-          <svg class="faq__chevron" aria-hidden="true"><use href="#i-chevron"></use></svg>
-        </summary>
-        <div class="faq__a">
-          <p>כן. ניתן לקבל תכנון מסחרי מלא בשיתוף מעצב או מעצבת פנים.</p>
-        </div>
+        <summary class="faq__q">האם אתם מתכננים גם חנויות חדשות?<span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__a"><p>כן. ניתן לקבל תכנון מסחרי מלא בשיתוף מעצב או מעצבת פנים.</p></div>
       </details>
 
       <details class="faq__item reveal">
-        <summary class="faq__q">
-          יש לי כמה סניפים — איך זה עובד?
-          <svg class="faq__chevron" aria-hidden="true"><use href="#i-chevron"></use></svg>
-        </summary>
-        <div class="faq__a">
-          <p>לרשתות יש מוצר נפרד. במקום לטפל בכל סניף בנפרד, בונים סטנדרט אחיד לרשת ותבנית שניתן לשחזר, ומיישמים אותה בהדרגה סניף אחר סניף.</p>
-        </div>
+        <summary class="faq__q">יש לי כמה סניפים — איך זה עובד?<span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__a"><p>לרשתות יש מוצר נפרד. במקום לטפל בכל סניף בנפרד, בונים סטנדרט אחיד לרשת ותבנית שניתן לשחזר, ומיישמים אותה בהדרגה סניף אחר סניף.</p></div>
       </details>
 
       <details class="faq__item reveal">
-        <summary class="faq__q">
-          האם השירות מתאים גם לחנות קטנה?
-          <svg class="faq__chevron" aria-hidden="true"><use href="#i-chevron"></use></svg>
-        </summary>
-        <div class="faq__a">
-          <p>כן. דווקא בחנויות קטנות יש חשיבות גבוהה לניצול נכון של כל מטר.</p>
-        </div>
+        <summary class="faq__q">האם השירות מתאים גם לחנות קטנה?<span class="faq__sign" aria-hidden="true"></span></summary>
+        <div class="faq__a"><p>כן. דווקא בחנויות קטנות יש חשיבות גבוהה לניצול נכון של כל מטר.</p></div>
       </details>
-
     </div>
   </div>
 </section>
 
 <!-- ==========================================================================
-     10. הנעה לפעולה + טופס
+     10. יצירת קשר
      ========================================================================== -->
-<section class="section section--dark plan-grid" id="contact">
+<section class="section section--dark" id="contact">
   <div class="container">
     <div class="contact__grid">
 
       <div class="reveal">
-        <p class="eyebrow">יצירת קשר</p>
+        <p class="tag">יצירת קשר</p>
         <h2>רוצים לדעת מה החנות שלכם יכולה לעשות טוב יותר?</h2>
         <p class="lead">תיאום שיחת היכרות קצרה לבחינת מצב החנות והאפשרויות לשיפור.</p>
 
-        <div class="contact__actions">
+        <div class="hero__actions" style="margin-block-start:var(--s-6)">
           <a class="btn btn--primary" href="#contact-form" data-wa-link>
             <svg class="btn__icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
             לתיאום שיחה בוואטסאפ
@@ -1095,7 +689,7 @@
           </a>
         </div>
 
-        <p class="offer-note offer-note--on-dark" data-offer="intro" hidden></p>
+        <p class="offer-note" data-offer="intro" hidden></p>
 
         <ul class="contact__direct">
           <li class="contact__direct-item">
@@ -1121,7 +715,6 @@
         <h3>השאירו פרטים ואחזור אליכם</h3>
         <p class="form-card__intro">מילוי הטופס אינו מחייב. אחזור אליכם לשיחה קצרה להבנת הצורך.</p>
 
-        <!-- הודעת סטטוס — נטענת בזמן שליחה -->
         <div class="form__status" id="form-status" role="status" aria-live="polite"></div>
 
         <form id="lead-form" novalidate>
@@ -1132,8 +725,7 @@
               <input class="field__control" type="text" id="fullname" name="fullname"
                      autocomplete="name" required aria-required="true" aria-describedby="fullname-error">
               <p class="field__error" id="fullname-error" role="alert">
-                <svg aria-hidden="true"><use href="#i-alert"></use></svg>
-                <span>יש להזין שם מלא</span>
+                <svg aria-hidden="true"><use href="#i-alert"></use></svg><span>יש להזין שם מלא</span>
               </p>
             </div>
 
@@ -1142,8 +734,7 @@
               <input class="field__control" type="text" id="business" name="business"
                      autocomplete="organization" aria-describedby="business-error">
               <p class="field__error" id="business-error" role="alert">
-                <svg aria-hidden="true"><use href="#i-alert"></use></svg>
-                <span>יש להזין שם עסק תקין</span>
+                <svg aria-hidden="true"><use href="#i-alert"></use></svg><span>יש להזין שם עסק תקין</span>
               </p>
             </div>
           </div>
@@ -1163,8 +754,7 @@
                 <option>אחר</option>
               </select>
               <p class="field__error" id="storetype-error" role="alert">
-                <svg aria-hidden="true"><use href="#i-alert"></use></svg>
-                <span>יש לבחור סוג חנות</span>
+                <svg aria-hidden="true"><use href="#i-alert"></use></svg><span>יש לבחור סוג חנות</span>
               </p>
             </div>
 
@@ -1173,8 +763,7 @@
               <input class="field__control" type="text" id="city" name="city"
                      autocomplete="address-level2" required aria-required="true" aria-describedby="city-error">
               <p class="field__error" id="city-error" role="alert">
-                <svg aria-hidden="true"><use href="#i-alert"></use></svg>
-                <span>יש להזין עיר</span>
+                <svg aria-hidden="true"><use href="#i-alert"></use></svg><span>יש להזין עיר</span>
               </p>
             </div>
           </div>
@@ -1186,27 +775,23 @@
                    required aria-required="true" aria-describedby="phone-hint phone-error">
             <p class="field__hint" id="phone-hint">לדוגמה: 050-1234567</p>
             <p class="field__error" id="phone-error" role="alert">
-              <svg aria-hidden="true"><use href="#i-alert"></use></svg>
-              <span>יש להזין מספר טלפון ישראלי תקין</span>
+              <svg aria-hidden="true"><use href="#i-alert"></use></svg><span>יש להזין מספר טלפון ישראלי תקין</span>
             </p>
           </div>
 
           <div class="field">
             <label class="field__label" for="message">במה ניתן לעזור? <span class="field__optional">(לא חובה)</span></label>
-            <textarea class="field__control" id="message" name="message" rows="4"
-                      aria-describedby="message-error"></textarea>
+            <textarea class="field__control" id="message" name="message" rows="4" aria-describedby="message-error"></textarea>
             <p class="field__error" id="message-error" role="alert">
-              <svg aria-hidden="true"><use href="#i-alert"></use></svg>
-              <span>ההודעה ארוכה מדי</span>
+              <svg aria-hidden="true"><use href="#i-alert"></use></svg><span>ההודעה ארוכה מדי</span>
             </p>
           </div>
 
-          <!-- שדה מלכודת: מוסתר מהמשתמש ומדפדפני קוראי מסך, וממולא רק על ידי
-               בוטים שממלאים אוטומטית כל שדה בטופס. פנייה שבה הוא מלא נזרקת. -->
+          <!-- שדה מלכודת: מוסתר מהמשתמש ומקוראי מסך, וממולא רק על ידי
+               בוטים שממלאים אוטומטית כל שדה. פנייה שבה הוא מלא נזרקת. -->
           <div class="hp" aria-hidden="true">
             <label for="website">אין למלא שדה זה</label>
-            <input type="text" id="website" name="website" tabindex="-1"
-                   autocomplete="off" data-honeypot>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" data-honeypot>
           </div>
 
           <button class="btn btn--primary btn--block" type="submit" id="form-submit">
@@ -1226,19 +811,17 @@
 </main>
 
 <!-- ==========================================================================
-     11. Footer
+     11. כותרת תחתונה
      ========================================================================== -->
 <footer class="footer">
   <div class="container">
-
     <div class="footer__grid">
 
       <div>
         <p class="footer__brand-name">בני לפקוביץ</p>
-        <p style="margin-bottom:1rem">תכנון ואופטימיזציה לנקודות מכירה</p>
-        <p style="color:#93a8c2;font-size:0.8125rem;margin:0">
-          שם זמני להצגה. שם המותג הרשמי טרם נבחר.
-        </p>
+        <p style="margin-block-end:var(--s-4)">תכנון ואופטימיזציה לנקודות מכירה</p>
+        <p class="mono">TEMPORARY NAME</p>
+        <p style="font-size:var(--t-xs);margin-block-start:var(--s-2)">שם זמני להצגה. שם המותג הרשמי טרם נבחר.</p>
       </div>
 
       <div>
@@ -1266,9 +849,9 @@
       <div>
         <h4>ניווט</h4>
         <ul class="footer__list">
-          <li><a href="#about">אודות</a></li>
           <li><a href="#services">שירותים</a></li>
           <li><a href="#process">תהליך העבודה</a></li>
+          <li><a href="#about">אודות</a></li>
           <li><a href="#faq">שאלות נפוצות</a></li>
           <li><a href="#contact">יצירת קשר</a></li>
           <li><a href="privacy.html">מדיניות פרטיות</a></li>
@@ -1286,9 +869,8 @@
   </div>
 </footer>
 
-<!-- סרגל פעולה תחתון, מובייל בלבד.
-     נעלם כשאזור יצירת הקשר בתצוגה, ומקבל inert כדי שלא יישאר במסלול
-     המקלדת בזמן שהוא מחוץ למסך. ה-body מקבל ריפוד מקביל ב-JS. -->
+<!-- סרגל פעולה תחתון, מובייל בלבד. נעלם כשאזור יצירת הקשר בתצוגה,
+     ומקבל inert כדי שלא יישאר במסלול המקלדת בזמן שהוא מחוץ למסך. -->
 <nav class="action-bar" id="action-bar" aria-label="פעולות מהירות" hidden>
   <a class="action-bar__btn action-bar__btn--wa" href="#contact-form" data-wa-float>
     <svg aria-hidden="true"><use href="#i-whatsapp"></use></svg>

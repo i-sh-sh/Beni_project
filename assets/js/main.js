@@ -268,7 +268,7 @@
   });
 
   /* ------------------------------------------------------------------------
-     4b. שפת תוכנית החנות — כותרת קינטית ומסלול שנמשך
+     4b. כותרת קינטית
      ------------------------------------------------------------------------ */
 
   /* עוטף כל מילה בכותרת כדי שתוכל לעלות מתוך המסכה.
@@ -289,15 +289,6 @@
         line.appendChild(span);
         if (i < words.length - 1) line.appendChild(document.createTextNode(" "));
       });
-    });
-  }
-
-  /* אורך המסלול נמדד מהדפדפן ולא מוערך בקוד, כך שהמשיכה מדויקת
-     גם אם ה-path ישתנה. ב-CSS הערך משמש כ-stroke-dasharray. */
-  function initPlanPath() {
-    $$(".plan-path-svg__mask").forEach(function (path) {
-      if (typeof path.getTotalLength !== "function") return;
-      path.style.setProperty("--path-len", String(Math.ceil(path.getTotalLength())));
     });
   }
 
@@ -722,7 +713,6 @@
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   initKineticHeadline();
-  initPlanPath();
   initReveal();
   initAnalytics();
 

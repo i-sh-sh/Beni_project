@@ -1,5 +1,5 @@
 /*
- * מייצר את assets/img/og-image.png מתוך tools/og/og.html.
+ * מייצר את assets/img/og-image.jpg מתוך tools/og/og.html.
  *
  * הנכס אינו קובץ ידני: הוא נגזר מאותם טוקנים וגופנים של האתר, כך ששינוי
  * בשפה החזותית מתגלגל גם לתצוגה המקדימה בוואטסאפ ובפייסבוק — המסך הראשון
@@ -14,7 +14,7 @@ import { existsSync } from 'node:fs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '../..');
-const out = resolve(root, 'assets/img/og-image.png');
+const out = resolve(root, "assets/img/og-image.jpg");
 
 // Chromium המותקן בסביבה; אפשר לעקוף עם CHROMIUM_PATH
 const candidates = [
