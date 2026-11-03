@@ -94,9 +94,15 @@
   --tint: #cbddde;
   --tint-deep: #a8c6c8;
 
-  /* צבע סימון יחיד. נשמר להצעת הפתיחה ולסימוני מדידה בלבד. */
+  /* צבע סימון יחיד. משמש גם כעיפרון האדום שמסמן על העמוד. */
   --signal: #c21f16;        /* 6.0:1 על נייר */
   --signal-on-ink: #ff7b6e;
+
+  /* העיפרון של היועץ */
+  --pencil: #c21f16;
+  --pencil-on-ink: #ff7b6e;
+  --pencil-w: 2.6;
+  --pencil-draw: 900ms;
 
   /* מצבי טופס */
   --error: #a8140c;
@@ -528,7 +534,9 @@ code {
   line-height: 0.86;
   margin: 0;
 }
-.timeline__total span {
+/* ממוקד למחלקה ולא לכל span: הכלל הרחב תפס גם את עטיפת סימון העיפרון
+   והפך אותה לבלוק זעיר בגודל התווית. */
+.timeline__label {
   display: block;
   font-family: var(--f-body);
   font-size: var(--t-micro);
@@ -974,6 +982,147 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
   background: var(--signal);
 }
 
+/* ==========================================================================
+   18b. העיפרון של היועץ
+   --------------------------------------------------------------------------
+   החלטת מועצה 0003. בני מסמן תוכניות ביד: מקיף פינה מתה, מותח חץ למסלול
+   תנועה, מסמן וי ליד מה שעובד. הסימונים כאן הם בדיוק זה — שכבת הערות
+   מעל העמוד, לא קישוט ולא שפה חלופית.
+
+   שלושה כללים שמחזיקים את זה מצד המקצועי של הגבול:
+   1. עיפרון של שרטט, לא שרבוט. קו דק, בטוח, בלחיצה אחת.
+   2. צבע אחד בלבד — אותו אדום סימון של שאר העמוד.
+   3. מעט. שישה סימונים בעמוד שלם. מה שחוזר הופך לטפט.
+
+   הסימונים דקורטיביים לחלוטין: aria-hidden, ללא pointer events, ושום
+   מידע אינו מועבר דרכם בלבד.
+   ========================================================================== */
+
+.mark {
+  position: absolute;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+.mark path {
+  fill: none;
+  stroke: var(--pencil);
+  stroke-width: var(--pencil-w);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* רעד עדין שהופך קו וקטורי לקו יד. הסינון סטטי — רק ההיקף מונפש,
+     כך שאין רסטריזציה מחדש בכל פריים. */
+  filter: url(#pencil-rough);
+}
+
+.section--dark .mark path { stroke: var(--pencil-on-ink); }
+
+/* מכשירים ניידים: הסינון יקר לרסטריזציה ואינו שווה את המחיר על מסך קטן.
+   הקו נשאר, הרעד יורד. */
+@media (max-width: 899px) {
+  .mark path { filter: none; }
+}
+
+/* ציור בגלילה. ברירת המחדל היא קו מצויר במלואו: ללא JavaScript,
+   ותחת תנועה מופחתת, הסימון פשוט נמצא שם. */
+.js .mark path {
+  stroke-dasharray: var(--len, 600);
+  stroke-dashoffset: var(--len, 600);
+}
+.js .mark.is-drawn path {
+  animation: pencil-draw var(--pencil-draw) cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+@keyframes pencil-draw { to { stroke-dashoffset: 0; } }
+
+/* עוגן לסימון שמקיף מילה בתוך משפט */
+.marked { position: relative; display: inline-block; }
+.marked > .mark { inset-block-start: -12%; inset-inline-start: -5%; inline-size: 110%; block-size: 124%; }
+
+/* ההקפה של הכותרת הראשית: ממוקמת על ה-h1, מעל השורה השנייה */
+.hero__title { position: relative; }
+.mark--headline {
+  /* צמוד לשורה האחרונה בלבד. בלוק גדול יותר חתך את השורה שמעליה. */
+  inset-block-end: -3%;
+  inset-inline-start: -3%;
+  inline-size: min(106%, 13.5ch);
+  block-size: 34%;
+}
+
+/* קו תחתון בכתב יד. מידות מפורשות: ל-SVG בעמדה אבסולוטית אין גובה
+   משל עצמו, ו-block-size:auto מתמוטט לאפס. */
+.marked > .mark--underline {
+  inset-block-start: auto;
+  inset-block-end: -0.1em;
+  inset-inline-start: -2%;
+  inline-size: 104%;
+  block-size: 0.26em;
+}
+
+/* הקו נמתח לרוחב המילה, ולכן יחס הגובה-רוחב שלו משתנה.
+   non-scaling-stroke שומר על עובי אחיד במקום לרדד אותו. */
+.mark--underline path {
+  vector-effect: non-scaling-stroke;
+  stroke-width: 3;
+}
+
+/* סימון שיושב על בלוק שלם */
+
+
+/* חץ חופשי שממוקם ביחס לאזור */
+.mark--arrow { inline-size: clamp(90px, 11vw, 150px); aspect-ratio: 150 / 54; block-size: auto; }
+
+/* ההערה הצמודה לחץ בהירו */
+.hero__scribble {
+  margin-block-start: var(--s-2);
+  position: relative;
+  padding-inline-end: clamp(96px, 12vw, 150px);
+  padding-block-start: var(--s-5);
+  min-height: 40px;
+}
+/* במובייל הכפתורים נערמים זה מעל זה, והחץ היה מצביע על הכפתור המשני
+   בזמן שהתווית אומרת "וואטסאפ" — סימון יד ששקר גרוע מהיעדרו.
+   שם ממילא יש סרגל פעולה קבוע בתחתית המסך, וההערה מיותרת. */
+/* הסלקטור הכפול נדרש: ל-.scribble שלמטה אותה ספציפיות והוא מאוחר יותר. */
+.scribble.hero__scribble { display: none; }
+
+@media (min-width: 1000px) {
+  .scribble.hero__scribble { display: inline-flex; }
+}
+
+.hero__scribble .mark--arrow {
+  /* הכפתור הראשי נמצא מעל ההערה, לכן החץ עולה כלפי מעלה אליו.
+     הנתיב מצויר בכיוון הנכון ב-viewBox ואינו מהופך: היפוך היה מסובב
+     גם את ראש החץ. */
+  inset-block-end: 55%;
+  inset-inline-end: 0;
+  inline-size: clamp(74px, 8vw, 110px);
+  aspect-ratio: 150 / 76;
+}
+
+/* הערת שוליים בכתב יד — ההסבר שליד הסימון */
+.scribble {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: var(--t-xs);
+  color: var(--pencil);
+  rotate: -1.5deg;
+}
+.section--dark .scribble { color: var(--pencil-on-ink); }
+
+/* ==========================================================================
+   18c. ספירה עולה
+   --------------------------------------------------------------------------
+   המספרים בציר הניסיון נספרים כלפי מעלה כשמגיעים אליהם. tabular-nums
+   מונע ריצוד של רוחב התו בזמן הספירה.
+   ========================================================================== */
+
+.count { font-variant-numeric: tabular-nums; }
+
 /* --------------------------------------------------------------------------
    19. תנועה
    --------------------------------------------------------------------------
@@ -1015,6 +1164,8 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
   }
   .js .reveal { opacity: 1; translate: none; }
   .js .kinetic__word { translate: none; animation: none; }
+  .js .mark path { stroke-dasharray: none; stroke-dashoffset: 0; animation: none; }
+  .js .shot img { clip-path: none; animation: none; }
   .action-bar { transition: none; }
 }
 

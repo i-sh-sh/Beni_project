@@ -6,4 +6,4 @@ Allow: /
 # עמוד מדיניות הפרטיות מסומן ב-noindex בעמוד עצמו ואינו נחוץ בתוצאות החיפוש.
 
 # יש לעדכן את הכתובת לדומיין האמיתי בעת העלייה לאוויר.
-Sitemap: https://example.co.il/sitemap.xml
+Sitemap: https://www.pop-style.design/sitemap.xml

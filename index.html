@@ -12,13 +12,13 @@
 <!-- ==========================================================================
      החלפת הדומיין לפני העלייה לאוויר
      --------------------------------------------------------------------------
-     הכתובת https://example.co.il מופיעה בארבעה מקומות בקובץ הזה (canonical,
+     הכתובת https://www.pop-style.design מופיעה בארבעה מקומות בקובץ הזה (canonical,
      og:url, og:image, twitter:image) ובנוסף ב-sitemap.xml וב-site.config.js.
      היא חייבת להיות כתובה כאן ולא להיווצר ב-JavaScript, מפני שוואטסאפ
      ופייסבוק קוראים את התגיות האלה בלי להריץ סקריפטים.
      כל עוד הכתובת לא הוחלפה, האתר מציג התראה למנהל האתר בראש העמוד.
      ========================================================================== -->
-<link rel="canonical" href="https://example.co.il/">
+<link rel="canonical" href="https://www.pop-style.design/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -26,13 +26,13 @@
 <meta property="og:site_name" content="בני לפקוביץ – תכנון ואופטימיזציה לנקודות מכירה">
 <meta property="og:title" content="מתכננים את החנות נכון. מוכרים יותר.">
 <meta property="og:description" content="ייעוץ, תכנון ואופטימיזציה לסופרמרקטים, מינימרקטים, קיוסקים ונקודות מכירה, על בסיס 22 שנות ניסיון בניהול קמעונאי.">
-<meta property="og:url" content="https://example.co.il/">
-<meta property="og:image" content="https://example.co.il/assets/img/og-image.jpg">
+<meta property="og:url" content="https://www.pop-style.design/">
+<meta property="og:image" content="https://www.pop-style.design/assets/img/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="מבט מלמעלה על מחלקת ירקות ופירות בחנות מזון, ולצידו הכותרת: מתכננים את החנות נכון, מוכרים יותר">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://example.co.il/assets/img/og-image.jpg">
+<meta name="twitter:image" content="https://www.pop-style.design/assets/img/og-image.jpg">
 
 <meta name="theme-color" content="#f3f1ec">
 
@@ -113,6 +113,12 @@
      ========================================================================== -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
+    <!-- רעד העיפרון: רעש פרקטלי שמזיז את הקו מעט מהמסלול הגיאומטרי שלו.
+         סטטי לחלוטין — רק היקף הקו מונפש, כך שהסינון מרוסטר פעם אחת. -->
+    <filter id="pencil-rough" x="-25%" y="-25%" width="150%" height="150%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
     <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M10.3 3.9 2.4 17.4A1.9 1.9 0 0 0 4 20.3h16a1.9 1.9 0 0 0 1.6-2.9L13.7 3.9a1.9 1.9 0 0 0-3.4 0Z"/>
       <path d="M12 9v4.5M12 17h.01"/>
@@ -179,7 +185,7 @@
     <svg aria-hidden="true"><use href="#i-alert"></use></svg>
     <p>
       <strong>הודעה למנהל האתר:</strong>
-      כתובת האתר עדיין מוגדרת כ־<code>https://example.co.il</code>.
+      כתובת האתר עדיין מוגדרת כ־<code>https://www.pop-style.design</code>.
       כל עוד היא לא הוחלפה, שיתוף של האתר בוואטסאפ או בפייסבוק יוצג ללא תמונה,
       ומנועי החיפוש יקבלו כתובת <code>canonical</code> שגויה.
       יש לעדכן את הכתובת ב־<code>index.html</code>, ב־<code>sitemap.xml</code>
@@ -204,6 +210,11 @@
         <h1 class="hero__title kinetic">
           <span class="kinetic__line">מתכננים את החנות נכון.</span>
           <span class="kinetic__line">מוכרים יותר.</span>
+          <!-- ההקפה יושבת על ה-h1 ולא בתוך השורה: ל-.kinetic__line יש
+               overflow:hidden בשביל מסכת הכותרת, והיא הייתה חותכת אותה. -->
+          <svg class="mark mark--headline" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true" data-delay="950">
+            <path d="M292 44 C292 20 232 8 150 8 C68 8 8 20 8 44 C8 68 68 82 150 82 C236 82 294 68 290 40"/>
+          </svg>
         </h1>
 
         <p class="hero__sub">
@@ -219,8 +230,19 @@
           <a class="btn btn--secondary" href="#services">השירותים שלי</a>
         </div>
 
+        <!-- סימון יד שמצביע על הפעולה הראשית. דקורטיבי בלבד:
+             הכפתור עצמו נגיש וברור גם בלעדיו. -->
+        <p class="hero__scribble scribble" aria-hidden="true">
+          <svg class="mark mark--arrow" viewBox="0 0 150 76" aria-hidden="true">
+            <path d="M8 70 C40 66 98 52 130 16"/>
+            <path d="M108 12 L134 10 L132 36"/>
+          </svg>
+          הכי מהר בוואטסאפ
+        </p>
+
         <!-- הצעת הפתיחה. מוצגת רק אם מולא introOfferText ב-site.config.js. -->
         <p class="offer-note" data-offer="intro" hidden></p>
+
       </div>
 
       <div class="hero__divider" aria-hidden="true"></div>
@@ -239,15 +261,17 @@
 
     <!-- 22 שנה אינן נתון שלישי לצד 11 ו-11 — הן הסכום שלהן. -->
     <div class="timeline">
-      <p class="timeline__total">22 שנה<span>בקמעונאות</span></p>
+      <p class="timeline__total"><span class="marked"><span class="count" data-count-to="22">22</span> שנה<svg class="mark" viewBox="0 0 220 80" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M212 38 C212 17 168 6 110 6 C52 6 6 17 6 38 C6 59 52 72 110 72 C172 72 214 59 210 34"/>
+      </svg></span><span class="timeline__label">בקמעונאות</span></p>
       <dl class="timeline__stops">
         <div class="timeline__stop">
           <dt class="sr-only">תחנה ראשונה</dt>
-          <dd style="margin:0"><b>11</b> ניהול סניף באושר עד</dd>
+          <dd style="margin:0"><b class="count" data-count-to="11">11</b> ניהול סניף באושר עד</dd>
         </div>
         <div class="timeline__stop">
           <dt class="sr-only">תחנה שנייה</dt>
-          <dd style="margin:0"><b>11</b> ניהול ברשת מזון בירושלים</dd>
+          <dd style="margin:0"><b class="count" data-count-to="11">11</b> ניהול ברשת מזון בירושלים</dd>
         </div>
       </dl>
     </div>
@@ -342,7 +366,9 @@
   <div class="container">
     <div class="section-head reveal">
       <p class="tag">מה אני עושה</p>
-      <h2>שלושה מוצרים</h2>
+      <h2>שלושה <span class="marked">מוצרים<svg class="mark mark--underline" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M5 14 C96 6 196 17 300 10 C344 7 378 12 395 9"/>
+      </svg></span></h2>
       <p class="lead">מנקודת מכירה אחת, דרך רשת סניפים, ועד תכנון חנות חדשה מאפס.</p>
       <!-- עוגן מחיר. מוצג רק אם מולא priceRangeText ב-assets/js/site.config.js. -->
       <p class="offer-note" data-offer="price" hidden></p>
@@ -451,7 +477,9 @@
   <div class="container">
     <div class="section-head reveal">
       <p class="tag">שלב אחר שלב</p>
-      <h2>כך זה עובד</h2>
+      <h2>כך זה <span class="marked">עובד<svg class="mark mark--underline" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M6 12 C90 5 210 18 312 9 C350 6 380 11 394 15"/>
+      </svg></span></h2>
       <p class="lead">תהליך ברור, בלי הפתעות, שמתחיל בשיחה קצרה ומסתיים בהמלצות שאפשר ליישם.</p>
     </div>
 
@@ -675,7 +703,9 @@
 
       <div class="reveal">
         <p class="tag">יצירת קשר</p>
-        <h2>רוצים לדעת מה החנות שלכם יכולה לעשות טוב יותר?</h2>
+        <h2>רוצים לדעת מה החנות שלכם <span class="marked">יכולה לעשות טוב יותר<svg class="mark mark--underline" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M4 10 C80 4 200 16 300 8 C340 5 376 10 396 14"/>
+        </svg></span>?</h2>
         <p class="lead">תיאום שיחת היכרות קצרה לבחינת מצב החנות והאפשרויות לשיפור.</p>
 
         <div class="hero__actions" style="margin-block-start:var(--s-6)">

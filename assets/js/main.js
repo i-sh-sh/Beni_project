@@ -293,6 +293,81 @@
   }
 
   /* ------------------------------------------------------------------------
+     4c. העיפרון של היועץ — סימונים שנמשכים בגלילה
+     ------------------------------------------------------------------------
+     אורך כל קו נמדד מהדפדפן ולא מוערך בקוד, כך שהמשיכה מדויקת גם אם
+     ה-path ישתנה. הסימונים דקורטיביים: אם אין JavaScript או שהמשתמש
+     ביקש תנועה מופחתת, הם פשוט מצוירים במלואם מלכתחילה.
+     ------------------------------------------------------------------------ */
+
+  function initPencilMarks() {
+    var marks = $$(".mark");
+    if (!marks.length) return;
+
+    marks.forEach(function (mark) {
+      $$("path", mark).forEach(function (path) {
+        if (typeof path.getTotalLength !== "function") return;
+        path.style.setProperty("--len", String(Math.ceil(path.getTotalLength())));
+      });
+    });
+
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      marks.forEach(function (m) { m.classList.add("is-drawn"); });
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var delay = entry.target.getAttribute("data-delay");
+        if (delay) entry.target.style.setProperty("--delay", delay + "ms");
+        entry.target.classList.add("is-drawn");
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.4 });
+
+    marks.forEach(function (m) { io.observe(m); });
+  }
+
+  /* ------------------------------------------------------------------------
+     4d. ספירה עולה למספרי הניסיון
+     ------------------------------------------------------------------------
+     המספר הסופי כתוב ב-HTML, כך שהוא נכון גם בלי JavaScript ועבור
+     קורא מסך. הספירה היא שכבה ויזואלית בלבד.
+     ------------------------------------------------------------------------ */
+
+  function initCounters() {
+    var nodes = $$(".count");
+    if (!nodes.length || prefersReducedMotion || !("IntersectionObserver" in window)) return;
+
+    var io = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var target = parseInt(el.getAttribute("data-count-to"), 10);
+        if (!target) return;
+        observer.unobserve(el);
+
+        var started = null;
+        var duration = 900;
+        /* כותב ישירות ל-DOM ולא דרך מצב, ומשאיר את הערך הסופי מדויק */
+        var step = function (now) {
+          if (started === null) started = now;
+          var t = Math.min((now - started) / duration, 1);
+          var eased = 1 - Math.pow(1 - t, 3);
+          el.textContent = String(Math.round(target * eased));
+          if (t < 1) window.requestAnimationFrame(step);
+          else el.textContent = String(target);
+        };
+        el.textContent = "0";
+        window.requestAnimationFrame(step);
+      });
+    }, { threshold: 0.6 });
+
+    nodes.forEach(function (n) { io.observe(n); });
+  }
+
+  /* ------------------------------------------------------------------------
      5b. סרגל פעולה תחתון (מובייל)
      ------------------------------------------------------------------------
      מופעל רק כשיש לאן להפנות. נסוג כשאזור יצירת הקשר בתצוגה — שם כבר יש
@@ -713,6 +788,8 @@
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   initKineticHeadline();
+  initPencilMarks();
+  initCounters();
   initReveal();
   initAnalytics();
 
