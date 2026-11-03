@@ -1,43 +1,51 @@
 @charset "UTF-8";
 
 /* ==========================================================================
-   בני לפקוביץ – תכנון ואופטימיזציה לנקודות מכירה
+   בני לפקוביץ · POP — תכנון ואופטימיזציה לנקודות מכירה
    --------------------------------------------------------------------------
-   שפה חזותית: עריכתי־כרזה.
-   נייר עצם חם במקום לבן, כותרות ענק דחוסות, קווי שיער שמחלקים את העמוד
-   לגריד נראה, צילומים בצבע מלא, וכפתורי פיל במתאר.
-   אין כרטיסים מרחפים, אין צללים, אין פינות מעוגלות — חוץ מהכפתורים.
+   שפה חזותית: "השדה הכחול" — החלטת מועצה 0004.
+   הלוגו הוא המקור של המערכת, לא התבנית שלה. קרקע לבנה טהורה, כחול המותג
+   בשדות תחומים שבהם הוא נגיש (ההירו והסקשנים השחורים), Rubik-800 לתצוגה,
+   וקווי שיער שמחלקים את העמוד לגריד נראה.
 
+   החוק שמחזיק את כל הפלטה:
+     #0082FC על לבן = 3.75:1 — עובר 3:1 לתצוגה, נכשל 4.5:1 לטקסט רגיל.
+     לבן על #0082FC = 3.75:1 — אותו דבר.
+     #0082FC על שחור = 5.6:1 — עובר AA מלא.
+   לכן: הכחול המדויק חי בשני בתים בלבד — שדה מלא שנושא רק טקסט תצוגה,
+   ושחור. טקסט רץ אף פעם לא יושב עליו ואף פעם לא נצבע בו; לזה יש
+   --brand-600.
+
+   אין צללים. אין גרדיאנטים. אין כרטיסים מרחפים.
    כיווניות: RTL מלא, באמצעות CSS Logical Properties.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    0. גופנים — מאוחסנים מקומית
    --------------------------------------------------------------------------
-   Karantina היא גופן התצוגה העברי היחיד שהוא באמת דחוס וכבד; היא זו
-   שנושאת את הכותרות. Assistant לגוף הטקסט. Space Mono לתוויות קטנות —
-   אך ורק ללטינית ולספרות: אין לו עברית, וטקסט עברי בו נופל לגופן מערכת
-   עם ריווח שבור.
+   Rubik לתצוגה: גיאומטרי עם פינות מעוגלות שמהדהדות את רדיוס הריבוע בלוגו,
+   וחיתוך עברי שעוצב יחד עם הלטיני ולא הותאם בדיעבד. משקל אחד בלבד (800),
+   9.1KB לעברית — מתחת לתקרת 12KB שהמועצה קבעה. הלטינית מסובסטת ל-ASCII
+   ולסימני פיסוק בלבד: 34.5KB → 13.7KB.
+   Assistant לגוף הטקסט — הניגוד ההומניסטי הוא מה שמונע מראה SaaS גנרי.
    רישיון: SIL Open Font License 1.1 — ראו assets/fonts/OFL.txt
    -------------------------------------------------------------------------- */
 
 @font-face {
-  font-family: "Karantina";
+  font-family: "Rubik";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
   font-display: block; /* block ולא swap: הכותרת היא העיצוב, החלפה מורגשת */
-  src: url("../fonts/karantina-hebrew.woff2") format("woff2");
+  src: url("../fonts/rubik-800-hebrew.woff2") format("woff2");
   unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
 }
 @font-face {
-  font-family: "Karantina";
+  font-family: "Rubik";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 800;
   font-display: block;
-  src: url("../fonts/karantina-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-                 U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-                 U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url("../fonts/rubik-800-latin.woff2") format("woff2");
+  unicode-range: U+0020-007E, U+00A0, U+2013-2014, U+2018-201D, U+2022, U+2026, U+20AA;
 }
 
 @font-face {
@@ -59,75 +67,72 @@
                  U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-@font-face {
-  font-family: "Space Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/space-mono-400-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+FFFD;
-}
-@font-face {
-  font-family: "Space Mono";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("../fonts/space-mono-700-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+FFFD;
-}
-
 /* --------------------------------------------------------------------------
    1. טוקנים
    -------------------------------------------------------------------------- */
 
 :root {
-  /* נייר ודיו */
-  --bone: #f3f1ec;          /* רקע העמוד */
-  --bone-2: #e9e6df;        /* משטח שקוע */
-  --ink: #000000;
-  --ink-2: #2e2e2e;         /* 13.6:1 על נייר */
-  --ink-3: #5f5d58;         /* 6.4:1 על נייר — תוויות ומשנה */
-  --on-ink: #f3f1ec;        /* טקסט על שחור */
-  --on-ink-2: #b4b1aa;      /* 8.4:1 על שחור */
+  /* --- קרקע ודיו ---
+     לבן טהור ולא "עצם": עצם מוריד כל כחול בכ-12% ניגודיות, ומעביר את
+     --brand-600 מ-5.79:1 ל-4.68:1. */
+  --paper: #ffffff;
+  --paper-2: #f4f7fb;       /* משטח מוטה, קריר */
+  --night: #000000;         /* הסקשנים הכהים — חייב להיות שחור ממש,
+                               אחרת הכחול לא עובר: על #102A43 הוא 3.90:1 */
+  --ink: #102a43;           /* 14.6:1 על לבן */
+  --ink-2: #2b3f55;         /* 10.6:1 */
+  --ink-3: #5a6b7d;         /* 5.47:1 — תוויות וטקסט משני */
+  --on-night: #ffffff;
+  --on-night-2: #9fb2c4;    /* 8.4:1 על שחור */
 
-  /* מבטא רך — מילוי כפתורים ואזורים */
-  --tint: #cbddde;
-  --tint-deep: #a8c6c8;
+  /* --- כחול המותג, שלוש דרגות ---
+     500 נמדד מהלוגו שהלקוח שלח. 600 ו-700 נגזרו ממנו ונבדקו. */
+  --brand-500: #0082fc;     /* הסימן · שדה ההירו · טקסט על שחור (5.6:1) */
+  --brand-600: #0b63c7;     /* כחול העבודה — כפתורים וקישורים, 5.79:1 על לבן */
+  --brand-700: #0b4fa6;     /* hover / pressed, 7.8:1 */
+  --brand-050: #e8f2ff;     /* נגזר מ-#E1F1FF, מילוי העגלה בלוגו */
+  --brand-100: #cfe4ff;
 
-  /* צבע סימון יחיד. משמש גם כעיפרון האדום שמסמן על העמוד. */
-  --signal: #c21f16;        /* 6.0:1 על נייר */
-  --signal-on-ink: #ff7b6e;
-
-  /* העיפרון של היועץ */
-  --pencil: #c21f16;
-  --pencil-on-ink: #ff7b6e;
+  /* --- העיפרון ---
+     האדום יצא מהפלטה ונכנס לשכבת ההערה בלבד. הוא אינו צבע מותג ואין לו
+     שום תפקיד אינטראקטיבי: #B3140C מול --brand-600 הוא 1.03:1, כלומר
+     בהירות זהה — אדום לעולם לא יכול להיות אות יחיד. */
+  --mark: #b3140c;          /* 6.95:1 על לבן */
+  --mark-on-night: #ff7b6e; /* 8.3:1 על שחור */
   --pencil-w: 2.6;
   --pencil-draw: 900ms;
 
-  /* מצבי טופס */
+  /* --- מצבי טופס. כל אחד נושא גם אייקון ומילה, לא רק צבע --- */
   --error: #a8140c;
-  --error-bg: #f8e9e8;
+  --error-bg: #fdecea;
   --success: #0a6a3c;
   --success-bg: #e8f3ec;
-  --whatsapp: #107c42;      /* 5.27:1 עם לבן — הירוק המקורי נתן 4.31 ונכשל לטקסט רגיל */
+  --whatsapp: #107c42;      /* 5.27:1 עם לבן.
+                               אסור על רקע כחול: מול #0082FC הוא 1.41:1 */
 
-  /* קווים — המכשיר המבני המרכזי של השפה */
-  --rule: #000000;
-  --rule-soft: #c9c5bc;
+  /* --- קווים — המכשיר המבני המרכזי של השפה --- */
+  --rule: var(--ink);
+  --rule-soft: #d4dde7;
   --stroke-1: 1px;
   --stroke-2: 1.5px;
   --stroke-3: 3px;
 
-  /* טיפוגרפיה */
-  --f-display: "Karantina", "Arial Hebrew", "Segoe UI", sans-serif;
-  --f-body: "Assistant", "Arial Hebrew", "Segoe UI", system-ui, sans-serif;
-  --f-mono: "Space Mono", ui-monospace, "SF Mono", monospace;
+  /* --- רדיוס. לא סקאלה: שני ערכים.
+     עיגול גלובלי שובר את גריד קווי השיער — קו 1px נגמר באוויר על פינה
+     מעוגלת, והצילום המלא הופך לכרטיס SaaS. --- */
+  --r-pill: 999px;
+  --r-box: 14px;            /* ~16% מצלע האריח בלוגו, בקנה מידה של רכיב */
 
-  /* סקאלת תצוגה — דחוסה, לכן אפשר גדול בהרבה מהרגיל */
-  --d-xl: clamp(3.4rem, 7.4vw, 7rem);
-  --d-lg: clamp(2.6rem, 5.2vw, 4.6rem);
-  --d-md: clamp(1.9rem, 3.2vw, 2.8rem);
-  --d-sm: clamp(1.5rem, 2.4vw, 2rem);
+  /* --- טיפוגרפיה --- */
+  --f-display: "Rubik", "Arial Hebrew", "Segoe UI", sans-serif;
+  --f-body: "Assistant", "Arial Hebrew", "Segoe UI", system-ui, sans-serif;
+
+  /* סקאלת תצוגה. Rubik רחב בהרבה מ-Karantina הקונדנסד, ולכן המקסימום
+     ירד בכ-32% — אחרת כל כותרת נשברת לשתי שורות נוספות. */
+  --d-xl: clamp(2.5rem, 5.4vw, 4.75rem);
+  --d-lg: clamp(2rem, 3.9vw, 3.25rem);
+  --d-md: clamp(1.5rem, 2.4vw, 2.1rem);
+  --d-sm: clamp(1.25rem, 1.8vw, 1.6rem);
 
   --t-lg: clamp(1.125rem, 1vw + 0.9rem, 1.3125rem);
   --t-base: 1.0625rem;
@@ -169,7 +174,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--bone);
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--f-body);
   font-size: var(--t-base);
@@ -205,17 +210,29 @@ ul, ol { margin: 0; padding-inline-start: 0; list-style: none; }
 strong { font-weight: 700; }
 
 code {
-  font-family: var(--f-mono);
+  font-family: var(--f-body);
   font-size: 0.9em;
   direction: ltr;
   unicode-bidi: isolate;
-  background: var(--bone-2);
+  background: var(--paper-2);
   padding: 0.05em 0.3em;
 }
 
+/* טבעת פוקוס דו־גונית, כדרישת המועצה: הטבעת הכחולה נראית על לבן,
+   וטבעת הניגוד שמתחתיה מבטיחה שהיא נראית גם על שחור ועל השדה הכחול,
+   שבהם כחול־על־כחול היה נעלם. */
 :focus-visible {
-  outline: var(--stroke-3) solid var(--signal);
+  outline: var(--stroke-3) solid var(--brand-600);
   outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--paper);
+  border-radius: 3px;
+}
+.section--dark :focus-visible,
+.hero__field :focus-visible,
+.action-bar :focus-visible,
+.consent :focus-visible {
+  outline-color: var(--paper);
+  box-shadow: 0 0 0 2px var(--brand-500);
 }
 
 .skip-link {
@@ -223,8 +240,8 @@ code {
   inset-block-start: -100px;
   inset-inline-start: var(--s-4);
   z-index: var(--z-skip);
-  background: var(--ink);
-  color: var(--on-ink);
+  background: var(--night);
+  color: var(--on-night);
   padding: var(--s-3) var(--s-5);
   font-weight: 700;
   transition: inset-block-start var(--dur) var(--ease);
@@ -251,7 +268,7 @@ code {
    -------------------------------------------------------------------------- */
 
 .mono {
-  font-family: var(--f-mono);
+  font-family: var(--f-body);
   font-size: var(--t-micro);
   letter-spacing: 0.12em;
   color: var(--ink-3);
@@ -267,8 +284,8 @@ code {
   margin-block-end: var(--s-4);
 }
 
-.section--dark .tag { color: var(--on-ink-2); }
-.section--dark .mono { color: var(--on-ink-2); }
+.section--dark .tag { color: var(--brand-500); }
+.section--dark .mono { color: var(--on-night-2); }
 
 /* --------------------------------------------------------------------------
    4. פריסה
@@ -288,17 +305,20 @@ code {
 }
 
 .section--dark {
-  background: var(--ink);
-  color: var(--on-ink);
+  background: var(--night);
+  color: var(--on-night);
   border-block-start-color: var(--ink);
 }
 .section--dark h2,
-.section--dark h3 { color: var(--on-ink); }
+.section--dark h3 { color: var(--on-night); }
 
-.section--tint { background: var(--bone-2); }
+.section--tint { background: var(--paper-2); }
 
-.section-head { max-width: 22ch; }
-.section-head--wide { max-width: 34ch; }
+/* רוחבי הכותרות כוילו ל-Karantina הקונדנסד. Rubik רחב בהרבה, ובערכים
+   הישנים כל כותרת נשברה למילה בשורה. נמדד מחדש: ב-52ch הכותרות הארוכות
+   יושבות על 3–4 שורות והקצרות על שורה אחת. */
+.section-head { max-width: 52ch; }
+.section-head--wide { max-width: 64ch; }
 
 .lead {
   font-size: var(--t-lg);
@@ -306,7 +326,7 @@ code {
   max-width: 46ch;
   margin-block-start: var(--s-4);
 }
-.section--dark .lead { color: var(--on-ink-2); }
+.section--dark .lead { color: var(--on-night-2); }
 
 /* --------------------------------------------------------------------------
    5. כפתורים
@@ -331,18 +351,18 @@ code {
   transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
-.btn--primary { background: var(--ink); color: var(--on-ink); }
-.btn--primary:hover { background: var(--ink-2); color: var(--on-ink); }
-.btn--secondary:hover { background: var(--tint); }
-.btn--tint { background: var(--tint); border-color: var(--tint); }
-.btn--tint:hover { background: var(--tint-deep); border-color: var(--tint-deep); }
+.btn--primary { background: var(--brand-600); color: #fff; }
+.btn--primary:hover { background: var(--brand-700); color: #fff; }
+.btn--secondary:hover { background: var(--brand-050); }
+.btn--tint { background: var(--brand-050); border-color: var(--brand-050); }
+.btn--tint:hover { background: var(--brand-100); border-color: var(--brand-100); }
 .btn--block { display: flex; width: 100%; }
 .btn--sm { min-height: 44px; padding-inline: var(--s-5); font-size: var(--t-xs); }
 .btn__icon { width: 20px; height: 20px; flex: none; }
 
-.section--dark .btn { border-color: var(--on-ink); color: var(--on-ink); }
-.section--dark .btn--primary { background: var(--on-ink); color: var(--ink); }
-.section--dark .btn--primary:hover { background: var(--tint); color: var(--ink); }
+.section--dark .btn { border-color: var(--on-night); color: var(--on-night); }
+.section--dark .btn--primary { background: var(--on-night); color: var(--ink); }
+.section--dark .btn--primary:hover { background: var(--brand-050); color: var(--ink); }
 .section--dark .btn--secondary:hover { background: rgba(255, 255, 255, 0.1); }
 
 /* קישור־חץ: המקבילה הטקסטואלית לכפתור, בתוך שורות */
@@ -363,7 +383,7 @@ code {
   position: sticky;
   inset-block-start: 0;
   z-index: var(--z-header);
-  background: var(--bone);
+  background: var(--paper);
   border-block-end: var(--stroke-1) solid var(--rule);
 }
 
@@ -381,7 +401,7 @@ code {
   line-height: 1;
   color: var(--ink);
 }
-.brand__dot { color: var(--signal); font-family: var(--f-display); font-size: 1.75rem; line-height: 1; }
+.brand__dot { color: var(--brand-500); font-family: var(--f-display); font-size: 1.75rem; line-height: 1; }
 
 .nav { margin-inline-start: auto; }
 .nav__list { display: none; gap: var(--s-6); }
@@ -393,7 +413,7 @@ code {
   border-block-end: var(--stroke-2) solid transparent;
 }
 .nav__link:hover { border-block-end-color: var(--ink); }
-.nav__link[aria-current="true"] { border-block-end-color: var(--signal); }
+.nav__link[aria-current="true"] { border-block-end-color: var(--brand-600); font-weight: 700; }
 
 .header__cta { display: none; }
 
@@ -428,7 +448,7 @@ code {
 .mobile-nav {
   border-block-start: var(--stroke-1) solid var(--rule);
   padding-block: var(--s-4) var(--s-6);
-  background: var(--bone);
+  background: var(--paper);
 }
 .mobile-nav__list { display: grid; }
 .mobile-nav__link {
@@ -450,6 +470,56 @@ code {
 .hero {
   border-block-start: 0;
   padding-block-start: 0;
+}
+
+/* ---- השדה הכחול ----------------------------------------------------------
+   המהלך המרכזי של 0004. רצועה מלאת־רוחב בצבע הלוגו המדויק, שנושאת את
+   הסימן ואת הכותרת בלבד. אין בה טקסט רץ ואין בה כפתור: לבן על #0082FC
+   הוא 3.75:1, שעובר רק לטקסט תצוגה. ה-tag נושא טקסט קטן ולכן הוא מקבל
+   משטח לבן משלו ונצבע ב---brand-600. */
+.hero__field {
+  background: var(--brand-500);
+  margin-block-end: clamp(1.25rem, 3.5vw, 2.5rem);
+  padding-block: clamp(1.5rem, 4vw, 2.75rem) clamp(1.75rem, 5vw, 3rem);
+}
+
+.hero__field-inner { display: grid; gap: clamp(1rem, 2.5vw, 1.75rem); }
+
+/* הסימן מגיע עם אריח כחול משלו באותו צבע בדיוק כמו השדה, ולכן הוא נקרא
+   כעגלה לבנה על הרקע — בלי מסגרת וללא צל. */
+.hero__mark {
+  inline-size: clamp(56px, 9vw, 92px);
+  block-size: auto;
+}
+
+.hero__field-text { display: grid; gap: clamp(0.9rem, 2vw, 1.5rem); justify-items: start; }
+
+/* התווית על השדה: משטח לבן עם טקסט כחול, במקום לבן על כחול שנכשל. */
+.tag--chip {
+  background: var(--paper);
+  color: var(--brand-600);
+  border-radius: var(--r-pill);
+  padding: 0.4em 1em;
+  margin: 0;
+}
+
+.hero__field .hero__title { color: var(--paper); margin-block-end: 0; }
+
+/* על השדה הכחול העיפרון לובש את תכלת העגלה שבלוגו: האדום מול הכחול הוא
+   1.85:1 והיה נעלם; #E8F2FF נותן 3.32:1 ועובר. */
+.hero__field .mark path { stroke: var(--brand-050); }
+
+/* בדסקטופ הכותרת לבדה השאירה חצי שדה ריק, והכפתור הראשי נדחק מתחת לקיפול.
+   הסימן עובר לצד הפנוי בגודל מלא, והשדה מתקצר. */
+@media (min-width: 1000px) {
+  .hero__field { padding-block: clamp(1.25rem, 2.6vw, 2.25rem) clamp(1.5rem, 3vw, 2.5rem); }
+  .hero__field-inner {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4.5rem);
+  }
+  .hero__field-text { grid-column: 1; grid-row: 1; }
+  .hero__mark { grid-column: 2; grid-row: 1; inline-size: clamp(130px, 14vw, 200px); }
 }
 
 .hero__grid {
@@ -477,7 +547,7 @@ code {
   margin-block-start: var(--s-5);
   font-weight: 700;
   font-size: var(--t-sm);
-  color: var(--signal);
+  color: var(--brand-600);
 }
 .offer-note::before {
   content: "";
@@ -486,7 +556,7 @@ code {
   background: currentColor;
   flex: none;
 }
-.section--dark .offer-note { color: var(--signal-on-ink); }
+.section--dark .offer-note { color: var(--brand-500); }
 
 /* צילום עם כיתוב טכני, כמו לוח בקרה של תוכנית */
 .shot { margin: 0; }
@@ -572,18 +642,20 @@ code {
   border-block-start: var(--stroke-1) solid var(--rule);
 }
 .row:last-child { border-block-end: var(--stroke-1) solid var(--rule); }
-.section--dark .row { border-block-start-color: var(--on-ink-2); }
-.section--dark .row:last-child { border-block-end-color: var(--on-ink-2); }
+.section--dark .row { border-block-start-color: var(--on-night-2); }
+.section--dark .row:last-child { border-block-end-color: var(--on-night-2); }
 
 .row__n {
-  font-family: var(--f-mono);
+  font-family: var(--f-body);
   font-size: var(--t-xs);
   font-weight: 700;
   color: var(--ink-3);
   padding-block-start: 0.55em;
   direction: ltr;
 }
-.section--dark .row__n { color: var(--on-ink-2); }
+/* על שחור #0082FC הוא 5.6:1 ועובר AA מלא. זה הבית השני של
+   כחול המותג, ולכן המספור והתוויות נצבעים בו ולא באפור. */
+.section--dark .row__n { color: var(--brand-500); }
 
 .row__title { font-size: var(--d-sm); }
 .row__text {
@@ -593,7 +665,7 @@ code {
   font-size: var(--t-sm);
   margin-block-end: 0;
 }
-.section--dark .row__text { color: var(--on-ink-2); }
+.section--dark .row__text { color: var(--on-night-2); }
 
 @media (min-width: 900px) {
   .row { grid-template-columns: auto minmax(14rem, 22rem) 1fr; gap: 0 var(--s-6); align-items: baseline; }
@@ -613,7 +685,7 @@ code {
 .service:last-of-type { border-block-end: var(--stroke-1) solid var(--rule); }
 
 .service__head { display: grid; gap: var(--s-3); }
-.service__n { font-family: var(--f-mono); font-size: var(--t-xs); font-weight: 700; color: var(--ink-3); direction: ltr; margin: 0; }
+.service__n { font-family: var(--f-body); font-size: var(--t-xs); font-weight: 700; color: var(--ink-3); direction: ltr; margin: 0; }
 .service__title { font-size: var(--d-md); }
 .service__for { color: var(--ink-2); font-size: var(--t-sm); max-width: 40ch; margin: 0; }
 
@@ -631,12 +703,12 @@ code {
   inset-block-start: 0.68em;
   inline-size: 11px;
   block-size: var(--stroke-2);
-  background: var(--signal);
+  background: var(--brand-500);
 }
 
 .service__cta { justify-self: start; }
 
-.service--featured { background: var(--tint); margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); }
+.service--featured { background: var(--brand-050); margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); }
 .service__badge {
   display: inline-flex;
   align-items: center;
@@ -681,7 +753,7 @@ code {
    11. אמירה
    -------------------------------------------------------------------------- */
 
-.creed__quote { max-width: 30ch; }
+.creed__quote { max-width: 46ch; }
 .creed__quote .lead { max-width: 50ch; }
 
 /* --------------------------------------------------------------------------
@@ -720,7 +792,7 @@ code {
   inset-inline-start: 0;
   inline-size: 26px;
   block-size: var(--stroke-2);
-  background: var(--ink);
+  background: var(--night);
   translate: 0 -50%;
 }
 .faq__sign::after { rotate: 90deg; transition: rotate var(--dur) var(--ease); }
@@ -741,11 +813,11 @@ code {
   gap: var(--s-3);
   font-size: var(--t-sm);
   padding-block-start: var(--s-3);
-  border-block-start: var(--stroke-1) solid var(--on-ink-2);
+  border-block-start: var(--stroke-1) solid var(--on-night-2);
 }
 .contact__direct-item svg { inline-size: 18px; block-size: 18px; flex: none; }
 
-.form-card { background: var(--bone); color: var(--ink); padding: var(--s-6); }
+.form-card { background: var(--paper); color: var(--ink); padding: var(--s-6); }
 .form-card h3 { font-size: var(--d-sm); }
 .form-card__intro { font-size: var(--t-sm); color: var(--ink-2); margin-block: var(--s-3) var(--s-5); }
 
@@ -754,7 +826,7 @@ code {
 
 .field { display: grid; gap: var(--s-2); margin-block-end: var(--s-4); }
 .field__label { font-weight: 700; font-size: var(--t-sm); }
-.field__required { color: var(--signal); }
+.field__required { color: var(--mark); }
 .field__optional { font-weight: 400; color: var(--ink-3); font-size: var(--t-xs); }
 
 .field__control {
@@ -764,12 +836,12 @@ code {
   font-family: var(--f-body);
   font-size: var(--t-base);
   color: var(--ink);
-  background: var(--bone);
+  background: var(--paper);
   border: var(--stroke-2) solid var(--ink);
   border-radius: 0;
 }
 textarea.field__control { min-height: 120px; resize: vertical; }
-.field__control:focus-visible { outline: var(--stroke-3) solid var(--signal); outline-offset: 1px; }
+.field__control:focus-visible { outline: var(--stroke-3) solid var(--brand-600); outline-offset: 1px; }
 
 .field__hint { font-size: var(--t-xs); color: var(--ink-3); margin: 0; }
 
@@ -837,8 +909,8 @@ textarea.field__control { min-height: 120px; resize: vertical; }
   gap: var(--s-2);
   padding: var(--s-3) var(--s-4);
   padding-block-end: calc(var(--s-3) + env(safe-area-inset-bottom, 0px));
-  background: var(--ink);
-  border-block-start: var(--stroke-3) solid var(--signal);
+  background: var(--night);
+  border-block-start: var(--stroke-3) solid var(--brand-500);
   transition: translate var(--dur-slow) var(--ease);
 }
 .action-bar.is-stowed { translate: 0 100%; pointer-events: none; }
@@ -858,8 +930,8 @@ textarea.field__control { min-height: 120px; resize: vertical; }
 }
 .action-bar__btn svg { inline-size: 20px; block-size: 20px; flex: none; }
 .action-bar__btn--wa { background: var(--whatsapp); color: #fff; }
-.action-bar__btn--tel { color: var(--on-ink); border-color: var(--on-ink-2); }
-.action-bar__btn:focus-visible { outline: var(--stroke-3) solid var(--signal-on-ink); outline-offset: 2px; }
+.action-bar__btn--tel { color: var(--on-night); border-color: var(--on-night-2); }
+.action-bar__btn:focus-visible { outline: var(--stroke-3) solid var(--brand-500); outline-offset: 2px; }
 
 body.has-action-bar { padding-block-end: 80px; }
 
@@ -877,9 +949,9 @@ body.has-action-bar { padding-block-end: 80px; }
   inset-inline: 0;
   inset-block-end: 0;
   z-index: var(--z-overlay);
-  background: var(--ink);
-  color: var(--on-ink);
-  border-block-start: var(--stroke-3) solid var(--signal);
+  background: var(--night);
+  color: var(--on-night);
+  border-block-start: var(--stroke-3) solid var(--brand-500);
   padding-block: var(--s-4);
   padding-block-end: max(var(--s-4), env(safe-area-inset-bottom));
 }
@@ -892,11 +964,11 @@ body.has-action-bar { padding-block-end: 80px; }
   gap: var(--s-4);
   align-items: flex-start;
 }
-.consent__text { margin: 0; font-size: var(--t-sm); max-width: 62ch; color: var(--on-ink-2); }
-.consent__text a { color: var(--on-ink); }
+.consent__text { margin: 0; font-size: var(--t-sm); max-width: 62ch; color: var(--on-night-2); }
+.consent__text a { color: var(--on-night); }
 .consent__actions { display: flex; gap: var(--s-3); flex-wrap: wrap; inline-size: 100%; }
-.consent__actions .btn { flex: 1 1 auto; border-color: var(--on-ink); color: var(--on-ink); }
-.consent__actions .btn--primary { background: var(--on-ink); color: var(--ink); }
+.consent__actions .btn { flex: 1 1 auto; border-color: var(--on-night); color: var(--on-night); }
+.consent__actions .btn--primary { background: var(--on-night); color: var(--ink); }
 
 @media (min-width: 760px) {
   .consent__inner { flex-direction: row; align-items: center; justify-content: space-between; gap: var(--s-6); }
@@ -911,18 +983,18 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
    -------------------------------------------------------------------------- */
 
 .footer {
-  background: var(--ink);
-  color: var(--on-ink-2);
+  background: var(--night);
+  color: var(--on-night-2);
   padding-block: var(--s-8) var(--s-6);
   font-size: var(--t-sm);
 }
 .footer__grid { display: grid; gap: var(--s-6); }
-.footer h4 { color: var(--on-ink); font-size: var(--d-sm); margin-block-end: var(--s-4); }
-.footer__brand-name { font-family: var(--f-display); font-size: var(--d-sm); color: var(--on-ink); margin: 0 0 var(--s-2); }
+.footer h4 { color: var(--on-night); font-size: var(--d-sm); margin-block-end: var(--s-4); }
+.footer__brand-name { font-family: var(--f-display); font-size: var(--d-sm); color: var(--on-night); margin: 0 0 var(--s-2); }
 .footer__list { display: grid; gap: var(--s-2); }
 .footer__list li { display: flex; align-items: center; gap: var(--s-3); }
 .footer__list svg { inline-size: 17px; block-size: 17px; flex: none; }
-.footer a { color: var(--on-ink); }
+.footer a { color: var(--on-night); }
 .footer__bottom {
   display: flex;
   flex-wrap: wrap;
@@ -930,7 +1002,7 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
   gap: var(--s-3);
   margin-block-start: var(--s-7);
   padding-block-start: var(--s-4);
-  border-block-start: var(--stroke-1) solid var(--on-ink-2);
+  border-block-start: var(--stroke-1) solid var(--on-night-2);
   font-size: var(--t-xs);
 }
 
@@ -979,7 +1051,7 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
   inset-block-start: 0.68em;
   inline-size: 11px;
   block-size: var(--stroke-2);
-  background: var(--signal);
+  background: var(--brand-500);
 }
 
 /* ==========================================================================
@@ -1007,7 +1079,7 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
 
 .mark path {
   fill: none;
-  stroke: var(--pencil);
+  stroke: var(--mark);
   stroke-width: var(--pencil-w);
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -1016,7 +1088,7 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
   filter: url(#pencil-rough);
 }
 
-.section--dark .mark path { stroke: var(--pencil-on-ink); }
+.section--dark .mark path { stroke: var(--mark-on-night); }
 
 /* מכשירים ניידים: הסינון יקר לרסטריזציה ואינו שווה את המחיר על מסך קטן.
    הקו נשאר, הרעד יורד. */
@@ -1040,14 +1112,20 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
 .marked { position: relative; display: inline-block; }
 .marked > .mark { inset-block-start: -12%; inset-inline-start: -5%; inline-size: 110%; block-size: 124%; }
 
-/* ההקפה של הכותרת הראשית: ממוקמת על ה-h1, מעל השורה השנייה */
-.hero__title { position: relative; }
-.mark--headline {
-  /* צמוד לשורה האחרונה בלבד. בלוק גדול יותר חתך את השורה שמעליה. */
-  inset-block-end: -3%;
+/* עוגן שאינו תלוי בפנים הגופן.
+   הגרסה הקודמת מיקמה את ההקפה ב-min(106%, 13.5ch) ובאחוז מגובה ה-h1 —
+   כלומר מול תיבות הגליפים של גופן מסוים. החלפת פנים התצוגה פירקה אותה
+   בשקט. העוגן יושב מחוץ ל-overflow:hidden של השורה, עוטף את השורה
+   עצמה, ונמדד מהרוחב המרונדר בפועל בכל גופן. */
+/* block עם fit-content ולא inline-block: inline-block מוסיף מתחת לקו
+   הבסיס רווח בגודל יורדן של גופן ענק (נמדד: 40px מיותרים ב-390),
+   ו-fit-content שומר על ההתכווצות לרוחב הטקסט כך שההקפה לא גולשת. */
+.mark-anchor { position: relative; display: block; inline-size: fit-content; }
+.mark-anchor > .mark--headline {
+  inset-block-start: -11%;
   inset-inline-start: -3%;
-  inline-size: min(106%, 13.5ch);
-  block-size: 34%;
+  inline-size: 106%;
+  block-size: 122%;
 }
 
 /* קו תחתון בכתב יד. מידות מפורשות: ל-SVG בעמדה אבסולוטית אין גובה
@@ -1109,10 +1187,10 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
   font-family: var(--f-body);
   font-weight: 700;
   font-size: var(--t-xs);
-  color: var(--pencil);
+  color: var(--mark);
   rotate: -1.5deg;
 }
-.section--dark .scribble { color: var(--pencil-on-ink); }
+.section--dark .scribble { color: var(--mark-on-night); }
 
 /* ==========================================================================
    18c. ספירה עולה

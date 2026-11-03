@@ -17,45 +17,39 @@
     display: grid;
     grid-template-columns: 1.05fr 1fr;
     align-items: stretch;
-    background: var(--bone);
+    background: var(--brand-500);
     box-sizing: border-box;
     overflow: hidden;
   }
+  /* צד הטקסט הוא השדה הכחול של ההירו. הוא נושא אך ורק טקסט תצוגה
+     והסימן: לבן על #0082FC הוא 3.75:1, שעובר רק לטקסט גדול. */
   .og__text {
-    padding: 64px 68px;
+    padding: 58px 64px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-inline-end: 1px solid var(--rule);
+    gap: 26px;
   }
+  .og__mark { inline-size: 104px; block-size: auto; }
   .og__brand {
+    align-self: flex-start;
     font-family: var(--f-body);
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 700;
-    color: var(--ink-3);
-    margin: 0 0 22px;
+    color: var(--brand-600);
+    background: #fff;
+    border-radius: 999px;
+    padding: 8px 20px;
+    margin: 0;
   }
   .og__title {
     font-family: var(--f-display);
-    font-size: 92px;
-    line-height: 0.92;
-    color: var(--ink);
-    margin: 0 0 26px;
-  }
-  .og__sub {
-    font-family: var(--f-body);
-    font-size: 23px;
-    line-height: 1.5;
-    color: var(--ink-2);
+    font-weight: 800;
+    font-size: 70px;
+    line-height: 1.0;
+    color: #fff;
     margin: 0;
-    max-width: 26ch;
   }
-  .og__rule {
-    display: flex; align-items: center; gap: 12px;
-    margin-block-start: 30px;
-    font-family: var(--f-body); font-weight: 700; font-size: 19px; color: var(--signal);
-  }
-  .og__rule::before { content: ""; inline-size: 36px; block-size: 3px; background: currentColor; }
   .og__img { position: relative; }
   .og__img img {
     inline-size: 100%; block-size: 100%; object-fit: cover; display: block;
@@ -65,10 +59,9 @@
 </head>
 <body>
   <div class="og__text">
+    <img class="og__mark" src="../../assets/img/logo-mark.svg" alt="">
     <p class="og__brand">בני לפקוביץ · תכנון נקודות מכירה</p>
     <h1 class="og__title">מתכננים את החנות נכון.<br>מוכרים יותר.</h1>
-    <p class="og__sub">תכנון ואופטימיזציה לנקודות מכירה</p>
-    <p class="og__rule">22 שנות ניסיון קמעונאי</p>
   </div>
   <div class="og__img"><img src="../../assets/img/store-produce.jpg" alt=""></div>
 </body>

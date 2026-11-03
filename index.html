@@ -34,15 +34,16 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.pop-style.design/assets/img/og-image.jpg">
 
-<meta name="theme-color" content="#f3f1ec">
+<meta name="theme-color" content="#0082fc">
 
 <!-- גופנים מאוחסנים מקומית. Karantina נושאת את הכותרות ומוגדרת
      font-display:block, כדי שלא יהיה הבהוב של גופן חלופי בכותרת הראשית. -->
-<link rel="preload" href="assets/fonts/karantina-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/rubik-800-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/assistant-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
 <!-- מסמן שהדפדפן מריץ JavaScript. אפקט החשיפה בגלילה מופעל רק במצב זה,
      כך שללא JavaScript כל התוכן מוצג במלואו. -->
@@ -198,24 +199,46 @@
      1. הירו
      ========================================================================== -->
 <section class="section hero" id="top">
+
+  <!-- ====================================================================
+       השדה הכחול. זהו הבית היחיד שבו כחול המותג המדויק הוא קרקע, והוא
+       נושא אך ורק טקסט תצוגה: #0082FC מול לבן הוא 3.75:1 — עובר את סף
+       ה-3:1 לטקסט גדול ונכשל ב-4.5:1 הנדרש לטקסט רגיל. כל טקסט רץ יושב
+       על לבן, מתחת לשדה.
+       ==================================================================== -->
+  <div class="hero__field">
+    <div class="container hero__field-inner">
+
+      <img class="hero__mark" src="assets/img/logo-mark.svg" alt=""
+           width="128" height="128" loading="eager" decoding="async">
+
+      <div class="hero__field-text">
+      <p class="tag tag--chip">תכנון מסחרי לנקודות מכירה</p>
+
+      <!-- כותרת קינטית. המילים עולות מתוך מסכה, מילה שלמה בכל פעם.
+           אין חלוקה לאותיות: היא הייתה שוברת צורות סופיות ומנתקת
+           אותיות שימוש מהמילה שלהן. ללא JavaScript הכותרת מוצגת כרגיל. -->
+      <h1 class="hero__title kinetic">
+        <span class="kinetic__line">מתכננים את החנות נכון.</span>
+        <!-- .mark-anchor יושב מחוץ ל-overflow:hidden של השורה, ונמדד
+             מהרוחב המרונדר בפועל. אפס ch, אפס קבועים — הסימון שורד
+             החלפת גופן תצוגה. -->
+        <span class="mark-anchor">
+          <span class="kinetic__line">מוכרים יותר.</span>
+          <svg class="mark mark--headline" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true" data-delay="950">
+            <path d="M292 44 C292 20 232 8 150 8 C68 8 8 20 8 44 C8 68 68 82 150 82 C236 82 294 68 290 40"/>
+          </svg>
+        </span>
+      </h1>
+      </div>
+
+    </div>
+  </div>
+
   <div class="container">
     <div class="hero__grid">
 
       <div class="hero__content">
-        <p class="tag">תכנון מסחרי לנקודות מכירה</p>
-
-        <!-- כותרת קינטית. המילים עולות מתוך מסכה, מילה שלמה בכל פעם.
-             אין חלוקה לאותיות: היא הייתה שוברת צורות סופיות ומנתקת
-             אותיות שימוש מהמילה שלהן. ללא JavaScript הכותרת מוצגת כרגיל. -->
-        <h1 class="hero__title kinetic">
-          <span class="kinetic__line">מתכננים את החנות נכון.</span>
-          <span class="kinetic__line">מוכרים יותר.</span>
-          <!-- ההקפה יושבת על ה-h1 ולא בתוך השורה: ל-.kinetic__line יש
-               overflow:hidden בשביל מסכת הכותרת, והיא הייתה חותכת אותה. -->
-          <svg class="mark mark--headline" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true" data-delay="950">
-            <path d="M292 44 C292 20 232 8 150 8 C68 8 8 20 8 44 C8 68 68 82 150 82 C236 82 294 68 290 40"/>
-          </svg>
-        </h1>
 
         <p class="hero__sub">
           תכנון ואופטימיזציה של נקודות מכירה על בסיס 22 שנות ניסיון בניהול קמעונאי,
