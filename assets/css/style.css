@@ -645,20 +645,31 @@ code {
 .section--dark .row { border-block-start-color: var(--on-night-2); }
 .section--dark .row:last-child { border-block-end-color: var(--on-night-2); }
 
+/* בידוד דו־כיווני בלי להפוך את כיוון הבלוק: direction:ltr על אלמנט
+   בלוקי מצמיד אותו גם לשמאל, וכאן הוא חייב להישאר בהתחלה הימנית.
+   לספרות בלבד ממילא אין צורך בכיוון מפורש. */
 .row__n {
   font-family: var(--f-body);
   font-size: var(--t-xs);
   font-weight: 700;
   color: var(--ink-3);
   padding-block-start: 0.55em;
-  direction: ltr;
+  unicode-bidi: isolate;
 }
 /* על שחור #0082FC הוא 5.6:1 ועובר AA מלא. זה הבית השני של
    כחול המותג, ולכן המספור והתוויות נצבעים בו ולא באפור. */
 .section--dark .row__n { color: var(--brand-500); }
 
-.row__title { font-size: var(--d-sm); }
+/* מיקום מפורש לשלושת הילדים. בלעדיו, שלושה ילדים בגריד דו־טורי נשתלים
+   אוטומטית כ-[מספר][כותרת] בשורה הראשונה ו-[טקסט] בטור *הראשון* בשורה
+   השנייה — כלומר הטקסט מרחיב את טור המספר, והכותרת נמחצת לטור צר
+   שמפרק אותה למילה בשורה. זו אותה מלכודת של השתלה אוטומטית שכבר
+   נתקלנו בה בגריד ההירו. */
+.row__n     { grid-column: 1; grid-row: 1; }
+.row__title { grid-column: 2; grid-row: 1; font-size: var(--d-sm); }
 .row__text {
+  grid-column: 2;
+  grid-row: 2;
   margin-block-start: var(--s-2);
   color: var(--ink-2);
   max-width: 54ch;
@@ -669,7 +680,7 @@ code {
 
 @media (min-width: 900px) {
   .row { grid-template-columns: auto minmax(14rem, 22rem) 1fr; gap: 0 var(--s-6); align-items: baseline; }
-  .row__text { margin-block-start: 0; }
+  .row__text { grid-column: 3; grid-row: 1; margin-block-start: 0; }
 }
 
 /* --------------------------------------------------------------------------
@@ -685,7 +696,7 @@ code {
 .service:last-of-type { border-block-end: var(--stroke-1) solid var(--rule); }
 
 .service__head { display: grid; gap: var(--s-3); }
-.service__n { font-family: var(--f-body); font-size: var(--t-xs); font-weight: 700; color: var(--ink-3); direction: ltr; margin: 0; }
+.service__n { font-family: var(--f-body); font-size: var(--t-xs); font-weight: 700; color: var(--ink-3); unicode-bidi: isolate; margin: 0; }
 .service__title { font-size: var(--d-md); }
 .service__for { color: var(--ink-2); font-size: var(--t-sm); max-width: 40ch; margin: 0; }
 
