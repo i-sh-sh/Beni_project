@@ -185,7 +185,6 @@
      ------------------------------------------------------------------------ */
 
   var hasWhatsApp = Boolean(CFG.whatsappNumber);
-  var hasPhone    = Boolean(CFG.phoneDial && CFG.phoneDisplay);
   var hasEmail    = Boolean(CFG.email);
 
   function whatsappUrl(extra) {
@@ -230,24 +229,11 @@
     });
   });
 
-  $$("[data-tel-link]").forEach(function (el) {
-    if (hasPhone) el.setAttribute("href", "tel:" + CFG.phoneDial);
-    else markUnconfigured(el, "טלפון");
-
-    el.addEventListener("click", function () {
-      trackEvent("contact_phone", { location: originOf(el), configured: hasPhone });
-    });
-  });
-
   /* השלמת פרטי הקשר בגוף העמוד ובכותרת התחתונה */
   function fillContact(key, condition, html) {
     if (!condition) return;
     $$('[data-contact="' + key + '"]').forEach(function (el) { el.innerHTML = html; });
   }
-
-  fillContact("phone", hasPhone,
-    '<a href="tel:' + escapeHtml(CFG.phoneDial) + '" dir="ltr" data-channel="phone">' +
-    escapeHtml(CFG.phoneDisplay) + "</a>");
 
   fillContact("whatsapp", hasWhatsApp,
     '<a href="' + escapeHtml(whatsappUrl()) + '" target="_blank" rel="noopener" data-channel="whatsapp">' +
@@ -377,7 +363,7 @@
 
   var actionBar = $("#action-bar");
 
-  if (actionBar && (hasWhatsApp || hasPhone)) {
+  if (actionBar && hasWhatsApp) {
     actionBar.hidden = false;
     document.body.classList.add("has-action-bar");
 
@@ -532,10 +518,6 @@
       parts.push('<a href="' + escapeHtml(whatsappUrl()) +
                  '" target="_blank" rel="noopener">לפנות בוואטסאפ</a>');
     }
-    if (hasPhone) {
-      parts.push('להתקשר למספר <a href="tel:' + escapeHtml(CFG.phoneDial) +
-                 '" dir="ltr">' + escapeHtml(CFG.phoneDisplay) + "</a>");
-    }
     if (hasEmail) {
       parts.push('לשלוח דוא"ל לכתובת <a href="mailto:' + escapeHtml(CFG.email) +
                  '" dir="ltr">' + escapeHtml(CFG.email) + "</a>");
@@ -605,9 +587,7 @@
             (payload.message ? "\nפירוט: " + payload.message : "");
 
           blocked += ' ניתן <a href="' + escapeHtml(whatsappUrl(summary)) +
-                     '" target="_blank" rel="noopener">לשלוח את הפרטים בוואטסאפ בלחיצה אחת</a>' +
-                     (hasPhone ? ', או להתקשר למספר <a href="tel:' + escapeHtml(CFG.phoneDial) +
-                       '" dir="ltr">' + escapeHtml(CFG.phoneDisplay) + "</a>." : ".");
+                     '" target="_blank" rel="noopener">לשלוח את הפרטים בוואטסאפ בלחיצה אחת</a>.';
         } else {
           blocked += alternativeChannels();
         }

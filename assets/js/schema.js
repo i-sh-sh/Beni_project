@@ -33,7 +33,8 @@
     data["@id"] = siteUrl + "/#business";
   }
 
-  if (CFG.phoneDial) data.telephone = CFG.phoneDial;
+  /* אין telephone בכוונה: שיחה ישירה הוסרה מהאתר, ושדה טלפון בסכמה
+     היה מחזיר את כפתור ההתקשרות לתוצאות החיפוש של גוגל. */
   if (CFG.email) data.email = CFG.email;
 
   if (Array.isArray(CFG.serviceAreaList) && CFG.serviceAreaList.length) {

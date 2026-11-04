@@ -941,7 +941,8 @@ textarea.field__control { min-height: 120px; resize: vertical; }
 }
 .action-bar__btn svg { inline-size: 20px; block-size: 20px; flex: none; }
 .action-bar__btn--wa { background: var(--whatsapp); color: #fff; }
-.action-bar__btn--tel { color: var(--on-night); border-color: var(--on-night-2); }
+/* כפתור ההתקשרות ירד מהסרגל ב-4.11.2026; נשאר כפתור וואטסאפ יחיד,
+   ו-flex:1 1 0 מותח אותו לרוחב מלא בלי כלל נוסף. */
 .action-bar__btn:focus-visible { outline: var(--stroke-3) solid var(--brand-500); outline-offset: 2px; }
 
 body.has-action-bar { padding-block-end: 80px; }
