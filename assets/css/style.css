@@ -1047,6 +1047,17 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
   font-size: 0.95em;
 }
 
+/* כשהערות המנהל כבויות — כלומר כשמציגים את העמוד ללקוח — מילוי־המקום
+   מאבד את תיבת הענבר ונשאר טקסט שקט. הוא עדיין אומר איזה פרט חסר. */
+.no-admin .placeholder-text {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--ink-3);
+}
+.no-admin .section--dark .placeholder-text,
+.no-admin .footer .placeholder-text { color: var(--on-night-2); }
+
 /* --------------------------------------------------------------------------
    18. עמוד תוכן פנימי
    -------------------------------------------------------------------------- */
