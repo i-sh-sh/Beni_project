@@ -1,5 +1,5 @@
 /* ==========================================================================
-   בני לפקוביץ – תכנון ואופטימיזציה לנקודות מכירה
+   פופ סטייל – תכנון ואופטימיזציה לנקודות מכירה
    לוגיקת צד לקוח: ניווט, חשיפה בגלילה, קישורי יצירת קשר, טופס לידים,
    הסכמה למדידה ומדידת המרות.
    ללא תלויות חיצוניות.
@@ -234,6 +234,12 @@
     if (!condition) return;
     $$('[data-contact="' + key + '"]').forEach(function (el) { el.innerHTML = html; });
   }
+
+  /* הטלפון מוצג כטקסט ולא כקישור tel:. bdi מבודד את הספרות מהעברית
+     סביבן בלי להפוך את יישור הבלוק — direction:ltr על אלמנט בלוקי הוא
+     התקלה שכבר נתקלנו בה. */
+  fillContact("phone", Boolean(CFG.phoneDisplay),
+    '<bdi dir="ltr">' + escapeHtml(CFG.phoneDisplay) + "</bdi>");
 
   fillContact("whatsapp", hasWhatsApp,
     '<a href="' + escapeHtml(whatsappUrl()) + '" target="_blank" rel="noopener" data-channel="whatsapp">' +

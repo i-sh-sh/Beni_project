@@ -1093,10 +1093,15 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
    מידע אינו מועבר דרכם בלבד.
    ========================================================================== */
 
+/* max-inline-size: none הכרחי. ה-reset בבסיס קובע svg { max-width: 100% },
+   והוא חתך בשקט כל סימון שחורג מהעוגן שלו: הקפה שהוגדרה 110% רונדרה
+   ב-100%, וכל הקווים התחתונים יצאו בדיוק ברוחב המילה במקום לחרוג ממנה.
+   זה היה שם מההתחלה ולא נראה, כי חיתוך ל-100% נראה כמו כוונה. */
 .mark {
   position: absolute;
   pointer-events: none;
   overflow: visible;
+  max-inline-size: none;
   z-index: 1;
 }
 
@@ -1149,6 +1154,16 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
   inset-inline-start: -3%;
   inline-size: 106%;
   block-size: 122%;
+}
+
+/* הקפה רחבה סביב המספר הבודד. פירוק שנות הניהול ירד ב-7.11, והמספר
+   עומד לבדו — ההקפה גדלה כדי לשאת את המשקל שהפירוק נשא קודם.
+   זהו שינוי גודל של סימן קיים, לא סימן שביעי: המכסה של 0003 בתוקף. */
+.marked > .mark--ring-wide {
+  inset-block-start: -26%;
+  inset-inline-start: -11%;
+  inline-size: 122%;
+  block-size: 152%;
 }
 
 /* קו תחתון בכתב יד. מידות מפורשות: ל-SVG בעמדה אבסולוטית אין גובה
