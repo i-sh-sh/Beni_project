@@ -1071,8 +1071,11 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
 .footer__bottom {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  /* ממורכז ולא space-between: במסך רחב השניים נדחקו לשני הקצוות
+     ונקראו כשתי שורות נפרדות במקום כשורת סיום אחת. */
+  justify-content: center;
   align-items: center;
+  text-align: center;
   gap: var(--s-2) var(--s-5);
   margin-block-start: var(--s-7);
   padding-block-start: var(--s-4);
