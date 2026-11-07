@@ -848,7 +848,9 @@ code {
   padding-block-start: var(--s-3);
   border-block-start: var(--stroke-1) solid var(--on-night-2);
 }
-.contact__direct-item svg { inline-size: 18px; block-size: 18px; flex: none; }
+.contact__direct-item svg { inline-size: 18px; block-size: 18px; flex: none; color: var(--brand-500); }
+/* אותה דרישה כמו בפוטר: קישור עצמאי צריך 24px גובה לחיצה. */
+.contact__direct-item a { display: inline-flex; align-items: center; min-block-size: 24px; }
 
 .form-card { background: var(--paper); color: var(--ink); padding: var(--s-6); }
 .form-card h3 { font-size: var(--d-sm); }
@@ -1021,26 +1023,70 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
   color: var(--on-night-2);
   padding-block: var(--s-8) var(--s-6);
   font-size: var(--t-sm);
+  /* אזור יצירת הקשר כהה גם הוא, ובלי הקו הזה שני הבלוקים נמסים זה
+     לזה והפוטר מרחף בתוך שטח שחור ללא התחלה. */
+  border-block-start: var(--stroke-1) solid rgba(255, 255, 255, 0.16);
 }
-.footer__grid { display: grid; gap: var(--s-6); }
-.footer h4 { color: var(--on-night); font-size: var(--d-sm); margin-block-end: var(--s-4); }
-.footer__brand-name { font-family: var(--f-display); font-size: var(--d-sm); color: var(--on-night); margin: 0 0 var(--s-2); }
+.footer__grid { display: grid; gap: var(--s-7); }
+
+/* עמודת המותג: הלוגו הרשמי בגרסת הרקע הכהה. */
+.footer__logo { inline-size: clamp(168px, 17vw, 200px); block-size: auto; }
+.footer__tagline { color: var(--on-night); margin: var(--s-4) 0 var(--s-1); }
+.footer__person { margin: 0; }
+
+/* כותרות העמודות היו בגודל התצוגה (עד 25px ב-Rubik-800) וצעקו חזק
+   יותר מהמותג עצמו. בעברית אין רישיות ואסור ריווח אותיות, ולכן
+   ההיררכיה נישאת במשקל ובצבע בלבד. */
+.footer h4 {
+  color: var(--on-night);
+  font-family: var(--f-body);
+  font-weight: 700;
+  font-size: var(--t-sm);
+  letter-spacing: 0;
+  margin: 0 0 var(--s-4);
+}
+
 .footer__list { display: grid; gap: var(--s-2); }
 .footer__list li { display: flex; align-items: center; gap: var(--s-3); }
-.footer__list svg { inline-size: 17px; block-size: 17px; flex: none; }
-.footer a { color: var(--on-night); }
+.footer__list svg { inline-size: 16px; block-size: 16px; flex: none; color: var(--brand-500); }
+
+/* WCAG 2.2 דורש מטרת מגע של 24px לקישור שאינו בתוך משפט. הקישורים
+   כאן עמדו על 19px — גובה שורת הטקסט בלבד. inline-flex עם גובה
+   מינימלי מגדיל את תיבת הלחיצה בלי להזיז את הטקסט. */
+.footer__list a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 24px;
+}
+
+/* הקישורים לא מקווקווים במנוחה: שש שורות מקווקוות זו אחר זו נקראות
+   כרעש. הקו חוזר ב-hover וב-focus, שם הוא מוסר מידע. */
+.footer a {
+  color: var(--on-night);
+  text-decoration: none;
+}
+.footer a:hover,
+.footer a:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
+
 .footer__bottom {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: var(--s-3);
+  align-items: center;
+  gap: var(--s-2) var(--s-5);
   margin-block-start: var(--s-7);
   padding-block-start: var(--s-4);
-  border-block-start: var(--stroke-1) solid var(--on-night-2);
+  /* הקו היה בצבע הטקסט המשני ונקרא כקו הפרדה חזק מדי */
+  border-block-start: var(--stroke-1) solid rgba(255, 255, 255, 0.16);
   font-size: var(--t-xs);
 }
+.footer__legal { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); margin: 0; }
+/* גם כאן קישור עצמאי, ולכן אותה דרישת 24px */
+.footer__legal a { display: inline-flex; align-items: center; min-block-size: 24px; }
 
-@media (min-width: 760px) { .footer__grid { grid-template-columns: 1.3fr 1fr 1fr; gap: var(--s-8); } }
+@media (min-width: 760px) {
+  .footer__grid { grid-template-columns: 1.4fr 1.1fr 0.8fr; gap: var(--s-8); }
+}
 
 /* --------------------------------------------------------------------------
    17. הערות למנהל האתר
