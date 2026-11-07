@@ -131,10 +131,12 @@
 
   /* סקאלת תצוגה. Rubik רחב בהרבה מ-Karantina הקונדנסד, ולכן המקסימום
      ירד בכ-32% — אחרת כל כותרת נשברת לשתי שורות נוספות. */
-  --d-xl: clamp(2.5rem, 5.4vw, 4.75rem);
-  --d-lg: clamp(2rem, 3.9vw, 3.25rem);
-  --d-md: clamp(1.5rem, 2.4vw, 2.1rem);
-  --d-sm: clamp(1.25rem, 1.8vw, 1.6rem);
+  /* הרצפות הונמכו למובייל: 40px לכותרת ראשית ו-32px לכותרת סקשן
+     ב-390px אינם היררכיה אלא צעקה, והם מה שדחף כל כותרת לשלוש שורות. */
+  --d-xl: clamp(2.125rem, 5.4vw, 4.75rem);
+  --d-lg: clamp(1.75rem, 3.9vw, 3.25rem);
+  --d-md: clamp(1.375rem, 2.4vw, 2.1rem);
+  --d-sm: clamp(1.125rem, 1.8vw, 1.6rem);
 
   --t-lg: clamp(1.125rem, 1vw + 0.9rem, 1.3125rem);
   --t-base: 1.0625rem;
@@ -191,7 +193,9 @@ h1, h2, h3, h4 {
   margin: 0;
   font-family: var(--f-display);
   font-weight: 700;
-  line-height: 0.93;
+  /* 0.93 כויל ל-Karantina הקונדנסד. ב-Rubik שתי שורות עברית כמעט
+     נוגעות, וזה קריאוּת ולא טעם. */
+  line-height: 1.02;
   letter-spacing: 0;
   color: var(--ink);
   text-wrap: balance;
@@ -301,7 +305,9 @@ code {
 }
 
 .section {
-  padding-block: clamp(3rem, 7vw, 6rem);
+  /* במובייל הריפוד ירד מ-48px ל-34px: ב-390px רוחב אין גריד נראה
+     שהאוויר משרת, ונשאר רק האוויר. */
+  padding-block: clamp(2.125rem, 7vw, 6rem);
   border-block-start: var(--stroke-1) solid var(--rule);
   scroll-margin-block-start: calc(var(--header-h) + var(--s-4));
 }
@@ -546,8 +552,8 @@ code {
 
 .hero__grid {
   display: grid;
-  gap: var(--s-6);
-  padding-block: var(--s-6) var(--s-7);
+  gap: clamp(var(--s-5), 5vw, var(--s-6));
+  padding-block: clamp(var(--s-5), 5vw, var(--s-6)) clamp(var(--s-6), 6vw, var(--s-7));
 }
 
 .hero__title { margin-block-end: var(--s-5); }
@@ -559,8 +565,25 @@ code {
   margin-block-end: var(--s-6);
 }
 
-.hero__actions { display: flex; gap: var(--s-3); flex-wrap: wrap; }
+.hero__actions { display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center; }
 .hero__actions .btn { flex: 1 1 auto; }
+
+/* במובייל שני כפתורים מלאי־רוחב זה מעל זה אינם היררכיה: שניהם
+   נקראים ראשיים. המשני יורד לקישור, והפעולה הראשית נשארת לבדה. */
+@media (max-width: 599px) {
+  .hero__actions { flex-direction: column; align-items: stretch; gap: var(--s-4); }
+  .hero__actions .btn--secondary {
+    border: 0;
+    background: none;
+    min-height: 0;
+    padding: 0;
+    color: var(--brand-600);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    align-self: center;
+    min-block-size: 24px;
+  }
+}
 
 .offer-note {
   display: flex;
@@ -653,7 +676,7 @@ code {
    8. רשימות שורה — המבנה שמחליף את הכרטיסים
    -------------------------------------------------------------------------- */
 
-.rows { margin-block-start: var(--s-7); }
+.rows { margin-block-start: clamp(var(--s-5), 5vw, var(--s-7)); }
 
 .row {
   display: grid;
@@ -945,7 +968,9 @@ textarea.field__control { min-height: 120px; resize: vertical; }
   padding: var(--s-3) var(--s-4);
   padding-block-end: calc(var(--s-3) + env(safe-area-inset-bottom, 0px));
   background: var(--night);
-  border-block-start: var(--stroke-3) solid var(--brand-500);
+  /* היה קו כחול בהיר של 3px. מעל כפתור ירוק רווי על רקע כהה זה שלושה
+     צבעים חזקים ב-75px, והסרגל צעק יותר מכל דבר אחר במסך. */
+  border-block-start: var(--stroke-1) solid rgba(255, 255, 255, 0.16);
   transition: translate var(--dur-slow) var(--ease);
 }
 .action-bar.is-stowed { translate: 0 100%; pointer-events: none; }
@@ -1222,9 +1247,12 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
 .mark-anchor { position: relative; display: block; inline-size: fit-content; }
 .mark-anchor > .mark--headline {
   inset-block-start: -11%;
-  inset-inline-start: -3%;
-  inline-size: 106%;
+  inset-inline-start: -2%;
+  inline-size: 104%;
   block-size: 122%;
+}
+@media (min-width: 600px) {
+  .mark-anchor > .mark--headline { inset-inline-start: -3%; inline-size: 106%; }
 }
 
 /* הקפה רחבה סביב המספר הבודד. פירוק שנות הניהול ירד ב-7.11, והמספר

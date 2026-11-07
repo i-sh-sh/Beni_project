@@ -380,11 +380,37 @@
       else actionBar.removeAttribute("inert");
     };
 
+    /* הסרגל מופיע רק כשאין על המסך דרך אחרת ליצור קשר.
+       קודם הוא ישב על 9% מהמסך לאורך כל הגלילה, כולל בהירו שבו
+       כפתור הפעולה נמצא ממש מעליו — שם הוא לא עזר, הוא רק כיסה.
+
+       שני תנאים, ושניהם חייבים להתקיים:
+       1. כפתורי ההירו יצאו מהמסך.
+       2. אזור יצירת הקשר עדיין לא נכנס למסך.
+
+       בלי IntersectionObserver הסרגל פשוט גלוי: עדיף סרגל מיותר
+       מאשר אתר בלי דרך מהירה ליצור קשר. */
+    var heroActions = $(".hero__actions");
     var contactSection = $("#contact");
-    if (contactSection && "IntersectionObserver" in window) {
-      new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) { stowBar(entry.isIntersecting); });
-      }, { rootMargin: "0px 0px -25% 0px" }).observe(contactSection);
+    var pastHero = !heroActions;
+    var atContact = false;
+    var sync = function () { stowBar(!pastHero || atContact); };
+
+    if ("IntersectionObserver" in window) {
+      stowBar(true);
+      if (heroActions) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { pastHero = !e.isIntersecting; });
+          sync();
+        }, { rootMargin: "0px 0px -40px 0px" }).observe(heroActions);
+      }
+      if (contactSection) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { atContact = e.isIntersecting; });
+          sync();
+        }, { rootMargin: "0px 0px -25% 0px" }).observe(contactSection);
+      }
+      sync();
     }
   }
 
