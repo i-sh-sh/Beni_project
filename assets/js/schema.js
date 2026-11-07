@@ -37,9 +37,12 @@
      היה מחזיר את כפתור ההתקשרות לתוצאות החיפוש של גוגל. */
   if (CFG.email) data.email = CFG.email;
 
+  /* City לערים, Country למדינה. "ישראל" מסומן City הוא נתון שגוי
+     שגוגל קורא, ולכן הסוג נגזר מהשם ולא מונח קבוע. */
   if (Array.isArray(CFG.serviceAreaList) && CFG.serviceAreaList.length) {
     data.areaServed = CFG.serviceAreaList.map(function (area) {
-      return { "@type": "City", "name": area };
+      var isCountry = area === "ישראל" || area === "Israel";
+      return { "@type": isCountry ? "Country" : "City", "name": area };
     });
   } else if (CFG.serviceAreas) {
     data.areaServed = CFG.serviceAreas;
