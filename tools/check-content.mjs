@@ -85,9 +85,20 @@ console.log("\nמונים ללא JavaScript");
 console.log("\nשמות");
 {
   const html = read("index.html");
-  if (!html.includes(`<span class="brand__name">${FACTS.שם_המותג}</span>`))
-    fail(`הכותרת העליונה אינה מציגה "${FACTS.שם_המותג}"`);
-  else console.log(`  ✓ הכותרת: ${FACTS.שם_המותג}`);
+  /* הכותרת נושאת את הלוגו הרשמי ולא טקסט: הלטינית חיה בתוך הסימן.
+     השם העברי חייב להופיע ב-title וב-OG, שם הוא הקול של המותג. */
+  if (!html.includes('class="brand__logo"'))
+    fail("הכותרת העליונה אינה נושאת את הלוגו");
+  else console.log("  ✓ הכותרת: הלוגו הרשמי");
+
+  for (const [where, re] of [
+    ["<title>", /<title>([^<]*)<\/title>/],
+    ["og:site_name", /og:site_name" content="([^"]*)"/],
+  ]) {
+    const m = html.match(re);
+    if (!m || !m[1].includes(FACTS.שם_המותג)) fail(`${where} אינו מכיל "${FACTS.שם_המותג}"`);
+    else console.log(`  ✓ ${where}: ${FACTS.שם_המותג}`);
+  }
 
   const n = (html.match(new RegExp(FACTS.שם_היועץ, "g")) || []).length;
   if (n < 3) fail(`"${FACTS.שם_היועץ}" מופיע ${n}× בלבד — הוא אמור לשרוד באודות, בגישה ובחתימה`);
@@ -114,6 +125,23 @@ console.log("\nדומיין");
   const wrong = files.filter((f) => read(f).includes("http") && !read(f).includes(FACTS.דומיין));
   if (wrong.length) fail(`חסר ${FACTS.דומיין} ב: ${wrong.join(", ")}`);
   else console.log(`  ✓ ${FACTS.דומיין}`);
+}
+
+/* 7. נכסי חבילת המיתוג קיימים ולא הוחלפו בשחזור ידני */
+console.log("\nנכסי המותג");
+{
+  const need = ["assets/brand/logo.svg", "assets/brand/icon.svg",
+                "assets/brand/favicon.svg", "assets/brand/apple-touch-icon.png",
+                "favicon.ico"];
+  let ok = 0;
+  for (const f of need) {
+    try { readFileSync(join(root, f)); ok++; }
+    catch { fail(`חסר ${f}`); }
+  }
+  if (ok === need.length) console.log(`  ✓ ${ok} נכסים`);
+  const css = readFileSync(join(root, "assets/css/style.css"), "utf8");
+  if (!/--brand-500:\s*#0088ff/i.test(css)) fail("--brand-500 אינו הכחול הרשמי #0088FF");
+  else console.log("  ✓ #0088FF");
 }
 
 console.log("");

@@ -34,7 +34,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.pop-style.design/assets/img/og-image.jpg">
 
-<meta name="theme-color" content="#0082fc">
+<meta name="theme-color" content="#0088ff">
 
 <!-- גופנים מאוחסנים מקומית. Karantina נושאת את הכותרות ומוגדרת
      font-display:block, כדי שלא יהיה הבהוב של גופן חלופי בכותרת הראשית. -->
@@ -45,11 +45,9 @@
 <!-- אייקון הטאב. SVG הוא הראשי — הוא חד בכל רזולוציה; שאר הקבצים הם
      נפילות: ico לדפדפנים ישנים ולסימניות, PNG לדפדפנים שאינם קוראים
      SVG, apple-touch ל-iOS, וה-manifest לאנדרואיד. -->
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="assets/img/favicon-16.png" sizes="16x16" type="image/png">
-<link rel="icon" href="favicon.ico" sizes="48x48">
-<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" sizes="180x180">
 <link rel="manifest" href="site.webmanifest">
 
 <!-- מסמן שהדפדפן מריץ JavaScript. אפקט החשיפה בגלילה מופעל רק במצב זה,
@@ -155,9 +153,14 @@
   <div class="container header__inner">
 
     <a class="brand" href="#top" aria-label="פופ סטייל, תכנון ואופטימיזציה לנקודות מכירה, חזרה לראש העמוד">
-      <img class="brand__mark" src="assets/img/favicon.svg" alt=""
-           width="100" height="100" decoding="async">
-      <span class="brand__name">פופ סטייל</span>
+      <!-- חבילת המיתוג ממליצה על הסמל בלבד מתחת לרוחב לוגו של כ-180px.
+           picture מחליף את הקובץ עצמו, כך שרק אחד מהם נטען. הגובה הוא
+           שקובע את המידה, ולכן אותו כלל משרת שני יחסי צדדים שונים. -->
+      <picture>
+        <source media="(min-width: 700px)" srcset="assets/brand/logo.svg">
+        <img class="brand__logo" src="assets/brand/icon.svg" alt="pop-style. design"
+             width="384" height="384" decoding="async">
+      </picture>
     </a>
 
     <nav class="nav" aria-label="ניווט ראשי">
@@ -218,8 +221,8 @@
   <div class="hero__field">
     <div class="container hero__field-inner">
 
-      <img class="hero__mark" src="assets/img/logo-mark.svg" alt=""
-           width="128" height="128" loading="eager" decoding="async">
+      <img class="hero__mark" src="assets/brand/icon.svg" alt=""
+           width="384" height="384" loading="eager" decoding="async">
 
       <div class="hero__field-text">
       <p class="tag tag--chip">תכנון מסחרי לנקודות מכירה</p>
