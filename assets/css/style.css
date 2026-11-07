@@ -394,14 +394,29 @@ code {
   min-height: var(--header-h);
 }
 
-.brand { display: flex; align-items: baseline; gap: var(--s-2); text-decoration: none; }
+/* הלוקאפ בכותרת: הסימן ואחריו שם המותג בעברית.
+   זה אינו לוק-אפ דו־לשוני שאסרה 0005 — לסימן אין אותיות, והלטינית
+   נשארת בתוך הלוגו ובדומיין בלבד.
+   align-items: center ולא baseline, כי לתמונה אין קו בסיס טיפוגרפי
+   והיא הייתה נתלית על התחתית של האות. */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  text-decoration: none;
+}
+.brand__mark {
+  inline-size: clamp(34px, 3.4vw, 44px);
+  block-size: auto;
+  flex: none;
+  border-radius: 22%;   /* תואם את האריח ב-SVG, כדי שקצה הפיקסל לא ייראה חד */
+}
 .brand__name {
   font-family: var(--f-display);
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-size: clamp(1.5rem, 2.7vw, 2rem);
   line-height: 1;
   color: var(--ink);
 }
-.brand__dot { color: var(--brand-500); font-family: var(--f-display); font-size: 1.75rem; line-height: 1; }
 
 .nav { margin-inline-start: auto; }
 .nav__list { display: none; gap: var(--s-6); }
