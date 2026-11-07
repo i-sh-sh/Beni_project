@@ -91,6 +91,14 @@ console.log("\nשמות");
     fail("הכותרת העליונה אינה נושאת את הלוגו");
   else console.log("  ✓ הכותרת: הלוגו הרשמי");
 
+  /* ה-manifest נשכח במעבר השם ונשא את "בני לפקוביץ" עוד יום. */
+  const mf = read("site.webmanifest");
+  for (const key of ["name", "short_name"]) {
+    const m = mf.match(new RegExp(`"${key}":\\s*"([^"]*)"`));
+    if (!m || !m[1].includes(FACTS.שם_המותג)) fail(`site.webmanifest ${key} אינו "${FACTS.שם_המותג}"`);
+    else console.log(`  ✓ manifest ${key}: ${FACTS.שם_המותג}`);
+  }
+
   for (const [where, re] of [
     ["<title>", /<title>([^<]*)<\/title>/],
     ["og:site_name", /og:site_name" content="([^"]*)"/],
