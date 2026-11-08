@@ -10,3 +10,13 @@ Thumbs.db
 # קבצים זמניים
 *.log
 node_modules/
+
+# impeccable — הבינארי של המנוע
+# 22MB, מהודר לפלטפורמה אחת (linux-x64), ונטען מחדש בכל התקנה.
+# הריפו כולו שוקל 3MB ארוזים; הכנסתו הייתה מכפילה אותו פי שמונה
+# ומכניסה קובץ שלא ירוץ על Mac או Windows.
+# להתקנה מחדש:  npx impeccable install
+.claude/skills/impeccable/scripts/bin/
+
+# הגדרות מקומיות למכונה, כולל נתיבים אבסולוטיים ל-hooks
+.claude/settings.local.json
