@@ -255,13 +255,16 @@ a { color: var(--blue-deep); text-underline-offset: 3px; }
   font-size: clamp(2rem, 7.5vw, 3.1rem);
   letter-spacing: -.01em;
   margin-block: var(--s4) var(--s4);
+  /* 1.02 לא השאיר לבלוק ההיפוך מקום לנשום: נמדדו 2.5px בלבד בין
+     האותיות לקצה המשטח הכהה, והיורדות בעברית (ך, ן, ץ, ק) נגעו בו. */
+  line-height: 1.14;
 }
 .title em {
   font-style: normal;
   /* הדגשה שהיא פעולת הדפסה: היפוך, כמו שורה מודגשת בדוח. */
   background: var(--ink);
   color: var(--paper);
-  padding: 0 .18em;
+  padding: .06em .26em;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
@@ -351,7 +354,8 @@ a { color: var(--blue-deep); text-underline-offset: 3px; }
 .item__list li {
   position: relative;
   padding-inline-start: 1.4em;
-  padding-block: .42em;
+  /* .42em נתן 6.3px בלבד בין הטקסט לקו המפריד. 8px הוא הרצפה. */
+  padding-block: .56em;
   border-block-start: 1px dotted var(--rule);
   font-size: .9375rem;
   color: var(--ink-2);
