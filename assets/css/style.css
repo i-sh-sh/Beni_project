@@ -159,6 +159,7 @@
 
   /* תנועה */
   --ease: cubic-bezier(0.2, 0, 0.15, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --dur: 200ms;
   --dur-slow: 420ms;
 }
@@ -168,6 +169,26 @@
    -------------------------------------------------------------------------- */
 
 *, *::before, *::after { box-sizing: border-box; }
+
+/* --- משטחי הדפדפן ---------------------------------------------------
+   החלקים שלא ציירנו נושאים גם הם את העיצוב: סימון טקסט, הסמן בשדות,
+   פס הגלילה וקו הקישור מגיעים עם ברירות מחדל שאינן שייכות לשום
+   מערכת. לפי ה-craft floor זה הסימן הזול ביותר לכך שעמוד נבנה ולא
+   הורכב, והוא גם זה שנשכח הכי הרבה. */
+::selection { background: var(--brand-100); color: var(--ink); }
+.section--dark ::selection,
+.footer ::selection,
+.hero__field ::selection { background: var(--paper); color: var(--brand-700); }
+
+:root {
+  scrollbar-color: var(--brand-600) var(--paper-2);
+  scrollbar-width: thin;
+  accent-color: var(--brand-600);
+}
+
+input, textarea, select { caret-color: var(--brand-600); }
+
+a { text-underline-offset: 3px; text-decoration-thickness: from-font; }
 
 [hidden] { display: none !important; }
 
@@ -741,7 +762,6 @@ code {
 .service:last-of-type { border-block-end: var(--stroke-1) solid var(--rule); }
 
 .service__head { display: grid; gap: var(--s-3); }
-.service__n { font-family: var(--f-body); font-size: var(--t-xs); font-weight: 700; color: var(--ink-3); unicode-bidi: isolate; margin: 0; }
 .service__title { font-size: var(--d-md); }
 .service__for { color: var(--ink-2); font-size: var(--t-sm); max-width: 40ch; margin: 0; }
 
@@ -854,7 +874,7 @@ code {
 .faq__sign::after { rotate: 90deg; transition: rotate var(--dur) var(--ease); }
 .faq__item[open] .faq__sign::after { rotate: 0deg; }
 
-.faq__a { padding-block-end: var(--s-5); color: var(--ink-2); max-width: 60ch; }
+.faq__a { padding-block-end: var(--s-5); color: var(--ink-2); max-width: 68ch; }
 
 /* --------------------------------------------------------------------------
    13. טופס
@@ -1159,7 +1179,7 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
    18. עמוד תוכן פנימי
    -------------------------------------------------------------------------- */
 
-.prose { max-width: 62ch; }
+.prose { max-width: 68ch; }
 .prose h2 { font-size: var(--d-md); margin-block: var(--s-7) var(--s-3); }
 .prose ul { display: grid; gap: var(--s-2); margin-block-end: var(--s-4); }
 .prose ul li { padding-inline-start: var(--s-5); position: relative; color: var(--ink-2); }
@@ -1345,12 +1365,22 @@ body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
    ותחת תנועה מופחתת לא מוסתר דבר.
    -------------------------------------------------------------------------- */
 
+/* ה-craft floor של impeccable: "רגע אחד מחובר, לא אותה כניסה בדיוק
+   בכל סקשן", ו"האטה מעריכית ממצב שכבר נראה".
+   קודם היו 36 כניסות זהות שהתחילו ב-opacity:0 — כלומר תוכן מוסתר
+   שתלוי ב-JavaScript כדי להופיע. עכשיו 15, והן מתחילות מהנראה:
+   הטקסט קריא עוד לפני שהאנימציה רצה. הרגעים המחוברים של העמוד הם
+   הכותרת הקינטית, ציור העיפרון וספירת המספרים — לא הכניסה הזו. */
 .js .reveal {
-  opacity: 0;
-  translate: 0 12px;
-  transition: opacity var(--dur-slow) var(--ease), translate var(--dur-slow) var(--ease);
+  opacity: 0.6;
+  translate: 0 14px;
+  filter: blur(5px);
+  transition:
+    opacity 520ms var(--ease-out-expo),
+    translate 720ms var(--ease-out-expo),
+    filter 620ms var(--ease-out-expo);
 }
-.js .reveal.is-visible { opacity: 1; translate: none; }
+.js .reveal.is-visible { opacity: 1; translate: none; filter: none; }
 
 /* הכותרת הראשית עולה מתוך מסכה, מילה שלמה בכל פעם.
    אין חלוקה לאותיות: היא שוברת צורות סופיות ומנתקת אותיות שימוש. */
