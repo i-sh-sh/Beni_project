@@ -13,8 +13,12 @@
  */
 import { chromium } from 'playwright-core';
 const B = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
-const URL = 'http://localhost:8765/';
-const PAGES = ['index.html', 'privacy.html', '404.html'];
+/* ברירת המחדל היא האתר החי. אפשר להעביר עמודים בשורת הפקודה כדי
+   לסרוק גם תצוגה מקדימה:  node tools/audit.mjs preview/index.html   */
+const URL = process.env.AUDIT_URL || 'http://localhost:8765/';
+const ARGS = process.argv.slice(2).filter(a => !a.startsWith('-'));
+const PAGES = ARGS.length ? ARGS : ['index.html', 'privacy.html', '404.html'];
+const HOME = PAGES[0];
 const WIDTHS = [320, 360, 390, 430, 540, 700, 768, 900, 1024, 1280, 1440, 1920];
 const CFG = { phoneDisplay:'052-857-9957', whatsappNumber:'972528579957',
   email:'benilefkovich@gmail.com', serviceAreas:'כל הארץ' };
@@ -167,7 +171,7 @@ for (const [label, act] of [
     p.on('pageerror', e => errs.push('שגיאת JS: ' + e.message));
     await p.addInitScript(cf => { Object.defineProperty(window, 'SITE_CONFIG', {
       configurable: true, set(v) { Object.assign(v, cf); this._c = v; }, get() { return this._c; } }); }, CFG);
-    await p.goto(URL + 'index.html', { waitUntil: 'networkidle' });
+    await p.goto(URL + HOME, { waitUntil: 'networkidle' });
     const HH = await p.evaluate(() => document.body.scrollHeight);
     for (let y = 0; y < HH; y += 500) { await p.evaluate(v => scrollTo(0, v), y); await p.waitForTimeout(50); }
     await p.evaluate(() => scrollTo(0, 0));
@@ -186,7 +190,7 @@ for (const [label, act] of [
 for (const [label, opts] of [['ללא JS', { javaScriptEnabled: false }], ['תנועה מופחתת', { reducedMotion: 'reduce' }]]) {
   const c = await b.newContext({ viewport: { width: 390, height: 844 }, ...opts });
   const p = await c.newPage();
-  await p.goto(URL + 'index.html', { waitUntil: 'networkidle' });
+  await p.goto(URL + HOME, { waitUntil: 'networkidle' });
   await p.waitForTimeout(600);
   push(label, await p.evaluate(probe));
   const hidden = await p.evaluate(() =>
