@@ -36,7 +36,7 @@
 
 <meta name="theme-color" content="#0088ff">
 
-<!-- גופנים מאוחסנים מקומית. Karantina נושאת את הכותרות ומוגדרת
+<!-- גופנים מאוחסנים מקומית. Rubik נושאת את הכותרות ומוגדרת
      font-display:block, כדי שלא יהיה הבהוב של גופן חלופי בכותרת הראשית. -->
 <link rel="preload" href="assets/fonts/rubik-800-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/assistant-hebrew.woff2" as="font" type="font/woff2" crossorigin>
@@ -113,19 +113,13 @@
 
 <body>
 
-<a class="skip-link" href="#main">דילוג לתוכן המרכזי</a>
+<a class="skip" href="#main">דילוג לתוכן המרכזי</a>
 
 <!-- ==========================================================================
      ספריית אייקונים (SVG inline — ללא תלות חיצונית, ללא אמוג'י)
      ========================================================================== -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
-    <!-- רעד העיפרון: רעש פרקטלי שמזיז את הקו מעט מהמסלול הגיאומטרי שלו.
-         סטטי לחלוטין — רק היקף הקו מונפש, כך שהסינון מרוסטר פעם אחת. -->
-    <filter id="pencil-rough" x="-25%" y="-25%" width="150%" height="150%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
     <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M10.3 3.9 2.4 17.4A1.9 1.9 0 0 0 4 20.3h16a1.9 1.9 0 0 0 1.6-2.9L13.7 3.9a1.9 1.9 0 0 0-3.4 0Z"/>
       <path d="M12 9v4.5M12 17h.01"/>
@@ -147,295 +141,223 @@
 </svg>
 
 <!-- ==========================================================================
-     כותרת עליונה
+     העמוד הוא רצועת נייר אחת על קרקע כחולה — החלטה 0009.
+     אין כותרת דביקה ואין תפריט נפתח: הניווט הוא תוכן העניינים של
+     המסמך, והקריאה לפעולה שנשארת על המסך היא הספח שבתחתיתו.
      ========================================================================== -->
-<header class="header" id="site-header">
-  <div class="container header__inner">
+<div class="wrap">
+  <main class="tape" id="main">
+    <div class="tape__body" id="top">
 
-    <a class="brand" href="#top" aria-label="פופ סטייל, תכנון ואופטימיזציה לנקודות מכירה, חזרה לראש העמוד">
-      <!-- חבילת המיתוג ממליצה על הסמל בלבד מתחת לרוחב לוגו של כ-180px.
-           picture מחליף את הקובץ עצמו, כך שרק אחד מהם נטען. הגובה הוא
-           שקובע את המידה, ולכן אותו כלל משרת שני יחסי צדדים שונים. -->
-      <picture>
-        <source media="(min-width: 700px)" srcset="assets/brand/logo.svg">
-        <img class="brand__logo" src="assets/brand/icon.svg" alt="pop-style. design"
-             width="384" height="384" decoding="async">
-      </picture>
-    </a>
+      <!-- ראש המסמך -->
+      <header class="doc-head reveal">
+        <img class="doc-head__logo" src="assets/brand/logo.svg" alt="pop-style. design"
+             width="300" height="109" decoding="async">
+        <p class="doc-head__meta">
+          <span>תכנון נקודות מכירה</span>
+          <span><b>יועץ:</b> בני לפקוביץ</span>
+          <span><b>אזור:</b> <span data-contact="areas"><span class="placeholder-text">[אזורי פעילות]</span></span></span>
+        </p>
+      </header>
 
-    <nav class="nav" aria-label="ניווט ראשי">
-      <ul class="nav__list">
-        <li><a class="nav__link" href="#services">שירותים</a></li>
-        <li><a class="nav__link" href="#process">תהליך העבודה</a></li>
-        <li><a class="nav__link" href="#about">אודות</a></li>
-        <li hidden><a class="nav__link" href="#testimonials">המלצות</a></li>
-        <li><a class="nav__link" href="#faq">שאלות נפוצות</a></li>
-      </ul>
-    </nav>
-
-    <a class="btn btn--secondary btn--sm header__cta" href="#contact" data-wa-link>יצירת קשר</a>
-
-    <button class="nav-toggle" type="button" id="nav-toggle"
-            aria-expanded="false" aria-controls="mobile-nav" aria-label="פתיחת תפריט הניווט">
-      <span class="nav-toggle__bars" aria-hidden="true"></span>
-    </button>
-
-  </div>
-
-  <!-- פריטי התפריט נבנים מתוך תפריט השולחן שלמעלה, כדי שרשימת הניווט
-       תוגדר במקום אחד בלבד. התפריט הנפתח דורש JavaScript ממילא. -->
-  <div class="mobile-nav container" id="mobile-nav" hidden>
-    <ul class="mobile-nav__list" id="mobile-nav-list"></ul>
-    <a class="btn btn--primary btn--block mobile-nav__cta" href="#contact" data-wa-link>לתיאום ייעוץ</a>
-  </div>
-</header>
-
-<main id="main">
-
-<!-- התראה למנהל האתר: הדומיין בתגיות השיתוף עדיין לא הוחלף. -->
-<div class="container" style="padding-block-start:1rem">
-  <div class="admin-notice" id="domain-notice" data-admin-notice hidden>
-    <svg aria-hidden="true"><use href="#i-alert"></use></svg>
-    <p>
-      <strong>הודעה למנהל האתר:</strong>
-      כתובת האתר עדיין מוגדרת כ־<code>https://www.pop-style.design</code>.
-      כל עוד היא לא הוחלפה, שיתוף של האתר בוואטסאפ או בפייסבוק יוצג ללא תמונה,
-      ומנועי החיפוש יקבלו כתובת <code>canonical</code> שגויה.
-      יש לעדכן את הכתובת ב־<code>index.html</code>, ב־<code>sitemap.xml</code>
-      וב־<code>assets/js/site.config.js</code>.
-    </p>
-  </div>
-</div>
-
-<!-- ==========================================================================
-     1. הירו
-     ========================================================================== -->
-<section class="section hero" id="top">
-
-  <!-- ====================================================================
-       השדה הכחול. זהו הבית היחיד שבו כחול המותג המדויק הוא קרקע, והוא
-       נושא אך ורק טקסט תצוגה: #0082FC מול לבן הוא 3.75:1 — עובר את סף
-       ה-3:1 לטקסט גדול ונכשל ב-4.5:1 הנדרש לטקסט רגיל. כל טקסט רץ יושב
-       על לבן, מתחת לשדה.
-       ==================================================================== -->
-  <div class="hero__field">
-    <div class="container hero__field-inner">
-
-      <img class="hero__mark" src="assets/brand/icon.svg" alt=""
-           width="384" height="384" loading="eager" decoding="async">
-
-      <div class="hero__field-text">
-      <p class="tag tag--chip">תכנון מסחרי לנקודות מכירה</p>
-
-      <!-- כותרת קינטית. המילים עולות מתוך מסכה, מילה שלמה בכל פעם.
-           אין חלוקה לאותיות: היא הייתה שוברת צורות סופיות ומנתקת
-           אותיות שימוש מהמילה שלהן. ללא JavaScript הכותרת מוצגת כרגיל. -->
-      <h1 class="hero__title kinetic">
-        <span class="kinetic__line">מתכננים את החנות נכון.</span>
-        <!-- .mark-anchor יושב מחוץ ל-overflow:hidden של השורה, ונמדד
-             מהרוחב המרונדר בפועל. אפס ch, אפס קבועים — הסימון שורד
-             החלפת גופן תצוגה. -->
-        <span class="mark-anchor">
-          <span class="kinetic__line">מוכרים יותר.</span>
-          <svg class="mark mark--headline" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true" data-delay="950">
-            <path d="M292 44 C292 20 232 8 150 8 C68 8 8 20 8 44 C8 68 68 82 150 82 C236 82 294 68 290 40"/>
-          </svg>
-        </span>
-      </h1>
+      <!-- התראה למנהל האתר: הדומיין בתגיות השיתוף עדיין לא הוחלף. -->
+      <div class="admin-notice" id="domain-notice" data-admin-notice hidden>
+        <svg aria-hidden="true"><use href="#i-alert"></use></svg>
+        <p>
+          <strong>הודעה למנהל האתר:</strong>
+          כתובת האתר עדיין מוגדרת כ־<code>https://www.pop-style.design</code>.
+          כל עוד היא לא הוחלפה, שיתוף של האתר בוואטסאפ או בפייסבוק יוצג ללא תמונה,
+          ומנועי החיפוש יקבלו כתובת <code>canonical</code> שגויה.
+          יש לעדכן את הכתובת ב־<code>index.html</code>, ב־<code>sitemap.xml</code>
+          וב־<code>assets/js/site.config.js</code>.
+        </p>
       </div>
 
-    </div>
-  </div>
+      <hr class="rule-double">
 
-  <div class="container">
-    <div class="hero__grid">
+      <h1 class="title reveal">מתכננים את החנות נכון.<br><em>מוכרים יותר.</em></h1>
 
-      <div class="hero__content">
+      <p class="sub reveal">
+        תכנון ואופטימיזציה של נקודות מכירה על בסיס 25 שנות ניסיון בקמעונאות,
+        סידור חנויות והבנת התנהגות הלקוחות.
+      </p>
 
-        <p class="hero__sub">
-          תכנון ואופטימיזציה של נקודות מכירה על בסיס 25 שנות ניסיון בקמעונאות,
-          סידור חנויות והבנת התנהגות הלקוחות.
-        </p>
-
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="#contact" data-wa-link>
-            <svg class="btn__icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
-            לתיאום פגישת ייעוץ
-          </a>
-          <a class="btn btn--secondary" href="#services">השירותים שלי</a>
-        </div>
-
-        <!-- סימון יד שמצביע על הפעולה הראשית. דקורטיבי בלבד:
-             הכפתור עצמו נגיש וברור גם בלעדיו. -->
-        <p class="hero__scribble scribble" aria-hidden="true">
-          <svg class="mark mark--arrow" viewBox="0 0 150 76" aria-hidden="true">
-            <path d="M8 70 C40 66 98 52 130 16"/>
-            <path d="M108 12 L134 10 L132 36"/>
-          </svg>
-          הכי מהר בוואטסאפ
-        </p>
-
-        <!-- הצעת הפתיחה. מוצגת רק אם מולא introOfferText ב-site.config.js. -->
-        <p class="offer-note" data-offer="intro" hidden></p>
-
+      <div class="acts hero__actions reveal">
+        <a class="act" href="#contact" data-wa-link>
+          <svg aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+          לתיאום פגישת ייעוץ
+        </a>
+        <a class="act act--ghost" href="#services">השירותים שלי</a>
       </div>
 
-      <div class="hero__divider" aria-hidden="true"></div>
+      <!-- הצעת הפתיחה. מוצגת רק אם מולא introOfferText ב-site.config.js. -->
+      <p class="offer-note" data-offer="intro" hidden></p>
 
-      <figure class="hero__visual shot">
+      <hr class="rule-single">
+
+      <!-- ====================================================================
+           תוכן העניינים — זהו הניווט של העמוד.
+           ברצועה אחת רציפה אין מקום לסרגל ניווט דביק, והמכשיר הנכון הוא
+           זה שהמסמך כבר משתמש בו: שורת תווית · מוביל · מספר. הספרות
+           נספרות ב-CSS ולא נכתבות ביד, כך שאזור שמוסתר אינו יוצר חור
+           ברצף — גם בלי JavaScript.
+           ==================================================================== -->
+      <nav class="toc reveal" aria-label="ניווט ראשי">
+        <p class="toc__t">תוכן המסמך</p>
+        <ul class="toc__list">
+          <li><a class="nav__link" href="#problem">האתגר</a></li>
+          <li><a class="nav__link" href="#solution">הגישה</a></li>
+          <li><a class="nav__link" href="#services">שירותים</a></li>
+          <li><a class="nav__link" href="#process">תהליך העבודה</a></li>
+          <li><a class="nav__link" href="#about">אודות</a></li>
+          <li hidden><a class="nav__link" href="#testimonials">המלצות</a></li>
+          <li><a class="nav__link" href="#creed">אני מאמין</a></li>
+          <li><a class="nav__link" href="#faq">שאלות נפוצות</a></li>
+          <li><a class="nav__link" href="#contact">יצירת קשר</a></li>
+        </ul>
+      </nav>
+
+      <hr class="rule-single">
+
+      <!-- סיכום הניסיון, כשורת TOTAL של דוח.
+           פירוק שנות הניהול ירד ב-7.11.2026 לבקשת הלקוח. -->
+      <div class="total reveal">
+        <span class="total__label">ניסיון מצטבר בקמעונאות</span>
+        <span class="total__fig"><span class="count" data-count-to="25">25</span><span class="total__unit"> שנה</span></span>
+      </div>
+      <div class="line reveal">
+        <span>מתוכן בייעוץ לנקודות מכירה</span>
+        <span class="line__lead"></span>
+        <span class="line__val">7 שנים</span>
+      </div>
+      <div class="line reveal">
+        <span>סוגי נקודות מכירה</span>
+        <span class="line__lead"></span>
+        <span class="line__val">סופרמרקט · מינימרקט · קיוסק · רשת</span>
+      </div>
+
+      <figure class="shot reveal">
         <img src="assets/img/store-produce.jpg" width="1600" height="1059"
              loading="eager" fetchpriority="high" decoding="async"
              alt="מבט מלמעלה על מחלקת הירקות והפירות בחנות מזון, עם משטחי תצוגה מסודרים בשורות מקבילות">
-        <figcaption>
-          <span class="tag">מחלקת ירקות ופירות · מבט על</span>
-          <span class="mono">01</span>
+        <svg class="shot__marks" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M14 8 H4 V26 M286 8 H296 V26 M14 192 H4 V174 M286 192 H296 V174"/>
+          <rect x="34" y="52" width="104" height="96"/>
+        </svg>
+        <figcaption class="shot__cap">
+          <span>מחלקת ירקות ופירות · מבט על</span>
+          <span>מסגרת 01</span>
         </figcaption>
       </figure>
 
-    </div>
-
-    <!-- פירוק שנות הניהול ירד ב-7.11.2026 לבקשת הלקוח. המספר עומד לבדו,
-         ולכן ההקפה סביבו גדלה: היא הראיה היחידה שנשארה לו. -->
-    <div class="timeline">
-      <p class="timeline__total"><span class="marked"><span class="count" data-count-to="25">25</span> שנה<svg class="mark mark--ring-wide" viewBox="0 0 240 110" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M232 52 C232 22 182 7 118 7 C54 7 7 23 7 53 C7 83 56 100 120 100 C188 100 236 82 230 46"/>
-      </svg></span><span class="timeline__label">בקמעונאות · שבע האחרונות בייעוץ</span></p>
-    </div>
-
-  </div>
-</section>
-
-<!-- ==========================================================================
-     2. האתגר
-     ========================================================================== -->
-<section class="section" id="problem">
-  <div class="container">
-    <div class="section-head reveal">
-      <h2>גם חנות טובה יכולה להפסיד מכירות בגלל תכנון לא נכון</h2>
-      <p class="lead">
-        לקוחות עשויים להיכנס לחנות, אך לא להגיע למוצרים הנכונים, לפספס מבצעים או לעזוב לפני שסיימו את הקנייה.
-        עומס במעברים, מדפים שאינם מנוצלים נכון, מחלקות שממוקמות במקום לא מתאים ונראות חלשה של מוצרים
-        יכולים להשפיע ישירות על הפדיון.
-      </p>
-    </div>
-
-    <ul class="rows">
-      <li class="row">
-        <p class="row__n">01</p>
-        <h3 class="row__title">שטחים שאינם מנוצלים</h3>
-        <p class="row__text">אזורים בחנות שאינם מייצרים מכירות, פינות מתות ומדפים שאינם עובדים בהתאם לפוטנציאל שלהם.</p>
-      </li>
-      <li class="row">
-        <p class="row__n">02</p>
-        <h3 class="row__title">זרימת לקוחות לא יעילה</h3>
-        <p class="row__text">מסלול תנועה שאינו מוביל את הלקוח דרך המחלקות המרכזיות, ויוצר עומס במעברים ובקופות.</p>
-      </li>
-      <li class="row">
-        <p class="row__n">03</p>
-        <h3 class="row__title">מוצרים רווחיים ללא חשיפה</h3>
-        <p class="row__text">מוצרים בעלי תרומה גבוהה שממוקמים בגובה, במיקום או בסביבה שאינם מקבלים מספיק תשומת לב.</p>
-      </li>
-      <li class="row">
-        <p class="row__n">04</p>
-        <h3 class="row__title">נראות מסחרית חלשה</h3>
-        <p class="row__text">עומס, חוסר סדר ותצוגה לא ברורה שמקשים על הלקוח להתמצא ולזהות את המבצעים.</p>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<!-- ==========================================================================
-     3. הגישה
-     ========================================================================== -->
-<section class="section section--tint" id="solution">
-  <div class="container">
-    <div class="section-head reveal">
-      <h2>מחברים בין תכנון החנות לבין החשיבה המסחרית</h2>
-      <p class="lead">
-        בני לפקוביץ מביא 25 שנות ניסיון בעולם הקמעונאות, מתוכן שבע האחרונות בייעוץ לנקודות מכירה.
-        השירות אינו מתמקד רק במראה החנות, אלא בשאלה כיצד כל החלטה תכנונית יכולה לשרת את המכירות,
-        את נוחות הלקוחות ואת העבודה השוטפת של הצוות.
-      </p>
-    </div>
-
-    <ol class="rows">
-      <li class="row">
-        <p class="row__n">01</p>
-        <h3 class="row__title">הבנת העסק והלקוחות</h3>
-        <p class="row__text">אופי החנות, סוג הקהל, שעות העומס ודפוסי הקנייה המאפיינים את נקודת המכירה.</p>
-      </li>
-      <li class="row">
-        <p class="row__n">02</p>
-        <h3 class="row__title">סריקת נקודת המכירה</h3>
-        <p class="row__text">מעבר מסודר על המחלקות, המדפים, המעברים, הקופות והתצוגות בפועל.</p>
-      </li>
-      <li class="row">
-        <p class="row__n">03</p>
-        <h3 class="row__title">איתור צווארי בקבוק והזדמנויות</h3>
-        <p class="row__text">היכן נעצרת התנועה, היכן נשחק שטח מכירה והיכן קיים פוטנציאל שאינו ממומש.</p>
-      </li>
-      <li class="row">
-        <p class="row__n">04</p>
-        <h3 class="row__title">בניית המלצות מעשיות</h3>
-        <p class="row__text">המלצות ישימות לשיפור, מסודרות לפי סדר עדיפות ומותאמות למציאות של החנות.</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- ==========================================================================
-     4. השירותים
-     ========================================================================== -->
-<section class="section" id="services">
-  <div class="container">
-    <div class="section-head reveal">
-      <h2>שלושה <span class="marked">מוצרים<svg class="mark mark--underline" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M5 14 C96 6 196 17 300 10 C344 7 378 12 395 9"/>
-      </svg></span></h2>
-      <p class="lead">מנקודת מכירה אחת, דרך רשת סניפים, ועד תכנון חנות חדשה מאפס.</p>
-      <!-- עוגן מחיר. מוצג רק אם מולא priceRangeText ב-assets/js/site.config.js. -->
-      <p class="offer-note" data-offer="price" hidden></p>
-    </div>
-
-    <div class="rows">
+      <hr class="rule-double">
 
       <!-- ==================================================================
-           שלושת המוצרים לפי סיכום פגישת 14.10.2026.
+           האתגר
+           ================================================================== -->
+      <section class="sec" id="problem">
+        <p class="sec__no"></p>
+        <h2 class="sec__h reveal">גם חנות טובה יכולה להפסיד מכירות בגלל תכנון לא נכון</h2>
+        <p class="sec__lead reveal">
+          לקוחות עשויים להיכנס לחנות, אך לא להגיע למוצרים הנכונים, לפספס מבצעים או לעזוב לפני שסיימו את הקנייה.
+          עומס במעברים, מדפים שאינם מנוצלים נכון, מחלקות שממוקמות במקום לא מתאים ונראות חלשה של מוצרים
+          יכולים להשפיע ישירות על הפדיון.
+        </p>
+
+        <ul class="entries reveal">
+          <li class="entry">
+            <div class="entry__top"><span class="entry__n">01</span><span class="entry__t">שטחים שאינם מנוצלים</span></div>
+            <p class="entry__d">אזורים בחנות שאינם מייצרים מכירות, פינות מתות ומדפים שאינם עובדים בהתאם לפוטנציאל שלהם.</p>
+          </li>
+          <li class="entry">
+            <div class="entry__top"><span class="entry__n">02</span><span class="entry__t">זרימת לקוחות לא יעילה</span></div>
+            <p class="entry__d">מסלול תנועה שאינו מוביל את הלקוח דרך המחלקות המרכזיות, ויוצר עומס במעברים ובקופות.</p>
+          </li>
+          <li class="entry">
+            <div class="entry__top"><span class="entry__n">03</span><span class="entry__t">מוצרים רווחיים ללא חשיפה</span></div>
+            <p class="entry__d">מוצרים בעלי תרומה גבוהה שממוקמים בגובה, במיקום או בסביבה שאינם מקבלים מספיק תשומת לב.</p>
+          </li>
+          <li class="entry">
+            <div class="entry__top"><span class="entry__n">04</span><span class="entry__t">נראות מסחרית חלשה</span></div>
+            <p class="entry__d">עומס, חוסר סדר ותצוגה לא ברורה שמקשים על הלקוח להתמצא ולזהות את המבצעים.</p>
+          </li>
+        </ul>
+      </section>
+
+      <hr class="rule-double">
+
+      <!-- ==================================================================
+           הגישה
+           ================================================================== -->
+      <section class="sec" id="solution">
+        <p class="sec__no"></p>
+        <h2 class="sec__h reveal">מחברים בין תכנון החנות לבין החשיבה המסחרית</h2>
+        <p class="sec__lead reveal">
+          בני לפקוביץ מביא 25 שנות ניסיון בעולם הקמעונאות, מתוכן שבע האחרונות בייעוץ לנקודות מכירה.
+          השירות אינו מתמקד רק במראה החנות, אלא בשאלה כיצד כל החלטה תכנונית יכולה לשרת את המכירות,
+          את נוחות הלקוחות ואת העבודה השוטפת של הצוות.
+        </p>
+
+        <ol class="entries reveal">
+          <li class="entry">
+            <div class="entry__top"><span class="entry__n">01</span><span class="entry__t">הבנת העסק והלקוחות</span></div>
+            <p class="entry__d">אופי החנות, סוג הקהל, שעות העומס ודפוסי הקנייה המאפיינים את נקודת המכירה.</p>
+          </li>
+          <li class="entry">
+            <div class="entry__top"><span class="entry__n">02</span><span class="entry__t">סריקת נקודת המכירה</span></div>
+            <p class="entry__d">מעבר מסודר על המחלקות, המדפים, המעברים, הקופות והתצוגות בפועל.</p>
+          </li>
+          <li class="entry">
+            <div class="entry__top"><span class="entry__n">03</span><span class="entry__t">איתור צווארי בקבוק והזדמנויות</span></div>
+            <p class="entry__d">היכן נעצרת התנועה, היכן נשחק שטח מכירה והיכן קיים פוטנציאל שאינו ממומש.</p>
+          </li>
+          <li class="entry">
+            <div class="entry__top"><span class="entry__n">04</span><span class="entry__t">בניית המלצות מעשיות</span></div>
+            <p class="entry__d">המלצות ישימות לשיפור, מסודרות לפי סדר עדיפות ומותאמות למציאות של החנות.</p>
+          </li>
+        </ol>
+      </section>
+
+      <hr class="rule-double">
+
+      <!-- ==================================================================
+           השירותים — שלושת המוצרים לפי סיכום פגישת 14.10.2026.
            מוצר 1 כולל גם את הליווי והיישום, שבפגישה הוגדרו כשלב בתהליך
            ולא כמוצר נפרד.
-           =================================================================== -->
+           ================================================================== -->
+      <section class="sec" id="services">
+        <p class="sec__no"></p>
+        <h2 class="sec__h reveal">שלושה מוצרים</h2>
+        <p class="sec__lead reveal">מנקודת מכירה אחת, דרך רשת סניפים, ועד תכנון חנות חדשה מאפס.</p>
+        <!-- עוגן מחיר. מוצג רק אם מולא priceRangeText ב-assets/js/site.config.js. -->
+        <p class="offer-note" data-offer="price" hidden></p>
 
-      <article class="service service--featured reveal">
-        <div class="service__head">
-          <span class="service__badge">
-            <svg width="13" height="13" aria-hidden="true"><use href="#i-check"></use></svg>
+        <article class="item item--lead reveal">
+          <p class="item__flag">
+            <svg aria-hidden="true"><use href="#i-check"></use></svg>
             השירות הזמין והמיידי ביותר
-          </span>
-          <h3 class="service__title">אופטימיזציה לנקודת מכירה קיימת</h3>
-          <p class="service__for">מתאים לבעל חנות אחת שרוצה להבין מה ניתן לשפר כבר עכשיו — וגם ליישם את זה.</p>
-        </div>
+          </p>
+          <h3 class="item__t">אופטימיזציה לנקודת מכירה קיימת</h3>
+          <p class="item__for">מתאים לבעל חנות אחת שרוצה להבין מה ניתן לשפר כבר עכשיו — וגם ליישם את זה.</p>
+          <ul class="item__list">
+            <li>פגישה עם בעל העסק</li>
+            <li>ביקור שטח וסריקה של החנות</li>
+            <li>בחינת מיקום המחלקות והמדפים</li>
+            <li>ניתוח תנועת הלקוחות בחנות</li>
+            <li>איתור צווארי בקבוק ושטחים שאינם מנוצלים</li>
+            <li>דו״ח אופטימיזציה מפורט, עם פעולות לפי סדר עדיפות</li>
+            <li>ליווי וייעוץ בביצוע השינויים בפועל</li>
+            <li>חיבור לספקים מומלצים ותמחור מלא לכל השלבים</li>
+            <li>ביקורת והתאמות לאחר היישום</li>
+          </ul>
+          <a class="act item__cta" href="#contact" data-service="אופטימיזציה לנקודת מכירה קיימת">
+            הזמנת אבחון לחנות
+          </a>
+        </article>
 
-        <ul class="service__list">
-          <li>פגישה עם בעל העסק</li>
-          <li>ביקור שטח וסריקה של החנות</li>
-          <li>בחינת מיקום המחלקות והמדפים</li>
-          <li>ניתוח תנועת הלקוחות בחנות</li>
-          <li>איתור צווארי בקבוק ושטחים שאינם מנוצלים</li>
-          <li>דו״ח אופטימיזציה מפורט, עם פעולות לפי סדר עדיפות</li>
-          <li>ליווי וייעוץ בביצוע השינויים בפועל</li>
-          <li>חיבור לספקים מומלצים ותמחור מלא לכל השלבים</li>
-          <li>ביקורת והתאמות לאחר היישום</li>
-        </ul>
-
-        <a class="btn btn--primary service__cta" href="#contact" data-service="אופטימיזציה לנקודת מכירה קיימת">
-          הזמנת אבחון לחנות
-        </a>
-      </article>
-
-      <article class="service reveal">
-        <div class="service__head">
-          <h3 class="service__title">תכנון ואופטימיזציה לרשת חנויות</h3>
-          <p class="service__for">מתאים לרשתות ולבעלי כמה סניפים, שבהם כל סניף עובד אחרת ממה שלידו.</p>
+        <article class="item reveal">
+          <h3 class="item__t">תכנון ואופטימיזציה לרשת חנויות</h3>
+          <p class="item__for">מתאים לרשתות ולבעלי כמה סניפים, שבהם כל סניף עובד אחרת ממה שלידו.</p>
 
           <!-- הסעיפים כאן נוסחו על בסיס סיכום הפגישה, שהגדיר את המוצר אך לא
                את תכולתו. יש לקבל את אישורו של בני או לתקן לפני הפרסום. -->
@@ -447,320 +369,258 @@
               על בסיס התהליך של מוצר 1 — יש לאשר או לתקן אותם מול בני.
             </p>
           </div>
+
+          <ul class="item__list">
+            <li>סקירה של הסניפים הקיימים והשוואה ביניהם</li>
+            <li>זיהוי הפערים בין הסניף המוביל לסניפים החלשים</li>
+            <li>אפיון סטנדרט סידור ונראות אחיד לרשת</li>
+            <li>בניית תבנית שניתן לשחזר בכל סניף חדש</li>
+            <li>תוכנית יישום מדורגת, סניף אחר סניף</li>
+            <li>ליווי מנהלי הסניפים בהטמעת השינויים</li>
+            <li>בקרה ומעקב אחר היישום בכל סניף</li>
+          </ul>
+          <a class="act act--ghost item__cta" href="#contact" data-service="תכנון ואופטימיזציה לרשת חנויות">
+            לשיחה על הרשת שלכם
+          </a>
+        </article>
+
+        <article class="item reveal">
+          <h3 class="item__t">תכנון נקודת מכירה חדשה מאפס</h3>
+          <p class="item__for">מתאים ליזמים, בעלי רשתות ובעלי חנויות הנמצאים לפני הקמה או שיפוץ משמעותי — משלב השרטוט.</p>
+          <ul class="item__list">
+            <li>אפיון צרכים מסחריים ותפעוליים</li>
+            <li>אדריכלות קמעונאית — תכנון חלוקת החנות משלב השרטוט</li>
+            <li>מיקום מחלקות ואזורים מרכזיים</li>
+            <li>תכנון מסלול תנועת הלקוחות</li>
+            <li>ניצול מיטבי של שטח המכירה</li>
+            <li>חשיבה על נראות, מבצעים ומוצרים מובילים</li>
+            <li>עבודה משותפת עם מעצב או מעצבת פנים</li>
+            <li>ליווי מסחרי משלב התכנון ועד לפתיחת החנות</li>
+          </ul>
+          <a class="act act--ghost item__cta" href="#contact" data-service="תכנון נקודת מכירה חדשה מאפס">
+            לתיאום פגישת תכנון
+          </a>
+        </article>
+      </section>
+
+      <hr class="rule-double">
+
+      <!-- ==================================================================
+           תהליך העבודה
+           ================================================================== -->
+      <section class="sec" id="process">
+        <p class="sec__no"></p>
+        <h2 class="sec__h reveal">כך זה עובד</h2>
+        <p class="sec__lead reveal">תהליך ברור, בלי הפתעות, שמתחיל בשיחה קצרה ומסתיים בהמלצות שאפשר ליישם.</p>
+
+        <ol class="entries reveal">
+          <li class="entry"><div class="entry__top"><span class="entry__n">01</span><span class="entry__t">שיחת היכרות</span></div><p class="entry__d">מבינים את סוג החנות, האתגרים והמטרות.</p></li>
+          <li class="entry"><div class="entry__top"><span class="entry__n">02</span><span class="entry__t">ביקור בנקודת המכירה</span></div><p class="entry__d">עוברים על החנות, המחלקות, המדפים וזרימת הלקוחות.</p></li>
+          <li class="entry"><div class="entry__top"><span class="entry__n">03</span><span class="entry__t">ניתוח מקצועי</span></div><p class="entry__d">מאתרים בעיות, שטחים לא מנוצלים והזדמנויות מסחריות.</p></li>
+          <li class="entry"><div class="entry__top"><span class="entry__n">04</span><span class="entry__t">דו״ח והמלצות</span></div><p class="entry__d">מקבלים המלצות מסודרות, ברורות וישימות.</p></li>
+          <li class="entry"><div class="entry__top"><span class="entry__n">05</span><span class="entry__t">יישום וליווי</span></div><p class="entry__d">ליווי מקצועי בביצוע השינויים בפועל, בקצב שמתאים לחנות.</p></li>
+          <li class="entry"><div class="entry__top"><span class="entry__n">06</span><span class="entry__t">ספקים ותמחור</span></div><p class="entry__d">חיבור לספקים מומלצים ותמחור מלא של כל אחד מהשלבים, בלי הפתעות.</p></li>
+        </ol>
+
+        <div class="acts reveal">
+          <a class="act" href="#contact" data-wa-link>
+            <svg aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+            לתיאום שיחת היכרות
+          </a>
+        </div>
+      </section>
+
+      <hr class="rule-double">
+
+      <!-- ==================================================================
+           אודות
+           ================================================================== -->
+      <section class="sec" id="about">
+        <p class="sec__no"></p>
+        <h2 class="sec__h reveal">ניסיון שמגיע מהשטח</h2>
+        <p class="sec__lead reveal">שמי בני לפקוביץ, ויש לי 25 שנות ניסיון ניהולי ומסחרי בענף הקמעונאות, מתוכן שבע השנים האחרונות בייעוץ לנקודות מכירה.</p>
+
+        <div class="prose reveal">
+          <p>
+            לאורך השנים ניהלתי סניף ברשת אושר עד ומילאתי תפקיד ניהולי ברשת מזון מובילה
+            בירושלים. צברתי שם ניסיון מעשי בניהול חנות, סידור מחלקות, הצגת מוצרים,
+            תפעול צוותים והבנת דפוסי הקנייה של הלקוחות.
+          </p>
+          <p>
+            בשבע השנים האחרונות אני מייעץ לנקודות מכירה ומסייע להן לשפר את סידור החנות,
+            את הנראות המסחרית ואת ניצול השטח.
+          </p>
+          <p>
+            היום אני מרכז את הידע והניסיון שצברתי ומציע אותם לבעלי חנויות, רשתות ויזמים
+            המעוניינים להקים או לשפר נקודת מכירה.
+          </p>
         </div>
 
-        <ul class="service__list">
-          <li>סקירה של הסניפים הקיימים והשוואה ביניהם</li>
-          <li>זיהוי הפערים בין הסניף המוביל לסניפים החלשים</li>
-          <li>אפיון סטנדרט סידור ונראות אחיד לרשת</li>
-          <li>בניית תבנית שניתן לשחזר בכל סניף חדש</li>
-          <li>תוכנית יישום מדורגת, סניף אחר סניף</li>
-          <li>ליווי מנהלי הסניפים בהטמעת השינויים</li>
-          <li>בקרה ומעקב אחר היישום בכל סניף</li>
-        </ul>
+        <dl class="lines reveal">
+          <div class="line"><dt>ניסיון ניהולי ומסחרי בענף הקמעונאות</dt><span class="line__lead"></span><dd class="line__val">25 שנה</dd></div>
+          <div class="line"><dt>ייעוץ ותכנון לנקודות מכירה</dt><span class="line__lead"></span><dd class="line__val">7 שנים</dd></div>
+          <div class="line"><dt>אזור הפעילות</dt><span class="line__lead"></span><dd class="line__val" data-contact="areas"><span class="placeholder-text">[אזורי פעילות]</span></dd></div>
+        </dl>
 
-        <a class="btn btn--secondary service__cta" href="#contact" data-service="תכנון ואופטימיזציה לרשת חנויות">
-          לשיחה על הרשת שלכם
-        </a>
-      </article>
+        <figure class="shot reveal">
+          <img src="assets/img/store-aisle.jpg" width="1400" height="1050"
+               loading="lazy" decoding="async"
+               alt="מעבר בחנות מזון עם מדפים מסודרים משני צדדיו ושילוט מחירים">
+          <svg class="shot__marks" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M14 8 H4 V26 M286 8 H296 V26 M14 192 H4 V174 M286 192 H296 V174"/>
+            <rect x="120" y="30" width="62" height="140"/>
+          </svg>
+          <figcaption class="shot__cap">
+            <span>מעבר ראשי · סידור ונראות</span>
+            <span>מסגרת 02</span>
+          </figcaption>
+        </figure>
+      </section>
 
-      <article class="service reveal">
-        <div class="service__head">
-          <h3 class="service__title">תכנון נקודת מכירה חדשה מאפס</h3>
-          <p class="service__for">מתאים ליזמים, בעלי רשתות ובעלי חנויות הנמצאים לפני הקמה או שיפוץ משמעותי — משלב השרטוט.</p>
+      <hr class="rule-double">
+
+      <!-- ==================================================================
+           המלצות — מוסתר כברירת מחדל.
+           נחשף על ידי assets/js/main.js רק כאשר showTestimonials דלוק,
+           כך שגם גולש ללא JavaScript לא רואה כרטיסים ריקים.
+           הספרה נספרת ב-CSS, ולכן הסתרתו אינה יוצרת חור ברצף.
+           ================================================================== -->
+      <section class="sec" id="testimonials" hidden>
+        <p class="sec__no"></p>
+        <h2 class="sec__h">ניסיון מוכח בנקודות מכירה</h2>
+        <p class="sec__lead">פרויקטים עם תיאור האתגר, השינויים שבוצעו והתוצאה שהלקוח זיהה.</p>
+
+        <div class="admin-notice" data-admin-notice>
+          <svg aria-hidden="true"><use href="#i-alert"></use></svg>
+          <p>
+            <strong>הודעה למנהל האתר:</strong>
+            לפי סיכום פגישת 14.10.2026, אזור ההמלצות נחשף רק כשיש 3-4 ממליצים אמיתיים
+            עם אישור בכתב. עד אז יש להשאיר את <code>showTestimonials</code> על
+            <code>false</code> בקובץ <code>assets/js/site.config.js</code>.
+          </p>
         </div>
 
-        <ul class="service__list">
-          <li>אפיון צרכים מסחריים ותפעוליים</li>
-          <li>אדריכלות קמעונאית — תכנון חלוקת החנות משלב השרטוט</li>
-          <li>מיקום מחלקות ואזורים מרכזיים</li>
-          <li>תכנון מסלול תנועת הלקוחות</li>
-          <li>ניצול מיטבי של שטח המכירה</li>
-          <li>חשיבה על נראות, מבצעים ומוצרים מובילים</li>
-          <li>עבודה משותפת עם מעצב או מעצבת פנים</li>
-          <li>ליווי מסחרי משלב התכנון ועד לפתיחת החנות</li>
+        <ul class="entries">
+          <li class="entry">
+            <div class="entry__top"><span class="entry__n">01</span><span class="entry__t"><span class="placeholder-text">[שם העסק]</span></span></div>
+            <p class="entry__d">
+              <span class="placeholder-text">[עיר]</span>
+              <span class="placeholder-text">[סוג נקודת המכירה]</span>
+              <span class="placeholder-text">[האתגר, השינויים שבוצעו והתוצאה שהלקוח זיהה]</span>
+            </p>
+          </li>
         </ul>
+      </section>
 
-        <a class="btn btn--secondary service__cta" href="#contact" data-service="תכנון נקודת מכירה חדשה מאפס">
-          לתיאום פגישת תכנון
-        </a>
-      </article>
+      <hr class="rule-double">
 
-    </div>
-  </div>
-</section>
+      <!-- ==================================================================
+           אני מאמין
+           ================================================================== -->
+      <section class="sec" id="creed">
+        <p class="sec__no"></p>
+        <h2 class="sec__h reveal">כל מטר בחנות צריך לעבוד עבור העסק</h2>
+        <div class="prose reveal">
+          <p>
+            נקודת מכירה טובה צריכה להיות נוחה ללקוח, יעילה לעובדים ונכונה מבחינה מסחרית.
+          </p>
+          <p>
+            כאשר החנות מתוכננת נכון, הלקוח מבין בקלות היכן נמצא כל מוצר,
+            נחשף ליותר קטגוריות ומבצעים ומסיים את הקנייה בתחושה טובה יותר.
+          </p>
+          <p>
+            המטרה היא ליצור חנות שבה התכנון, הסידור והמכירות עובדים יחד.
+          </p>
+        </div>
+      </section>
 
-<!-- ==========================================================================
-     5. תהליך העבודה
-     ========================================================================== -->
-<section class="section section--dark" id="process">
-  <div class="container">
-    <div class="section-head reveal">
-      <h2>כך זה <span class="marked">עובד<svg class="mark mark--underline" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M6 12 C90 5 210 18 312 9 C350 6 380 11 394 15"/>
-      </svg></span></h2>
-      <p class="lead">תהליך ברור, בלי הפתעות, שמתחיל בשיחה קצרה ומסתיים בהמלצות שאפשר ליישם.</p>
-    </div>
+      <hr class="rule-double">
 
-    <ol class="rows">
-      <li class="row">
-        <p class="row__n">01</p>
-        <h3 class="row__title">שיחת היכרות</h3>
-        <p class="row__text">מבינים את סוג החנות, האתגרים והמטרות.</p>
-      </li>
-      <li class="row">
-        <p class="row__n">02</p>
-        <h3 class="row__title">ביקור בנקודת המכירה</h3>
-        <p class="row__text">עוברים על החנות, המחלקות, המדפים וזרימת הלקוחות.</p>
-      </li>
-      <li class="row">
-        <p class="row__n">03</p>
-        <h3 class="row__title">ניתוח מקצועי</h3>
-        <p class="row__text">מאתרים בעיות, שטחים לא מנוצלים והזדמנויות מסחריות.</p>
-      </li>
-      <li class="row">
-        <p class="row__n">04</p>
-        <h3 class="row__title">דו״ח והמלצות</h3>
-        <p class="row__text">מקבלים המלצות מסודרות, ברורות וישימות.</p>
-      </li>
-      <li class="row">
-        <p class="row__n">05</p>
-        <h3 class="row__title">יישום וליווי</h3>
-        <p class="row__text">ליווי מקצועי בביצוע השינויים בפועל, בקצב שמתאים לחנות.</p>
-      </li>
-      <li class="row">
-        <p class="row__n">06</p>
-        <h3 class="row__title">ספקים ותמחור</h3>
-        <p class="row__text">חיבור לספקים מומלצים ותמחור מלא של כל אחד מהשלבים, בלי הפתעות.</p>
-      </li>
-    </ol>
+      <!-- ==================================================================
+           שאלות נפוצות
+           ================================================================== -->
+      <section class="sec" id="faq">
+        <p class="sec__no"></p>
+        <h2 class="sec__h reveal">שאלות נפוצות</h2>
 
-    <div class="hero__actions reveal" style="margin-block-start:var(--s-7)">
-      <a class="btn btn--primary" href="#contact" data-wa-link>
-        <svg class="btn__icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
-        לתיאום שיחת היכרות
-      </a>
-    </div>
-  </div>
-</section>
+        <div class="reveal">
+          <details class="q"><summary>לאילו סוגי חנויות השירות מתאים?<span class="q__sign" aria-hidden="true"></span></summary>
+            <div class="q__a"><p>השירות מתאים לסופרמרקטים, מינימרקטים, קיוסקים, חנויות נוחות, חנויות מזון ונקודות מכירה קמעונאיות נוספות.</p></div></details>
+          <details class="q"><summary>האם חייבים לבצע שיפוץ מלא?<span class="q__sign" aria-hidden="true"></span></summary>
+            <div class="q__a"><p>לא. במקרים רבים ניתן להשיג שיפור באמצעות שינויי סידור, מיקום, נראות וזרימה ללא שיפוץ מקיף.</p></div></details>
+          <details class="q"><summary>מה מקבלים לאחר סקירת החנות?<span class="q__sign" aria-hidden="true"></span></summary>
+            <div class="q__a"><p>דו״ח מסודר הכולל את הממצאים, ההמלצות והפעולות המומלצות לפי סדר עדיפות.</p></div></details>
+          <details class="q"><summary>האם ניתן לקבל ליווי ביישום ההמלצות?<span class="q__sign" aria-hidden="true"></span></summary>
+            <div class="q__a"><p>כן. ניתן להזמין שירות הכולל ליווי וסיוע ביישום בפועל.</p></div></details>
+          <details class="q"><summary>האם אתם מתכננים גם חנויות חדשות?<span class="q__sign" aria-hidden="true"></span></summary>
+            <div class="q__a"><p>כן. ניתן לקבל תכנון מסחרי מלא בשיתוף מעצב או מעצבת פנים.</p></div></details>
+          <details class="q"><summary>יש לי כמה סניפים — איך זה עובד?<span class="q__sign" aria-hidden="true"></span></summary>
+            <div class="q__a"><p>לרשתות יש מוצר נפרד. במקום לטפל בכל סניף בנפרד, בונים סטנדרט אחיד לרשת ותבנית שניתן לשחזר, ומיישמים אותה בהדרגה סניף אחר סניף.</p></div></details>
+          <details class="q"><summary>האם השירות מתאים גם לחנות קטנה?<span class="q__sign" aria-hidden="true"></span></summary>
+            <div class="q__a"><p>כן. דווקא בחנויות קטנות יש חשיבות גבוהה לניצול נכון של כל מטר.</p></div></details>
+        </div>
+      </section>
 
-<!-- ==========================================================================
-     6. אודות
-     ========================================================================== -->
-<section class="section" id="about">
-  <div class="container">
-    <div class="about__grid">
+      <hr class="rule-double">
 
-      <div class="reveal">
-        <h2>ניסיון שמגיע מהשטח</h2>
+      <!-- ==================================================================
+           יצירת קשר
+           ================================================================== -->
+      <section class="sec" id="contact">
+        <p class="sec__no"></p>
+        <h2 class="sec__h reveal">רוצים לדעת מה החנות שלכם יכולה לעשות טוב יותר?</h2>
+        <p class="sec__lead reveal">תיאום שיחת היכרות קצרה לבחינת מצב החנות והאפשרויות לשיפור.</p>
 
-        <p class="lead">שמי בני לפקוביץ, ויש לי 25 שנות ניסיון ניהולי ומסחרי בענף הקמעונאות, מתוכן שבע השנים האחרונות בייעוץ לנקודות מכירה.</p>
-
-        <p>
-          לאורך השנים ניהלתי סניף ברשת אושר עד ומילאתי תפקיד ניהולי ברשת מזון מובילה
-          בירושלים. צברתי שם ניסיון מעשי בניהול חנות, סידור מחלקות, הצגת מוצרים,
-          תפעול צוותים והבנת דפוסי הקנייה של הלקוחות.
-        </p>
-
-        <p>
-          בשבע השנים האחרונות אני מייעץ לנקודות מכירה ומסייע להן לשפר את סידור החנות,
-          את הנראות המסחרית ואת ניצול השטח.
-        </p>
-
-        <p>
-          היום אני מרכז את הידע והניסיון שצברתי ומציע אותם לבעלי חנויות, רשתות ויזמים
-          המעוניינים להקים או לשפר נקודת מכירה.
-        </p>
-      </div>
-
-      <figure class="shot reveal">
-        <img src="assets/img/store-aisle.jpg" width="1400" height="1050"
-             loading="lazy" decoding="async"
-             alt="מעבר בחנות מזון עם מדפים מסודרים משני צדדיו ושילוט מחירים">
-        <figcaption>
-          <span class="tag">מעבר ראשי · סידור ונראות</span>
-          <span class="mono">02</span>
-        </figcaption>
-      </figure>
-
-    </div>
-
-    <dl class="about__facts reveal">
-      <div class="about__fact">
-        <dt>25 שנה</dt>
-        <dd>ניסיון ניהולי ומסחרי בענף הקמעונאות</dd>
-      </div>
-      <div class="about__fact">
-        <dt>7 שנים</dt>
-        <dd>ייעוץ ותכנון לנקודות מכירה</dd>
-      </div>
-      <div class="about__fact">
-        <dt>כל הארץ</dt>
-        <dd>אזור הפעילות</dd>
-      </div>
-    </dl>
-  </div>
-</section>
-
-<!-- ==========================================================================
-     7. המלצות — מוסתר כברירת מחדל.
-     נחשף על ידי assets/js/main.js רק כאשר showTestimonials דלוק,
-     כך שגם גולש ללא JavaScript לא רואה כרטיסים ריקים.
-     ========================================================================== -->
-<section class="section section--tint" id="testimonials" hidden>
-  <div class="container">
-    <div class="section-head">
-      <h2>ניסיון מוכח בנקודות מכירה</h2>
-      <p class="lead">פרויקטים עם תיאור האתגר, השינויים שבוצעו והתוצאה שהלקוח זיהה.</p>
-    </div>
-
-    <div class="admin-notice" data-admin-notice>
-      <svg aria-hidden="true"><use href="#i-alert"></use></svg>
-      <p>
-        <strong>הודעה למנהל האתר:</strong>
-        לפי סיכום פגישת 14.10.2026, אזור ההמלצות נחשף רק כשיש 3-4 ממליצים אמיתיים
-        עם אישור בכתב. עד אז יש להשאיר את <code>showTestimonials</code> על
-        <code>false</code> בקובץ <code>assets/js/site.config.js</code>.
-      </p>
-    </div>
-
-    <ul class="rows">
-      <li class="row">
-        <p class="row__n">01</p>
-        <h3 class="row__title"><span class="placeholder-text">[שם העסק]</span></h3>
-        <p class="row__text">
-          <span class="placeholder-text">[עיר]</span>
-          <span class="placeholder-text">[סוג נקודת המכירה]</span>
-          <span class="placeholder-text">[האתגר, השינויים שבוצעו והתוצאה שהלקוח זיהה]</span>
-        </p>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<!-- ==========================================================================
-     8. אני מאמין
-     ========================================================================== -->
-<section class="section section--dark" id="creed">
-  <div class="container">
-    <div class="creed__quote reveal">
-      <p class="mono">CREDO</p>
-      <h2>כל מטר בחנות צריך לעבוד עבור העסק</h2>
-      <p class="lead">
-        נקודת מכירה טובה צריכה להיות נוחה ללקוח, יעילה לעובדים ונכונה מבחינה מסחרית.
-      </p>
-      <p class="lead">
-        כאשר החנות מתוכננת נכון, הלקוח מבין בקלות היכן נמצא כל מוצר,
-        נחשף ליותר קטגוריות ומבצעים ומסיים את הקנייה בתחושה טובה יותר.
-      </p>
-      <p class="lead">
-        המטרה היא ליצור חנות שבה התכנון, הסידור והמכירות עובדים יחד.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ==========================================================================
-     9. שאלות נפוצות
-     ========================================================================== -->
-<section class="section" id="faq">
-  <div class="container">
-    <div class="section-head reveal">
-      <h2>שאלות נפוצות</h2>
-    </div>
-
-    <div class="faq">
-      <details class="faq__item">
-        <summary class="faq__q">לאילו סוגי חנויות השירות מתאים?<span class="faq__sign" aria-hidden="true"></span></summary>
-        <div class="faq__a"><p>השירות מתאים לסופרמרקטים, מינימרקטים, קיוסקים, חנויות נוחות, חנויות מזון ונקודות מכירה קמעונאיות נוספות.</p></div>
-      </details>
-
-      <details class="faq__item">
-        <summary class="faq__q">האם חייבים לבצע שיפוץ מלא?<span class="faq__sign" aria-hidden="true"></span></summary>
-        <div class="faq__a"><p>לא. במקרים רבים ניתן להשיג שיפור באמצעות שינויי סידור, מיקום, נראות וזרימה ללא שיפוץ מקיף.</p></div>
-      </details>
-
-      <details class="faq__item">
-        <summary class="faq__q">מה מקבלים לאחר סקירת החנות?<span class="faq__sign" aria-hidden="true"></span></summary>
-        <div class="faq__a"><p>דו״ח מסודר הכולל את הממצאים, ההמלצות והפעולות המומלצות לפי סדר עדיפות.</p></div>
-      </details>
-
-      <details class="faq__item">
-        <summary class="faq__q">האם ניתן לקבל ליווי ביישום ההמלצות?<span class="faq__sign" aria-hidden="true"></span></summary>
-        <div class="faq__a"><p>כן. ניתן להזמין שירות הכולל ליווי וסיוע ביישום בפועל.</p></div>
-      </details>
-
-      <details class="faq__item">
-        <summary class="faq__q">האם אתם מתכננים גם חנויות חדשות?<span class="faq__sign" aria-hidden="true"></span></summary>
-        <div class="faq__a"><p>כן. ניתן לקבל תכנון מסחרי מלא בשיתוף מעצב או מעצבת פנים.</p></div>
-      </details>
-
-      <details class="faq__item">
-        <summary class="faq__q">יש לי כמה סניפים — איך זה עובד?<span class="faq__sign" aria-hidden="true"></span></summary>
-        <div class="faq__a"><p>לרשתות יש מוצר נפרד. במקום לטפל בכל סניף בנפרד, בונים סטנדרט אחיד לרשת ותבנית שניתן לשחזר, ומיישמים אותה בהדרגה סניף אחר סניף.</p></div>
-      </details>
-
-      <details class="faq__item">
-        <summary class="faq__q">האם השירות מתאים גם לחנות קטנה?<span class="faq__sign" aria-hidden="true"></span></summary>
-        <div class="faq__a"><p>כן. דווקא בחנויות קטנות יש חשיבות גבוהה לניצול נכון של כל מטר.</p></div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- ==========================================================================
-     10. יצירת קשר
-     ========================================================================== -->
-<section class="section section--dark" id="contact">
-  <div class="container">
-    <div class="contact__grid">
-
-      <div class="reveal">
-        <h2>רוצים לדעת מה החנות שלכם <span class="marked">יכולה לעשות טוב יותר<svg class="mark mark--underline" viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M4 10 C80 4 200 16 300 8 C340 5 376 10 396 14"/>
-        </svg></span>?</h2>
-        <p class="lead">תיאום שיחת היכרות קצרה לבחינת מצב החנות והאפשרויות לשיפור.</p>
-
-        <div class="hero__actions" style="margin-block-start:var(--s-6)">
-          <a class="btn btn--primary" href="#contact-form" data-wa-link>
-            <svg class="btn__icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+        <div class="acts reveal">
+          <a class="act" href="#contact-form" data-wa-link>
+            <svg aria-hidden="true"><use href="#i-whatsapp"></use></svg>
             לתיאום שיחה בוואטסאפ
           </a>
         </div>
 
         <p class="offer-note" data-offer="intro" hidden></p>
 
-        <ul class="contact__direct">
-          <!-- המספר מוצג ואינו קישור חיוג: בני ביקש שיופיע, וההחלטה
-               שלא להציב כפתור "התקשרו עכשיו" נשארה בתוקף. -->
-          <li class="contact__direct-item">
-            <svg aria-hidden="true"><use href="#i-phone"></use></svg>
-            <span data-contact="phone"><span class="placeholder-text">[מספר הטלפון של בני]</span></span>
-          </li>
-          <li class="contact__direct-item">
-            <svg aria-hidden="true"><use href="#i-whatsapp"></use></svg>
-            <span data-contact="whatsapp"><span class="placeholder-text">[קישור לוואטסאפ]</span></span>
-          </li>
-          <li class="contact__direct-item">
-            <svg aria-hidden="true"><use href="#i-mail"></use></svg>
-            <span data-contact="email"><span class="placeholder-text">[כתובת דוא״ל]</span></span>
-          </li>
-          <li class="contact__direct-item">
-            <svg aria-hidden="true"><use href="#i-pin"></use></svg>
-            <span data-contact="areas"><span class="placeholder-text">[אזורי פעילות]</span></span>
-          </li>
-        </ul>
-      </div>
+        <hr class="rule-single">
 
-      <div class="form-card reveal" id="contact-form">
-        <h3>השאירו פרטים ואחזור אליכם</h3>
-        <p class="form-card__intro">מילוי הטופס אינו מחייב. אחזור אליכם לשיחה קצרה להבנת הצורך.</p>
+        <!-- פרטי הקשר כשורות מסמך. המספר מוצג ואינו קישור חיוג:
+             בני ביקש שיופיע, וההחלטה שלא להציב כפתור "התקשרו עכשיו"
+             נשארה בתוקף. -->
+        <dl class="lines reveal">
+          <div class="line">
+            <dt><svg class="line__i" aria-hidden="true"><use href="#i-phone"></use></svg> טלפון</dt>
+            <span class="line__lead"></span>
+            <dd class="line__val" data-contact="phone"><span class="placeholder-text">[מספר הטלפון של בני]</span></dd>
+          </div>
+          <div class="line">
+            <dt><svg class="line__i" aria-hidden="true"><use href="#i-whatsapp"></use></svg> וואטסאפ</dt>
+            <span class="line__lead"></span>
+            <dd class="line__val" data-contact="whatsapp"><span class="placeholder-text">[קישור לוואטסאפ]</span></dd>
+          </div>
+          <div class="line">
+            <dt><svg class="line__i" aria-hidden="true"><use href="#i-mail"></use></svg> דוא״ל</dt>
+            <span class="line__lead"></span>
+            <dd class="line__val" data-contact="email"><span class="placeholder-text">[כתובת דוא״ל]</span></dd>
+          </div>
+          <div class="line">
+            <dt><svg class="line__i" aria-hidden="true"><use href="#i-pin"></use></svg> אזור פעילות</dt>
+            <span class="line__lead"></span>
+            <dd class="line__val" data-contact="areas"><span class="placeholder-text">[אזורי פעילות]</span></dd>
+          </div>
+        </dl>
 
-        <div class="form__status" id="form-status" role="status" aria-live="polite"></div>
+        <hr class="rule-single">
 
-        <form id="lead-form" novalidate>
+        <!-- ================================================================
+             הטופס — כל שדה הוא שורת מסמך שממלאים עליה
+             ================================================================ -->
+        <div class="form-block reveal" id="contact-form">
+          <h3 class="form-block__t">השאירו פרטים ואחזור אליכם</h3>
+          <p class="form-block__intro">מילוי הטופס אינו מחייב. אחזור אליכם לשיחה קצרה להבנת הצורך.</p>
 
-          <div class="form__row form__row--2">
+          <div class="form__status" id="form-status" role="status" aria-live="polite"></div>
+
+          <form id="lead-form" novalidate>
+
             <div class="field">
               <label class="field__label" for="fullname">שם מלא <span class="field__required" aria-hidden="true">*</span></label>
               <input class="field__control" type="text" id="fullname" name="fullname"
@@ -778,9 +638,7 @@
                 <svg aria-hidden="true"><use href="#i-alert"></use></svg><span>יש להזין שם עסק תקין</span>
               </p>
             </div>
-          </div>
 
-          <div class="form__row form__row--2">
             <div class="field">
               <label class="field__label" for="storetype">סוג החנות <span class="field__required" aria-hidden="true">*</span></label>
               <select class="field__control" id="storetype" name="storetype" required aria-required="true" aria-describedby="storetype-error">
@@ -807,117 +665,82 @@
                 <svg aria-hidden="true"><use href="#i-alert"></use></svg><span>יש להזין עיר</span>
               </p>
             </div>
-          </div>
 
-          <div class="field">
-            <label class="field__label" for="phone">מספר טלפון <span class="field__required" aria-hidden="true">*</span></label>
-            <input class="field__control" type="tel" id="phone" name="phone"
-                   inputmode="tel" autocomplete="tel" dir="ltr" style="text-align:right"
-                   required aria-required="true" aria-describedby="phone-hint phone-error">
-            <p class="field__hint" id="phone-hint">לדוגמה: 050-1234567</p>
-            <p class="field__error" id="phone-error" role="alert">
-              <svg aria-hidden="true"><use href="#i-alert"></use></svg><span>יש להזין מספר טלפון ישראלי תקין</span>
+            <div class="field">
+              <label class="field__label" for="phone">מספר טלפון <span class="field__required" aria-hidden="true">*</span></label>
+              <input class="field__control" type="tel" id="phone" name="phone"
+                     inputmode="tel" autocomplete="tel" dir="ltr" style="text-align:right"
+                     required aria-required="true" aria-describedby="phone-hint phone-error">
+              <p class="field__hint" id="phone-hint">לדוגמה: 050-1234567</p>
+              <p class="field__error" id="phone-error" role="alert">
+                <svg aria-hidden="true"><use href="#i-alert"></use></svg><span>יש להזין מספר טלפון ישראלי תקין</span>
+              </p>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="message">במה ניתן לעזור? <span class="field__optional">(לא חובה)</span></label>
+              <textarea class="field__control" id="message" name="message" rows="4" aria-describedby="message-error"></textarea>
+              <p class="field__error" id="message-error" role="alert">
+                <svg aria-hidden="true"><use href="#i-alert"></use></svg><span>ההודעה ארוכה מדי</span>
+              </p>
+            </div>
+
+            <!-- שדה מלכודת: מוסתר מהמשתמש ומקוראי מסך, וממולא רק על ידי
+                 בוטים שממלאים אוטומטית כל שדה. פנייה שבה הוא מלא נזרקת. -->
+            <div class="hp" aria-hidden="true">
+              <label for="website">אין למלא שדה זה</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" data-honeypot>
+            </div>
+
+            <button class="act act--submit" type="submit" id="form-submit">
+              <span class="btn__text">חזרו אליי</span>
+            </button>
+
+            <p class="form__legal">
+              הפרטים ישמשו ליצירת קשר בלבד. ראו <a href="privacy.html">מדיניות פרטיות</a>.
             </p>
-          </div>
+          </form>
+        </div>
+      </section>
 
-          <div class="field">
-            <label class="field__label" for="message">במה ניתן לעזור? <span class="field__optional">(לא חובה)</span></label>
-            <textarea class="field__control" id="message" name="message" rows="4" aria-describedby="message-error"></textarea>
-            <p class="field__error" id="message-error" role="alert">
-              <svg aria-hidden="true"><use href="#i-alert"></use></svg><span>ההודעה ארוכה מדי</span>
-            </p>
-          </div>
+      <!-- ==================================================================
+           תחתית הדוח
+           ================================================================== -->
+      <footer class="foot">
+        <hr class="rule-double">
 
-          <!-- שדה מלכודת: מוסתר מהמשתמש ומקוראי מסך, וממולא רק על ידי
-               בוטים שממלאים אוטומטית כל שדה. פנייה שבה הוא מלא נזרקת. -->
-          <div class="hp" aria-hidden="true">
-            <label for="website">אין למלא שדה זה</label>
-            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" data-honeypot>
-          </div>
+        <p class="foot__thanks">תודה שקראתם עד הסוף</p>
 
-          <button class="btn btn--primary btn--block" type="submit" id="form-submit">
-            <span class="btn__text">חזרו אליי</span>
-          </button>
+        <div class="foot__rows">
+          <p>פופ סטייל · תכנון ואופטימיזציה לנקודות מכירה</p>
+          <p>היועץ: בני לפקוביץ</p>
+        </div>
 
-          <p class="form__legal">
-            הפרטים ישמשו ליצירת קשר בלבד. ראו <a href="privacy.html">מדיניות פרטיות</a>.
-          </p>
-        </form>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- ==========================================================================
-     11. כותרת תחתונה
-     ========================================================================== -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer__grid">
-
-      <div class="footer__brand">
-        <img class="footer__logo" src="assets/brand/logo-white.svg"
-             alt="pop-style. design" width="1060" height="384"
-             decoding="async">
-        <p class="footer__tagline">תכנון ואופטימיזציה לנקודות מכירה</p>
-        <p class="footer__person">היועץ: בני לפקוביץ</p>
-      </div>
-
-      <div>
-        <h4>יצירת קשר</h4>
-        <ul class="footer__list">
-          <li>
-            <svg aria-hidden="true"><use href="#i-phone"></use></svg>
-            <span data-contact="phone"><span class="placeholder-text">[מספר הטלפון של בני]</span></span>
-          </li>
-          <li>
-            <svg aria-hidden="true"><use href="#i-whatsapp"></use></svg>
-            <span data-contact="whatsapp"><span class="placeholder-text">[קישור לוואטסאפ]</span></span>
-          </li>
-          <li>
-            <svg aria-hidden="true"><use href="#i-mail"></use></svg>
-            <span data-contact="email"><span class="placeholder-text">[כתובת דוא״ל]</span></span>
-          </li>
-          <li>
-            <svg aria-hidden="true"><use href="#i-pin"></use></svg>
-            <span data-contact="areas"><span class="placeholder-text">[אזורי פעילות]</span></span>
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <h4>ניווט</h4>
-        <ul class="footer__list">
+        <ul class="foot__links">
           <li><a href="#services">שירותים</a></li>
           <li><a href="#process">תהליך העבודה</a></li>
           <li><a href="#about">אודות</a></li>
           <li><a href="#faq">שאלות נפוצות</a></li>
           <li><a href="#contact">יצירת קשר</a></li>
+          <li><a href="privacy.html">מדיניות פרטיות</a></li>
+          <li><a href="#" data-consent-reopen>הגדרות פרטיות</a></li>
         </ul>
-      </div>
+
+        <div class="barcode" aria-hidden="true"></div>
+        <p class="foot__legal">© <span id="year">2026</span> פופ סטייל. כל הזכויות שמורות.</p>
+      </footer>
 
     </div>
+  </main>
+</div>
 
-    <div class="footer__bottom">
-      <p style="margin:0">© <span id="year">2026</span> פופ סטייל. כל הזכויות שמורות.</p>
-      <ul class="footer__legal">
-        <li><a href="privacy.html">מדיניות פרטיות</a></li>
-        <li><a href="#" data-consent-reopen>הגדרות פרטיות</a></li>
-      </ul>
-    </div>
-
-  </div>
-</footer>
-
-<!-- סרגל פעולה תחתון, מובייל בלבד. נעלם כשאזור יצירת הקשר בתצוגה,
-     ומקבל inert כדי שלא יישאר במסלול המקלדת בזמן שהוא מחוץ למסך. -->
+<!-- הספח: קריאה לפעולה שנתלשת מתחתית הרצועה ונשארת ביד.
+     מופיע רק כשאין על המסך דרך אחרת ליצור קשר, ומקבל inert כשהוא נסוג
+     כדי שלא יישאר במסלול המקלדת. -->
 <nav class="action-bar" id="action-bar" aria-label="פעולות מהירות" hidden>
-  <a class="action-bar__btn action-bar__btn--wa" href="#contact-form" data-wa-float>
+  <a class="action-bar__btn" href="#contact-form" data-wa-float>
     <svg aria-hidden="true"><use href="#i-whatsapp"></use></svg>
-    <span>וואטסאפ</span>
+    <span>לתיאום שיחה עם בני</span>
   </a>
 </nav>
 

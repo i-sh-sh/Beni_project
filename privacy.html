@@ -24,11 +24,11 @@
 
 <body>
 
-<a class="skip-link" href="#main">דילוג לתוכן המרכזי</a>
+<a class="skip" href="#main">דילוג לתוכן המרכזי</a>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
-    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M10.3 3.9 2.4 17.4A1.9 1.9 0 0 0 4 20.3h16a1.9 1.9 0 0 0 1.6-2.9L13.7 3.9a1.9 1.9 0 0 0-3.4 0Z"/>
       <path d="M12 9v4.5M12 17h.01"/>
     </symbol>
@@ -38,32 +38,26 @@
   </defs>
 </svg>
 
-<header class="header">
-  <div class="container header__inner">
-    <a class="brand" href="index.html" aria-label="פופ סטייל, חזרה לעמוד הראשי">
-      <!-- חבילת המיתוג ממליצה על הסמל בלבד מתחת לרוחב לוגו של כ-180px.
-           picture מחליף את הקובץ עצמו, כך שרק אחד מהם נטען. הגובה הוא
-           שקובע את המידה, ולכן אותו כלל משרת שני יחסי צדדים שונים. -->
-      <picture>
-        <source media="(min-width: 700px)" srcset="assets/brand/logo.svg">
-        <img class="brand__logo" src="assets/brand/icon.svg" alt="pop-style. design"
-             width="384" height="384" decoding="async">
-      </picture>
-    </a>
-    <a class="btn btn--secondary btn--sm" href="index.html">
-      <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
-      חזרה לעמוד הראשי
-    </a>
-  </div>
-</header>
+<!-- אותה רצועה של העמוד הראשי. עמוד פנימי באתר הזה אינו עמוד אחר —
+     הוא מסמך אחר שיוצא מאותה מכונה. -->
+<div class="wrap">
+  <main class="tape" id="main">
+    <div class="tape__body">
 
-<main id="main" class="section">
-  <div class="container">
-    <article class="prose">
+      <header class="doc-head">
+        <a href="index.html" aria-label="פופ סטייל, חזרה לעמוד הראשי">
+          <img class="doc-head__logo" src="assets/brand/logo.svg" alt="pop-style. design"
+               width="300" height="109" decoding="async">
+        </a>
+        <p class="doc-head__meta">
+          <span>מסמך משפטי</span>
+          <span><b>עודכן:</b> <span class="placeholder-text">[תאריך עדכון]</span></span>
+        </p>
+      </header>
 
-      <p class="eyebrow">מסמך משפטי</p>
-      <h1 style="font-size:var(--text-3xl)">מדיניות פרטיות</h1>
-      <p class="lead">עודכן לאחרונה: <span class="placeholder-text">[תאריך עדכון]</span></p>
+      <hr class="rule-double">
+
+      <h1 class="title title--doc">מדיניות פרטיות</h1>
 
       <div class="admin-notice" data-admin-notice>
         <svg aria-hidden="true"><use href="#i-alert"></use></svg>
@@ -75,108 +69,128 @@
         </p>
       </div>
 
-      <h2>כללי</h2>
-      <p>
-        מסמך זה מפרט כיצד נאספים, נשמרים ומשמשים פרטים אישיים הנמסרים באתר של
-        <span class="placeholder-text">[שם העסק הרשמי]</span>, המופעל על ידי בני לפקוביץ
-        (להלן: "בעל האתר"). השימוש באתר מהווה הסכמה לתנאים המפורטים במסמך זה.
-      </p>
+      <hr class="rule-single">
 
-      <h2>אילו פרטים נאספים</h2>
-      <p>הפרטים נאספים אך ורק כאשר הגולש בוחר למסור אותם ביוזמתו, באמצעות טופס יצירת הקשר שבאתר:</p>
-      <ul>
-        <li>שם מלא.</li>
-        <li>שם העסק, ככל שנמסר.</li>
-        <li>סוג נקודת המכירה.</li>
-        <li>עיר.</li>
-        <li>מספר טלפון.</li>
-        <li>פרטים נוספים שהגולש בוחר לכתוב בשדה החופשי.</li>
-      </ul>
-      <p>
-        בנוסף, ובכפוף להסכמת הגולש, עשויים להיאסף נתוני שימוש סטטיסטיים
-        באמצעות שירותי מדידה של צד שלישי, כמפורט להלן.
-      </p>
+      <article class="prose prose--doc">
 
-      <h2>מטרת השימוש בפרטים</h2>
-      <ul>
-        <li>יצירת קשר חוזר בעקבות פנייה שהתקבלה דרך האתר.</li>
-        <li>מתן מענה לשאלות ותיאום פגישת ייעוץ.</li>
-        <li>שיפור השירות והתאמתו לצרכים של בעלי נקודות מכירה.</li>
-      </ul>
-      <p>
-        הפרטים אינם נמכרים ואינם מועברים לצדדים שלישיים לצורכי שיווק,
-        למעט ספקי שירות טכניים המסייעים בהפעלת האתר ובניהול הפניות.
-      </p>
+        <h2>כללי</h2>
+        <p>
+          מסמך זה מפרט כיצד נאספים, נשמרים ומשמשים פרטים אישיים הנמסרים באתר של
+          <span class="placeholder-text">[שם העסק הרשמי]</span>, המופעל על ידי בני לפקוביץ
+          (להלן: "בעל האתר"). השימוש באתר מהווה הסכמה לתנאים המפורטים במסמך זה.
+        </p>
 
-      <h2>שירותי מדידה וקובצי Cookie</h2>
-      <p>
-        באתר עשויים לפעול שירותי מדידה של צד שלישי, ובכללם Google Analytics ו־Meta Pixel,
-        לצורך הבנת אופן השימוש באתר ושיפורו. שירותים אלה עושים שימוש בקובצי Cookie.
-      </p>
-      <p>
-        שירותי המדידה אינם נטענים כלל לפני שהגולש אישר זאת בבאנר ההסכמה המוצג בכניסה
-        הראשונה לאתר. בחירה ב״רק ההכרחי״ מונעת את טעינתם. ניתן לשנות את ההחלטה בכל עת
-        באמצעות <a href="index.html#" data-consent-reopen>הגדרות הפרטיות</a>,
-        וכן לחסום קובצי Cookie דרך הגדרות הדפדפן.
-      </p>
+        <h2>אילו פרטים נאספים</h2>
+        <p>הפרטים נאספים אך ורק כאשר הגולש בוחר למסור אותם ביוזמתו, באמצעות טופס יצירת הקשר שבאתר:</p>
+        <ul>
+          <li>שם מלא.</li>
+          <li>שם העסק, ככל שנמסר.</li>
+          <li>סוג נקודת המכירה.</li>
+          <li>עיר.</li>
+          <li>מספר טלפון.</li>
+          <li>פרטים נוספים שהגולש בוחר לכתוב בשדה החופשי.</li>
+        </ul>
+        <p>
+          בנוסף, ובכפוף להסכמת הגולש, עשויים להיאסף נתוני שימוש סטטיסטיים
+          באמצעות שירותי מדידה של צד שלישי, כמפורט להלן.
+        </p>
 
-      <h2>אבטחת מידע ושמירת הפרטים</h2>
-      <p>
-        בעל האתר נוקט אמצעים סבירים לשמירה על הפרטים הנמסרים באתר.
-        עם זאת, לא ניתן להבטיח הגנה מוחלטת מפני גישה בלתי מורשית.
-        הפרטים נשמרים למשך הזמן הנדרש לצורך הטיפול בפנייה ולמטרות שלשמן נמסרו.
-      </p>
+        <h2>מטרת השימוש בפרטים</h2>
+        <ul>
+          <li>יצירת קשר חוזר בעקבות פנייה שהתקבלה דרך האתר.</li>
+          <li>מתן מענה לשאלות ותיאום פגישת ייעוץ.</li>
+          <li>שיפור השירות והתאמתו לצרכים של בעלי נקודות מכירה.</li>
+        </ul>
+        <p>
+          הפרטים אינם נמכרים ואינם מועברים לצדדים שלישיים לצורכי שיווק,
+          למעט ספקי שירות טכניים המסייעים בהפעלת האתר ובניהול הפניות.
+        </p>
 
-      <h2>זכויות הגולש</h2>
-      <p>
-        בהתאם לדין, ניתן לפנות בבקשה לעיין בפרטים שנשמרו, לתקן אותם או לבקש את מחיקתם.
-        פנייה בעניין זה תיעשה לכתובת הדוא״ל: <span class="placeholder-text">[כתובת דוא״ל]</span>.
-      </p>
+        <h2>שירותי מדידה וקובצי Cookie</h2>
+        <p>
+          באתר עשויים לפעול שירותי מדידה של צד שלישי, ובכללם Google Analytics ו־Meta Pixel,
+          לצורך הבנת אופן השימוש באתר ושיפורו. שירותים אלה עושים שימוש בקובצי Cookie.
+        </p>
+        <p>
+          שירותי המדידה אינם נטענים כלל לפני שהגולש אישר זאת בבאנר ההסכמה המוצג בכניסה
+          הראשונה לאתר. בחירה ב״רק ההכרחי״ מונעת את טעינתם. ניתן לשנות את ההחלטה בכל עת
+          באמצעות <a href="index.html#" data-consent-reopen>הגדרות הפרטיות</a>,
+          וכן לחסום קובצי Cookie דרך הגדרות הדפדפן.
+        </p>
 
-      <h2>גופנים ונכסים חיצוניים</h2>
-      <p>
-        גופני האתר מאוחסנים ומוגשים מהשרת של האתר עצמו ואינם נטענים משירות חיצוני,
-        כך שלא מועברת אליו כתובת ה־IP של הגולש בעת הצפייה בעמוד.
-      </p>
+        <h2>אבטחת מידע ושמירת הפרטים</h2>
+        <p>
+          בעל האתר נוקט אמצעים סבירים לשמירה על הפרטים הנמסרים באתר.
+          עם זאת, לא ניתן להבטיח הגנה מוחלטת מפני גישה בלתי מורשית.
+          הפרטים נשמרים למשך הזמן הנדרש לצורך הטיפול בפנייה ולמטרות שלשמן נמסרו.
+        </p>
 
-      <h2>קישורים לאתרים חיצוניים</h2>
-      <p>
-        האתר עשוי לכלול קישורים לשירותים חיצוניים, ובכללם וואטסאפ.
-        מדיניות הפרטיות של שירותים אלה חלה עליהם בלבד, ואינה באחריות בעל האתר.
-      </p>
+        <h2>זכויות הגולש</h2>
+        <p>
+          בהתאם לדין, ניתן לפנות בבקשה לעיין בפרטים שנשמרו, לתקן אותם או לבקש את מחיקתם.
+          פנייה בעניין זה תיעשה לכתובת הדוא״ל: <span data-contact="email"><span class="placeholder-text">[כתובת דוא״ל]</span></span>.
+        </p>
 
-      <h2>שינויים במדיניות</h2>
-      <p>
-        בעל האתר רשאי לעדכן מסמך זה מעת לעת.
-        הנוסח המחייב הוא הנוסח המפורסם בעמוד זה במועד השימוש באתר.
-      </p>
+        <h2>גופנים ונכסים חיצוניים</h2>
+        <p>
+          גופני האתר מאוחסנים ומוגשים מהשרת של האתר עצמו ואינם נטענים משירות חיצוני,
+          כך שלא מועברת אליו כתובת ה־IP של הגולש בעת הצפייה בעמוד.
+        </p>
 
-      <h2>יצירת קשר</h2>
-      <p>
-        לשאלות בנוגע למדיניות פרטיות זו:
-        <span class="placeholder-text">[כתובת דוא״ל]</span>
-      </p>
+        <h2>קישורים לאתרים חיצוניים</h2>
+        <p>
+          האתר עשוי לכלול קישורים לשירותים חיצוניים, ובכללם וואטסאפ.
+          מדיניות הפרטיות של שירותים אלה חלה עליהם בלבד, ואינה באחריות בעל האתר.
+        </p>
 
-    </article>
-  </div>
-</main>
+        <h2>שינויים במדיניות</h2>
+        <p>
+          בעל האתר רשאי לעדכן מסמך זה מעת לעת.
+          הנוסח המחייב הוא הנוסח המפורסם בעמוד זה במועד השימוש באתר.
+        </p>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer__bottom" style="border:0;padding-block-start:0">
-      <p style="margin:0">© <span id="year">2026</span> פופ סטייל. כל הזכויות שמורות.</p>
-      <ul class="footer__legal">
-        <li><a href="index.html">חזרה לעמוד הראשי</a></li>
-      </ul>
+        <h2>יצירת קשר</h2>
+        <p>
+          לשאלות בנוגע למדיניות פרטיות זו:
+          <span data-contact="email"><span class="placeholder-text">[כתובת דוא״ל]</span></span>
+        </p>
+
+      </article>
+
+      <div class="acts">
+        <a class="act act--ghost" href="index.html">
+          <svg class="i-flip" aria-hidden="true"><use href="#i-arrow"></use></svg>
+          חזרה לעמוד הראשי
+        </a>
+      </div>
+
+      <footer class="foot">
+        <hr class="rule-double">
+        <div class="barcode" aria-hidden="true"></div>
+        <p class="foot__legal">© <span id="year">2026</span> פופ סטייל. כל הזכויות שמורות.</p>
+      </footer>
+
     </div>
-  </div>
-</footer>
+  </main>
+</div>
 
 <script>
   document.getElementById("year").textContent = String(new Date().getFullYear());
 
-  if (window.SITE_CONFIG && window.SITE_CONFIG.showAdminNotices === false) {
+  var CFG = window.SITE_CONFIG || {};
+
+  if (CFG.showAdminNotices === false) {
     document.querySelectorAll("[data-admin-notice]").forEach(function (el) { el.remove(); });
+    document.documentElement.classList.add("no-admin");
+  }
+
+  /* כתובת הדוא״ל מגיעה מקובץ ההגדרות, בדיוק כמו בעמוד הראשי, כדי
+     שלא תהיה כתובת שנייה שצריך לזכור לעדכן. */
+  if (CFG.email) {
+    document.querySelectorAll('[data-contact="email"]').forEach(function (el) {
+      el.innerHTML = '<a class="mail-link" href="mailto:' + CFG.email.replace(/[&<>"']/g, "") +
+                     '" dir="ltr">' + CFG.email.replace(/[&<>"']/g, "") + "</a>";
+    });
   }
 
   /* "הגדרות הפרטיות": מוחק את ההחלטה השמורה ומחזיר לעמוד הראשי,

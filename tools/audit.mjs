@@ -13,8 +13,8 @@
  */
 import { chromium } from 'playwright-core';
 const B = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
-/* ברירת המחדל היא האתר החי. אפשר להעביר עמודים בשורת הפקודה כדי
-   לסרוק גם תצוגה מקדימה:  node tools/audit.mjs preview/index.html   */
+/* ברירת המחדל היא שלושת עמודי האתר. אפשר להעביר עמודים בשורת הפקודה
+   כדי לסרוק עמוד בודד:  node tools/audit.mjs index.html   */
 const URL = process.env.AUDIT_URL || 'http://localhost:8765/';
 const ARGS = process.argv.slice(2).filter(a => !a.startsWith('-'));
 const PAGES = ARGS.length ? ARGS : ['index.html', 'privacy.html', '404.html'];

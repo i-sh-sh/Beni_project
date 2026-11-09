@@ -85,11 +85,12 @@ console.log("\nמונים ללא JavaScript");
 console.log("\nשמות");
 {
   const html = read("index.html");
-  /* הכותרת נושאת את הלוגו הרשמי ולא טקסט: הלטינית חיה בתוך הסימן.
-     השם העברי חייב להופיע ב-title וב-OG, שם הוא הקול של המותג. */
-  if (!html.includes('class="brand__logo"'))
-    fail("הכותרת העליונה אינה נושאת את הלוגו");
-  else console.log("  ✓ הכותרת: הלוגו הרשמי");
+  /* ראש המסמך נושא את הלוגו הרשמי ולא טקסט: הלטינית חיה בתוך הסימן.
+     השם העברי חייב להופיע ב-title וב-OG, שם הוא הקול של המותג.
+     ב-0009 הכותרת העליונה הוחלפה בראש הרצועה — אותו תפקיד, שם אחר. */
+  if (!html.includes('class="doc-head__logo"'))
+    fail("ראש המסמך אינו נושא את הלוגו");
+  else console.log("  ✓ ראש המסמך: הלוגו הרשמי");
 
   /* ה-manifest נשכח במעבר השם ונשא את "בני לפקוביץ" עוד יום. */
   const mf = read("site.webmanifest");
@@ -148,7 +149,7 @@ console.log("\nנכסי המותג");
   }
   if (ok === need.length) console.log(`  ✓ ${ok} נכסים`);
   const css = readFileSync(join(root, "assets/css/style.css"), "utf8");
-  if (!/--brand-500:\s*#0088ff/i.test(css)) fail("--brand-500 אינו הכחול הרשמי #0088FF");
+  if (!/--blue:\s*#0088ff/i.test(css)) fail("--blue אינו הכחול הרשמי #0088FF");
   else console.log("  ✓ #0088FF");
 }
 

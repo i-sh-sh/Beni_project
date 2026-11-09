@@ -175,7 +175,10 @@
         window.setTimeout(function () { entry.target.classList.add("is-visible"); }, i * 60);
         observer.unobserve(entry.target);
       });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    }, { rootMargin: "0px 0px -56px 0px", threshold: 0 });
+    /* סף של 0.08 אינו נורה על בלוק שגבוה מהמסך: הוא לעולם לא מגיע
+       ל-8% נראות משל עצמו. נמדד בתצוגה המקדימה — חמישה סעיפים
+       נשארו תקועים על opacity חלקית אחרי גלילה מלאה. */
 
     items.forEach(function (el) { io.observe(el); });
   }
@@ -260,66 +263,12 @@
   });
 
   /* ------------------------------------------------------------------------
-     4b. כותרת קינטית
-     ------------------------------------------------------------------------ */
-
-  /* עוטף כל מילה בכותרת כדי שתוכל לעלות מתוך המסכה.
-     מילים שלמות בלבד: חלוקה לאותיות שוברת צורות סופיות ומנתקת
-     אותיות שימוש מהמילה שלהן. ללא JavaScript הכותרת פשוט מוצגת. */
-  function initKineticHeadline() {
-    if (prefersReducedMotion) return;
-
-    var index = 0;
-    $$(".kinetic__line").forEach(function (line) {
-      var words = line.textContent.trim().split(/\s+/);
-      line.textContent = "";
-      words.forEach(function (word, i) {
-        var span = document.createElement("span");
-        span.className = "kinetic__word";
-        span.style.setProperty("--i", String(index++));
-        span.textContent = word;
-        line.appendChild(span);
-        if (i < words.length - 1) line.appendChild(document.createTextNode(" "));
-      });
-    });
-  }
-
-  /* ------------------------------------------------------------------------
-     4c. העיפרון של היועץ — סימונים שנמשכים בגלילה
+     4b. הכותרת הקינטית והעיפרון — הוסרו ב-0009
      ------------------------------------------------------------------------
-     אורך כל קו נמדד מהדפדפן ולא מוערך בקוד, כך שהמשיכה מדויקת גם אם
-     ה-path ישתנה. הסימונים דקורטיביים: אם אין JavaScript או שהמשתמש
-     ביקש תנועה מופחתת, הם פשוט מצוירים במלואם מלכתחילה.
+     שניהם היו מכשירים של העולם של 0004. ב-"הדוח" הכותרת היא שורת כותרת
+     של מסמך והרגע המחובר היחיד הוא ראש ההדפסה שחולף על ראש הרצועה,
+     והוא CSS בלבד. אין כאן קוד שמחליף אותם.
      ------------------------------------------------------------------------ */
-
-  function initPencilMarks() {
-    var marks = $$(".mark");
-    if (!marks.length) return;
-
-    marks.forEach(function (mark) {
-      $$("path", mark).forEach(function (path) {
-        if (typeof path.getTotalLength !== "function") return;
-        path.style.setProperty("--len", String(Math.ceil(path.getTotalLength())));
-      });
-    });
-
-    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
-      marks.forEach(function (m) { m.classList.add("is-drawn"); });
-      return;
-    }
-
-    var io = new IntersectionObserver(function (entries, observer) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        var delay = entry.target.getAttribute("data-delay");
-        if (delay) entry.target.style.setProperty("--delay", delay + "ms");
-        entry.target.classList.add("is-drawn");
-        observer.unobserve(entry.target);
-      });
-    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.4 });
-
-    marks.forEach(function (m) { io.observe(m); });
-  }
 
   /* ------------------------------------------------------------------------
      4d. ספירה עולה למספרי הניסיון
@@ -741,8 +690,8 @@
           'הנתונים אינם משמשים לזיהוי אישי. פרטים נוספים ב<a href="privacy.html">מדיניות הפרטיות</a>.' +
         "</p>" +
         '<div class="consent__actions">' +
-          '<button class="btn btn--secondary btn--sm" type="button" data-consent="denied">רק ההכרחי</button>' +
-          '<button class="btn btn--primary btn--sm" type="button" data-consent="granted">אישור</button>' +
+          '<button class="act act--ghost act--sm" type="button" data-consent="denied">רק ההכרחי</button>' +
+          '<button class="act act--sm" type="button" data-consent="granted">אישור</button>' +
         "</div>" +
       "</div>";
 
@@ -803,8 +752,6 @@
   var yearEl = $("#year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  initKineticHeadline();
-  initPencilMarks();
   initCounters();
   initReveal();
   initAnalytics();
