@@ -403,6 +403,10 @@ a { color: var(--blue-deep); text-underline-offset: 3px; }
 .act {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--s2);
   min-block-size: 52px; inline-size: 100%;
+  /* ריפוד אנכי אמיתי, לא רק גובה מינימום עם מרכוז. האוויר היה נכון
+     כל עוד התווית נכנסת בשורה אחת; תווית שנשברת לשתיים במסך צר
+     הייתה נוגעת במסגרת. עכשיו הגובה הוא רצפה, לא מקור האוויר. */
+  padding-block: var(--s3);
   padding-inline: var(--s5);
   background: var(--blue-deep); color: #fff;
   font-family: var(--f-body); font-weight: 700; font-size: 1rem;
@@ -788,7 +792,7 @@ dl, dt, dd { margin: 0; }
 .item--lead .item__cta { background: var(--paper); color: var(--ink); border-color: var(--paper); }
 .item--lead .item__cta:hover { background: var(--paper-2); border-color: var(--paper-2); }
 
-.act--sm { min-block-size: 40px; font-size: .9375rem; padding-inline: var(--s4); inline-size: auto; }
+.act--sm { min-block-size: 40px; font-size: .9375rem; padding: var(--s2) var(--s4); inline-size: auto; }
 
 /* --------------------------------------------------------------------------
    הצעת הפתיחה וטווח המחיר — מוצגים רק אם מולאו ב-site.config.js
