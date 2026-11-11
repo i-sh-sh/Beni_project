@@ -1,41 +1,35 @@
 @charset "UTF-8";
 
 /* ==========================================================================
-   בני לפקוביץ · POP — תכנון ואופטימיזציה לנקודות מכירה
+   פופ סטייל — "הדוח"
    --------------------------------------------------------------------------
-   שפה חזותית: "השדה הכחול" — החלטת מועצה 0004.
-   הלוגו הוא המקור של המערכת, לא התבנית שלה. קרקע לבנה טהורה, כחול המותג
-   בשדות תחומים שבהם הוא נגיש (ההירו והסקשנים השחורים), Rubik-800 לתצוגה,
-   וקווי שיער שמחלקים את העמוד לגריד נראה.
+   העולם: סרט הקופה. דוח ה-Z שכל בעל חנות בישראל קורא בסוף היום — המסמך
+   היחיד שאומר מה היום באמת עשה. העמוד הוא רצועה מודפסת אחת שיורדת על
+   קרקע כחולה מוצפת. החלטת מועצה 0009; מחליפה את 0004.
 
-   החוק שמחזיק את כל הפלטה:
-     #0088FF על לבן = 3.52:1 — עובר 3:1 לתצוגה, נכשל 4.5:1 לטקסט רגיל.
-     לבן על #0088FF = 3.52:1 — אותו דבר.
-     #0088FF על #111827 = 5.04:1 — עובר AA מלא.
-   לכן: הכחול המדויק חי בשני בתים בלבד — שדה מלא שנושא רק טקסט תצוגה,
-   ושחור. טקסט רץ אף פעם לא יושב עליו ואף פעם לא נצבע בו; לזה יש
-   --brand-600.
+   אסטרטגיית צבע: Committed. #0088FF מציף את הקרקע ונושא כ-55% מהמשטח.
+   הרצועה היא נייר. אין קרם, אין קווי שיער עריכתיים, אין אדום אות —
+   שלושת אלה הם בדיוק האשכולות שה-calibration של הסקיל מסמן כברירת
+   המחדל של מכונה.
 
-   אין צללים. אין גרדיאנטים. אין כרטיסים מרחפים.
-   כיווניות: RTL מלא, באמצעות CSS Logical Properties.
+   טיפוגרפיה: Rubik ו-Assistant, גופני המותג. קול הקבלה מגיע מהמבנה —
+   עמודות, מובילי נקודות, קווי סיכום וספרות טבלאיות — ולא מגופן
+   מונוספייס בתחפושת, שה-craft floor אוסר כשאינו קוד או מדידה.
+
+   מה הורם מהמתחרים שהקובייה חילקה:
+   · מעיינית המצלמה — "המסגרת מסמנת את מה שחשוב בזמן שהנושא נשאר גלוי
+     לגמרי תחתיה". הצילומים נושאים סימני מדידה, לא קישוט.
+   · עטיפת היי־יי — "קרקע רוויה אחת מציפה את הפריים, לבן כצבע ההקלה
+     היחיד".
+   · הכריכה הקופטית — "המבנה הוא הקישוט היחיד". כל קו בעמוד הוא קו
+     עמודה או קו סיכום. אין אף קו דקורטיבי.
    ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   0. גופנים — מאוחסנים מקומית
-   --------------------------------------------------------------------------
-   Rubik לתצוגה: גיאומטרי עם פינות מעוגלות שמהדהדות את רדיוס הריבוע בלוגו,
-   וחיתוך עברי שעוצב יחד עם הלטיני ולא הותאם בדיעבד. משקל אחד בלבד (800),
-   9.1KB לעברית — מתחת לתקרת 12KB שהמועצה קבעה. הלטינית מסובסטת ל-ASCII
-   ולסימני פיסוק בלבד: 34.5KB → 13.7KB.
-   Assistant לגוף הטקסט — הניגוד ההומניסטי הוא מה שמונע מראה SaaS גנרי.
-   רישיון: SIL Open Font License 1.1 — ראו assets/fonts/OFL.txt
-   -------------------------------------------------------------------------- */
 
 @font-face {
   font-family: "Rubik";
   font-style: normal;
   font-weight: 800;
-  font-display: block; /* block ולא swap: הכותרת היא העיצוב, החלפה מורגשת */
+  font-display: block;
   src: url("../fonts/rubik-800-hebrew.woff2") format("woff2");
   unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
 }
@@ -47,7 +41,6 @@
   src: url("../fonts/rubik-800-latin.woff2") format("woff2");
   unicode-range: U+0020-007E, U+00A0, U+2013-2014, U+2018-201D, U+2022, U+2026, U+20AA;
 }
-
 @font-face {
   font-family: "Assistant";
   font-style: normal;
@@ -62,1366 +55,920 @@
   font-weight: 400 700;
   font-display: swap;
   src: url("../fonts/assistant-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-                 U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-                 U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2122, U+FFFD;
 }
-
-/* --------------------------------------------------------------------------
-   1. טוקנים
-   -------------------------------------------------------------------------- */
 
 :root {
-  /* --- קרקע ודיו ---
-     לבן טהור ולא "עצם": עצם מוריד כל כחול בכ-12% ניגודיות, ומעביר את
-     --brand-600 מ-5.79:1 ל-4.68:1. */
+  --blue: #0088ff;
+  --blue-deep: #0b63c7;
+  --blue-dark: #0a4f9e;
+  --ink: #111827;
+  --ink-2: #39475a;
+  --ink-3: #68778a;
   --paper: #ffffff;
-  --paper-2: #f4f7fb;       /* משטח מוטה, קריר */
-  --night: #111827;         /* השחור של המותג. עם הכחול הרשמי #0088FF
-                               הוא נותן 5.04:1 ועובר AA — מה שלא היה נכון
-                               לכחול שנמדד מה-JPG, ושחייב אז שחור טהור. */
-  --ink: #111827;           /* השחור של המותג. 17.7:1 על לבן */
-  --ink-2: #2b3f55;         /* 10.6:1 */
-  --ink-3: #5a6b7d;         /* 5.47:1 — תוויות וטקסט משני */
-  --on-night: #ffffff;
-  --on-night-2: #9fb2c4;    /* 8.4:1 על שחור */
+  --paper-2: #f2f5f8;
+  --rule: #82909f;   /* מוביל הנקודות הוא המכשיר של העולם — הוא חייב להיקרא */
+  --rule-strong: #111827;
+  --whatsapp: #107c42;
+  --alert: #a81109;
 
-  /* --- כחול המותג, שלוש דרגות ---
-     500 נמדד מהלוגו שהלקוח שלח. 600 ו-700 נגזרו ממנו ונבדקו. */
-  --brand-500: #0088ff;     /* כחול המותג הרשמי מחבילת המיתוג.
-                               שדה ההירו · טקסט על --night (5.04:1) */
-  --brand-600: #0b63c7;     /* כחול העבודה — כפתורים וקישורים, 5.79:1 על לבן */
-  --brand-700: #0b4fa6;     /* hover / pressed, 7.8:1 */
-  --brand-050: #e3f2ff;     /* התכלת הרשמית מחבילת המיתוג */
-  --brand-100: #cfe4ff;
+  --f-display: "Rubik", "Arial Hebrew", sans-serif;
+  --f-body: "Assistant", "Arial Hebrew", system-ui, sans-serif;
 
-  /* --- העיפרון ---
-     האדום יצא מהפלטה ונכנס לשכבת ההערה בלבד. הוא אינו צבע מותג ואין לו
-     שום תפקיד אינטראקטיבי: #B3140C מול --brand-600 הוא 1.03:1, כלומר
-     בהירות זהה — אדום לעולם לא יכול להיות אות יחיד. */
-  --mark: #b3140c;          /* 6.95:1 על לבן */
-  --mark-on-night: #ff7b6e; /* 8.3:1 על שחור */
-  --pencil-w: 2.6;
-  --pencil-draw: 900ms;
+  --tape: 760px;
+  --gut: clamp(1rem, 4vw, 2.75rem);
 
-  /* --- מצבי טופס. כל אחד נושא גם אייקון ומילה, לא רק צבע --- */
-  --error: #a8140c;
-  --error-bg: #fdecea;
-  --success: #0a6a3c;
-  --success-bg: #e8f3ec;
-  --whatsapp: #107c42;      /* 5.27:1 עם לבן.
-                               אסור על רקע כחול: מול #0082FC הוא 1.41:1 */
+  --s1: .25rem; --s2: .5rem; --s3: .75rem; --s4: 1rem;
+  --s5: 1.5rem; --s6: 2rem; --s7: 3rem; --s8: 4rem;
 
-  /* --- קווים — המכשיר המבני המרכזי של השפה --- */
-  --rule: var(--ink);
-  --rule-soft: #d4dde7;
-  --stroke-1: 1px;
-  --stroke-2: 1.5px;
-  --stroke-3: 3px;
-
-  /* --- רדיוס. לא סקאלה: שני ערכים.
-     עיגול גלובלי שובר את גריד קווי השיער — קו 1px נגמר באוויר על פינה
-     מעוגלת, והצילום המלא הופך לכרטיס SaaS. --- */
-  --r-pill: 999px;
-  --r-box: 14px;            /* ~16% מצלע האריח בלוגו, בקנה מידה של רכיב */
-
-  /* --- טיפוגרפיה --- */
-  --f-display: "Rubik", "Arial Hebrew", "Segoe UI", sans-serif;
-  --f-body: "Assistant", "Arial Hebrew", "Segoe UI", system-ui, sans-serif;
-
-  /* סקאלת תצוגה. Rubik רחב בהרבה מ-Karantina הקונדנסד, ולכן המקסימום
-     ירד בכ-32% — אחרת כל כותרת נשברת לשתי שורות נוספות. */
-  /* הרצפות הונמכו למובייל: 40px לכותרת ראשית ו-32px לכותרת סקשן
-     ב-390px אינם היררכיה אלא צעקה, והם מה שדחף כל כותרת לשלוש שורות. */
-  --d-xl: clamp(2.125rem, 5.4vw, 4.75rem);
-  --d-lg: clamp(1.75rem, 3.9vw, 3.25rem);
-  --d-md: clamp(1.375rem, 2.4vw, 2.1rem);
-  --d-sm: clamp(1.125rem, 1.8vw, 1.6rem);
-
-  --t-lg: clamp(1.125rem, 1vw + 0.9rem, 1.3125rem);
-  --t-base: 1.0625rem;
-  --t-sm: 0.9375rem;
-  --t-xs: 0.8125rem;
-  --t-micro: 0.75rem;
-
-  /* מרווח */
-  --s-1: 0.25rem;  --s-2: 0.5rem;   --s-3: 0.75rem;
-  --s-4: 1rem;     --s-5: 1.5rem;   --s-6: 2rem;
-  --s-7: 3rem;     --s-8: 4rem;     --s-9: 6rem;
-
-  /* פריסה */
-  --container: 1320px;
-  --gutter: clamp(1.25rem, 4vw, 3.5rem);
-  --header-h: 76px;
-
-  /* שכבות */
-  --z-base: 1; --z-float: 60; --z-header: 100; --z-overlay: 150; --z-skip: 200;
-
-  /* תנועה */
-  --ease: cubic-bezier(0.2, 0, 0.15, 1);
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --dur: 200ms;
-  --dur-slow: 420ms;
+  --ease: cubic-bezier(.16, 1, .3, 1);
 }
-
-/* --------------------------------------------------------------------------
-   2. בסיס
-   -------------------------------------------------------------------------- */
 
 *, *::before, *::after { box-sizing: border-box; }
-
-/* --- משטחי הדפדפן ---------------------------------------------------
-   החלקים שלא ציירנו נושאים גם הם את העיצוב: סימון טקסט, הסמן בשדות,
-   פס הגלילה וקו הקישור מגיעים עם ברירות מחדל שאינן שייכות לשום
-   מערכת. לפי ה-craft floor זה הסימן הזול ביותר לכך שעמוד נבנה ולא
-   הורכב, והוא גם זה שנשכח הכי הרבה. */
-::selection { background: var(--brand-100); color: var(--ink); }
-.section--dark ::selection,
-.footer ::selection,
-.hero__field ::selection { background: var(--paper); color: var(--brand-700); }
-
-:root {
-  scrollbar-color: var(--brand-600) var(--paper-2);
-  scrollbar-width: thin;
-  accent-color: var(--brand-600);
-}
-
-input, textarea, select { caret-color: var(--brand-600); }
-
-a { text-underline-offset: 3px; text-decoration-thickness: from-font; }
-
 [hidden] { display: none !important; }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
+::selection { background: var(--blue); color: #fff; }
+:root { scrollbar-color: var(--blue-deep) var(--blue-dark); scrollbar-width: thin; accent-color: var(--blue-deep); }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--paper);
+  /* הקרקע הכחולה מציפה. היא אינה מבטא — היא השדה. */
+  background: var(--blue);
   color: var(--ink);
   font-family: var(--f-body);
-  font-size: var(--t-base);
-  line-height: 1.68;
+  font-size: 1.0625rem;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 
 img, svg { max-width: 100%; display: block; }
 img { height: auto; }
-
-h1, h2, h3, h4 {
+p { margin: 0; text-wrap: pretty; }
+figure { margin: 0; }   /* ברירת המחדל היא 40px מהצדדים: הצילומים יצאו צרים מהרצועה */
+ul { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3 {
   margin: 0;
   font-family: var(--f-display);
-  font-weight: 700;
-  /* 0.93 כויל ל-Karantina הקונדנסד. ב-Rubik שתי שורות עברית כמעט
-     נוגעות, וזה קריאוּת ולא טעם. */
+  font-weight: 800;
   line-height: 1.02;
-  letter-spacing: 0;
-  color: var(--ink);
   text-wrap: balance;
 }
 
-h1 { font-size: var(--d-xl); }
-h2 { font-size: var(--d-lg); }
-h3 { font-size: var(--d-md); }
-h4 { font-size: var(--d-sm); }
+a { color: var(--blue-deep); text-underline-offset: 3px; }
 
-p { margin: 0 0 var(--s-4); text-wrap: pretty; }
-p:last-child { margin-block-end: 0; }
-
-a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-
-ul, ol { margin: 0; padding-inline-start: 0; list-style: none; }
-
-strong { font-weight: 700; }
-
-code {
-  font-family: var(--f-body);
-  font-size: 0.9em;
-  direction: ltr;
-  unicode-bidi: isolate;
-  background: var(--paper-2);
-  padding: 0.05em 0.3em;
-}
-
-/* טבעת פוקוס דו־גונית, כדרישת המועצה: הטבעת הכחולה נראית על לבן,
-   וטבעת הניגוד שמתחתיה מבטיחה שהיא נראית גם על שחור ועל השדה הכחול,
-   שבהם כחול־על־כחול היה נעלם. */
 :focus-visible {
-  outline: var(--stroke-3) solid var(--brand-600);
+  outline: 3px solid var(--blue-dark);
   outline-offset: 2px;
-  box-shadow: 0 0 0 2px var(--paper);
+  box-shadow: 0 0 0 2px #fff;
   border-radius: 3px;
 }
-.section--dark :focus-visible,
-.hero__field :focus-visible,
-.action-bar :focus-visible,
-.consent :focus-visible {
-  outline-color: var(--paper);
-  box-shadow: 0 0 0 2px var(--brand-500);
-}
-
-.skip-link {
-  position: absolute;
-  inset-block-start: -100px;
-  inset-inline-start: var(--s-4);
-  z-index: var(--z-skip);
-  background: var(--night);
-  color: var(--on-night);
-  padding: var(--s-3) var(--s-5);
-  font-weight: 700;
-  transition: inset-block-start var(--dur) var(--ease);
-}
-.skip-link:focus { inset-block-start: var(--s-4); }
+.tape :focus-visible { outline-color: var(--blue-deep); }
 
 .sr-only {
-  position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  position: absolute; width: 1px; height: 1px; padding: 0;
+  margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
+.skip {
+  position: absolute; inset-block-start: -100px; inset-inline-start: var(--s4);
+  z-index: 50; background: #fff; color: var(--ink);
+  padding: var(--s3) var(--s4); font-weight: 700;
+}
+.skip:focus { inset-block-start: var(--s4); }
+
 /* --------------------------------------------------------------------------
-   3. תוויות
+   הרצועה
    --------------------------------------------------------------------------
-   שני סוגים, והאבחנה ביניהם חשובה:
-   .mono — אך ורק ללטינית ולספרות. ריווח אותיות מותר.
-   .tag  — לעברית. משקל וגודל נושאים את ההיררכיה ולא ריווח אותיות:
-           ריווח שובר מילים בעברית, ואין בה אותיות גדולות.
+   נייר אמיתי: קצה מנוקב למעלה ולמטה, לא מלבן עם פינות מעוגלות.
    -------------------------------------------------------------------------- */
 
-.mono {
-  font-family: var(--f-body);
-  font-size: var(--t-micro);
-  letter-spacing: 0.12em;
-  color: var(--ink-3);
-  direction: ltr;
-  unicode-bidi: isolate;
-}
-
-.tag {
-  font-family: var(--f-body);
-  font-weight: 700;
-  font-size: var(--t-xs);
-  color: var(--ink-3);
-  margin-block-end: var(--s-4);
-}
-
-.section--dark .tag { color: var(--brand-500); }
-.section--dark .mono { color: var(--on-night-2); }
-
-/* --------------------------------------------------------------------------
-   4. פריסה
-   -------------------------------------------------------------------------- */
-
-.container {
-  width: 100%;
-  max-width: var(--container);
+.wrap {
+  max-inline-size: var(--tape);
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  padding-inline: var(--gut);
+  padding-block: clamp(1.25rem, 5vw, 3rem);
+  /* ראש ההדפסה רחב מהנייר בכוונה; בלי זה הוא יוצר גלילה אופקית
+     במסך צר, שם לרצועה אין שולי כחול מסביב. נמדד: 5px ב-390. */
+  overflow-x: clip;
 }
 
-.section {
-  /* במובייל הריפוד ירד מ-48px ל-34px: ב-390px רוחב אין גריד נראה
-     שהאוויר משרת, ונשאר רק האוויר. */
-  padding-block: clamp(2.125rem, 7vw, 6rem);
-  border-block-start: var(--stroke-1) solid var(--rule);
-  scroll-margin-block-start: calc(var(--header-h) + var(--s-4));
+.tape {
+  /* בלי רקע. הלבן יושב על ::before, ::after ו-.tape__body בלבד —
+     אחרת החורים שבמסכת הניקוב חושפים את הלבן של .tape ולא את הכחול,
+     והקצה נראה חתוך בסכין. נמדד: הקצה היה ישר לגמרי. */
+  padding: 0;
+  position: relative;
 }
 
-.section--dark {
-  background: var(--night);
-  color: var(--on-night);
-  border-block-start-color: var(--ink);
-}
-.section--dark h2,
-.section--dark h3 { color: var(--on-night); }
-
-.section--tint { background: var(--paper-2); }
-
-/* רוחבי הכותרות כוילו ל-Karantina הקונדנסד. Rubik רחב בהרבה, ובערכים
-   הישנים כל כותרת נשברה למילה בשורה. נמדד מחדש: ב-52ch הכותרות הארוכות
-   יושבות על 3–4 שורות והקצרות על שורה אחת. */
-.section-head { max-width: 52ch; }
-.section-head--wide { max-width: 64ch; }
-
-.lead {
-  font-size: var(--t-lg);
-  color: var(--ink-2);
-  max-width: 46ch;
-  margin-block-start: var(--s-4);
-}
-.section--dark .lead { color: var(--on-night-2); }
-
-/* --------------------------------------------------------------------------
-   5. כפתורים
-   -------------------------------------------------------------------------- */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--s-2);
-  min-height: 50px;
-  padding-inline: var(--s-6);
-  border: var(--stroke-2) solid var(--ink);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--ink);
-  font-family: var(--f-body);
-  font-weight: 700;
-  font-size: var(--t-sm);
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
-}
-
-.btn--primary { background: var(--brand-600); color: #fff; }
-.btn--primary:hover { background: var(--brand-700); color: #fff; }
-.btn--secondary:hover { background: var(--brand-050); }
-.btn--tint { background: var(--brand-050); border-color: var(--brand-050); }
-.btn--tint:hover { background: var(--brand-100); border-color: var(--brand-100); }
-.btn--block { display: flex; width: 100%; }
-.btn--sm { min-height: 44px; padding-inline: var(--s-5); font-size: var(--t-xs); }
-.btn__icon { width: 20px; height: 20px; flex: none; }
-
-.section--dark .btn { border-color: var(--on-night); color: var(--on-night); }
-.section--dark .btn--primary { background: var(--on-night); color: var(--ink); }
-.section--dark .btn--primary:hover { background: var(--brand-050); color: var(--ink); }
-.section--dark .btn--secondary:hover { background: rgba(255, 255, 255, 0.1); }
-
-/* קישור־חץ: המקבילה הטקסטואלית לכפתור, בתוך שורות */
-.go {
-  font-weight: 700;
-  font-size: var(--t-sm);
-  white-space: nowrap;
-  text-decoration: none;
-  border-block-end: var(--stroke-2) solid currentColor;
-  padding-block-end: 2px;
-}
-
-/* --------------------------------------------------------------------------
-   6. כותרת עליונה
-   -------------------------------------------------------------------------- */
-
-.header {
-  position: sticky;
-  inset-block-start: 0;
-  z-index: var(--z-header);
-  background: var(--paper);
-  border-block-end: var(--stroke-1) solid var(--rule);
-}
-
-.header__inner {
-  display: flex;
-  align-items: center;
-  gap: var(--s-6);
-  min-height: var(--header-h);
-}
-
-/* הלוקאפ בכותרת: הסימן ואחריו שם המותג בעברית.
-   זה אינו לוק-אפ דו־לשוני שאסרה 0005 — לסימן אין אותיות, והלטינית
-   נשארת בתוך הלוגו ובדומיין בלבד.
-   align-items: center ולא baseline, כי לתמונה אין קו בסיס טיפוגרפי
-   והיא הייתה נתלית על התחתית של האות. */
-.brand { display: flex; align-items: center; text-decoration: none; }
-/* הלוגו הרשמי מחבילת המיתוג: הסמל והכיתוב כקובץ אחד, כל האותיות
-   במסלולים. חבילת המיתוג ממליצה 220–280px בכותרת; מתחת ל-180px היא
-   ממליצה סמל בלבד, ולכן ה-clamp לא יורד מתחת לזה.
-   כאן גם נפתרת הסתירה שהמועצה סימנה ב-0005: אין יותר שם עברי לצד
-   כיתוב לטיני, כי הלטינית חיה אך ורק בתוך הסימן. "פופ סטייל" בעברית
-   נשאר ב-title, ב-OG, בפוטר ובתוכן. */
-.brand__logo {
-  /* הגובה קובע, לא הרוחב: כך אותו כלל משרת את הסמל (1:1) ואת הלוגו
-     המלא (2.76:1) בלי לחשב רוחב לכל אחד. ב-1440 הלוגו יוצא ~221px,
-     בתוך הטווח 220–280 שחבילת המיתוג ממליצה עליו, ונשאר לו מרווח
-     נקי של כ-12% מגובהו בתוך הכותרת. */
-  /* 9.3vw ולא פחות: בדיוק הערך שבו הלוגו המלא מגיע ל-180px רוחב כבר
-     ב-700px, הנקודה שבה picture מחליף אליו. מתחת לזה חבילת המיתוג
-     מבקשת סמל בלבד, וזה מה שנטען. */
-  block-size: clamp(40px, 9.3vw, 80px);
-  inline-size: auto;
-  flex: none;
-}
-
-@media (min-width: 700px) {
-  :root { --header-h: 104px; }
-}
-
-.nav { margin-inline-start: auto; }
-.nav__list { display: none; gap: var(--s-6); }
-.nav__link {
-  font-weight: 600;
-  font-size: var(--t-sm);
-  text-decoration: none;
-  padding-block: var(--s-2);
-  border-block-end: var(--stroke-2) solid transparent;
-}
-.nav__link:hover { border-block-end-color: var(--ink); }
-.nav__link[aria-current="true"] { border-block-end-color: var(--brand-600); font-weight: 700; }
-
-.header__cta { display: none; }
-
-.nav-toggle {
-  margin-inline-start: auto;
-  width: 48px; height: 48px;
-  display: grid;
-  place-items: center;
-  background: transparent;
-  border: var(--stroke-2) solid var(--ink);
-  border-radius: 999px;
-  cursor: pointer;
-}
-.nav-toggle__bars { position: relative; width: 18px; height: 2px; background: var(--ink); display: block; }
-.nav-toggle__bars::before,
-.nav-toggle__bars::after {
-  content: ""; position: absolute; inset-inline: 0; height: 2px; background: var(--ink);
-}
-.nav-toggle__bars::before { inset-block-start: -6px; }
-.nav-toggle__bars::after { inset-block-start: 6px; }
-.nav-toggle[aria-expanded="true"] .nav-toggle__bars { background: transparent; }
-.nav-toggle[aria-expanded="true"] .nav-toggle__bars::before { inset-block-start: 0; transform: rotate(45deg); }
-.nav-toggle[aria-expanded="true"] .nav-toggle__bars::after { inset-block-start: 0; transform: rotate(-45deg); }
-
-@media (min-width: 1000px) {
-  .nav__list { display: flex; }
-  .header__cta { display: inline-flex; }
-  .nav-toggle { display: none; }
-  .nav { margin-inline-start: auto; }
-}
-
-.mobile-nav {
-  border-block-start: var(--stroke-1) solid var(--rule);
-  padding-block: var(--s-4) var(--s-6);
-  background: var(--paper);
-}
-.mobile-nav__list { display: grid; }
-.mobile-nav__link {
-  display: block;
-  font-family: var(--f-display);
-  font-size: var(--d-sm);
-  text-decoration: none;
-  padding-block: var(--s-3);
-  border-block-end: var(--stroke-1) solid var(--rule-soft);
-}
-.mobile-nav__cta { margin-block-start: var(--s-5); }
-
-/* --------------------------------------------------------------------------
-   7. הירו
-   -------------------------------------------------------------------------- */
-
-/* ההירו הוא האזור הראשון: אין לו קו עליון, ואין לו ריפוד עליון משלו —
-   ריפוד ה-.section נוסף לריפוד ה-grid וייצר רווח מת מתחת לכותרת. */
-.hero {
-  border-block-start: 0;
-  padding-block-start: 0;
-}
-
-/* ---- השדה הכחול ----------------------------------------------------------
-   המהלך המרכזי של 0004. רצועה מלאת־רוחב בצבע הלוגו המדויק, שנושאת את
-   הסימן ואת הכותרת בלבד. אין בה טקסט רץ ואין בה כפתור: לבן על #0082FC
-   הוא 3.75:1, שעובר רק לטקסט תצוגה. ה-tag נושא טקסט קטן ולכן הוא מקבל
-   משטח לבן משלו ונצבע ב---brand-600. */
-.hero__field {
-  background: var(--brand-500);
-  margin-block-end: clamp(1.25rem, 3.5vw, 2.5rem);
-  padding-block: clamp(1.5rem, 4vw, 2.75rem) clamp(1.75rem, 5vw, 3rem);
-}
-
-.hero__field-inner { display: grid; gap: clamp(1rem, 2.5vw, 1.75rem); }
-
-/* הסימן מגיע עם אריח כחול משלו באותו צבע בדיוק כמו השדה, ולכן הוא נקרא
-   כעגלה לבנה על הרקע — בלי מסגרת וללא צל. */
-.hero__mark {
-  inline-size: clamp(56px, 9vw, 92px);
-  block-size: auto;
-}
-
-.hero__field-text { display: grid; gap: clamp(0.9rem, 2vw, 1.5rem); justify-items: start; }
-
-/* התווית על השדה: משטח לבן עם טקסט כחול, במקום לבן על כחול שנכשל. */
-.tag--chip {
-  background: var(--paper);
-  color: var(--brand-600);
-  border-radius: var(--r-pill);
-  padding: 0.4em 1em;
-  margin: 0;
-}
-
-.hero__field .hero__title { color: var(--paper); margin-block-end: 0; }
-
-/* על השדה הכחול העיפרון לובש את תכלת העגלה שבלוגו: האדום מול הכחול הוא
-   1.85:1 והיה נעלם; #E8F2FF נותן 3.32:1 ועובר. */
-.hero__field .mark path { stroke: var(--brand-050); }
-
-/* בדסקטופ הכותרת לבדה השאירה חצי שדה ריק, והכפתור הראשי נדחק מתחת לקיפול.
-   הסימן עובר לצד הפנוי בגודל מלא, והשדה מתקצר. */
-@media (min-width: 1000px) {
-  .hero__field { padding-block: clamp(1.25rem, 2.6vw, 2.25rem) clamp(1.5rem, 3vw, 2.5rem); }
-  .hero__field-inner {
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: clamp(2rem, 5vw, 4.5rem);
-  }
-  .hero__field-text { grid-column: 1; grid-row: 1; }
-  .hero__mark { grid-column: 2; grid-row: 1; inline-size: clamp(130px, 14vw, 200px); }
-}
-
-.hero__grid {
-  display: grid;
-  gap: clamp(var(--s-5), 5vw, var(--s-6));
-  padding-block: clamp(var(--s-5), 5vw, var(--s-6)) clamp(var(--s-6), 6vw, var(--s-7));
-}
-
-.hero__title { margin-block-end: var(--s-5); }
-
-.hero__sub {
-  font-size: var(--t-lg);
-  color: var(--ink-2);
-  max-width: 40ch;
-  margin-block-end: var(--s-6);
-}
-
-.hero__actions { display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center; }
-.hero__actions .btn { flex: 1 1 auto; }
-
-/* במובייל שני כפתורים מלאי־רוחב זה מעל זה אינם היררכיה: שניהם
-   נקראים ראשיים. המשני יורד לקישור, והפעולה הראשית נשארת לבדה. */
-@media (max-width: 599px) {
-  .hero__actions { flex-direction: column; align-items: stretch; gap: var(--s-4); }
-  .hero__actions .btn--secondary {
-    border: 0;
-    background: none;
-    min-height: 0;
-    padding: 0;
-    color: var(--brand-600);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    align-self: center;
-    min-block-size: 24px;
-  }
-}
-
-.offer-note {
-  display: flex;
-  align-items: center;
-  gap: var(--s-3);
-  margin-block-start: var(--s-5);
-  font-weight: 700;
-  font-size: var(--t-sm);
-  color: var(--brand-600);
-}
-.offer-note::before {
+/* קצה הניקוב. מסכה אמיתית ולא גרדיאנט מצויר: הנייר נקרע, לא נצבע. */
+.tape::before,
+.tape::after {
   content: "";
-  inline-size: 30px;
-  block-size: 2px;
-  background: currentColor;
-  flex: none;
+  display: block;
+  block-size: 11px;
+  background: var(--paper);
+  -webkit-mask-image: radial-gradient(circle at 7px 0, transparent 6px, #000 6.5px);
+  mask-image: radial-gradient(circle at 7px 0, transparent 6px, #000 6.5px);
+  -webkit-mask-size: 14px 11px;
+  mask-size: 14px 11px;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
 }
-.section--dark .offer-note { color: var(--brand-500); }
+.tape::after { rotate: 180deg; }
 
-/* צילום עם כיתוב טכני, כמו לוח בקרה של תוכנית */
-.shot { margin: 0; }
-.shot img {
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  /* דרגת צבע אחידה לכל צילומי האתר, כדי שירגישו כמשפחה אחת */
-  filter: saturate(1.18) contrast(1.08) brightness(1.02);
-}
-.shot figcaption {
+.tape__body { background: var(--paper); padding: clamp(1.5rem, 5vw, 2.75rem) clamp(1.1rem, 4.5vw, 2.5rem); }
+
+/* --------------------------------------------------------------------------
+   כותרת המסמך
+   -------------------------------------------------------------------------- */
+
+.doc-head { text-align: center; }
+.doc-head__logo { inline-size: clamp(150px, 42vw, 210px); margin-inline: auto; }
+.doc-head__meta {
+  margin-block-start: var(--s4);
+  font-size: .8125rem;
+  color: var(--ink-3);
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--s-4);
-  margin-block-start: var(--s-3);
-}
-.shot figcaption .tag { margin: 0; }
-
-@media (min-width: 1000px) {
-  .hero__grid {
-    grid-template-columns: 1fr var(--stroke-1) 1.05fr;
-    align-items: center;
-    gap: 0;
-    padding-block: 0;
-  }
-  .hero__content { grid-column: 1; grid-row: 1; padding: var(--s-8) var(--s-8) var(--s-8) 0; }
-  .hero__divider { grid-column: 2; grid-row: 1; background: var(--rule); align-self: stretch; }
-  .hero__visual  { grid-column: 3; grid-row: 1; padding: var(--s-8) 0 var(--s-8) var(--s-8); }
-  .hero__actions .btn { flex: 0 0 auto; }
-}
-
-/* רצועת הניסיון */
-.timeline {
-  display: flex;
+  justify-content: center;
   flex-wrap: wrap;
+  gap: var(--s2) var(--s4);
+  font-variant-numeric: tabular-nums;
+}
+.doc-head__meta b { color: var(--ink-2); font-weight: 700; }
+
+/* קו כפול — כמו ראש דוח אמיתי */
+.rule-double {
+  border: 0;
+  border-block-start: 3px double var(--rule-strong);
+  margin: var(--s5) 0;
+}
+.rule-single {
+  border: 0;
+  border-block-start: 1px dashed var(--rule);
+  margin: var(--s5) 0;
+}
+
+/* --------------------------------------------------------------------------
+   שורת מסמך: תווית · מוביל נקודות · ערך
+   --------------------------------------------------------------------------
+   זה המכשיר המרכזי של העולם. כל קו בעמוד הוא קו עמודה או קו סיכום —
+   אף אחד מהם אינו דקורטיבי.
+   -------------------------------------------------------------------------- */
+
+.line {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: baseline;
-  gap: var(--s-4) var(--s-7);
-  padding-block: var(--s-5);
-  border-block-start: var(--stroke-1) solid var(--rule);
+  gap: var(--s3);
+  padding-block: var(--s2);
+  font-size: .9375rem;
 }
-.timeline__total {
-  font-family: var(--f-display);
-  font-size: clamp(2.5rem, 5vw, 3.75rem);
-  line-height: 0.86;
-  margin: 0;
+.line__lead {
+  border-block-end: 1px dotted var(--rule);
+  transform: translateY(-.3em);
+  /* בלי רוחב מינימום עמודת הערך בולעת את המוביל כשהערך ארוך,
+     והמכשיר המרכזי של העולם נעלם בדיוק בשורה שהכי צריכה אותו.
+     נמדד ב-390: שורת סוגי נקודות המכירה נשארה בלי מוביל. */
+  min-inline-size: 2.25rem;
 }
-/* ממוקד למחלקה ולא לכל span: הכלל הרחב תפס גם את עטיפת סימון העיפרון
-   והפך אותה לבלוק זעיר בגודל התווית. */
-.timeline__label {
-  display: block;
-  font-family: var(--f-body);
-  font-size: var(--t-micro);
+.line__val {
   font-weight: 700;
-  color: var(--ink-3);
-  margin-block-start: var(--s-1);
-}
-.timeline__stops { display: grid; gap: var(--s-2); }
-.timeline__stop { font-size: var(--t-sm); color: var(--ink-2); margin: 0; }
-.timeline__stop b {
-  font-family: var(--f-display);
-  font-size: 1.5rem;
-  line-height: 1;
-  margin-inline-end: var(--s-1);
-}
-
-@media (min-width: 700px) {
-  .timeline__stops { grid-template-columns: repeat(2, auto); gap: var(--s-2) var(--s-7); }
-}
-
-/* --------------------------------------------------------------------------
-   8. רשימות שורה — המבנה שמחליף את הכרטיסים
-   -------------------------------------------------------------------------- */
-
-.rows { margin-block-start: clamp(var(--s-5), 5vw, var(--s-7)); }
-
-.row {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0 var(--s-5);
-  align-items: start;
-  padding-block: var(--s-5);
-  border-block-start: var(--stroke-1) solid var(--rule);
-}
-.row:last-child { border-block-end: var(--stroke-1) solid var(--rule); }
-.section--dark .row { border-block-start-color: var(--on-night-2); }
-.section--dark .row:last-child { border-block-end-color: var(--on-night-2); }
-
-/* בידוד דו־כיווני בלי להפוך את כיוון הבלוק: direction:ltr על אלמנט
-   בלוקי מצמיד אותו גם לשמאל, וכאן הוא חייב להישאר בהתחלה הימנית.
-   לספרות בלבד ממילא אין צורך בכיוון מפורש. */
-.row__n {
-  font-family: var(--f-body);
-  font-size: var(--t-xs);
-  font-weight: 700;
-  color: var(--ink-3);
-  padding-block-start: 0.55em;
-  unicode-bidi: isolate;
-}
-/* על שחור #0082FC הוא 5.6:1 ועובר AA מלא. זה הבית השני של
-   כחול המותג, ולכן המספור והתוויות נצבעים בו ולא באפור. */
-.section--dark .row__n { color: var(--brand-500); }
-
-/* מיקום מפורש לשלושת הילדים. בלעדיו, שלושה ילדים בגריד דו־טורי נשתלים
-   אוטומטית כ-[מספר][כותרת] בשורה הראשונה ו-[טקסט] בטור *הראשון* בשורה
-   השנייה — כלומר הטקסט מרחיב את טור המספר, והכותרת נמחצת לטור צר
-   שמפרק אותה למילה בשורה. זו אותה מלכודת של השתלה אוטומטית שכבר
-   נתקלנו בה בגריד ההירו. */
-.row__n     { grid-column: 1; grid-row: 1; }
-.row__title { grid-column: 2; grid-row: 1; font-size: var(--d-sm); }
-.row__text {
-  grid-column: 2;
-  grid-row: 2;
-  margin-block-start: var(--s-2);
-  color: var(--ink-2);
-  max-width: 54ch;
-  font-size: var(--t-sm);
-  margin-block-end: 0;
-}
-.section--dark .row__text { color: var(--on-night-2); }
-
-@media (min-width: 900px) {
-  .row { grid-template-columns: auto minmax(14rem, 22rem) 1fr; gap: 0 var(--s-6); align-items: baseline; }
-  .row__text { grid-column: 3; grid-row: 1; margin-block-start: 0; }
-}
-
-/* --------------------------------------------------------------------------
-   9. שירותים
-   -------------------------------------------------------------------------- */
-
-.service {
-  display: grid;
-  gap: var(--s-5);
-  padding-block: var(--s-6);
-  border-block-start: var(--stroke-1) solid var(--rule);
-}
-.service:last-of-type { border-block-end: var(--stroke-1) solid var(--rule); }
-
-.service__head { display: grid; gap: var(--s-3); }
-.service__title { font-size: var(--d-md); }
-.service__for { color: var(--ink-2); font-size: var(--t-sm); max-width: 40ch; margin: 0; }
-
-.service__list { display: grid; gap: var(--s-2); }
-.service__list li {
-  position: relative;
-  padding-inline-start: var(--s-5);
-  font-size: var(--t-sm);
-  color: var(--ink-2);
-}
-.service__list li::before {
-  content: "";
-  position: absolute;
-  inset-inline-start: 0;
-  inset-block-start: 0.68em;
-  inline-size: 11px;
-  block-size: var(--stroke-2);
-  background: var(--brand-500);
-}
-
-.service__cta { justify-self: start; }
-
-.service--featured { background: var(--brand-050); margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); }
-.service__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-2);
-  font-weight: 700;
-  font-size: var(--t-micro);
+  font-variant-numeric: tabular-nums;
   color: var(--ink);
-  border: var(--stroke-2) solid var(--ink);
-  border-radius: 999px;
-  padding: var(--s-1) var(--s-3);
-  justify-self: start;
 }
-
-@media (min-width: 900px) {
-  .service { grid-template-columns: minmax(16rem, 24rem) 1fr auto; gap: var(--s-6); align-items: start; }
-  .service__cta { grid-column: 3; align-self: center; }
-  .service__list { grid-template-columns: 1fr 1fr; gap: var(--s-2) var(--s-5); }
-  .service--featured { margin-inline: 0; padding-inline: var(--s-6); }
-}
-
-/* --------------------------------------------------------------------------
-   10. אודות
-   -------------------------------------------------------------------------- */
-
-.about__grid { display: grid; gap: var(--s-6); }
-.about__facts { display: grid; gap: var(--s-4); margin-block-start: var(--s-6); }
-.about__fact {
-  display: grid;
-  gap: var(--s-1);
-  padding-block-start: var(--s-3);
-  border-block-start: var(--stroke-1) solid var(--rule);
-}
-.about__fact dt { font-family: var(--f-display); font-size: var(--d-sm); line-height: 1; }
-.about__fact dd { margin: 0; font-size: var(--t-sm); color: var(--ink-2); }
-
-@media (min-width: 900px) {
-  .about__grid { grid-template-columns: 1fr 1fr; gap: var(--s-8); align-items: start; }
-  .about__facts { grid-template-columns: repeat(3, 1fr); }
-}
-
-/* --------------------------------------------------------------------------
-   11. אמירה
-   -------------------------------------------------------------------------- */
-
-.creed__quote { max-width: 46ch; }
-.creed__quote .lead { max-width: 50ch; }
-
-/* --------------------------------------------------------------------------
-   12. שאלות נפוצות
-   -------------------------------------------------------------------------- */
-
-.faq { margin-block-start: var(--s-7); }
-.faq__item { border-block-start: var(--stroke-1) solid var(--rule); }
-.faq__item:last-child { border-block-end: var(--stroke-1) solid var(--rule); }
-
-.faq__q {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--s-4);
-  padding-block: var(--s-5);
-  font-family: var(--f-display);
-  font-size: var(--d-sm);
-  line-height: 1.02;
-  cursor: pointer;
-  list-style: none;
-}
-.faq__q::-webkit-details-marker { display: none; }
-
-.faq__sign {
-  flex: none;
-  inline-size: 26px;
-  block-size: 26px;
-  position: relative;
-}
-.faq__sign::before,
-.faq__sign::after {
-  content: "";
-  position: absolute;
-  inset-block-start: 50%;
-  inset-inline-start: 0;
-  inline-size: 26px;
-  block-size: var(--stroke-2);
-  background: var(--night);
-  translate: 0 -50%;
-}
-.faq__sign::after { rotate: 90deg; transition: rotate var(--dur) var(--ease); }
-.faq__item[open] .faq__sign::after { rotate: 0deg; }
-
-.faq__a { padding-block-end: var(--s-5); color: var(--ink-2); max-width: 68ch; }
-
-/* --------------------------------------------------------------------------
-   13. טופס
-   -------------------------------------------------------------------------- */
-
-.contact__grid { display: grid; gap: var(--s-7); }
-
-.contact__direct { display: grid; gap: var(--s-3); margin-block-start: var(--s-6); }
-.contact__direct-item {
-  display: flex;
-  align-items: center;
-  gap: var(--s-3);
-  font-size: var(--t-sm);
-  padding-block-start: var(--s-3);
-  border-block-start: var(--stroke-1) solid var(--on-night-2);
-}
-.contact__direct-item svg { inline-size: 18px; block-size: 18px; flex: none; color: var(--brand-500); }
-/* אותה דרישה כמו בפוטר: קישור עצמאי צריך 24px גובה לחיצה. */
-.contact__direct-item a { display: inline-flex; align-items: center; min-block-size: 24px; }
-
-.form-card { background: var(--paper); color: var(--ink); padding: var(--s-6); }
-.form-card h3 { font-size: var(--d-sm); }
-.form-card__intro { font-size: var(--t-sm); color: var(--ink-2); margin-block: var(--s-3) var(--s-5); }
-
-.form__row { display: grid; gap: var(--s-4); margin-block-end: var(--s-4); }
-@media (min-width: 600px) { .form__row--2 { grid-template-columns: 1fr 1fr; } }
-
-.field { display: grid; gap: var(--s-2); margin-block-end: var(--s-4); }
-.field__label { font-weight: 700; font-size: var(--t-sm); }
-.field__required { color: var(--mark); }
-.field__optional { font-weight: 400; color: var(--ink-3); font-size: var(--t-xs); }
-
-.field__control {
-  width: 100%;
-  min-height: 50px;
-  padding: var(--s-3);
-  font-family: var(--f-body);
-  font-size: var(--t-base);
-  color: var(--ink);
-  background: var(--paper);
-  border: var(--stroke-2) solid var(--ink);
-  border-radius: 0;
-}
-textarea.field__control { min-height: 120px; resize: vertical; }
-.field__control:focus-visible { outline: var(--stroke-3) solid var(--brand-600); outline-offset: 1px; }
-
-.field__hint { font-size: var(--t-xs); color: var(--ink-3); margin: 0; }
-
-.field__error {
-  display: none;
-  align-items: center;
-  gap: var(--s-2);
-  font-size: var(--t-xs);
-  font-weight: 700;
-  color: var(--error);
-  margin: 0;
-}
-.field__error svg { inline-size: 15px; block-size: 15px; flex: none; }
-.field.is-invalid .field__error { display: flex; }
-.field.is-invalid .field__control { border-color: var(--error); background: var(--error-bg); }
-
-.form__status {
-  display: none;
-  gap: var(--s-3);
-  padding: var(--s-4);
-  margin-block-end: var(--s-5);
-  font-size: var(--t-sm);
-  border: var(--stroke-2) solid currentColor;
-}
-.form__status.is-visible { display: flex; }
-.form__status svg { inline-size: 20px; block-size: 20px; flex: none; margin-block-start: 2px; }
-.form__status--success { color: var(--success); background: var(--success-bg); }
-.form__status--error { color: var(--error); background: var(--error-bg); }
-.form__status div { color: var(--ink); }
-.form__status a { color: inherit; }
-
-.form__legal { font-size: var(--t-xs); color: var(--ink-3); margin-block-start: var(--s-4); }
-
-.btn__spinner {
-  inline-size: 16px; block-size: 16px;
-  border: 2px solid currentColor;
-  border-block-start-color: transparent;
-  border-radius: 50%;
-  animation: spin 700ms linear infinite;
-}
-@keyframes spin { to { rotate: 360deg; } }
-
-/* שדה מלכודת לבוטים */
-.hp {
-  position: absolute;
-  inline-size: 1px; block-size: 1px;
-  overflow: hidden; clip: rect(0, 0, 0, 0);
-  white-space: nowrap; border: 0; margin: -1px; padding: 0;
-}
-
-@media (min-width: 900px) {
-  .contact__grid { grid-template-columns: 1fr 1.1fr; gap: var(--s-8); align-items: start; }
-}
-
-/* --------------------------------------------------------------------------
-   14. סרגל פעולה תחתון (מובייל)
-   -------------------------------------------------------------------------- */
-
-.action-bar {
-  position: fixed;
-  inset-inline: 0;
-  inset-block-end: 0;
-  z-index: var(--z-float);
-  display: flex;
-  gap: var(--s-2);
-  padding: var(--s-3) var(--s-4);
-  padding-block-end: calc(var(--s-3) + env(safe-area-inset-bottom, 0px));
-  background: var(--night);
-  /* היה קו כחול בהיר של 3px. מעל כפתור ירוק רווי על רקע כהה זה שלושה
-     צבעים חזקים ב-75px, והסרגל צעק יותר מכל דבר אחר במסך. */
-  border-block-start: var(--stroke-1) solid rgba(255, 255, 255, 0.16);
-  transition: translate var(--dur-slow) var(--ease);
-}
-.action-bar.is-stowed { translate: 0 100%; pointer-events: none; }
-
-.action-bar__btn {
-  flex: 1 1 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--s-2);
-  min-height: 48px;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: var(--t-sm);
-  text-decoration: none;
-  border: var(--stroke-2) solid transparent;
-}
-.action-bar__btn svg { inline-size: 20px; block-size: 20px; flex: none; }
-.action-bar__btn--wa { background: var(--whatsapp); color: #fff; }
-/* כפתור ההתקשרות ירד מהסרגל ב-4.11.2026; נשאר כפתור וואטסאפ יחיד,
-   ו-flex:1 1 0 מותח אותו לרוחב מלא בלי כלל נוסף. */
-.action-bar__btn:focus-visible { outline: var(--stroke-3) solid var(--brand-500); outline-offset: 2px; }
-
-body.has-action-bar { padding-block-end: 80px; }
-
-@media (min-width: 900px) {
-  .action-bar { display: none; }
-  body.has-action-bar { padding-block-end: 0; }
-}
-
-/* --------------------------------------------------------------------------
-   15. באנר הסכמה למדידה
-   -------------------------------------------------------------------------- */
-
-.consent {
-  position: fixed;
-  inset-inline: 0;
-  inset-block-end: 0;
-  z-index: var(--z-overlay);
-  background: var(--night);
-  color: var(--on-night);
-  border-block-start: var(--stroke-3) solid var(--brand-500);
-  padding-block: var(--s-4);
-  padding-block-end: max(var(--s-4), env(safe-area-inset-bottom));
-}
-.consent__inner {
-  max-width: var(--container);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-4);
-  align-items: flex-start;
-}
-.consent__text { margin: 0; font-size: var(--t-sm); max-width: 62ch; color: var(--on-night-2); }
-.consent__text a { color: var(--on-night); }
-.consent__actions { display: flex; gap: var(--s-3); flex-wrap: wrap; inline-size: 100%; }
-.consent__actions .btn { flex: 1 1 auto; border-color: var(--on-night); color: var(--on-night); }
-.consent__actions .btn--primary { background: var(--on-night); color: var(--ink); }
-
-@media (min-width: 760px) {
-  .consent__inner { flex-direction: row; align-items: center; justify-content: space-between; gap: var(--s-6); }
-  .consent__actions { inline-size: auto; }
-  .consent__actions .btn { flex: 0 0 auto; }
-}
-
-body.has-consent .action-bar { translate: 0 100%; pointer-events: none; }
-
-/* --------------------------------------------------------------------------
-   16. כותרת תחתונה
-   -------------------------------------------------------------------------- */
-
-.footer {
-  background: var(--night);
-  color: var(--on-night-2);
-  padding-block: var(--s-8) var(--s-6);
-  font-size: var(--t-sm);
-  /* אזור יצירת הקשר כהה גם הוא, ובלי הקו הזה שני הבלוקים נמסים זה
-     לזה והפוטר מרחף בתוך שטח שחור ללא התחלה. */
-  border-block-start: var(--stroke-1) solid rgba(255, 255, 255, 0.16);
-}
-.footer__grid { display: grid; gap: var(--s-7); }
-
-/* עמודת המותג: הלוגו הרשמי בגרסת הרקע הכהה. */
-.footer__logo { inline-size: clamp(168px, 17vw, 200px); block-size: auto; }
-.footer__tagline { color: var(--on-night); margin: var(--s-4) 0 var(--s-1); }
-.footer__person { margin: 0; }
-
-/* כותרות העמודות היו בגודל התצוגה (עד 25px ב-Rubik-800) וצעקו חזק
-   יותר מהמותג עצמו. בעברית אין רישיות ואסור ריווח אותיות, ולכן
-   ההיררכיה נישאת במשקל ובצבע בלבד. */
-.footer h4 {
-  color: var(--on-night);
-  font-family: var(--f-body);
-  font-weight: 700;
-  font-size: var(--t-sm);
-  letter-spacing: 0;
-  margin: 0 0 var(--s-4);
-}
-
-.footer__list { display: grid; gap: var(--s-2); }
-.footer__list li { display: flex; align-items: center; gap: var(--s-3); }
-.footer__list svg { inline-size: 16px; block-size: 16px; flex: none; color: var(--brand-500); }
-
-/* WCAG 2.2 דורש מטרת מגע של 24px לקישור שאינו בתוך משפט. הקישורים
-   כאן עמדו על 19px — גובה שורת הטקסט בלבד. inline-flex עם גובה
-   מינימלי מגדיל את תיבת הלחיצה בלי להזיז את הטקסט. */
-.footer__list a {
+/* קישור בתוך שורת ערך הוא יעד עומד בפני עצמו ולא קישור בתוך משפט,
+   כך שחריג 2.5.8 אינו חל עליו. נמדד 171x19 לפני התיקון. */
+.line__val a,
+.foot__links a {
   display: inline-flex;
   align-items: center;
   min-block-size: 24px;
 }
 
-/* הקישורים לא מקווקווים במנוחה: שש שורות מקווקוות זו אחר זו נקראות
-   כרעש. הקו חוזר ב-hover וב-focus, שם הוא מוסר מידע. */
-.footer a {
-  color: var(--on-night);
-  text-decoration: none;
-}
-.footer a:hover,
-.footer a:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
+/* --------------------------------------------------------------------------
+   הכותרת הראשית — שורת הכותרת של המסמך
+   -------------------------------------------------------------------------- */
 
-.footer__bottom {
-  display: flex;
-  flex-wrap: wrap;
-  /* ממורכז ולא space-between: במסך רחב השניים נדחקו לשני הקצוות
-     ונקראו כשתי שורות נפרדות במקום כשורת סיום אחת. */
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: var(--s-2) var(--s-5);
-  margin-block-start: var(--s-7);
-  padding-block-start: var(--s-4);
-  /* הקו היה בצבע הטקסט המשני ונקרא כקו הפרדה חזק מדי */
-  border-block-start: var(--stroke-1) solid rgba(255, 255, 255, 0.16);
-  font-size: var(--t-xs);
+.title {
+  font-size: clamp(2rem, 7.5vw, 3.1rem);
+  letter-spacing: -.01em;
+  margin-block: var(--s4) var(--s4);
+  /* 1.02 לא השאיר לבלוק ההיפוך מקום לנשום: נמדדו 2.5px בלבד בין
+     האותיות לקצה המשטח הכהה, והיורדות בעברית (ך, ן, ץ, ק) נגעו בו. */
+  line-height: 1.14;
 }
-.footer__legal { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); margin: 0; }
-/* גם כאן קישור עצמאי, ולכן אותה דרישת 24px */
-.footer__legal a { display: inline-flex; align-items: center; min-block-size: 24px; }
+.title em {
+  font-style: normal;
+  /* הדגשה שהיא פעולת הדפסה: היפוך, כמו שורה מודגשת בדוח. */
+  background: var(--ink);
+  color: var(--paper);
+  padding: .06em .26em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
 
-@media (min-width: 760px) {
-  .footer__grid { grid-template-columns: 1.4fr 1.1fr 0.8fr; gap: var(--s-8); }
+.sub { color: var(--ink-2); max-width: 46ch; }
+
+/* --------------------------------------------------------------------------
+   סכום — המספר הגדול
+   -------------------------------------------------------------------------- */
+
+.total {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: var(--s4);
+  padding-block: var(--s3);
+}
+.total__label { font-size: .875rem; color: var(--ink-3); font-weight: 700; }
+.total__fig {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 11vw, 4.4rem);
+  line-height: .9;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.02em;
+}
+.total__unit { font-size: .4em; }
+
+/* --------------------------------------------------------------------------
+   סעיף
+   -------------------------------------------------------------------------- */
+
+.sec { margin-block-start: var(--s7); }
+.sec__no {
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--blue-deep);
+  font-variant-numeric: tabular-nums;
+  /* בלי ריווח אותיות: "סעיף 01" הוא עברית, והעברית מאבדת קריאות
+     כשמרווחים אותה. שער הבדיקה סימן 0.48px. */
+}
+.sec__h {
+  font-size: clamp(1.35rem, 5vw, 1.9rem);
+  margin-block: var(--s2) var(--s4);
+}
+.sec__lead { color: var(--ink-2); margin-block-end: var(--s5); max-width: 58ch; }
+
+/* פריט בדוח: מספר, כותרת, הסבר */
+.entry { padding-block: var(--s4); border-block-start: 1px solid var(--rule); }
+.entry:first-of-type { border-block-start: 0; }
+.entry__top { display: grid; grid-template-columns: auto 1fr; gap: var(--s3); align-items: baseline; }
+.entry__n {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: .9375rem;
+  color: var(--blue-deep);
+  font-variant-numeric: tabular-nums;
+}
+.entry__t { font-family: var(--f-display); font-weight: 800; font-size: 1.0625rem; }
+.entry__d { color: var(--ink-2); font-size: .9375rem; margin-block-start: var(--s2); }
+
+/* --------------------------------------------------------------------------
+   מוצר — בלוק חשבונית
+   -------------------------------------------------------------------------- */
+
+.item {
+  border: 1px solid var(--rule-strong);
+  padding: var(--s5) var(--s4);
+  margin-block-start: var(--s5);
+}
+.item--lead { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.item--lead .item__t,
+.item--lead .item__for { color: var(--paper); }
+.item--lead .item__list li { color: #d6dde6; border-block-start-color: #3f5170; }
+.item--lead .item__list li::before { color: var(--blue); }
+
+.item__flag {
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: .02em;
+  margin-block-end: var(--s2);
+}
+.item__t { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.2rem, 4.6vw, 1.55rem); }
+.item__for { color: var(--ink-2); font-size: .9375rem; margin-block-start: var(--s2); }
+.item__list { margin-block-start: var(--s4); }
+.item__list li {
+  position: relative;
+  padding-inline-start: 1.4em;
+  /* .42em נתן 6.3px בלבד בין הטקסט לקו המפריד. 8px הוא הרצפה. */
+  padding-block: .56em;
+  border-block-start: 1px dotted var(--rule);
+  font-size: .9375rem;
+  color: var(--ink-2);
+}
+.item__list li::before {
+  content: "1×" / "";   /* טקסט חלופי ריק: סמן כמות, לא תוכן */
+  unicode-bidi: isolate;   /* בלי זה הסידור הדו-כיווני הופך את הסמן */
+  position: absolute;
+  inset-inline-start: 0;
+  color: var(--blue-deep);
+  font-weight: 700;
+  font-size: .78em;
+  font-variant-numeric: tabular-nums;
 }
 
 /* --------------------------------------------------------------------------
-   17. הערות למנהל האתר
+   צילום עם סימני מדידה
+   --------------------------------------------------------------------------
+   ההרמה ממעיינית המצלמה: המסגרת מסמנת את מה שחשוב, והנושא נשאר גלוי
+   לגמרי תחתיה. הסימנים הם מדידה, לא קישוט.
+   -------------------------------------------------------------------------- */
+
+.shot { position: relative; margin-block-start: var(--s5); }
+.shot img { inline-size: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.shot__marks { position: absolute; inset: 0; pointer-events: none; }
+.shot__marks rect, .shot__marks path {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 2;
+  /* preserveAspectRatio="none" מותח את ה-viewBox בשני צירים שונים,
+     ובלי זה הקווים האופקיים והאנכיים יוצאים בעובי שונה. */
+  vector-effect: non-scaling-stroke;
+}
+.shot__cap {
+  display: flex; justify-content: space-between; gap: var(--s3);
+  margin-block-start: var(--s2);
+  font-size: .75rem; color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   פעולות
+   -------------------------------------------------------------------------- */
+
+.act {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s2);
+  min-block-size: 52px; inline-size: 100%;
+  /* ריפוד אנכי אמיתי, לא רק גובה מינימום עם מרכוז. האוויר היה נכון
+     כל עוד התווית נכנסת בשורה אחת; תווית שנשברת לשתיים במסך צר
+     הייתה נוגעת במסגרת. עכשיו הגובה הוא רצפה, לא מקור האוויר. */
+  padding-block: var(--s3);
+  padding-inline: var(--s5);
+  background: var(--blue-deep); color: #fff;
+  font-family: var(--f-body); font-weight: 700; font-size: 1rem;
+  border: 2px solid var(--blue-deep);
+  text-decoration: none;
+  transition: background-color .18s var(--ease);
+}
+.act:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
+.act--ghost { background: transparent; color: var(--ink); border-color: var(--rule-strong); }
+.act--ghost:hover { background: var(--paper-2); }
+.act svg { inline-size: 20px; block-size: 20px; }
+
+.acts { display: grid; gap: var(--s3); margin-block-start: var(--s5); }
+
+/* --------------------------------------------------------------------------
+   שאלות
+   -------------------------------------------------------------------------- */
+
+.q { border-block-start: 1px solid var(--rule); }
+.q summary {
+  display: flex; justify-content: space-between; align-items: center; gap: var(--s4);
+  padding-block: var(--s4);
+  font-family: var(--f-display); font-weight: 800; font-size: 1.0625rem;
+  cursor: pointer; list-style: none;
+}
+.q summary::-webkit-details-marker { display: none; }
+.q__sign { position: relative; inline-size: 14px; block-size: 14px; flex: none; }
+.q__sign::before, .q__sign::after {
+  content: ""; position: absolute; inset-inline: 0; inset-block-start: 6px;
+  block-size: 2px; background: var(--blue-deep);
+}
+.q__sign::after { rotate: 90deg; transition: rotate .2s var(--ease); }
+.q[open] .q__sign::after { rotate: 0deg; }
+.q__a { padding-block-end: var(--s4); color: var(--ink-2); max-width: 68ch; font-size: .9375rem; }
+
+/* --------------------------------------------------------------------------
+   תחתית הדוח
+   -------------------------------------------------------------------------- */
+
+.foot { text-align: center; margin-block-start: var(--s6); }
+.foot__thanks { font-family: var(--f-display); font-weight: 800; font-size: 1.1rem; }
+.foot__rows { margin-block-start: var(--s4); display: grid; gap: var(--s2); font-size: .9375rem; }
+.foot__rows a { color: var(--blue-deep); }
+
+/* ברקוד — רכיב אמיתי של קבלה, לא עיטור */
+.barcode {
+  margin-block-start: var(--s6);
+  block-size: 46px;
+  background: repeating-linear-gradient(90deg,
+    var(--ink) 0 2px, transparent 2px 4px,
+    var(--ink) 4px 5px, transparent 5px 9px,
+    var(--ink) 9px 12px, transparent 12px 13px,
+    var(--ink) 13px 14px, transparent 14px 18px);
+}
+.foot__legal {
+  text-align: center;
+  font-size: .8125rem;
+  color: var(--ink-3);
+  margin-block-start: var(--s3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   תנועה — הרצועה מודפסת
+   --------------------------------------------------------------------------
+   רגע מחובר אחד: השורות נכנסות כאילו ראש תרמי מדפיס אותן, מלמעלה למטה.
+   ברירת המחדל היא מודפס: ללא JavaScript ובתנועה מופחתת לא מוסתר דבר.
+   -------------------------------------------------------------------------- */
+
+/* הדיו מתפתח, הנייר לא נחתך.
+   גרסה ראשונה כאן השתמשה ב-clip-path: inset(0 0 100% 0) — וזה הסתיר
+   תוכן לחלוטין עד ש-JavaScript שחרר אותו, בדיוק ההפרה שהחלטה 0007
+   אסרה על האתר החי. השורה מתחילה גלויה וחיוורת ומתמלאת. */
+.js .reveal { opacity: .48; translate: 0 10px; }
+.js .reveal.is-visible {
+  opacity: 1;
+  translate: none;
+  transition: opacity .45s var(--ease), translate .62s var(--ease);
+}
+
+/* הרגע המחובר היחיד בעמוד: ראש ההדפסה חולף פעם אחת על ראש המסמך.
+   הוא אינו חוזר בכל סעיף — זה היה אותה כניסה ארבע־עשרה פעמים. */
+.doc-head { position: relative; }
+.js .doc-head::after {
+  content: "";
+  position: absolute;
+  inset-inline: -6%;
+  inset-block-start: 0;
+  block-size: 2px;
+  background: var(--blue);
+  opacity: 0;
+  pointer-events: none;
+}
+.js .doc-head.is-visible::after { animation: printhead 820ms var(--ease) 160ms both; }
+@keyframes printhead {
+  0%   { opacity: 1; inset-block-start: 0; }
+  88%  { opacity: 1; }
+  100% { opacity: 0; inset-block-start: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; translate: none; transition: none; }
+  .js .doc-head.is-visible::after { animation: none; }
+  .q__sign::after { transition: none; }
+  .act { transition: none; }
+}
+
+/* --------------------------------------------------------------------------
+   רוחב
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 620px) {
+  .acts { grid-auto-flow: column; justify-content: start; }
+  .act { inline-size: auto; min-inline-size: 240px; }
+}
+
+@media (max-width: 479px) {
+  /* הגרסה הראשונה ביטלה כאן את הריפוד וכיסתה את המסך בנייר. התוצאה:
+     בטלפון — המכשיר שבו הלקוח באמת קורא — הכחול, שהוא כל העולם,
+     נעלם לגמרי, והניקוב שבקצה הרצועה לא נראה. נשאר מסגרת כחולה. */
+  .tape__body { padding-inline: var(--s4); }
+}
+
+
+/* --------------------------------------------------------------------------
+   הטופס — כל שדה הוא שורת מסמך
+   --------------------------------------------------------------------------
+   אין כאן תיבות מרחפות עם פינות מעוגלות. יש תווית מימין וקו מילוי,
+   בדיוק כמו טופס מודפס שממלאים בעט על הדלפק.
+   -------------------------------------------------------------------------- */
+
+.form-block { margin-block-start: var(--s6); }
+.form-block__t { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.15rem, 4.4vw, 1.4rem); }
+.form-block__intro { color: var(--ink-2); font-size: .9375rem; margin-block-start: var(--s2); }
+
+.form__status { margin-block-start: var(--s4); font-size: .9375rem; font-weight: 700; }
+.form__status:empty { display: none; }
+.form__status--error { color: var(--alert); }
+.form__status--success { color: var(--blue-deep); }
+
+.field { margin-block-start: var(--s4); }
+.field__label {
+  display: block;
+  font-size: .8125rem;
+  font-weight: 700;
+  color: var(--ink-2);
+  margin-block-end: var(--s1);
+}
+.field__required { color: var(--alert); }
+.field__optional { font-weight: 400; color: var(--ink-3); }
+
+.field__control {
+  inline-size: 100%;
+  min-block-size: 46px;
+  padding: var(--s2) var(--s3);
+  font-family: var(--f-body);
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--paper-2);
+  /* הקו התחתון הוא הקו שממלאים עליו. שלושת האחרים אינם קיימים. */
+  border: 0;
+  border-block-end: 2px solid var(--rule-strong);
+  border-radius: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+textarea.field__control { min-block-size: 110px; line-height: 1.55; resize: vertical; }
+select.field__control {
+  /* שני גרדיאנטים לא מצליחים לצייר משולש נקי בגודל הזה. SVG מוטבע,
+     וצד הריפוד הוא inline-end — בעברית החץ יושב משמאל. */
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%23111827' d='M1 1.5 6 6.5l5-5'/%3E%3C/svg%3E");
+  background-position: left var(--s4) center;
+  background-size: 11px 8px;
+  background-repeat: no-repeat;
+  padding-inline-end: calc(var(--s4) * 2.25);
+}
+.field__control:focus-visible { background: var(--paper); }
+
+.field__hint { font-size: .8125rem; color: var(--ink-3); margin-block-start: var(--s1); }
+
+.field__error { display: none; }
+/* background-color ולא background: הקיצור מוחק את חץ ה-select. */
+.field.is-invalid .field__control { border-block-end-color: var(--alert); background-color: #fdf2f1; }
+.field.is-invalid .field__error {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  margin-block-start: var(--s1);
+  font-size: .8125rem;
+  font-weight: 700;
+  color: var(--alert);
+}
+.field__error svg { inline-size: 15px; block-size: 15px; flex: none; }
+
+.act--submit {
+  margin-block-start: var(--s5);
+  cursor: pointer;
+  font-size: 1.0625rem;
+}
+
+.form__legal { margin-block-start: var(--s3); font-size: .8125rem; color: var(--ink-3); }
+
+/* שדה המלכודת: מחוץ למסך, לא display:none — בוטים מדלגים על מוסתר. */
+.hp {
+  position: absolute;
+  inline-size: 1px; block-size: 1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+
+/* --------------------------------------------------------------------------
+   הספח — סרגל הפעולה
+   --------------------------------------------------------------------------
+   7,000 פיקסלים של גלילה בלי קריאה לפעולה על המסך היא נסיגה תפקודית.
+   הספח הוא הפתרון בשפת העולם: פיסת נייר שנתלשת מתחתית הקבלה ונשארת
+   ביד, עם הקצה המנוקב כלפי מעלה.
+
+   main.js מפעיל אותו רק כשיש מספר וואטסאפ, ומסיג אותו כששתי קריאות
+   הפעולה האחרות על המסך. ההסגה אינה ויזואלית בלבד: הוא מקבל inert
+   ו-aria-hidden, כך שהוא יוצא גם ממסלול המקלדת וגם מקורא המסך.
+   -------------------------------------------------------------------------- */
+
+.action-bar {
+  position: fixed;
+  inset-block-end: 0;
+  inset-inline: 0;
+  z-index: 40;
+  display: flex;
+  justify-content: center;
+  padding: var(--s3) var(--gut) max(var(--s3), env(safe-area-inset-bottom));
+  /* הספח הוא נייר, ונייר לבן על רצועה לבנה אינו נקרא — הניקוב נעלם.
+     הוא מקבל את אותה קרקע כחולה של כל העמוד. */
+  background: var(--blue);
+  pointer-events: none;
+  transition: translate .26s var(--ease), opacity .2s var(--ease);
+}
+.action-bar[hidden] { display: none; }
+.action-bar.is-stowed { translate: 0 140%; opacity: 0; }
+
+.action-bar__btn {
+  pointer-events: auto;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  inline-size: 100%;
+  max-inline-size: calc(var(--tape) - var(--gut) * 2);
+  min-block-size: 56px;
+  padding-inline: var(--s5);
+  margin-block-start: 11px;
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgb(4 30 64 / .16);
+}
+/* הקצה המנוקב — אותה מסכה של הרצועה, כלפי מעלה */
+.action-bar__btn::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -11px;
+  inset-inline: 0;
+  block-size: 11px;
+  background: var(--paper);
+  -webkit-mask-image: radial-gradient(circle at 7px 11px, transparent 6px, #000 6.5px);
+  mask-image: radial-gradient(circle at 7px 11px, transparent 6px, #000 6.5px);
+  -webkit-mask-size: 14px 11px;
+  mask-size: 14px 11px;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+}
+.action-bar__btn svg { inline-size: 21px; block-size: 21px; color: var(--whatsapp); }
+.action-bar__btn:hover { background: var(--paper-2); }
+.action-bar__btn:hover::before { background: var(--paper-2); }
+
+/* הספח מכסה את סוף העמוד — מפנים לו מקום */
+body.has-action-bar .foot { padding-block-end: calc(var(--s6) + 56px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .action-bar { transition: none; }
+}
+
+/* ==========================================================================
+   חלקי האתר שאינם קיימים בתצוגה המקדימה
+   ========================================================================== */
+
+ol { margin: 0; padding: 0; list-style: none; }
+dl, dt, dd { margin: 0; }
+
+/* --------------------------------------------------------------------------
+   מספור הסעיפים — נספר ב-CSS ולא נכתב ביד
+   --------------------------------------------------------------------------
+   אזור ההמלצות מוסתר כברירת מחדל ונמחק על ידי main.js כשאין ממליצים
+   אמיתיים. ספרות כתובות ביד היו יוצרות חור ברצף (05 ואז 07). מונה
+   CSS אינו סופר אלמנט עם display:none, ולכן הרצף נכון גם ללא
+   JavaScript וגם איתו — ותוכן העניינים נשאר מסונכרן איתו.
+   -------------------------------------------------------------------------- */
+
+.tape__body { counter-reset: sec; }
+.sec { counter-increment: sec; }
+.sec__no::before { content: "סעיף " counter(sec, decimal-leading-zero); }
+
+/* --------------------------------------------------------------------------
+   תוכן העניינים — הניווט של העמוד
+   -------------------------------------------------------------------------- */
+
+.toc__t {
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--ink-3);
+  margin-block-end: var(--s2);
+}
+.toc__list { counter-reset: toc; }
+.toc__list li {
+  counter-increment: toc;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  /* center ולא baseline: הקישור הוא inline-flex עם גובה מינימום של
+     30px לצורך יעד הנגיעה, והבסיס שלו אינו הבסיס של פסאודו ריק.
+     נמדד — המוביל צף 13px מעל השורה שלו ונקרא כשייך לשורה שמעליה. */
+  align-items: center;
+  gap: var(--s3);
+}
+/* grid-row מפורש על שלושתם. בלעדיו המיקום האוטומטי שם את ה-::before
+   בשורה 1 עמודה 2, והסמן לא חוזר אחורה — הקישור נדחף לשורה 2 והמוביל
+   נראה כשייך לשורה שמעליו. אותה תקלה שנתפסה כבר ב-.row. */
+.toc__list li::before {
+  content: "";
+  grid-column: 2;
+  grid-row: 1;
+  border-block-end: 1px dotted var(--rule);
+  min-inline-size: 2.25rem;
+}
+.toc__list li::after {
+  content: counter(toc, decimal-leading-zero);
+  grid-column: 3;
+  grid-row: 1;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: .8125rem;
+  color: var(--blue-deep);
+  font-variant-numeric: tabular-nums;
+}
+.toc__list a {
+  grid-column: 1;
+  grid-row: 1;
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 30px;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: .9375rem;
+  text-decoration: none;
+}
+.toc__list a:hover { text-decoration: underline; }
+/* הסעיף שהקורא נמצא בו, מסומן על ידי main.js */
+.toc__list a[aria-current] { color: var(--blue-deep); text-decoration: underline; }
+
+/* --------------------------------------------------------------------------
+   טקסט רץ וסמל בשורת מסמך
+   -------------------------------------------------------------------------- */
+
+.prose { color: var(--ink-2); max-inline-size: 68ch; }
+.prose p + p { margin-block-start: var(--s4); }
+
+.line__i {
+  inline-size: 15px;
+  block-size: 15px;
+  color: var(--ink-3);
+  display: inline-block;
+  vertical-align: -2px;
+  margin-inline-end: 2px;
+}
+
+.item__flag { display: flex; align-items: center; gap: var(--s2); }
+.item__flag svg { inline-size: 13px; block-size: 13px; flex: none; }
+
+.item__cta { margin-block-start: var(--s5); }
+.item--lead .item__cta { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.item--lead .item__cta:hover { background: var(--paper-2); border-color: var(--paper-2); }
+
+.act--sm { min-block-size: 40px; font-size: .9375rem; padding: var(--s2) var(--s4); inline-size: auto; }
+
+/* --------------------------------------------------------------------------
+   הצעת הפתיחה וטווח המחיר — מוצגים רק אם מולאו ב-site.config.js
+   -------------------------------------------------------------------------- */
+
+.offer-note {
+  margin-block-start: var(--s4);
+  padding: var(--s3) var(--s4);
+  background: var(--paper-2);
+  border-inline-start: 3px solid var(--blue-deep);
+  font-size: .9375rem;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+/* --------------------------------------------------------------------------
+   הערות למנהל האתר ומילויי־מקום
+   --------------------------------------------------------------------------
+   אלה כלי עבודה, לא עיצוב. main.js מוחק אותם כש-showAdminNotices כבוי
+   ומוסיף .no-admin ל-<html>, ואז מילויי־המקום עוברים ללבוש שקט: הטקסט
+   נשאר ואומר בדיוק מה חסר, בלי תיבות ענבר מקווקוות שנקראות כתקלה
+   כשמציגים את העמוד ללקוח.
    -------------------------------------------------------------------------- */
 
 .admin-notice {
   display: flex;
-  gap: var(--s-3);
-  align-items: flex-start;
-  background: #fff8d6;
-  color: #3d2f00;
-  border: var(--stroke-2) solid #8a6d00;
-  padding: var(--s-4);
-  margin-block-end: var(--s-5);
-  font-size: var(--t-sm);
+  gap: var(--s3);
+  margin-block-start: var(--s4);
+  padding: var(--s3) var(--s4);
+  background: #fff8e8;
+  border: 1px dashed #a06a05;
+  color: #5a3c02;
+  font-size: .875rem;
 }
-.admin-notice svg { inline-size: 20px; block-size: 20px; flex: none; color: #8a6d00; }
-.admin-notice p { margin: 0; }
-.admin-notice--inline { margin-block: 0 var(--s-4); padding: var(--s-3); font-size: var(--t-xs); }
+.admin-notice svg { inline-size: 18px; block-size: 18px; flex: none; margin-block-start: 2px; }
+.admin-notice code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .9em;
+  background: #fdeec6;
+  padding: 0 .25em;
+}
+.admin-notice--inline { margin-block: var(--s4); }
 
 .placeholder-text {
   display: inline-block;
-  background: #fff8d6;
-  border: var(--stroke-1) dashed #8a6d00;
-  padding: 0 var(--s-2);
-  color: #3d2f00;
-  font-size: 0.95em;
+  padding: 0 .35em;
+  background: #fdeec6;
+  border-block-end: 1px dashed #a06a05;
+  color: #5a3c02;
 }
-
-/* כשהערות המנהל כבויות — כלומר כשמציגים את העמוד ללקוח — מילוי־המקום
-   מאבד את תיבת הענבר ונשאר טקסט שקט. הוא עדיין אומר איזה פרט חסר. */
 .no-admin .placeholder-text {
   background: none;
   border: 0;
-  padding: 0;
   color: var(--ink-3);
+  font-style: italic;
+  padding: 0;
 }
-.no-admin .section--dark .placeholder-text,
-.no-admin .footer .placeholder-text { color: var(--on-night-2); }
 
 /* --------------------------------------------------------------------------
-   18. עמוד תוכן פנימי
+   מצבי הטופס שה-main.js כותב
    -------------------------------------------------------------------------- */
 
-.prose { max-width: 68ch; }
-.prose h2 { font-size: var(--d-md); margin-block: var(--s-7) var(--s-3); }
-.prose ul { display: grid; gap: var(--s-2); margin-block-end: var(--s-4); }
-.prose ul li { padding-inline-start: var(--s-5); position: relative; color: var(--ink-2); }
-.prose ul li::before {
-  content: "";
-  position: absolute;
-  inset-inline-start: 0;
-  inset-block-start: 0.68em;
-  inline-size: 11px;
-  block-size: var(--stroke-2);
-  background: var(--brand-500);
+.form__status {
+  display: none;
+  align-items: flex-start;
+  gap: var(--s2);
 }
+.form__status.is-visible { display: flex; }
+.form__status svg { inline-size: 18px; block-size: 18px; flex: none; margin-block-start: 3px; }
+.form__status a { color: inherit; }
 
-/* ==========================================================================
-   18b. העיפרון של היועץ
+.act--submit[disabled] { opacity: .65; cursor: progress; }
+.btn__spinner {
+  inline-size: 16px;
+  block-size: 16px;
+  margin-inline-start: var(--s2);
+  border: 2px solid currentColor;
+  border-block-start-color: transparent;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin { to { rotate: 360deg; } }
+@media (prefers-reduced-motion: reduce) { .btn__spinner { animation-duration: 2.4s; } }
+
+/* --------------------------------------------------------------------------
+   באנר ההסכמה למדידה
    --------------------------------------------------------------------------
-   החלטת מועצה 0003. בני מסמן תוכניות ביד: מקיף פינה מתה, מותח חץ למסלול
-   תנועה, מסמן וי ליד מה שעובד. הסימונים כאן הם בדיוק זה — שכבת הערות
-   מעל העמוד, לא קישוט ולא שפה חלופית.
+   מדיניות הפרטיות מצהירה שנתוני השימוש נאספים בכפוף להסכמה. הבאנר הוא
+   מה שהופך את ההצהרה לנכונה: כלי המדידה אינם נטענים לפני אישור.
+   -------------------------------------------------------------------------- */
 
-   שלושה כללים שמחזיקים את זה מצד המקצועי של הגבול:
-   1. עיפרון של שרטט, לא שרבוט. קו דק, בטוח, בלחיצה אחת.
-   2. צבע אחד בלבד — אותו אדום סימון של שאר העמוד.
-   3. מעט. שישה סימונים בעמוד שלם. מה שחוזר הופך לטפט.
+.consent {
+  position: fixed;
+  inset-block-end: 0;
+  inset-inline: 0;
+  z-index: 60;
+  background: var(--ink);
+  color: #d6dde6;
+  padding: var(--s4) var(--gut);
+}
+.consent__inner {
+  max-inline-size: var(--tape);
+  margin-inline: auto;
+  display: grid;
+  gap: var(--s3);
+}
+.consent__text { font-size: .875rem; }
+.consent__text a { color: #9ec9ff; }
+.consent__actions { display: flex; gap: var(--s3); flex-wrap: wrap; }
+.consent .act { inline-size: auto; }
+.consent .act--ghost { color: #fff; border-color: #55657d; background: transparent; }
+.consent .act--ghost:hover { background: #22304a; }
+/* הבאנר מכסה את הספח — הספח מתרומם מעליו */
+body.has-consent .action-bar { inset-block-end: 96px; }
 
-   הסימונים דקורטיביים לחלוטין: aria-hidden, ללא pointer events, ושום
-   מידע אינו מועבר דרכם בלבד.
-   ========================================================================== */
-
-/* max-inline-size: none הכרחי. ה-reset בבסיס קובע svg { max-width: 100% },
-   והוא חתך בשקט כל סימון שחורג מהעוגן שלו: הקפה שהוגדרה 110% רונדרה
-   ב-100%, וכל הקווים התחתונים יצאו בדיוק ברוחב המילה במקום לחרוג ממנה.
-   זה היה שם מההתחלה ולא נראה, כי חיתוך ל-100% נראה כמו כוונה. */
-.mark {
-  position: absolute;
-  pointer-events: none;
-  overflow: visible;
-  max-inline-size: none;
-  z-index: 1;
+@media (min-width: 620px) {
+  .consent__inner { grid-template-columns: 1fr auto; align-items: center; gap: var(--s5); }
 }
 
-.mark path {
-  fill: none;
-  stroke: var(--mark);
-  stroke-width: var(--pencil-w);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  /* רעד עדין שהופך קו וקטורי לקו יד. הסינון סטטי — רק ההיקף מונפש,
-     כך שאין רסטריזציה מחדש בכל פריים. */
-  filter: url(#pencil-rough);
+/* --------------------------------------------------------------------------
+   קישורי התחתית
+   -------------------------------------------------------------------------- */
+
+.foot__links {
+  margin-block-start: var(--s5);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s2) var(--s4);
+  font-size: .875rem;
 }
+.foot__links a { color: var(--blue-deep); }
 
-.section--dark .mark path { stroke: var(--mark-on-night); }
+/* --------------------------------------------------------------------------
+   עמודים פנימיים — מדיניות פרטיות ושגיאה 404
+   --------------------------------------------------------------------------
+   עמוד פנימי באתר הזה אינו עמוד אחר: הוא מסמך אחר שיוצא מאותה מכונה.
+   אותה רצועה, אותו ראש מסמך, אותו ברקוד.
+   -------------------------------------------------------------------------- */
 
-/* מכשירים ניידים: הסינון יקר לרסטריזציה ואינו שווה את המחיר על מסך קטן.
-   הקו נשאר, הרעד יורד. */
-@media (max-width: 899px) {
-  .mark path { filter: none; }
+/* כותרת של מסמך משפטי אינה כותרת מכירה: היא קטנה יותר ואינה נושאת
+   את בלוק ההיפוך. */
+.title--doc { font-size: clamp(1.6rem, 5.4vw, 2.3rem); margin-block-end: var(--s4); }
+
+.prose--doc { color: var(--ink-2); }
+.prose h2 {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: clamp(1.05rem, 3.6vw, 1.25rem);
+  color: var(--ink);
+  margin-block: var(--s6) var(--s3);
 }
-
-/* ציור בגלילה. ברירת המחדל היא קו מצויר במלואו: ללא JavaScript,
-   ותחת תנועה מופחתת, הסימון פשוט נמצא שם. */
-.js .mark path {
-  stroke-dasharray: var(--len, 600);
-  stroke-dashoffset: var(--len, 600);
-}
-.js .mark.is-drawn path {
-  animation: pencil-draw var(--pencil-draw) cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-  animation-delay: var(--delay, 0ms);
-}
-@keyframes pencil-draw { to { stroke-dashoffset: 0; } }
-
-/* עוגן לסימון שמקיף מילה בתוך משפט */
-.marked { position: relative; display: inline-block; }
-.marked > .mark { inset-block-start: -12%; inset-inline-start: -5%; inline-size: 110%; block-size: 124%; }
-
-/* עוגן שאינו תלוי בפנים הגופן.
-   הגרסה הקודמת מיקמה את ההקפה ב-min(106%, 13.5ch) ובאחוז מגובה ה-h1 —
-   כלומר מול תיבות הגליפים של גופן מסוים. החלפת פנים התצוגה פירקה אותה
-   בשקט. העוגן יושב מחוץ ל-overflow:hidden של השורה, עוטף את השורה
-   עצמה, ונמדד מהרוחב המרונדר בפועל בכל גופן. */
-/* block עם fit-content ולא inline-block: inline-block מוסיף מתחת לקו
-   הבסיס רווח בגודל יורדן של גופן ענק (נמדד: 40px מיותרים ב-390),
-   ו-fit-content שומר על ההתכווצות לרוחב הטקסט כך שההקפה לא גולשת. */
-.mark-anchor { position: relative; display: block; inline-size: fit-content; }
-.mark-anchor > .mark--headline {
-  inset-block-start: -11%;
-  inset-inline-start: -2%;
-  inline-size: 104%;
-  block-size: 122%;
-}
-@media (min-width: 600px) {
-  .mark-anchor > .mark--headline { inset-inline-start: -3%; inline-size: 106%; }
-}
-
-/* הקפה רחבה סביב המספר הבודד. פירוק שנות הניהול ירד ב-7.11, והמספר
-   עומד לבדו — ההקפה גדלה כדי לשאת את המשקל שהפירוק נשא קודם.
-   זהו שינוי גודל של סימן קיים, לא סימן שביעי: המכסה של 0003 בתוקף. */
-.marked > .mark--ring-wide {
-  inset-block-start: -26%;
-  inset-inline-start: -11%;
-  inline-size: 122%;
-  block-size: 152%;
-}
-
-/* קו תחתון בכתב יד. מידות מפורשות: ל-SVG בעמדה אבסולוטית אין גובה
-   משל עצמו, ו-block-size:auto מתמוטט לאפס. */
-.marked > .mark--underline {
-  inset-block-start: auto;
-  inset-block-end: -0.1em;
-  inset-inline-start: -2%;
-  inline-size: 104%;
-  block-size: 0.26em;
-}
-
-/* הקו נמתח לרוחב המילה, ולכן יחס הגובה-רוחב שלו משתנה.
-   non-scaling-stroke שומר על עובי אחיד במקום לרדד אותו. */
-.mark--underline path {
-  vector-effect: non-scaling-stroke;
-  stroke-width: 3;
-}
-
-/* סימון שיושב על בלוק שלם */
-
-
-/* חץ חופשי שממוקם ביחס לאזור */
-.mark--arrow { inline-size: clamp(90px, 11vw, 150px); aspect-ratio: 150 / 54; block-size: auto; }
-
-/* ההערה הצמודה לחץ בהירו */
-.hero__scribble {
-  margin-block-start: var(--s-2);
+.prose h2:first-child { margin-block-start: 0; }
+.prose a { color: var(--blue-deep); }
+.prose ul { margin-block-start: var(--s3); }
+/* בעולם הזה גם רשימה במסמך משפטי היא רשימת שורות עם קווי עמודה,
+   ולא תבליטים. אין כאן קו דקורטיבי אחד. */
+.prose li {
   position: relative;
-  padding-inline-end: clamp(96px, 12vw, 150px);
-  padding-block-start: var(--s-5);
-  min-height: 40px;
+  padding-inline-start: 1.1em;
+  padding-block: .56em;
+  border-block-start: 1px dotted var(--rule);
+  font-size: .9375rem;
 }
-/* במובייל הכפתורים נערמים זה מעל זה, והחץ היה מצביע על הכפתור המשני
-   בזמן שהתווית אומרת "וואטסאפ" — סימון יד ששקר גרוע מהיעדרו.
-   שם ממילא יש סרגל פעולה קבוע בתחתית המסך, וההערה מיותרת. */
-/* הסלקטור הכפול נדרש: ל-.scribble שלמטה אותה ספציפיות והוא מאוחר יותר. */
-.scribble.hero__scribble { display: none; }
-
-@media (min-width: 1000px) {
-  .scribble.hero__scribble { display: inline-flex; }
-}
-
-.hero__scribble .mark--arrow {
-  /* הכפתור הראשי נמצא מעל ההערה, לכן החץ עולה כלפי מעלה אליו.
-     הנתיב מצויר בכיוון הנכון ב-viewBox ואינו מהופך: היפוך היה מסובב
-     גם את ראש החץ. */
-  inset-block-end: 55%;
-  inset-inline-end: 0;
-  inline-size: clamp(74px, 8vw, 110px);
-  aspect-ratio: 150 / 76;
-}
-
-/* הערת שוליים בכתב יד — ההסבר שליד הסימון */
-.scribble {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-2);
-  font-family: var(--f-body);
+.prose li::before {
+  content: "·";
+  position: absolute;
+  inset-inline-start: .25em;
+  color: var(--blue-deep);
   font-weight: 700;
-  font-size: var(--t-xs);
-  color: var(--mark);
-  rotate: -1.5deg;
-}
-.section--dark .scribble { color: var(--mark-on-night); }
-
-/* ==========================================================================
-   18c. ספירה עולה
-   --------------------------------------------------------------------------
-   המספרים בציר הניסיון נספרים כלפי מעלה כשמגיעים אליהם. tabular-nums
-   מונע ריצוד של רוחב התו בזמן הספירה.
-   ========================================================================== */
-
-.count { font-variant-numeric: tabular-nums; }
-
-/* --------------------------------------------------------------------------
-   19. תנועה
-   --------------------------------------------------------------------------
-   חשיפה עדינה בגלילה בלבד. ברירת המחדל היא תוכן גלוי: ללא JavaScript
-   ותחת תנועה מופחתת לא מוסתר דבר.
-   -------------------------------------------------------------------------- */
-
-/* ה-craft floor של impeccable: "רגע אחד מחובר, לא אותה כניסה בדיוק
-   בכל סקשן", ו"האטה מעריכית ממצב שכבר נראה".
-   קודם היו 36 כניסות זהות שהתחילו ב-opacity:0 — כלומר תוכן מוסתר
-   שתלוי ב-JavaScript כדי להופיע. עכשיו 15, והן מתחילות מהנראה:
-   הטקסט קריא עוד לפני שהאנימציה רצה. הרגעים המחוברים של העמוד הם
-   הכותרת הקינטית, ציור העיפרון וספירת המספרים — לא הכניסה הזו. */
-.js .reveal {
-  opacity: 0.6;
-  translate: 0 14px;
-  filter: blur(5px);
-  transition:
-    opacity 520ms var(--ease-out-expo),
-    translate 720ms var(--ease-out-expo),
-    filter 620ms var(--ease-out-expo);
-}
-.js .reveal.is-visible { opacity: 1; translate: none; filter: none; }
-
-/* הכותרת הראשית עולה מתוך מסכה, מילה שלמה בכל פעם.
-   אין חלוקה לאותיות: היא שוברת צורות סופיות ומנתקת אותיות שימוש. */
-.kinetic { display: block; }
-.kinetic__line {
-  display: block;
-  overflow: hidden;
-  padding-block-end: 0.1em;
-  margin-block-end: -0.1em;
-}
-.js .kinetic__word {
-  display: inline-block;
-  translate: 0 105%;
-  animation: word-rise 560ms var(--ease) forwards;
-  animation-delay: calc(var(--i, 0) * 80ms);
-}
-@keyframes word-rise { to { translate: none; } }
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  .js .reveal { opacity: 1; translate: none; }
-  .js .kinetic__word { translate: none; animation: none; }
-  .js .mark path { stroke-dasharray: none; stroke-dashoffset: 0; animation: none; }
-  .js .shot img { clip-path: none; animation: none; }
-  .action-bar { transition: none; }
 }
 
-/* --------------------------------------------------------------------------
-   20. הדפסה
-   -------------------------------------------------------------------------- */
+/* כתובת הדוא״ל במסמך המשפטי. היא קישור בתוך משפט, כך שחריג 2.5.8 חל
+   עליה — אבל הפער קטן והתיקון זול, ולכן היא מקבלת 24px בכל זאת. */
+.mail-link { display: inline-block; min-block-size: 24px; }
 
-@media print {
-  .header, .action-bar, .mobile-nav, .hero__actions, .form-card, .consent { display: none !important; }
-  body { background: #fff; color: #000; }
-  .js .reveal { opacity: 1; translate: none; }
-  .section--dark, .footer { background: #fff !important; color: #000 !important; }
-  .section--dark h2, .section--dark h3, .footer a { color: #000 !important; }
-}
+/* חץ "חזרה" הוא אייקון כיווני, והעמוד עברי. בלי המראה הוא מצביע
+   לכיוון ההמשך ולא לכיוון החזרה. */
+.i-flip { transform: scaleX(-1); }

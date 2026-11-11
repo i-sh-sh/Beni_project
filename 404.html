@@ -21,7 +21,7 @@
 
 <body>
 
-<a class="skip-link" href="#main">דילוג לתוכן המרכזי</a>
+<a class="skip" href="#main">דילוג לתוכן המרכזי</a>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
@@ -31,51 +31,58 @@
   </defs>
 </svg>
 
-<header class="header">
-  <div class="container header__inner">
-    <a class="brand" href="index.html" aria-label="פופ סטייל, חזרה לעמוד הראשי">
-      <!-- חבילת המיתוג ממליצה על הסמל בלבד מתחת לרוחב לוגו של כ-180px.
-           picture מחליף את הקובץ עצמו, כך שרק אחד מהם נטען. הגובה הוא
-           שקובע את המידה, ולכן אותו כלל משרת שני יחסי צדדים שונים. -->
-      <picture>
-        <source media="(min-width: 700px)" srcset="assets/brand/logo.svg">
-        <img class="brand__logo" src="assets/brand/icon.svg" alt="pop-style. design"
-             width="384" height="384" decoding="async">
-      </picture>
-    </a>
-    <a class="btn btn--secondary btn--sm" href="index.html">
-      <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
-      חזרה לעמוד הראשי
-    </a>
-  </div>
-</header>
+<!-- רצועה קצרה. העמוד הזה הוא קבלה של פריט שלא נמצא במלאי —
+     לכן הסטטוס הוא שורת מסמך ולא כותרת ענק. -->
+<div class="wrap">
+  <main class="tape" id="main">
+    <div class="tape__body">
 
-<main id="main" class="section">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">שגיאה 404</p>
-      <h1>הדף שחיפשתם לא נמצא</h1>
-      <p class="lead">
+      <header class="doc-head">
+        <a href="index.html" aria-label="פופ סטייל, חזרה לעמוד הראשי">
+          <img class="doc-head__logo" src="assets/brand/logo.svg" alt="pop-style. design"
+               width="300" height="109" decoding="async">
+        </a>
+        <p class="doc-head__meta">
+          <span>דוח שגיאה</span>
+          <span><b>קוד:</b> <bdi dir="ltr">404</bdi></span>
+        </p>
+      </header>
+
+      <hr class="rule-double">
+
+      <h1 class="title title--doc">הדף שחיפשתם לא נמצא</h1>
+
+      <p class="sub">
         ייתכן שהכתובת הוקלדה באופן חלקי, או שהדף הוסר. כל התוכן של האתר נמצא בעמוד הראשי.
       </p>
-      <div class="hero__actions" style="margin-block-start:var(--space-5)">
-        <a class="btn btn--primary" href="index.html">חזרה לעמוד הראשי</a>
-        <a class="btn btn--secondary" href="index.html#contact">ליצירת קשר</a>
-      </div>
-    </div>
-  </div>
-</main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer__bottom" style="border:0;padding-block-start:0">
-      <p style="margin:0">© <span id="year">2026</span> פופ סטייל. כל הזכויות שמורות.</p>
-      <ul class="footer__legal">
-        <li><a href="privacy.html">מדיניות פרטיות</a></li>
-      </ul>
+      <hr class="rule-single">
+
+      <dl class="lines">
+        <div class="line"><dt>סטטוס</dt><span class="line__lead"></span><dd class="line__val"><bdi dir="ltr">404</bdi> — לא נמצא</dd></div>
+        <div class="line"><dt>מה שמור</dt><span class="line__lead"></span><dd class="line__val">כל התוכן בעמוד הראשי</dd></div>
+      </dl>
+
+      <div class="acts">
+        <a class="act" href="index.html">
+          <svg class="i-flip" aria-hidden="true"><use href="#i-arrow"></use></svg>
+          חזרה לעמוד הראשי
+        </a>
+        <a class="act act--ghost" href="index.html#contact">ליצירת קשר</a>
+      </div>
+
+      <footer class="foot">
+        <hr class="rule-double">
+        <div class="barcode" aria-hidden="true"></div>
+        <p class="foot__legal">© <span id="year">2026</span> פופ סטייל. כל הזכויות שמורות.</p>
+        <ul class="foot__links">
+          <li><a href="privacy.html">מדיניות פרטיות</a></li>
+        </ul>
+      </footer>
+
     </div>
-  </div>
-</footer>
+  </main>
+</div>
 
 <script>
   document.getElementById("year").textContent = String(new Date().getFullYear());
